@@ -33,6 +33,7 @@ interface ZoneAnalysis {
   residential_count: number;
   commercial_count: number;
   mixed_count: number;
+  features?: any[];
 }
 
 interface TruckRoutes {
@@ -207,8 +208,8 @@ export default function SmartMap() {
         properties: {
           zone_id: f.properties.zone_id,
           waste_kg_day: f.properties.waste_kg_day || 0,
-          population: Math.round((f.properties.waste_kg_day || 0) / 0.45),
-          risk: f.properties.infrastructure_score > 50 ? 'high' : 'medium',
+          population: f.properties.population || Math.round((f.properties.waste_kg_day || 0) / 0.45),
+          risk: f.properties.risk || 'medium',
           center_lon: f.geometry.coordinates[0][0][0],
           center_lat: f.geometry.coordinates[0][0][1]
         }
