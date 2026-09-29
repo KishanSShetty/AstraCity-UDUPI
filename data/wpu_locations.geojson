@@ -1,0 +1,43 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.649861,
+          12.896044
+        ]
+      },
+      "properties": {
+        "Name": "BBMP waste processing units",
+        "FolderPath": "0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.896044,
+        "_lon": 77.649861,
+        "_dist_to_hsr_km": 2.09
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.686032,
+          12.857962
+        ]
+      },
+      "properties": {
+        "Name": "BBMP waste processing units",
+        "FolderPath": "0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.857962,
+        "_lon": 77.686032,
+        "_dist_to_hsr_km": 7.64
+      }
+    }
+  ]
+}

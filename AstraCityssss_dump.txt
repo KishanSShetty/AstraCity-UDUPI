@@ -1,0 +1,171 @@
+[0] AstraCity: A Ward-Level Digital Twin Framework for Municipal Solid Waste Management Using Remote Sensing and Route Optimization
+[1] Kishan Shetty — RV College of Engineering, kishanshetty.udupika20@gmail.com
+Karthik KP — RV College of Engineering, karthikkp.is24@rvce.edu.in
+Dr Lokeshwari M — Associate Professor, RV College of Engineering
+[2] ________________________________________
+[3] Abstract
+[4] AstraCity is a ward level digital twin for the municipal solid waste management (MSW) sector, combining the capabilities of geospatial analysis, waste-flow estimation, route optimization and environmental impact analysis in an integrated decision support system. The twin digitally represents 9471 geo-referenced buildings, 2027 classified road segments and six Dry Waste Collection Centres (DWCCs) applied to HSR Layout (Ward 174, Bengaluru). The Maximum Likelihood Classification (MLC) of sentinel-2 data has been used to classify open land and exclude it from the images if it is at risk of illegal dumping (DBSCAN clustering). For 54 scenarios waste is generated and modelled. A Capacitated Vehicle Routing Problem with Time Windows (CVRPTW) with Clarke–Wright Savings heuristic, is able to cut daily fleet distance by 75.5% (132.44 km → 32.41 km). According to the IPCC Tier-1 First Order Decay estimates, 927 tonnes CH₄/year or 25,959 tonnes CO₂e can be achieved, having an estimated carbon-credit value of ₹5.19 crores per year. The estimated savings per ward per year is ₹5.79 crores. The novelty will be to combine these modules into a comprehensive digital twin system for urban decision making.
+[5] Keywords — Digital twin, municipal solid waste, CVRPTW, Clarke–Wright heuristic, remote sensing, LULC classification, DBSCAN, carbon credits, Bengaluru, smart city
+[6] ________________________________________
+[7] 1. Introduction
+[8] More than 150,000 tonnes of MSW are generated daily in the urban centres of India, and most cities still use paper maps, complaint registers and institutional memory to plan MSW collection. Despite spending Rs. over 800 crores per year on solid waste operations, BBMP still has the following inefficiencies in its operations: (1) Routes prepared 20 years ago; (2) No spatial mechanism in place to detect illegal dumping; (3) No estimation of methane at ward level; (4) No tool to simulate surge situation during festivals/monsoon.
+[9] The problem is that there is a lack of spatial intelligence in administrative decision making. If waste generation gradients cannot be visualised, if width of roads cannot be taken into consideration in the allocation of vehicles, and if the financial implications of policy decisions cannot be modelled, waste management will always be reactive.
+[10] AstraCity does this by creating a digital twin of Ward 174: a virtual model of the ward based on a set of scenarios that represent the physical assets, models waste flows, optimises operations and estimates the impact on the environment. The twin is not a map dashboard, it is a layered framework for decision support, each layer of which feeds into the next. The innovation is in the ability to combine these modules into a single digital twin for the ward.
+[11] 1.1 Contributions
+[12] The contributions of this work are:
+[13] The creation of a ward-level digital twin framework, bringing together remote sensing, spatial risk screening, waste flow modelling, route optimization and environmental accounting into a single decision-support pipeline.
+[14] 2.	Spatial dump-risk detection pipeline which integrates Sentinel-2 LULC classification and DBSCAN clustering at ward level to identify and prioritize illegal dump sites.
+[15] The 3. Scenario based waste generation model provides 54 pre-computed scenarios of waste generation (growth, festival, weather and more other scenarios) to support proactive capacity planning without re-computation.
+[16] 2.	The constrained CVRPTW formulation with road-width and time-window constraints and the Clarke–Wright Savings heuristic to allow for physically feasible ward scale fleet scheduling.
+[17] 5.	An IPCC compliant 'carbon and economic impact' assessment including an estimate of methane emissions and potential annual savings at ward level.
+[18] HSR Layout (Ward 174) was chosen to implement the pilot due to its data availability, structural properties that are typical of the municipal solid waste (MSW) situation in Bengaluru and the fact that it is compact enough to be subject to detailed digital twinning. The urban morphology in the ward is repeated in many BBMP wards with its dense residential fabric, mixed commercial corridors, road network and 15.3% open land, rendering findings transferable. Only data at ward-level are required as inputs and the pipeline can be replicated for other wards in BBMP with similar data availability.
+[19] ________________________________________
+[20] 2. Digital Twin Architecture
+[21] 2.1 Definition
+[22] AstraCity is considered to be a digital twin for a ward, a geospatially anchored scenario-driven virtual representation of Ward 174, which is a representation of the physical waste management system and can be used to support decision making regarding routing, surveillance and environmental accounting for the ward.
+[23] 2.2 Physical Entities Modelled
+[24] Entity Layer	Components
+[25] Built Environment – 9471 building footprints (residential, apartment, commercial, institutional)
+[26] Road Network	2,027 classified segments (width, type, vehicle access)
+[27] Waste Infrastructure	6 DWCCs, 1 BMU (Kudlu Gate, 2.10 km) dumpyard (Yelahanka, 21.03 km)
+[28] Land Parcels	Open land polygons based upon LULC classification
+[29] Ward 174 administrative polygon	Ward Boundary
+[30] 2.3 State Variables
+[31] Static layers (temporal: periods of 1 year): building footprints, road segments, DWCC locations, land-cover classes.
+[32] Waste generated per grid-cell, vehicle route assignments, dump-risk scores, methane estimates, economic projections (dynamic layers – updated for each scenario).
+[33] 2.4 Decision Pipeline
+[34] The twin is a 5-stage pipeline. Each stage is directly connected with the subsequent stage:
+[35] [1] Sentinel-2 Imagery
+[36]         ↓ MLC Classification
+[37] [3] Land Use Change Map (Built up / Vegetation / Open land / Water)
+[38]         ↓ DBSCAN on Open Land pixels
+[39] High priority illegal dump sites (P0 / P1 priority sites)
+[40]         ↓ Building-level occupancy model
+[41] This is a Waste Generation Grid comprised of 59 x 54 cells and 54 scenarios.
+[42]         ↓ CVRPTW + Clarke–Wright
+[43] [6] Approved Bids (bids, document center, cost details, etc.)
+[44]         ↓ IPCC FOD + Economic model
+[45] The 2017/18 methane / CO₂e estimates and financial impact.
+[46]         ↓
+[47] The outputs from the DECISION are:The DECISION outputs are:
+[48] 2.5 Twin Boundary
+[49] The modelled unit is Ward 174. External facilities (Kudlu BMU, Yelahanka dumpyard) are shown as linked terminal nodes, which are the end points of a route, not as modelled systems. The twin is scenario driven, meaning it is based on periodic snapshots from satellites and pre-computed scenario matrices.
+[50] ________________________________________
+[51] 3. Related Work
+[52] 3.1 Emission-Capacitated Vehicle Routing
+[53] Common CVRP formulations are those that minimize distance or travel time. Emission-capacitated variants take the objective one step further by considering per-vehicle CO₂ emissions, which takes into account the fleet composition and the route length. Previous research on the green VRP for waste collection has demonstrated that significant emission reductions are achievable for very short urban sections by replacing heavy compactors with lighter vehicles when considering a weighted sum of distance and vehicle emissions. This encourages AstraCity's emission-weighted goal, where the emission factor (kg CO₂/km) for the vehicle type is used on each route edge, instead of being calculated after the fact.
+[54] Waste collection requires time-dependent travel times.Time-dependent travel times are needed in waste collection.
+[55] Prior work has shown that the time-of-day speed variability in route planning has a significant impact on route feasibility and total emissions, especially in urban corridors with high congestion levels in the morning, which is the time period used for collection in this study (i.e., 06:00–10:00). These formulations allocate speed profiles for each road class for each time period, which results in more realistic arrival time accumulation along long routes. The speed model used by AstraCity is a two-speed model (06:00-08:00 = low-congestion; 08:00-10:00 = peak) per road category and is used as a design specification for use in future calibration.
+[56] 3.3 Digital Twin for Smart Cities
+[57] Digital twin in smart city contexts has been increasingly used to connect physical infrastructure and data-driven decision support. The urban digital twin is generally used to model physical assets, simulate operational scenarios and present relevant physical and decision outputs to the administrators without the need for any live sensor infrastructure initially. However, in the waste management sector, similar approaches have been advocated for logistics tracking, landfill site evaluation, or waste collection planning, among others, but none of them are truly a pipeline. Previous literature usually focuses on just one or two of these elements separately. AstraCity brings together spatial surveillance, waste modelling, constrained routing, and environment assessment within a single ward level decision-support framework, making it a multi-function digital twin and not a single analytical module.
+[58] ________________________________________
+[59] 4. Methodology
+[60] 4.1 Study Area and Data Sources
+[61] HSR Layout (Ward 174 - centroid: 12.915 N, 77.640 E) is a 7.0 km² area in south-east Bengaluru between the Outer Ring Road corridors. It consists of 9471 building footprints (94.8% independent houses with apartments, commercial, IT and institutional uses) and an estimated population of ~1,10,000 with a daily waste load of 55 tonnes. The ward does not have any on ward dumpyard, BMU or any processing plant and the wet waste is sent to Kudlu gate BMU which is 2.10 km away from the ward and the inert fraction is sent to Yelahanka dumpyard which is 21.03 km away from the ward. There is a structural gap, with six DWCCs delivering ~15 t/day against a demand of ~16.5 t/day, which increases during surge periods.
+[62] The data includes 18 levels of open access data: Sentinel-2 Level-2A data (ESA Copernicus); Dumpyard locations (BBMP GIS shapefiles); DWCC locations (BBMP GIS shapefiles); Overpass API building footprints, road network (GeoFabrik export). Population estimates were obtained by applying building occupancy models (4 persons/independent house, 284 persons/apartment unit) to the 2011 ward data from Census 2011.
+[63] 4.2 LULC Classification (Remote Sensing Layer)
+[64] The satellite images from Sentinel-2 Level-2A were then imported into QGIS 3.x and classified using the Sentinel-2 Level-2A Maximum Likelihood Classification plugin and Maximum Likelihood Classification (MLC). There are four classes identified: Built-up, Vegetation, Open Land and Water Bodies. Eight to 15 polygons were digitised in the training regions of interest in the four quadrants of wards to ensure spectral diversity. Stratified random sampling (with ≥ 50 validation points per class) was used to validate classification accuracy, the Overall Accuracy and Kappa coefficient were the main validation metrics. A 3×3 majority filter was used to reduce salt and pepper noise prior to export.
+[65] Those parcels of land that are not being used have the greatest chance of being abandoned. Open Land (15.3%, 2.83 km²) is thus the main output that is going into the next module.
+[66] 4.3 Illegal Dump Risk Detection (Spatial Surveillance Layer)
+[67] Brightness threshold approach: candidate anomaly points were identified as pixels whose brightness value was less than the brightness 10th percentile over the local open-land distribution. DBSCAN was used to cluster spatially close candidate points into separate clusters (dump sites) while discarding single points of "noise.
+[68] Four potential locations were identified (147 – 264 m²), two of which were identified as high-risk (P0: cleanup the same day) and two medium-risk (P1: 48 hour response). This output is used for cleanup priority decisions and waste routing module, with higher frequency of collection in routing scenarios in high risk zones.
+[69] 4.4 Waste Generation Modelling (Flow Layer)
+[70] The ward was decomposed to 59 grid cells that are active. Per-cell waste generation was calculated as:
+[71] $$\text{Waste} = \left[(0.45 \times P) + (2.8 \times C)\right] \times \phi_{\text{growth}} \times \phi_{\text{festival}} \times \phi_{\text{weather}}$$
+[72] where P is the modelled population per cell (4 persons/independent house, 284 persons/apartment), C is the commercial score, and multipliers are used to adjust the growth (1.0–1.5), festival (Diwali: ×1.20, Ganesh Chaturthi: ×1.28), and weather factors (low rainfall: ×0.95, heavy: ×1.15).
+[73] The dump-probability index was calculated per cell, based on the ratio of waste to DWCC, the segregation failure rate, open-land fraction and inverse road density. This index identifies areas of overproduction of waste and low level of infrastructure.
+[74] Policy exploration can be done periodically without re-computation for 54 pre-computed scenarios (3 growth levels x 3 festival states x 3 weather states).
+[75] Key waste scenarios:
+[76] The waste generated/changed (tonnes/day):
+[77] Normal (no festival)		14.08	—
+[78] Heavy Rainfall	16.19	+15%
+[79] Ganesh Chaturthi	18.02	+28%
+[80] Compound Worst Case	21.86	+55%
+[81] 4.5 Route Optimization (CVRPTW Layer)
+[82] Problem formulation: This collection problem is modelled as a Capacitated Vehicle Routing Problem with Time Windows (CVRPTW). Use $x_{ijk} \in {0,1}$, with $x_{ijk}=1$ if vehicle $k$ passes through edge $(i,j)$, and $x_{ijk}=0$ otherwise, and let $t_{ik} \in \Bbb R$ be the time when vehicle $k$ arrives at node $i$.
+[83] Minimize overall distance traveled by fleet:
+[84] $$\text{Minimize} \quad \sum_{k} \sum_{i} \sum_{j} d_{ij} \cdot x_{ijk}$$
+[85] Subject to:
+[86] $$\sum_{k} \sum_{j} x_{ijk} = 1 \quad \forall i \in C \quad \text{(each zone served exactly once)}$$
+[87] $$\sum_{i} q_i \sum_{j} x_{ijk} \leq Q_k \quad \forall k \quad \text{(vehicle capacity)}$$
+[88] $$\sum_{j} x_{0jk} = \sum_{j} x_{j0k} = 1 \quad \forall k \quad \text{(depot flow conservation)}$$
+[89] $$a_i \leq t_{ik} \leq b_i \quad \forall i, k \quad \text{(time window } [a_i, b_i] = [06{:}00,,10{:}00]\text{)}$$
+[90] $$x_{ijk} = 0 \quad \text{if } w_{ij} < W_k \quad \text{(road-width feasibility)}$$
+[91] where $d_{ij}$ is the distance of the edge (i,j); $q_i$ is the amount of waste in zone $i$; $Q_k$ is the capacity of the vehicle $k$; $t_{ik}$ is the arrival time of the vehicle $k$ at the node $i$; $a_i$ and $b_i$ are the minimum and maximum service times at the node $i$; $C$ is the set of collection zones; $w_{ij}$ is the width of the road on edge (i,j); and $W_k$ is the minimum road width required by the vehicle $k$.
+[92] Two-tier fleet structure: Ward 174 has a road network with 41.4% medium width (2-4 m lanes) and 27.6% footways (< 2 m). Tier-1 use involves pushing carts and auto-tippers on narrow streets and dumping at transfer nodes (DWCCs and accessible micro-depots). Tier-2: Compactors on wider roads, collecting from transfer nodes BMU/dumpyard.
+[93] Algo: Clarke-Wright Savings heuristic in TypeScript. All saving amounts were calculated: $s(i,j) = d(\text{depot} \to i) + d(\text{depot} \to j) - d(i \to j)$, all pairs of nodes were sorted descending in order of these savings, and the routes were added iteratively as long as they are feasible in terms of capacity and time window. Road distances calculated using the OSRM API, otherwise using Haversine formula.
+[94] Fleet:
+[95] The vehicle type, quantity, capacity and minimum road width.
+[96] Auto-tipper	12	500 kg	≥ 2 m
+[97] Large compactor	2	10,000 kg	≥ 6 m
+[98] Small compactor	2	5,000 kg	≥ 4 m
+[99] Push cart	8	200 kg	Any
+[100] Liquid tanker	1	5,000 L	≥ 9 m
+[101] The estimation of methane and economic assessment (impact layer) will be performed.
+[102] Methane : Tier-1 First Order Decay (FOD):
+[103] $$\text{CH}4 \text{ (tonnes/year)} = \text{MSW}{\text{organic}} \times \text{DOC}_f \times \text{MCF} \times \frac{16}{12} \times (1 - \text{OX})$$
+[104] MSW_organic = 12,246 tonnes/year (61% organic fraction × 55 t/day × 365). The following parameters are used: DOCf = 0.5, MCF = 0.8 (managed anaerobic, Kudlu BMU), OX = 0.1 (IPCC default). CO₂e conversion uses GWP100 = 28 (IPCC AR5).
+[105] Economic model: Five projected economic benefit flows totalled on a yearly basis:
+[106] Disaster Recovery Funds	$1.0 billion	38.87%
+[107] Estimated carbon credit revenue (₹2,000/t CO₂e, CCTS 2023)	₹5.19 crores	89.6%
+[108] Fuel savings (₹20/km × 100.03 km/day × 365)	₹0.07 crores	1.2%
+[109] Avoided dump cleanup (30 sites × ₹52,000)	₹0.16 crores	2.8%
+[110] Labour savings (1.5 hrs × 25 vehicles × ₹180/hr × 365)	₹0.25 crores	4.3%
+[111] Compost sales (digestate at ₹1,500/tonne)	₹0.12 crores	2.1%
+[112] Total (Ward 174)	₹5.79 crores	100%
+[113] ________________________________________
+[114] 5. Results
+[115] 5.1 LULC Classification
+[116] Class	Area (km²)	Ward Coverage	Significance
+[117] Made-up of high-density residential/commercial fabric	11.85	64.1%
+[118] Vegetation: 3.26, 17.6% (Parks, avenue trees, private gardens)
+[119] No restrictions on opening of land, 15.3% of open land is designated as surveillance priority, dump risk exposure, Open Land	2.83	15.3%
+[120] Agara Lake, HSR Layout Lake — leachate risk	0.56	3.0%
+[121] 5.2 Dump Risk Detection
+[122] There were 4 candidate illegal dump sites found using DBSCAN. Two P0 sites (147 to 264 m²) were marked for same day action. Spatially these occurred in clusters in the Eastern HSR with a low segregation rate (42%) and a high open-land fraction.
+[123] 5.3 Route Optimization
+[124] Metre	Before Optimization	After Optimization	Improvement
+[125] Daily fleet distance	132.44 km	32.41 km	75.5% reduction
+[126] Daily fuel cost	₹2,072	₹507	₹1,565 saved/day
+[127] Network coverage	—	95.3%	+15.3 pp
+[128] Average collection time (hrs/vehicle):	4.5 hrs/vehicle	3.0 hrs/vehicle	33% reduction
+[129] Three compactor routes cover the ward: Route 1 (12.54 km, 3,050 kg, Western HSR), Route 2 (9.63 km, 3,115 kg, Central HSR), Route 3 (15.93 km, 3,104 kg, Eastern HSR).
+[130] Infrastructure gap identified: Push cart capacity (3.2 t/day) is less than footway adjacent demand (5.5 t/day), by 2.3 t/day. This gap is directly related to the formation of dumps along narrow lanes, the twin makes this gap measurable and doable.
+[131] The importance of methane in the environment.
+[132] •	CH₄ emissions: 927 tonnes/year
+[133] •	CO₂e: 25,959 tonnes/year
+[134] •	Potential carbon-credit value: ₹5.19 crores per year while at the mid-range of the CCTS-2023 (RIN, ₹2,000/tonne)
+[135] Biogas energy potential: 21,285 KWh/day equals to powering approx 7,095 households.
+[136] 5.5 Module Interaction: How the Twin Closes the Loop
+[137] Open land parcels are assigned to a LULC classification, which then is transformed into prioritized dump sites by DBSCAN, then used as zone risk flags in the waste generation model, which then influences the distance and fleet load in the routing module, which in turn influences the economic model with its outputs which are compared to the actual route emissions from which the carbon savings are calculated. The results of each module are directly fed into the inputs of the subsequent module.
+[138] ________________________________________
+[139] 6. Discussion
+[140] The following section addresses the question of why bother with a Digital Twin instead of separate analyses?
+[141] The unique feature of this work is the five analytical components are a unified pipeline and not separate tools. The spatial input in DBSCAN risk scoring comes from LULC. The routing output tells the zones if they have sufficient collection and surplus waste that increases the chance of a dump. The methane estimate is correlated with the waste tonnage calculated using the same scenario model used for routing. What makes this integration legitimate and worthy of the digital twin framing, is the novelty of this work.
+[142] The width of roads is a design constraint.Road widths are a design constraint.
+[143] Any plan that does not take road widths into account will be impractical because of Ward 174's road infrastructure (with only 17.4% of the road segments being passable by conventional trucks). The twin encodes the road width constraints as hard constraints on the CVRPTW edge set. The two-tiered fleet model is directly resulting from this constraint and is not a design decision but a physical one.
+[144] 6.3 Scenario sensitivity and operational preparedness.
+[145] This is due to the 55% increase of the compound worst case scenario (heavy rain + Ganesh Chaturthi) which puts a strain on DWCC capacity and is exceeding baseline fleet capacity. The twin pre-computes this situation, and the system highlights the five bins that will exceed capacity for the run, and enables the administrator to schedule extra auto-tipper runs and the BMU schedule in advance of the situation. The essence of the scenario-simulation layer is to shift reactive crisis management to proactive capacity planning.
+[146] 6.4 Limitations
+[147] This study did not attempt to validate the dump sites detected from the satellite data. The parameter for waste generation has been calculated on average data from CPCB instead of the data collected in the weighbridge. Poorly understood segregation rates are estimated in the field not on a systematic basis. The valuation of carbon credits is based on a price range in emerging markets and should be seen as an indicative planning value and not as a fixed value. In this study, the routing objective used is currently to minimize total distance; a more general objective that assigns vehicle-type emission factors per route edge is identified as future work, which requires calibrated emission data not available for this study.
+[148] 7. Conclusion
+[149] AstraCity shows how a municipal solid waste (MSW) management open satellite data and open source geospatial tools with standard combinatorial optimization can be combined to create an open digital representation of a municipality at the ward level, without the need for proprietary software or the deployment of live sensor infrastructure. For the twin, the reduction in daily fleet distance is 75.5% for Ward 174 (HSR Layout, Bengaluru), four illegal dump risk sites are identified, 25,959 tonnes CO₂e of annual emissions are quantified and estimated savings of ₹5.79 crores are found annually for the ward. The novelty in this is the ability to connect all the above modules in a cohesive, ward-level digital twin such that the outputs of each individual module serve as the inputs to the next.
+[150] This is the unification of a new digital twin concept for the whole ward, incorporating the integration of remote sensing, spatial risk screening, waste modelling and constrained routing optimisation, with environmental accounting. There are two planned future extensions formally specified as future work: a further extension that would make fleet CO₂ a routing constraint instead of a post-hoc estimate, and a time-dependent travel-time model to see if time-window violations are increased on routes far away when the fleet is used in the morning peak. Further, the use of fill-level IoT sensors at DWCCs to replace the estimated waste based on scenarios with actual periodic tonnage and validation of the dump locations identified by the satellite with field surveys are considered as the main actions for the next step. The twin will also be expanded to more wards in the future with the same pipeline architecture.
+[151] References
+[152] [1] Ministry of Environment, Forest and Climate Change, "Solid Waste Management Rules, 2016," Government of India, 2016.
+[153] [2] CPCB, "Annual Report on Solid Waste Management 2021-22," Ministry of Environment, Forest and Climate Change, 2022.
+[154] [3] M. Sharholy et al., "Municipal solid waste management in Indian cities – A review," Waste Management, vol. 28, no. 2, pp. 459–467, 2008.
+[155] [4] P. Toth and D. Vigo, Vehicle Routing: Problems, Methods, and Applications, 2nd ed. SIAM, 2014.
+[156] [5] G. Clarke and J. W. Wright, "Scheduling of vehicles from a central depot to a number of delivery points," Operations Research, vol. 12, no. 4, pp. 568–581, 1964.
+[157] [6] IPCC, "2006 Guidelines for National Greenhouse Gas Inventories," Vol. 5, Ch. 3, 2006.
+[158] [7] Bureau of Energy Efficiency (BEE), "Carbon Credit Trading Scheme (CCTS) 2023," Energy Conservation (Amendment) Act, 2022.
+[159] [8] IPCC, "Fifth Assessment Report (AR5)," 2014.
+[160] [9] BBMP, "Chemical Analysis of Municipal Solid Waste," 2013.
+[161] [10] BBMP, "Solid Waste Management Bye-laws and Fee/Penalty Schedules," 2020.
+[162] [11] Government of Karnataka, "Pay Scales for Regularised Pourakarmikas," 2025.
+[163] [12] PPAC, "Retail Selling Price of High-Speed Diesel," Ministry of Petroleum and Natural Gas.
+[164] [13] Ministry of Chemicals and Fertilizers, "Policy on Promotion of City Compost (MDA)," Government of India, 2016.
+[165] [14] M. Rabbani, H. Farrokhi-Asl, and B. Asgarian, "Solving a bi-objective location routing problem by a NSGA-II combined with clustering approach: Application in waste collection problem," Journal of Industrial Engineering International, vol. 13, pp. 13–27, 2017.
+[166] [15] S. Trifa, M. Jemaâ, and M. Tagina, "Time-dependent capacitated solid waste collection vehicle routing problem with time windows," Proc. Int. Conf. on Control, Automation and Information Sciences, 2019.
+[167] [16] S. Catania and D. Ventura, "An IoT-aware architecture for smart waste management," IEEE Internet of Things Journal, vol. 6, no. 2, pp. 3556–3563, 2019.
+[168] [17] V. Anagnostopoulos et al., "Effective methods for smart waste collection: IoT-VRP real-world applications," Sensors, vol. 18, no. 10, p. 3447, 2018.

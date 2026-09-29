@@ -1,0 +1,28 @@
+import { NextResponse } from 'next/server';
+import fs from 'fs';
+import path from 'path';
+
+export async function GET() {
+  try {
+    // Pointing directly to the ~2MB raw Udupi CMC file that has the actual separated geometries
+    const filePath = path.join(process.cwd(), 'data', 'Udupi CMC.geojson');
+    const fileContents = fs.readFileSync(filePath, 'utf8');
+    const geojson = JSON.parse(fileContents);
+    
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    geojson.features = geojson.features.map((f: any) => {
+      f.properties.id = f.properties.ward_name || f.properties.KGISWardName || f.properties.name;
+      f.properties.name = f.properties.ward_name || f.properties.KGISWardName || f.properties.name;
+      f.properties.ward_no = f.properties.ward_no || f.properties.KGISWardNo;
+      f.properties.zone = f.properties.zone || "Central"; // Fallback Zone
+      return f;
+    });
+
+    console.log(`[API/GeoJSON] Successfully loaded ${geojson.features.length} separate ward features from Udupi CMC.geojson`);
+
+    return NextResponse.json(geojson);
+  } catch (err) {
+    console.error('[API/GeoJSON] Error loading GeoJSON:', err);
+    return NextResponse.json({ error: 'Failed to read GeoJSON' }, { status: 500 });
+  }
+}

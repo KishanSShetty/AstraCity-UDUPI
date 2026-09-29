@@ -1,0 +1,29 @@
+*.pmtiles
+node_modules/
+.next/
+.env
+*.zip
+*.z01
+*.gpkg
+S2C_MSIL2A_*
+1605_Udupi (1)/
+HSR_Layput/
+*.docx
+*.pptx
+*.pdf
+_archive/
+vajrayield-backend/
+*.tif
+*.xml
+*.exe
+HSR_Layput.zip
+Karnataka-split (1).z01
+Karnataka-split.z01
+ms_buildings_india-part0000.pmtiles
+DS/HSR_Layput/HSR Layout/Satellite Data/BBMP_BOUNDARY_SD.tif
+DS/Road_Network/Bengaluru Road Network/Bengaluru Road Network R&U.dbf
+HSR_Layput/HSR Layout/Satellite Data/BBMP_BOUNDARY_SD.tif
+public/data/google-open-buildings-india-2023-part0000.pmtiles
+public/data/ms_buildings_india-part0000.pmtiles
+Road_Network/Bengaluru Road Network/Bengaluru Road Network R&U.dbf
+Village_Boundaries.gpkg/data/output/Village_Boundaries.gpkg

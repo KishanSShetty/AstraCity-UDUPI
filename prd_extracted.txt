@@ -1,0 +1,2062 @@
+===== PAGE 1 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 1 of 36 
+ 
+♻ 
+AstraCity 
+HSR Layout Waste Collection & Routing Platform 
+Product Requirements Document  ·  Technical Architecture  ·  Implementation Strategy 
+Version 1.0  ·  June 2026  ·  Bengaluru, India 
+ 
+Document Info 
+Details 
+Product Name 
+AstraCity — HSR Waste Routing Platform 
+Document Type 
+Product Requirements Document (PRD) 
+Version 
+v1.0 
+Date 
+June 5, 2026 
+Scope 
+HSR Layout Ward 174, BBMP Bengaluru 
+Classification 
+Confidential — Internal Use Only 
+Author 
+Product & Engineering Team 
+Status 
+READY FOR DEVELOPMENT 
+ 
+ 
+
+===== PAGE 2 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 2 of 36 
+Table of Contents 
+Table of Contents ........................................................................................................................2 
+1. Executive Summary ................................................................................................................5 
+1.1 Key Metrics & Targets .......................................................................................................5 
+2. Problem Statement & Context .................................................................................................6 
+2.1 HSR Layout Waste Landscape ..........................................................................................6 
+2.2 Waste Composition (BBMP 2013 Analysis) .......................................................................6 
+2.3 Pain Points (Current State) ................................................................................................6 
+3. Product Vision & Goals ...........................................................................................................8 
+3.1 Vision Statement ...............................................................................................................8 
+3.2 Product Goals ....................................................................................................................8 
+3.3 Success Criteria ................................................................................................................8 
+4. User Personas & Use Cases ...................................................................................................9 
+4.1 Primary Personas ..............................................................................................................9 
+4.2 Key Use Cases ..................................................................................................................9 
+UC-01: Morning Route Launch (6:00 AM) ............................................................................9 
+UC-02: Real-Time Re-Routing .............................................................................................9 
+UC-03: AI Natural Language Query .....................................................................................9 
+UC-04: Carbon Credit Report .............................................................................................10 
+5. Feature Requirements ..........................................................................................................11 
+5.1 Feature Priority Matrix .....................................................................................................11 
+5.2 Live Map Module (P0)......................................................................................................11 
+5.2.1 Functional Requirements ..........................................................................................11 
+5.2.2 Non-Functional Requirements ...................................................................................12 
+5.3 Vehicle Routing Engine (P0) ............................................................................................12 
+5.3.1 Fleet Configuration ....................................................................................................12 
+5.3.2 Routing Algorithm Requirements ...............................................................................12 
+5.4 BBMP Facility Data Layer (P0) ........................................................................................14 
+5.4.1 Data Sources (BBMP Official Shapefiles) ..................................................................14 
+5.4.2 DWCC Capacity Model .............................................................................................14 
+5.5 AI Query Module (P1) ......................................................................................................14 
+5.5.1 Gemini Integration .....................................................................................................14 
+5.5.2 Supported Query Types ............................................................................................14 
+5.6 Analytics Dashboard (P1) ................................................................................................15 
+6. Technical Architecture ...........................................................................................................16 
+6.1 Architecture Overview......................................................................................................16 
+
+===== PAGE 3 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 3 of 36 
+6.2 Full Technology Stack .....................................................................................................16 
+6.3 System Architecture Diagram (Described) .......................................................................17 
+6.4 Directory Structure ...........................................................................................................18 
+6.5 Data Flow Architecture ....................................................................................................19 
+6.5.1 Vehicle Animation Data Flow.....................................................................................19 
+6.5.2 OSRM Route Computation ........................................................................................19 
+6.5.3 OR-Tools VRP Formulation .......................................................................................19 
+6.6 Key Configuration: routing_config.json ............................................................................20 
+7. Map & Animation Design Specifications ................................................................................21 
+7.1 MapLibre Layer Stack (Render Order) .............................................................................21 
+7.2 Vehicle Animation System ...............................................................................................21 
+7.2.1 Animation Loop .........................................................................................................21 
+7.2.2 Vehicle-Specific Styling .............................................................................................21 
+7.3 Popup & Interaction Design .............................................................................................22 
+8. API Design & Integration Specs ............................................................................................23 
+8.1 Internal API Routes (Next.js) ...........................................................................................23 
+8.2 OSRM Integration Detail ..................................................................................................23 
+8.3 Gemini AI Integration .......................................................................................................23 
+9. Implementation Roadmap .....................................................................................................25 
+9.1 Phase Overview ..............................................................................................................25 
+9.2 Phase 0 — Foundation (Weeks 1–2) ...............................................................................25 
+Tasks .................................................................................................................................25 
+Definition of Done ..............................................................................................................25 
+9.3 Phase 1 — Live Map MVP (Weeks 3–6) ..........................................................................25 
+Sprint 1 (Weeks 3–4): Map Rendering ...............................................................................26 
+Sprint 2 (Weeks 5–6): Vehicle Animation ...........................................................................26 
+Acceptance Criteria ............................................................................................................26 
+9.4 Phase 2 — Route Intelligence (Weeks 7–10) ..................................................................27 
+Sprint 3 (Weeks 7–8): VRP Solver .....................................................................................27 
+Sprint 4 (Weeks 9–10): AI Query + Load Balancing ...........................................................27 
+9.5 Phase 3 — Analytics & Compliance (Weeks 11–14) ........................................................27 
+9.6 Phase 4 — Mobile & Scale (Weeks 15–18) .....................................................................27 
+10. HSR Routing Strategy (Operational) ...................................................................................28 
+10.1 Morning Collection Zone Mapping .................................................................................28 
+10.2 Waste Stream Routing Rules .........................................................................................28 
+10.3 Kudlu Cluster — Primary External Hub ..........................................................................28 
+
+===== PAGE 4 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 4 of 36 
+11. Compliance, Standards & Constraints .................................................................................30 
+12. Economic Model & Carbon Credits......................................................................................31 
+12.1 Carbon Credit Calculation ..............................................................................................31 
+12.2 Operational Cost Model .................................................................................................31 
+13. Non-Functional Requirements .............................................................................................32 
+14. Risk Register .......................................................................................................................33 
+15. Data Sources & References ................................................................................................34 
+15.1 Geospatial Data .............................................................................................................34 
+15.2 Standards & Research ...................................................................................................34 
+16. Appendix .............................................................................................................................35 
+Appendix A — HSR DWCC Coordinates (6 In-Ward) ............................................................35 
+Appendix B — BMU Locations (Nearest 3 to HSR)................................................................35 
+Appendix C — Glossary ........................................................................................................35 
+ 
+ 
+ 
+
+===== PAGE 5 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 5 of 36 
+1. Executive Summary 
+ 
+AstraCity is a real-time, map-based waste collection routing platform designed for HSR Layout 
+(Ward 174), Bengaluru. It operationalises BBMP's official shapefile data — 336 DWCCs, 11 Bio-
+Methanisation Units, 8 Waste Processing Units, and 3 dumpyards — into an animated, 
+intelligent, multi-vehicle routing system visible on a live map. 
+ 
+The platform serves BBMP operations staff, ward commissioners, and city-level SWM planners 
+to optimise 55 tonnes/day of waste generated in HSR Layout, reduce vehicle idle time, cut per-
+tonne collection costs, and meet SWM Rules 2016 compliance requirements. 
+ 
+Core Problem 
+HSR Layout generates ~55 TPD across 110,000 residents. Today's routing is manual, static, and 
+unoptimised — leading to missed pickups, overloaded vehicles, and unnecessary fuel burn. Wet 
+waste travels untracked to Kudlu BMU (2.1 km), dry waste sits at DWCCs without load-balancing, 
+and all routing decisions are made on paper. 
+ 
+Core Solution 
+A live map dashboard with animated vehicle routing, real-time BBMP data integration, AI-
+powered route optimisation (OR-Tools VRP), and Google Gemini-powered natural language 
+query bar. Built on Next.js 14, MapLibre GL JS, and OSRM routing — deployable as a web app 
+accessible on desktop and mobile. 
+ 
+1.1 Key Metrics & Targets 
+Metric 
+Current (Baseline) 
+Target (6 months) 
+Daily waste collected 
+~48 TPD (estimated) 
+55 TPD (100% coverage) 
+Vehicle trips per day 
+Untracked 
+≤ 210 trips optimised 
+Avg route length (auto tipper) 
+~12 km/trip 
+≤ 8 km/trip 
+Dry waste to DWCC 
+~70% capture rate 
+≥ 92% capture rate 
+Wet waste to Kudlu BMU 
+~65% routed correctly 
+≥ 90% routed correctly 
+Carbon CO₂ e avoided/year 
+~18,000 tonnes 
+25,959 tonnes (₹5.19 Cr 
+credits) 
+Operational cost/tonne 
+₹2,800 (est.) 
+≤ ₹2,200 per tonne 
+Dashboard response time 
+N/A 
+< 2 seconds 
+ 
+ 
+
+===== PAGE 6 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 6 of 36 
+2. Problem Statement & Context 
+ 
+2.1 HSR Layout Waste Landscape 
+HSR Layout (Ward 174) covers 18.5 km² of South Bengaluru with an estimated 110,000 
+residents across 7 sectors and 9,471 buildings. It generates approximately 55 tonnes of 
+municipal solid waste per day. The BBMP official shapefiles confirm the following infrastructure: 
+ 
+Facility Type 
+Count in BBMP 
+Count in HSR 
+Ward 
+Nearest to HSR 
+Dry Waste Collection 
+Centres (DWCCs) 
+336 city-wide 
+6 inside ward 
+DWCC #243 — 0.5 km 
+Bio-Methanisation Units 
+(BMUs) 
+11 city-wide 
+0 inside ward 
+Kudlu BMU — 2.1 km 
+south 
+Waste Processing Units 
+8 city-wide 
+0 inside ward 
+Kudlu Plant — 2.09 km 
+south 
+Dumpyards 
+3 city-wide 
+0 inside ward 
+Yelahanka — 21 km north 
+ 
+2.2 Waste Composition (BBMP 2013 Analysis) 
+Waste Stream 
+Composition 
+% 
+Tonnes/Day 
+Destination 
+Distance 
+Wet / Organic 
+61% 
+33.55 TPD 
+Kudlu BMU (Bio-
+Methanisation) 
+2.1 km 
+Dry / Recyclable 
+30% 
+16.5 TPD 
+6 DWCCs inside HSR 
+< 1 km avg 
+Hazardous / Inert 
+5% 
+2.75 TPD 
+Authorised handler 
+Variable 
+Final Rejects 
+4% 
+2.2 TPD 
+Yelahanka Dumpyard 
+21 km north 
+ 
+2.3 Pain Points (Current State) 
+• 
+No real-time visibility of vehicle positions or route progress 
+• 
+Static routing doesn't account for road widths — large vehicles enter narrow residential 
+streets 
+• 
+No load-balancing across 6 DWCCs — some overflow while others are underutilised 
+• 
+Wet waste often arrives at DWCCs instead of BMU (segregation failure) 
+• 
+Manual trip scheduling means delayed starts and missed 6–10 AM primary collection 
+windows 
+• 
+No carbon credit tracking despite methane reduction potential of ₹5.19 Cr/year 
+
+===== PAGE 7 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 7 of 36 
+• 
+Kudlu Waste Processing Plant under construction — routing must adapt dynamically 
+• 
+No single dashboard for ward commissioner to monitor operations 
+ 
+ 
+
+===== PAGE 8 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 8 of 36 
+3. Product Vision & Goals 
+ 
+3.1 Vision Statement 
+Vision 
+"A living map of HSR Layout where every waste vehicle, every collection point, and every routing 
+decision is visible, optimised, and accountable — in real time." 
+ 
+3.2 Product Goals 
+1. OPERATIONAL: Provide a real-time animated map of all 7+ collection vehicles with live 
+GPS-style routing across HSR Layout's 2,027 road segments. 
+2. OPTIMISATION: Use OR-Tools Capacitated VRP to minimise total vehicle distance 
+while respecting road-width constraints, vehicle capacity, and BBMP time windows (6 
+AM–10 AM primary, 10 AM–6 PM secondary). 
+3. INFRASTRUCTURE: Surface all BBMP facility data (DWCCs, BMUs, Processing Units, 
+Dumpyards) as interactive map layers with routing overlays. 
+4. INTELLIGENCE: Integrate Google Gemini 1.5 Flash for natural language queries about 
+ward data, risk scores, route efficiency, and cost savings. 
+5. COMPLIANCE: Enforce SWM Rules 2016 source segregation mandates, KSPCB liquid 
+waste restrictions, and IRC road classification vehicle compatibility. 
+6. ECONOMICS: Calculate and surface carbon credit value, cost-per-tonne metrics, and 
+ROI projections for waste infrastructure investments. 
+ 
+3.3 Success Criteria 
+Goal 
+Success Criterion 
+Measurement 
+Real-time map 
+Vehicle positions update ≤ 5 sec 
+latency 
+WebSocket ping monitoring 
+Route optimisation 
+OR-Tools solution in < 10 sec for 7 
+vehicles 
+API response time logs 
+DWCC load balance 
+≤ 15% variance across 6 DWCCs 
+Daily load reports 
+Time window 
+compliance 
+95% trips start within BBMP 
+windows 
+Trip timestamp audit 
+User adoption 
+≥ 3 BBMP ward officers using daily 
+within 60 days 
+Session analytics 
+Carbon tracking 
+Automated CO₂ e calculation on 
+every route run 
+Dashboard metric 
+ 
+ 
+
+===== PAGE 9 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 9 of 36 
+4. User Personas & Use Cases 
+ 
+4.1 Primary Personas 
+ 
+Persona 
+Role 
+Primary Goal 
+Key Pain Today 
+Feature Priority 
+Ward 
+Commissioner 
+BBMP Ward 
+174 officer 
+See live status of 
+all collection in 
+ward 
+No visibility — 
+relies on phone 
+calls 
+Live map + vehicle 
+tracking + alerts 
+Route 
+Supervisor 
+BBMP field 
+operations 
+Assign and re-route 
+vehicles in real time 
+Paper-based route 
+cards, no updates 
+Route editor + drag-
+assign + VRP solver 
+SWM Planner 
+BBMP city-
+level planner 
+Compare ward 
+performance, plan 
+fleet 
+Spreadsheet-
+based, stale data 
+Analytics dashboard 
++ cost metrics 
+BBMP Data 
+Analyst 
+Technical staff 
+Query shapefile 
+data, export reports 
+No query tool — 
+must write GIS 
+scripts 
+AI query bar + data 
+export 
+Waste Vehicle 
+Driver 
+Field operator 
+Get clear route, 
+know next stop 
+Verbal instructions, 
+no navigation 
+Mobile-optimised 
+route card view 
+ 
+4.2 Key Use Cases 
+UC-01: Morning Route Launch (6:00 AM) 
+• 
+Route Supervisor opens platform at 5:45 AM 
+• 
+Runs OR-Tools VRP solver — assigns 7 vehicles to optimised zones 
+• 
+Verifies road-width compliance (no compactors on <6m roads) 
+• 
+Dispatches routes to driver mobile view 
+• 
+Live map shows animated vehicles departing from depot 
+ 
+UC-02: Real-Time Re-Routing 
+• 
+DWCC #3 (Sector 3) reaches 90% capacity at 8:15 AM 
+• 
+Platform auto-triggers alert to supervisor 
+• 
+Supervisor redirects next 2 auto tippers to DWCC #1 (Sector 2) 
+• 
+Map updates vehicle paths with new OSRM-snapped routes 
+ 
+UC-03: AI Natural Language Query 
+• 
+Ward Commissioner types: "Which DWCCs are at risk of overflow today?" 
+
+===== PAGE 10 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 10 of 36 
+• 
+Gemini 1.5 Flash processes query with ward context 
+• 
+Returns ranked list with load percentages and recommended actions 
+ 
+UC-04: Carbon Credit Report 
+• 
+SWM Planner requests monthly CO₂ e summary 
+• 
+Platform calculates: methane avoided × 25 GWP × CCTS price (₹1,200–2,200/tonne) 
+• 
+Exports report for BEE carbon credit filing 
+ 
+ 
+
+===== PAGE 11 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 11 of 36 
+5. Feature Requirements 
+ 
+5.1 Feature Priority Matrix 
+Feature 
+Priority 
+Phase 
+Complexity 
+Dependencies 
+Live Map with animated 
+vehicles 
+P0 — Must 
+Have 
+Phase 1 
+High 
+MapLibre, OSRM 
+BBMP facility layers 
+(DWCCs, BMUs, WPUs) 
+P0 — Must 
+Have 
+Phase 1 
+Medium 
+Shapefile GeoJSON 
+OR-Tools VRP route solver 
+P0 — Must 
+Have 
+Phase 1 
+High 
+OR-Tools API 
+Road-width vehicle 
+compatibility 
+P0 — Must 
+Have 
+Phase 1 
+Medium 
+OSM road network 
+BBMP time window 
+enforcement 
+P0 — Must 
+Have 
+Phase 1 
+Low 
+Routing config 
+Vehicle fleet dashboard 
+P1 — Should 
+Have 
+Phase 1 
+Medium 
+Vehicle state 
+DWCC load balancing alerts 
+P1 — Should 
+Have 
+Phase 2 
+Medium 
+Capacity model 
+Gemini AI query bar 
+P1 — Should 
+Have 
+Phase 2 
+High 
+Gemini API 
+Carbon credit calculator 
+P1 — Should 
+Have 
+Phase 2 
+Low 
+CCTS pricing data 
+Driver mobile route view 
+P2 — Nice to 
+Have 
+Phase 3 
+Medium 
+PWA / responsive 
+Historical analytics & reports 
+P2 — Nice to 
+Have 
+Phase 3 
+Medium 
+Data warehouse 
+Multi-ward expansion 
+P3 — Future 
+Phase 4 
+High 
+City-wide shapefiles 
+ 
+5.2 Live Map Module (P0) 
+5.2.1 Functional Requirements 
+• 
+FR-MAP-01: Render HSR Layout ward boundary polygon from 
+hsr_ward_boundary.geojson with teal fill (4% opacity) 
+• 
+FR-MAP-02: Display all 6 in-ward DWCCs as interactive circle markers with load % 
+badge 
+• 
+FR-MAP-03: Show Kudlu BMU and Waste Processing Unit as distinct icons 2.1 km 
+south 
+
+===== PAGE 12 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 12 of 36 
+• 
+FR-MAP-04: Animate vehicle movement along OSRM road-snapped GeoJSON 
+LineString routes 
+• 
+FR-MAP-05: Vehicle icons differentiated by type: Auto Tipper (green), Compactor (blue), 
+Hook Loader (orange) 
+• 
+FR-MAP-06: Popups on click for any facility showing: name, type, capacity, current load, 
+distance from ward centre 
+• 
+FR-MAP-07: Layer toggles for: Road Network, DWCCs, BMUs, Processing Units, 
+Dumpyards, Vehicle Trails 
+• 
+FR-MAP-08: Heatmap layer showing waste density by sub-sector based on building 
+count × per-capita generation 
+• 
+FR-MAP-09: Dark basemap from OpenStreetMap tiles with brightness/saturation 
+adjustments for readability 
+• 
+FR-MAP-10: Navigation controls (zoom, compass, full-screen) via MapLibre built-in 
+controls 
+ 
+5.2.2 Non-Functional Requirements 
+• 
+NFR-MAP-01: Map initial load < 3 seconds on 4G connection 
+• 
+NFR-MAP-02: Animation frame rate ≥ 30 FPS for vehicle movement 
+• 
+NFR-MAP-03: Responsive — functional at 1280px desktop and 390px mobile viewport 
+• 
+NFR-MAP-04: Tile loading with progressive rendering — no blank map states > 500ms 
+ 
+5.3 Vehicle Routing Engine (P0) 
+5.3.1 Fleet Configuration 
+Vehicle Type 
+Count 
+Capacity 
+Fuel 
+Min Road Width 
+Primary Zone 
+Auto Tipper 
+5 
+0.5 tonne (500 
+kg) 
+CNG/Petrol 
+2 m (any road) 
+All residential 
+streets 
+Compactor 
+(small) 
+1 
+5 tonne 
+Diesel 
+6 m 
+(secondary+) 
+Sector main roads 
+Compactor 
+(large) 
+1 
+10 tonne 
+Diesel 
+9 m (primary+) 
+HSR Main, BDA 
+roads 
+Hook Loader + 
+Capsule 
+1 
+16–18 tonne 
+Diesel 
+12 m (trunk) 
+Kudlu run only 
+Garbage Truck / 
+Tipper 
+2 
+5 tonne 
+Diesel 
+6 m 
+(secondary+) 
+DWCC → BMU 
+transfers 
+ 
+5.3.2 Routing Algorithm Requirements 
+• 
+FR-ROUTE-01: Use Capacitated VRP (Clarke-Wright Savings + OR-Tools) to assign 
+collection zones to vehicles 
+
+===== PAGE 13 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 13 of 36 
+• 
+FR-ROUTE-02: Enforce road-width constraints — reject route segments incompatible 
+with vehicle type 
+• 
+FR-ROUTE-03: Respect BBMP time windows: Primary collection 06:00–10:00, 
+Secondary transport 10:00–18:00 
+• 
+FR-ROUTE-04: Enforce night restriction — no heavy vehicles (>3.5T) on residential 
+roads after 22:00 
+• 
+FR-ROUTE-05: Route wet waste streams exclusively to Kudlu BMU (12.896, 77.650) — 
+never to DWCCs 
+• 
+FR-ROUTE-06: Route dry waste to nearest available DWCC with capacity headroom ≥ 
+20% 
+• 
+FR-ROUTE-07: Compute OSRM /route/v1/driving endpoint for actual road-snapped 
+geometry for all vehicle routes 
+• 
+FR-ROUTE-08: Return per-vehicle: total distance (km), estimated duration (min), CO₂ e 
+(kg), stops list 
+• 
+FR-ROUTE-09: Support manual override — supervisor can drag-reassign stops 
+between vehicles 
+• 
+FR-ROUTE-10: Re-solve VRP on any manual change within 10 seconds 
+ 
+ 
+
+===== PAGE 14 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 14 of 36 
+5.4 BBMP Facility Data Layer (P0) 
+5.4.1 Data Sources (BBMP Official Shapefiles) 
+Dataset 
+Shapefile 
+Records 
+In-
+Ward 
+GeoJSON Path 
+DWCCs 
+BBMP_Dry_Waste_Collection_Centres.shp 
+336 
+6 
+data/dwcc_locations.geojson 
+Bio-
+Methanisation 
+Units 
+BBMP_BIO-Methanisation.shp 
+11 
+0 
+(nearest 
+2.1 km) 
+data/bmu_locations.geojson 
+Waste 
+Processing 
+Units 
+BBMP_Waste_Processing_Units.shp 
+8 
+0 
+(nearest 
+2.09 
+km) 
+data/wpu_locations.geojson 
+Dumpyards 
+BBMP_Dumpyards.shp 
+3 
+0 
+(nearest 
+21 km) 
+data/dumpyard_locations.geojson 
+HSR Ward 
+Boundary 
+HSR Ward 174 PolygonZ 
+1 polygon 
+— 
+data/hsr_ward_boundary.geojson 
+Road 
+Network 
+OSM HSR roads 
+2,027 
+segments 
+All 
+data/hsr_road_network.geojson 
+ 
+5.4.2 DWCC Capacity Model 
+• 
+Each DWCC assigned a daily capacity (default 3 TPD per unit based on BBMP norms) 
+• 
+Load % calculated from: (dry waste routed to DWCC) / (DWCC daily capacity) × 100 
+• 
+Alert thresholds: Yellow at 70%, Red at 90%, Critical (overflow) at 100% 
+• 
+The 6 in-ward DWCCs collectively handle 16.5 TPD dry waste — avg 2.75 TPD each 
+ 
+5.5 AI Query Module (P1) 
+5.5.1 Gemini Integration 
+• 
+Model: Google Gemini 1.5 Flash via generativelanguage.googleapis.com/v1beta/ 
+• 
+System prompt context: "Bengaluru waste intelligence assistant with access to HSR 
+Layout BBMP data" 
+• 
+Context injected per query: current DWCC loads, vehicle positions, route metrics, ward 
+stats 
+• 
+Response format: structured JSON with: answer (text), confidence (0–1), 
+relevant_facilities (array), recommended_actions (array) 
+ 
+5.5.2 Supported Query Types 
+
+===== PAGE 15 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 15 of 36 
+• 
+Operational: "Which DWCCs are at risk today?", "How many vehicles are on route?" 
+• 
+Analytics: "What is today's carbon credit value?", "Compare Sector 1 vs Sector 3 
+efficiency" 
+• 
+Planning: "If we add one compactor, what is the route time reduction?", "Best location for 
+7th DWCC?" 
+• 
+Historical: "Last week's average collection rate", "Monthly wet waste trend" 
+ 
+5.6 Analytics Dashboard (P1) 
+• 
+KPI cards: Waste collected today (TPD), Vehicles active, DWCCs at capacity, CO₂ e 
+avoided, Cost per tonne 
+• 
+BarChart (Recharts 3.8): Road type breakdown — 
+Trunk/Primary/Secondary/Tertiary/Residential coverage 
+• 
+LineChart: 30-day ROI timeline with carbon credit accumulation 
+• 
+Before/after comparison: Current routing vs optimised routing (distance, time, cost delta) 
+• 
+Export: CSV and PDF report generation for BBMP monthly submissions 
+ 
+ 
+
+===== PAGE 16 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 16 of 36 
+6. Technical Architecture 
+ 
+6.1 Architecture Overview 
+Architecture Pattern 
+Next.js 14 App Router monorepo with server components for data fetching, client components for 
+map and animation, API routes as BFF (Backend for Frontend) layer, and external services for 
+routing (OSRM), optimization (OR-Tools), and AI (Gemini). All geospatial data pre-processed 
+from BBMP shapefiles to GeoJSON at build time. 
+ 
+6.2 Full Technology Stack 
+Layer 
+Technology 
+Version 
+Purpose 
+Frontend 
+Framework 
+Next.js 
+14 (App 
+Router) 
+SSR, API routes, TypeScript, routing 
+Map Rendering 
+MapLibre GL JS 
+5.20.2 
+Vector tiles, animated vehicle layers, 
+heatmaps 
+State Management 
+Zustand 
+5.0 
+Map layer toggles, vehicle state, ward 
+selection 
+Animation 
+Framer Motion 
+12.36 
+Page transitions, counter animations, 
+AnimatePresence 
+Charting 
+Recharts 
+3.8 
+BarChart, LineChart, analytics dashboard 
+Styling 
+Tailwind CSS 
+3.4 
+Utility-first, glassmorphism, dark theme 
+Language 
+TypeScript 
+5.x 
+Full type safety across all layers 
+Routing API 
+OSRM 
+Public API 
+Real road-snapped route geometry 
+(GeoJSON) 
+VRP Optimisation 
+Google OR-Tools 
+Latest 
+Capacitated VRP solver, multi-vehicle 
+routing 
+AI Query 
+Google Gemini 1.5 
+Flash 
+v1beta 
+Natural language ward data queries 
+Map Tiles (Smart 
+Map) 
+OpenFreeMap 
+Positron 
+CDN 
+Light theme vector tiles, no API key 
+Map Tiles (Vehicle 
+Sim) 
+OpenStreetMap 
+Raster 
+CDN 
+Dark theme raster basemap 
+GIS Data 
+BBMP Shapefiles 
+→ GeoJSON 
+June 2026 
+All facility and road network data 
+Population Data 
+GeoIQ 
+API 
+HSR Layout population estimates 
+Build / Deploy 
+Vercel / Docker 
+Latest 
+CI/CD, edge deployment 
+
+===== PAGE 17 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 17 of 36 
+ 
+6.3 System Architecture Diagram (Described) 
+The system follows a 4-tier architecture: 
+ 
+Tier 
+Components 
+Key Responsibilities 
+Tier 1 — Client 
+MapLibre GL JS, React 
+Components, Zustand store, 
+Framer Motion 
+Map rendering, vehicle animation, user 
+interaction, state management 
+Tier 2 — Next.js 
+App 
+App Router pages, Server 
+Components, API Routes (BFF), 
+TypeScript models 
+SSR, data fetching, route handlers, type 
+validation 
+Tier 3 — External 
+APIs 
+OSRM routing, OR-Tools VRP, 
+Gemini AI, GeoIQ population 
+Route computation, optimisation, intelligence, 
+demographics 
+Tier 4 — Data 
+Store 
+GeoJSON files, BBMP 
+Shapefiles, routing_config.json, 
+constants.ts 
+Geospatial data, configuration, static 
+parameters 
+ 
+ 
+
+===== PAGE 18 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 18 of 36 
+6.4 Directory Structure 
+astracityapp/ ├── app/ │   ├── page.tsx                   ← Landing / Dashboard │   ├── 
+map/page.tsx                ← Smart Map (MapLibre light) │   ├── vehicle-sim/page.tsx         ← 
+Vehicle Simulation (animated) │   ├── routes/page.tsx              ← Route Planner (VRP solver 
+UI) │   ├── analytics/page.tsx           ← Charts & KPI dashboard │   └── api/ │       ├── 
+route/route.ts           ← OSRM proxy + geometry processing │       ├── vrp/route.ts             
+← OR-Tools VRP solver endpoint │       └── ai-query/route.ts        ← Gemini AI query handler ├── 
+components/ │   ├── map/ │   │   ├── MapCanvas.tsx            ← MapLibre GL JS wrapper │   │   
+├── VehicleLayer.tsx         ← Animated vehicle markers │   │   ├── FacilityLayer.tsx        ← 
+DWCCs, BMUs, WPUs, Dumpyards │   │   ├── RouteLayer.tsx           ← Route LineString overlays │   
+│   ├── HeatmapLayer.tsx         ← Waste density heatmap │   │   └── LayerControls.tsx        ← 
+Toggle panel (6 layers) │   ├── routing/ │   │   ├── VRPSolver.tsx            ← OR-Tools call + 
+result display │   │   ├── RouteCard.tsx            ← Per-vehicle route summary │   │   └── 
+ManualOverride.tsx       ← Drag-to-reassign UI │   ├── analytics/ │   │   ├── KPICards.tsx             
+← Stat counters (Framer Motion) │   │   ├── RoadTypeChart.tsx        ← Recharts BarChart │   │   
+└── ROITimeline.tsx          ← Recharts LineChart │   └── ai/AIQueryBar.tsx            ← Gemini-
+powered query input ├── data/ │   ├── hsr_ward_boundary.geojson │   ├── hsr_road_network.geojson     
+← 2,027 segments, OSM │   ├── dwcc_locations.geojson       ← 336 DWCCs (6 in-ward) │   ├── 
+bmu_locations.geojson        ← 11 BMUs │   ├── wpu_locations.geojson        ← 8 Processing Units 
+│   ├── dumpyard_locations.geojson   ← 3 Dumpyards │   └── bengaluru_wards.geojson      ← 20-ward 
+overlay ├── lib/ │   ├── constants.ts                 ← HSR params, waste comp, fleet │   ├── 
+routing_config.json          ← Road-width matrix, time windows │   ├── vrp_solver.ts                
+← OR-Tools VRP formulation │   ├── osrm_client.ts               ← OSRM API wrapper │   └── 
+carbon_calculator.ts         ← CO₂ e & CCTS credit math └── store/     ├── mapStore.ts                  
+← Zustand: layers, selected ward     └── vehicleStore.ts              ← Zustand: vehicle 
+positions, routes 
+ 
+ 
+
+===== PAGE 19 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 19 of 36 
+6.5 Data Flow Architecture 
+6.5.1 Vehicle Animation Data Flow 
+7. User opens Vehicle Simulation page (/vehicle-sim) 
+8. Next.js server component loads GeoJSON files from /data/ at request time 
+9. Client component mounts MapLibre GL JS with dark OSM basemap 
+10. VehicleStore (Zustand) initialized with 7 vehicle objects: {id, type, lat, lng, route, status} 
+11. API call to /api/vrp → OR-Tools VRP solver returns zone assignments 
+12. Per-vehicle: /api/route?coords=[...] → OSRM returns road-snapped GeoJSON LineString 
+13. RouteLayer renders LineStrings as animated dashed lines on map 
+14. VehicleLayer animates vehicle icons along route using requestAnimationFrame 
+15. WebSocket (or polling every 5s) updates vehicle positions from simulated GPS 
+16. On DWCC overflow: alert fires → ManualOverride UI allows supervisor reassignment 
+ 
+6.5.2 OSRM Route Computation 
+• 
+Endpoint: https://router.project-osrm.org/route/v1/driving/{lon1,lat1;lon2,lat2;...} 
+• 
+Parameters: overview=full&geometries=geojson&steps=true&annotations=true 
+• 
+Response: geometry (GeoJSON LineString), distance (metres), duration (seconds), legs 
+array 
+• 
+All coordinates in WGS 84 (EPSG:4326) — matching BBMP shapefile CRS 
+• 
+Rate limit: ~1 req/sec on public OSRM; consider self-hosted for production 
+ 
+6.5.3 OR-Tools VRP Formulation 
+• 
+Input: N stops (DWCC/BMU coordinates), K vehicles, vehicle capacities, road-width 
+constraints 
+• 
+Distance matrix: Haversine distances between all stop pairs (pre-computed) 
+• 
+Constraints: vehicle capacity (TPD), time windows (6–10 AM / 10–6 PM), road-width 
+compatibility 
+• 
+Objective: Minimize total distance across all vehicle routes 
+• 
+Output: Assignment of stops to vehicles + ordered sequence per vehicle 
+• 
+Algorithm: Clarke-Wright Savings heuristic as initial solution → OR-Tools CVRPTW 
+solver 
+ 
+ 
+
+===== PAGE 20 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 20 of 36 
+6.6 Key Configuration: routing_config.json 
+{   "vehicle_road_compatibility": {     "auto_tipper":    
+["trunk","primary","secondary","tertiary","residential","service"],     
+"small_compactor":["trunk","primary","secondary"],     
+"large_compactor":["trunk","primary"],     "hook_loader":    ["trunk"],     
+"garbage_truck":  ["trunk","primary","secondary"]   },   "road_width_thresholds": {     
+"trunk":      "> 12m",     "primary":    "> 9m",     "secondary":  "> 6m",     
+"tertiary":   "> 4m",     "residential":"2–4m",     "service":    "2–3m"   },   
+"time_windows": {     "primary_collection":  { "start": "06:00", "end": "10:00" },     
+"secondary_transport": { "start": "10:00", "end": "18:00" },     "night_restriction":   
+{ "start": "22:00", "end": "06:00", "vehicle_limit_kg": 3500 }   },   "waste_routing": 
+{     "wet_organic":   "kudlu_bmu",     "dry_recyclable":"nearest_dwcc_with_capacity",     
+"hazardous":     "authorised_handler",     "final_rejects": "yelahanka_dumpyard"   } } 
+ 
+ 
+
+===== PAGE 21 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 21 of 36 
+7. Map & Animation Design Specifications 
+ 
+7.1 MapLibre Layer Stack (Render Order) 
+Layer 
+# 
+Layer ID 
+Type 
+Source 
+Visual Spec 
+L1 
+basemap 
+Raster tile 
+OSM / OpenFreeMap 
+Dark theme, brightness 0.7, 
+saturation -0.3 
+L2 
+ward-
+boundary 
+Fill + Line 
+hsr_ward_boundary.geojson 
+Teal fill 4% opacity, teal border 
+2px 
+L3 
+road-network 
+Line 
+hsr_road_network.geojson 
+Color by highway type: 
+trunk=orange, primary=yellow, 
+residential=dim 
+L4 
+waste-
+heatmap 
+Heatmap 
+Derived from building 
+density 
+Green→yellow→red gradient, 
+radius 30px 
+L5 
+vehicle-routes 
+Line 
+OSRM GeoJSON per 
+vehicle 
+Colored by vehicle type, dashed 
+animated line, weight 3px 
+L6 
+dwcc-markers 
+Circle 
+dwcc_locations.geojson 
+Green circles, load-based fill 
+opacity, radius 8px, popup on 
+click 
+L7 
+bmu-markers 
+Symbol 
+bmu_locations.geojson 
+Blue icon, size 24px, label with 
+distance 
+L8 
+wpu-markers 
+Symbol 
+wpu_locations.geojson 
+Purple icon, size 24px 
+L9 
+dumpyard-
+markers 
+Symbol 
+dumpyard_locations.geojson 
+Red warning icon (far north), 
+muted opacity 
+L10 
+vehicle-icons 
+Symbol 
+Zustand vehicle positions 
+Animated, type-specific icons, 
+heading rotation 
+ 
+7.2 Vehicle Animation System 
+7.2.1 Animation Loop 
+• 
+Each vehicle has a progress value (0.0 → 1.0) along its route LineString 
+• 
+requestAnimationFrame updates progress at speed proportional to vehicle type 
+• 
+Position interpolated: turf.along(route, distance) gives {lat, lng} at each frame 
+• 
+Vehicle icon rotated to match bearing: turf.bearing(prevPoint, currentPoint) 
+• 
+Trail effect: last 20 positions stored in trail array, rendered as fading line 
+ 
+7.2.2 Vehicle-Specific Styling 
+
+===== PAGE 22 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 22 of 36 
+Vehicle Type 
+Icon Color 
+Route Line 
+Color 
+Speed (animation) 
+Trail Length 
+Auto Tipper 
+#2ECC71 
+(green) 
+#2ECC71 
+dashed 
+1x (residential 
+speed) 
+10 frames 
+Small Compactor 
+#3498DB 
+(blue) 
+#3498DB solid 
+0.7x (slower) 
+15 frames 
+Large Compactor 
+#9B59B6 
+(purple) 
+#9B59B6 solid 
+0.5x (slowest road) 
+15 frames 
+Hook Loader 
+#E67E22 
+(orange) 
+#E67E22 heavy 
+0.4x (Kudlu run) 
+20 frames 
+Garbage Truck 
+#E74C3C (red) 
+#E74C3C 
+dashed 
+0.7x 
+12 frames 
+ 
+7.3 Popup & Interaction Design 
+• 
+DWCC popup: Name, Sector, GPS coordinates, Capacity (TPD), Current Load %, 
+Distance from ward centre, Last updated 
+• 
+BMU popup: Name, Type, Nearest: "Kudlu BMU — 2.10 km from HSR centre", Biogas 
+output (m³/day), Compost output (T/month) 
+• 
+Vehicle popup: Vehicle ID, Type, Capacity (kg), Load (kg), Current stop, Next stop, ETA, 
+Fuel type 
+• 
+Click-to-route: clicking any DWCC shows OSRM-computed route from current vehicle 
+position 
+• 
+Hover highlight: map elements highlight with 40% brighter fill on hover 
+ 
+ 
+
+===== PAGE 23 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 23 of 36 
+8. API Design & Integration Specs 
+ 
+8.1 Internal API Routes (Next.js) 
+Endpoint 
+Method 
+Input 
+Output 
+External Call 
+/api/route 
+GET 
+coords: 
+lon,lat;lon,lat... 
+GeoJSON route, 
+distance (m), duration 
+(s) 
+OSRM 
+/route/v1/driving/ 
+/api/vrp 
+POST 
+stops[], vehicles[], 
+constraints 
+Vehicle assignments, 
+ordered stop 
+sequences 
+OR-Tools solver 
+/api/ai-query 
+POST 
+query: string, 
+context: 
+WardContext 
+answer, confidence, 
+facilities, actions 
+Gemini 1.5 Flash 
+/api/carbon 
+GET 
+date_from, 
+date_to, ward_id 
+CO₂ e_kg, 
+credit_value_inr, 
+methodology 
+Internal calc 
+/api/facilities 
+GET 
+type?, radius?, 
+lat?, lng? 
+GeoJSON 
+FeatureCollection 
+BBMP GeoJSON 
+files 
+/api/vehicles 
+GET/POST 
+GET: status | 
+POST: position 
+update 
+Vehicle state array 
+Vehicle state store 
+/api/dwcc/load 
+GET/PUT 
+GET: all loads | 
+PUT: {id, load_kg} 
+DWCC load status 
+array 
+Internal state 
+ 
+8.2 OSRM Integration Detail 
+• 
+Base URL: https://router.project-osrm.org/route/v1/driving/ 
+• 
+Coordinate format: {longitude},{latitude};{longitude},{latitude} (note: lon BEFORE lat per 
+OSRM spec) 
+• 
+Required params: overview=full, geometries=geojson 
+• 
+Optional params: steps=true (turn-by-turn), annotations=distance,duration 
+• 
+Response parsing: data.routes[0].geometry → MapLibre LineString source 
+• 
+Distance: data.routes[0].distance (metres) → convert to km for display 
+• 
+Duration: data.routes[0].duration (seconds) → convert to minutes 
+• 
+Rate limiting: implement 1-second debounce on route requests; cache route results by 
+coordinate hash 
+ 
+8.3 Gemini AI Integration 
+
+===== PAGE 24 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 24 of 36 
+// System prompt injected with every query: const systemPrompt = ` You are a Bengaluru 
+waste management intelligence assistant for HSR Layout (Ward 174). You have access to real-
+time data: - 6 DWCCs inside the ward with current load percentages - Kudlu BMU 2.1km south 
+receiving wet waste - 7 active collection vehicles with GPS positions - Daily waste: 55 TPD 
+(61% wet, 30% dry, 5% hazardous, 4% rejects) - Carbon credit rate: ₹1,200–2,200 per tonne 
+CO₂ e (BEE CCTS 2023) Always respond with: { answer, confidence, relevant_facilities, 
+recommended_actions } `; 
+ 
+ 
+
+===== PAGE 25 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 25 of 36 
+9. Implementation Roadmap 
+ 
+9.1 Phase Overview 
+Phase 
+Name 
+Duration 
+Goal 
+Key Deliverables 
+Phase 0 
+Foundation 
+Weeks 1–
+2 
+Project setup, data 
+pipeline 
+Next.js scaffold, GeoJSON conversion, 
+shapefile processing 
+Phase 1 
+Live Map 
+MVP 
+Weeks 3–
+6 
+Working animated 
+map 
+MapLibre integration, vehicle 
+animation, BBMP layers, OSRM routing 
+Phase 2 
+Route 
+Intelligence 
+Weeks 7–
+10 
+VRP solver + AI 
+query 
+OR-Tools integration, Gemini AI bar, 
+DWCC load balancing 
+Phase 3 
+Analytics & 
+Compliance 
+Weeks 
+11–14 
+Full dashboard 
+Recharts analytics, carbon calculator, 
+compliance reports 
+Phase 4 
+Mobile & 
+Scale 
+Weeks 
+15–18 
+Driver app + multi-
+ward 
+PWA driver view, second ward 
+integration, performance tuning 
+ 
+9.2 Phase 0 — Foundation (Weeks 1–2) 
+Tasks 
+• 
+Set up Next.js 14 App Router project with TypeScript strict mode 
+• 
+Install and configure: MapLibre GL JS, Zustand, Framer Motion, Recharts, Tailwind CSS 
+• 
+Convert all BBMP shapefiles to GeoJSON using Python (pyshp): DWCCs, BMUs, 
+WPUs, Dumpyards 
+• 
+Parse coordinate data — match record indices to shapefile coordinates from 
+BBMP_Waste_Facilities_Report 
+• 
+Create constants.ts with HSR parameters: population, waste composition, fleet config, 
+facility coordinates 
+• 
+Create routing_config.json with road-width matrix and time windows 
+• 
+Set up Vercel project with environment variables for Gemini API key 
+ 
+Definition of Done 
+• 
+All 4 BBMP GeoJSON files generated and verified against coordinate report 
+• 
+Next.js app running locally with all dependencies installed 
+• 
+TypeScript types defined for: Vehicle, DWCC, Route, WasteStream, VRPResult 
+ 
+9.3 Phase 1 — Live Map MVP (Weeks 3–6) 
+
+===== PAGE 26 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 26 of 36 
+Sprint 1 (Weeks 3–4): Map Rendering 
+• 
+Implement MapCanvas.tsx with MapLibre GL JS initialization 
+• 
+Add HSR ward boundary polygon layer (teal fill, from hsr_ward_boundary.geojson) 
+• 
+Add DWCC circle markers for all 6 in-ward DWCCs with popups 
+• 
+Add BMU and WPU markers for Kudlu cluster (2.1 km south) 
+• 
+Add road network LineString layer colored by highway type 
+• 
+Implement layer toggle panel with 6 controls (Zustand state) 
+ 
+Sprint 2 (Weeks 5–6): Vehicle Animation 
+• 
+Define 7 vehicle objects in vehicleStore.ts with initial depot position 
+• 
+Integrate OSRM API — fetch road-snapped routes for each vehicle 
+• 
+Implement animation loop: requestAnimationFrame + turf.along() position interpolation 
+• 
+Add vehicle icon rotation based on bearing 
+• 
+Add route trail effect (last N positions fading) 
+• 
+Implement vehicle popup with live stats 
+ 
+Acceptance Criteria 
+• 
+All 7 vehicles animate along real road geometries (not straight lines) 
+• 
+DWCC popups show correct coordinates and sector from BBMP data 
+• 
+Layer toggles correctly show/hide each data layer 
+• 
+Map loads in < 3 seconds on simulated 4G 
+ 
+ 
+
+===== PAGE 27 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 27 of 36 
+9.4 Phase 2 — Route Intelligence (Weeks 7–10) 
+Sprint 3 (Weeks 7–8): VRP Solver 
+• 
+Implement /api/vrp endpoint with OR-Tools CVRPTW formulation 
+• 
+Build distance matrix from DWCC/BMU coordinates 
+• 
+Apply vehicle capacity constraints from routing_config.json 
+• 
+Apply road-width compatibility filtering to stop assignments 
+• 
+Apply time window constraints (6–10 AM primary collection) 
+• 
+Return zone assignments + ordered stop sequences 
+• 
+Build VRPSolver.tsx UI with solve button + result display + Framer Motion animations 
+ 
+Sprint 4 (Weeks 9–10): AI Query + Load Balancing 
+• 
+Integrate Gemini 1.5 Flash via /api/ai-query endpoint 
+• 
+Build AIQueryBar.tsx component with input + response display 
+• 
+Inject real-time ward context into every Gemini call 
+• 
+Implement DWCC load tracking — capacity model + overflow alerts 
+• 
+Build ManualOverride.tsx — drag-to-reassign stops between vehicles 
+• 
+Auto-re-run VRP solver on manual changes 
+ 
+9.5 Phase 3 — Analytics & Compliance (Weeks 11–14) 
+• 
+Build KPICards.tsx with spring-physics counter animations (Framer Motion) 
+• 
+Implement RoadTypeChart.tsx — Recharts BarChart of HSR road type breakdown 
+• 
+Implement ROITimeline.tsx — 30-day LineChart with carbon credit accumulation 
+• 
+Build carbon_calculator.ts — CO₂ e from methane avoided × CCTS pricing 
+• 
+Implement before/after comparison module for route optimisation impact 
+• 
+Build CSV and summary report export for BBMP submissions 
+• 
+Add SWM Rules 2016 compliance checklist (source segregation audit) 
+ 
+9.6 Phase 4 — Mobile & Scale (Weeks 15–18) 
+• 
+Build PWA driver view: mobile-optimised route card, stop list, progress bar 
+• 
+Add push notifications for route assignment and stop changes 
+• 
+Onboard second ward — test multi-ward data pipeline 
+• 
+Self-host OSRM instance for production reliability (replace public API) 
+• 
+Add Redis caching layer for VRP results and route geometries 
+• 
+Performance optimisation: virtual scrolling for large stop lists, tile caching 
+ 
+ 
+
+===== PAGE 28 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 28 of 36 
+10. HSR Routing Strategy (Operational) 
+ 
+10.1 Morning Collection Zone Mapping 
+Based on BBMP shapefile data, HSR Layout is divided into 5 collection zones mapped to 
+vehicle types: 
+ 
+Zone 
+Area 
+Sector 
+Assigned 
+DWCC 
+Vehicle Type 
+Stops 
+TPD 
+Zone A 
+NE HSR 
+Sectors 
+2–3 
+DWCC #240, 
+#241 
+Auto Tipper AT-
+01 
+~45 
+5.5 
+Zone B 
+NW HSR 
+Sector 3 
+west 
+DWCC #240 
+Auto Tipper AT-
+02 
+~40 
+5.0 
+Zone C 
+Central 
+HSR 
+Sector 2 
+east 
+DWCC #242, 
+#32 
+Auto Tipper AT-
+03 
+~42 
+5.2 
+Zone D 
+SW HSR 
+Sector 1 
+DWCC #243 
+Auto Tipper AT-
+04 
+~38 
+4.8 
+Zone E 
+S HSR 
+Sector 1 
+south 
+DWCC #244 
+Auto Tipper AT-
+05 
+~35 
+4.3 
+Zone F 
+Main 
+roads 
+All sectors 
+Secondary 
+transfer → BMU 
+Compactor C-
+01 
+6 
+DWCCs 
+16.5 
+Zone 
+G 
+Kudlu 
+run 
+Exit HSR 
+Kudlu BMU (2.1 
+km) 
+Hook Loader 
+HL-01 
+1 
+(BMU) 
+33.55 
+ 
+10.2 Waste Stream Routing Rules 
+Critical Routing Rule 
+Wet/organic waste (61% = 33.55 TPD) MUST route to Kudlu BMU at (12.896, 77.650) — 2.1 km 
+south. It must NEVER go to DWCCs. Dry waste (30% = 16.5 TPD) goes to the 6 in-ward 
+DWCCs. Final rejects (4% = 2.2 TPD) go to Yelahanka Dumpyard (21 km north) — this is the 
+ONLY use case for dumpyard routing. 
+ 
+10.3 Kudlu Cluster — Primary External Hub 
+Facility 
+Coordinates 
+Distance from 
+HSR Centre 
+Receives 
+Output 
+Kudlu BMU (Bio-
+Methanisation) 
+12.896, 77.651 
+2.10 km south 
+Wet organic (33.55 
+TPD) 
+Biogas + 
+compost 
+
+===== PAGE 29 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 29 of 36 
+Facility 
+Coordinates 
+Distance from 
+HSR Centre 
+Receives 
+Output 
+Kudlu Waste 
+Processing Unit 
+12.896, 77.650 
+2.09 km south 
+DWCC rejects 
+(~5.5 TPD) 
+Processed 
+inerts 
+ 
+Both facilities are co-located at the Kudlu cluster — a single Hook Loader run services both. The 
+Kudlu Waste Processing Plant is noted as "under construction" (Deccan Herald) — the routing 
+system must support a "Kudlu unavailable" fallback routing mode that redirects to Carmelaram 
+Processing Unit (7.64 km). 
+ 
+ 
+
+===== PAGE 30 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 30 of 36 
+11. Compliance, Standards & Constraints 
+ 
+Standard / Rule 
+Issuing 
+Body 
+Requirement 
+Platform Enforcement 
+SWM Rules 2016 
+MoEFCC 
+Mandatory source 
+segregation at household 
+level 
+Separate wet/dry routing 
+streams enforced in VRP 
+IRC Road 
+Classification 
+Indian Road 
+Congress 
+Vehicle width-road width 
+compatibility 
+routing_config.json compatibility 
+matrix 
+BBMP Operational 
+Time Windows 
+BBMP SWM 
+Primary 6–10 AM, 
+Secondary 10 AM–6 PM, 
+Night restriction >3.5T after 
+10 PM 
+Time window constraints in VRP 
+solver 
+KSPCB Liquid 
+Waste 
+KSPCB 
+Liquid waste restricted to 
+specific routes 
+Hazardous stream routed to 
+authorised handler only 
+Motor Vehicles Act 
+MoRTH 
+Vehicle registration and 
+overload limits 
+Capacity constraints in VRP 
+(never exceed rated capacity) 
+CPCB Per-Capita 
+Standard 
+CPCB 
+0.5 kg/capita/day baseline 
+Used in constants.ts for waste 
+volume estimation 
+Carbon Credit 
+Scheme (CCTS) 
+BEE / 
+MoEFCC 
+₹1,200–2,200/tonne CO₂ e 
+pricing 
+carbon_calculator.ts with CCTS 
+2023 pricing range 
+BIS AIS (CNG 
+vehicles) 
+BIS 
+CNG emission compliance 
+for auto tippers 
+Fleet config enforces CNG for 
+auto tippers in 
+routing_config.json 
+ 
+ 
+
+===== PAGE 31 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 31 of 36 
+12. Economic Model & Carbon Credits 
+ 
+12.1 Carbon Credit Calculation 
+Parameter 
+Value 
+Source 
+Wet waste to BMU per day 
+33.55 TPD 
+BBMP 2013 composition × 55 TPD 
+Methane avoided per tonne 
+organic 
+0.75 m³/kg 
+Standard biogas yield for Indian MSW 
+CO₂ e per tonne methane 
+(GWP-25) 
+25x CO₂  
+IPCC AR5 
+Annual CO₂ e reduction 
+25,959 tonnes/year 
+Derived from HSR daily wet waste 
+CCTS 2023 carbon price 
+range 
+₹1,200–2,200/tonne 
+Bureau of Energy Efficiency 
+Annual carbon credit value 
+₹3.11 Cr – ₹5.71 Cr 
+AstraCity calculation 
+Midpoint estimate 
+₹5.19 Cr/year 
+Used in dashboard projections 
+ 
+12.2 Operational Cost Model 
+Cost Component 
+Current 
+(Estimated) 
+Optimised 
+Target 
+Saving 
+Fuel (all vehicles) 
+₹1,200/tonne 
+₹850/tonne 
+₹350/tonne (29%) 
+Vehicle maintenance 
+₹400/tonne 
+₹320/tonne 
+₹80/tonne (20%) 
+Labour 
+₹700/tonne 
+₹600/tonne 
+₹100/tonne (14%) 
+Tipping fees 
+₹500/tonne 
+₹430/tonne 
+₹70/tonne (14%) 
+Total per tonne 
+₹2,800/tonne 
+₹2,200/tonne 
+₹600/tonne (21%) 
+Annual savings (55 TPD 
+× 365) 
+— 
+— 
+₹1.20 Cr/year 
+ 
+ 
+
+===== PAGE 32 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 32 of 36 
+13. Non-Functional Requirements 
+ 
+Category 
+Requirement 
+Target 
+Measurement 
+Performance 
+Dashboard initial load 
+< 3 seconds on 4G 
+Lighthouse score 
+Performance 
+VRP solver response 
+< 10 seconds for 7 
+vehicles 
+API response time 
+Performance 
+Vehicle animation 
+FPS 
+≥ 30 FPS 
+Chrome DevTools 
+Performance 
+Map tile load 
+< 500ms blank 
+state 
+WebPageTest 
+Reliability 
+System uptime 
+99.5% monthly 
+Uptime monitoring 
+Reliability 
+OSRM fallback 
+Graceful 
+degradation to 
+straight-line routing 
+Error handling tests 
+Scalability 
+Concurrent users 
+50 simultaneous 
+without degradation 
+Load testing 
+Scalability 
+Ward expansion 
+Add new ward data 
+without code 
+changes 
+Config-driven architecture 
+Security 
+API key management 
+No keys in client-
+side code 
+Security audit 
+Security 
+BBMP data access 
+Read-only 
+GeoJSON served 
+from CDN 
+No write endpoints exposed 
+Accessibility 
+WCAG compliance 
+Level AA minimum 
+axe accessibility audit 
+Browser support 
+Modern browsers 
+Chrome 100+, 
+Firefox 100+, Safari 
+15+ 
+Cross-browser testing 
+ 
+ 
+
+===== PAGE 33 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 33 of 36 
+14. Risk Register 
+ 
+Risk 
+Probability 
+Impact 
+Mitigation 
+OSRM public API rate 
+limits exceeded in 
+production 
+Medium 
+High 
+Self-host OSRM in Phase 4; cache route results by 
+coordinate hash 
+Kudlu Processing 
+Plant still under 
+construction — routing 
+invalid 
+High 
+Medium 
+Fallback routing to Carmelaram (7.64 km) in 
+routing_config.json 
+BBMP shapefile data 
+stale / facility closed or 
+moved 
+Low 
+High 
+Annual data refresh pipeline; admin UI to mark 
+facility inactive 
+OR-Tools solver 
+timeout for large stop 
+counts 
+Medium 
+Medium 
+Limit to 7 vehicles × 50 stops per solve; use Clarke-
+Wright fast heuristic 
+Gemini API cost 
+overrun on high query 
+volume 
+Medium 
+Low 
+Rate limit to 100 queries/day per user; cache 
+common queries 
+MapLibre WebGL not 
+supported on older 
+mobile devices 
+Low 
+Medium 
+Detect WebGL support; fallback to static map 
+image view 
+BBMP does not adopt 
+platform — low user 
+count 
+Medium 
+High 
+Start with 2–3 champion ward officers; show 
+measurable KPI improvement 
+ 
+ 
+
+===== PAGE 34 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 34 of 36 
+15. Data Sources & References 
+ 
+15.1 Geospatial Data 
+Source 
+Format 
+Used For 
+BBMP Official Shapefiles 
+(DWCCs, BMUs, WPUs, 
+Dumpyards) 
+SHP/DBF → 
+GeoJSON 
+All facility locations and routing destinations 
+OpenStreetMap (OSM) 
+Shapefile → 
+GeoJSON 
+Road network (2,027 segments), building 
+footprints (9,471) 
+BBMP Ward 174 Boundary 
+PolygonZ 
+Shapefile → 
+GeoJSON 
+Ward boundary overlay 
+HSR Layout Satellite (GeoTIFF) 
+TIFF 
+1002×740px 
+LULC: Built-up 64.1%, Vegetation 17.6%, 
+Open 15.3%, Water 3% 
+GeoIQ Population Data 
+API 
+Population estimate for HSR (110,000) 
+ 
+15.2 Standards & Research 
+Reference 
+Used For 
+BBMP 2013 Chemical Analysis 
+Report 
+Waste composition: Wet 61%, Dry 30%, Hazardous 5%, 
+Other 4% 
+CPCB 0.5 kg/capita/day benchmark 
+Base waste generation rate for HSR (55 TPD total) 
+Clarke-Wright (1964) Savings 
+Algorithm 
+VRP initial solution heuristic 
+SWM Rules 2016, MoEFCC 
+Source segregation mandate enforcement 
+BEE Carbon Credit Trading Scheme 
+(CCTS) 2023 
+Carbon pricing ₹1,200–2,200/tonne CO₂ e 
+Deccan Herald — Kudlu Plant status 
+Kudlu WPU "under construction" fallback logic 
+Times of India — BBMP fleet stats 
+Fleet counts: ~5,300 auto tippers, ~600 compactors, ~700 
+trucks 
+OpenCity BBMP SWM 
+Documentation 
+Ward-level waste generation data, infrastructure mapping 
+CEE India HSR SWM Study 
+Community-level waste practices, local infrastructure data 
+ 
+ 
+
+===== PAGE 35 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 35 of 36 
+16. Appendix 
+ 
+Appendix A — HSR DWCC Coordinates (6 In-Ward) 
+# 
+Record 
+Latitude 
+Longitude 
+Sector 
+Estimated Capacity 
+1 
+#32 
+12.91263 
+77.64903 
+Sector 2 — East 
+3 TPD 
+2 
+#240 
+12.92218 
+77.64688 
+Sector 3 — North-
+Central 
+3 TPD 
+3 
+#241 
+12.91811 
+77.64545 
+Sector 3 — Central 
+3 TPD 
+4 
+#242 
+12.91218 
+77.64755 
+Sector 2 — East 
+3 TPD 
+5 
+#243 
+12.90536 
+77.63312 
+Sector 1 — 
+Southwest 
+3 TPD 
+6 
+#244 
+12.89907 
+77.64077 
+Sector 1 — South 
+3 TPD 
+ 
+Appendix B — BMU Locations (Nearest 3 to HSR) 
+# 
+Latitude 
+Longitude 
+Distance 
+from HSR 
+Area 
+Priority 
+1 
+12.896183 
+77.650711 
+2.10 km 
+Kudlu / South 
+HSR 
+PRIMARY routing destination 
+2 
+12.933803 
+77.614044 
+4.07 km 
+Jayanagar / JP 
+Nagar 
+Backup if Kudlu at capacity 
+3 
+12.933792 
+77.614061 
+4.07 km 
+Jayanagar (co-
+located) 
+Backup (2nd unit, same site) 
+ 
+Appendix C — Glossary 
+Term 
+Definition 
+BMU 
+Bio-Methanisation Unit — facility that processes organic waste to produce biogas 
+and compost 
+DWCC 
+Dry Waste Collection Centre — local facility for collecting, sorting, and baling dry 
+recyclables 
+WPU 
+Waste Processing Unit — large facility for treating mixed waste and managing final 
+disposal 
+OSRM 
+Open Source Routing Machine — open-source turn-by-turn navigation engine for 
+road networks 
+
+===== PAGE 36 =====
+AstraCity — HSR Waste Routing Platform   |   Product Requirements Document   |   Confidential 
+© 2026 AstraCity | HSR Waste Routing PRD | Page 36 of 36 
+Term 
+Definition 
+VRP 
+Vehicle Routing Problem — mathematical optimisation problem for fleet route 
+assignment 
+CVRPTW 
+Capacitated VRP with Time Windows — VRP variant with vehicle capacity and 
+time constraints 
+TPD 
+Tonnes Per Day — unit for daily waste volume measurement 
+CCTS 
+Carbon Credit Trading Scheme — India's carbon market framework for emissions 
+reduction credits 
+BBMP 
+Bruhat Bengaluru Mahanagara Palike — Greater Bengaluru municipal corporation 
+SWM 
+Solid Waste Management — the full system for collecting, transporting, and 
+disposing solid waste 
+GWP 
+Global Warming Potential — ratio of heat trapped by a gas vs CO₂  over a given 
+time period 
+LULC 
+Land Use / Land Cover — classification of land surface types from satellite 
+imagery 
+ 
+AstraCity — HSR Waste Routing Platform 
+Product Requirements Document v1.0  ·  June 2026 
+All facility data sourced from BBMP official shapefiles. Routes computed via OSRM. Optimisation via Google 
+OR-Tools. 
+ 

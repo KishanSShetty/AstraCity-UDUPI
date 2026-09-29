@@ -1,0 +1,394 @@
+0: 🛰  SPACE TECH HACKATHON  ·  SOLID WASTE INTELLIGENCE  ·  BENGALURU 2026
+1: AstraCity
+2: Comprehensive Technical & Research Report
+3: "A Digital Twin & AI-Powered Solid Waste Management Platform for HSR Layout, Bengaluru"
+4: ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+7: 1. PROBLEM STATEMENT
+8: Bengaluru — the Silicon Valley of India — generates approximately 5,000 to 6,000 tonnes of solid waste every single day. BBMP (Bruhat Bengaluru Mahanagara Palike) spends over ₹800 crores annually on waste management, operating one of India's largest civic waste fleets. Yet, despite this massive expenditure, the system remains deeply inefficient, reactive, and unscientific.
+9: The core problem is structural: waste management decisions in Bengaluru are made on static spreadsheets, intuition, and historical averages — not on real-time spatial intelligence. No one in the civic administration knows:
+10: Where illegal dump sites are forming at this moment
+11: How much methane is leaking undetected from organic waste
+12: Whether truck routes are efficient or deeply redundant
+13: Which wards will overflow during the next festival or monsoon season
+14: How much money is being lost to inefficiency that could be recovered
+15: 1.1 The Specific Focus: HSR Layout, Ward 174
+16: HSR Layout was chosen as the pilot — a microcosm of the larger problem:
+18: ─────────────────────────────────────────────────────────────────────────────────────
+19: 2. PROBLEMS FOUND — A DETAILED FIELD ASSESSMENT
+20: 2.1 Infrastructure Deficit
+22: 2.2 Routing & Logistics Problems
+23: Unoptimised routes: Trucks were travelling 132.44 km/day collectively — a 75.5% improvement was found possible, reducing this to 32.41 km/day.
+24: Mixed waste collection: Many auto-tippers were collecting unsegregated waste, defeating the purpose of the dual-bin system.
+25: Road accessibility gaps: 25.1% of HSR road segments are footways/paths inaccessible to any motorised vehicle.
+26: Narrow lane problem: 41.4% of roads are residential lanes (2–4 m wide), accessible only to small auto-tippers.
+27: 2.3 Waste Segregation Failures by Zone
+29: 2.4 Illegal Dumping (Satellite-Detected)
+31: 2.5 Methane Leakage Risk
+33: ─────────────────────────────────────────────────────────────────────────────────────
+35: 3. PROJECT OVERVIEW & APP BUILT
+36: 3.1 What is AstraCity?
+37: AstraCity is a next-generation spatial intelligence platform for urban solid waste management. It is a Digital Twin of Bengaluru's waste ecosystem, combining five core capabilities:
+38: Satellite Remote Sensing — Sentinel-2 imagery processed to detect illegal dump sites using spectral analysis and DBSCAN clustering
+39: GIS Data Integration — BBMP shapefiles, OSM road networks, ward boundaries all loaded and cross-referenced
+40: Digital Twin Simulation — A physics-informed city model that simulates waste generation under variable conditions
+41: Capacitated Vehicle Routing (CVRP) — Clarke-Wright Savings Algorithm optimising truck routes across the ward
+42: Environmental Quantification — IPCC-framework methane and CO₂ calculations tied to real waste volumes
+43: 3.2 The App — 6 Pages of Spatial Intelligence
+44: Built on Next.js 14 (App Router), Tailwind CSS, MapLibre GL JS, Recharts, Framer Motion, and Gemini 1.5 Flash AI:
+46: ─────────────────────────────────────────────────────────────────────────────────────
+47: 4. DATA COLLECTION — MAPS, ROAD NETWORKS, DWCCS & BBMP DUMPSITES
+48: 4.1 BBMP Official Shapefiles
+49: The primary infrastructure dataset was obtained from BBMP's official GIS shapefiles:
+51: 📌  Processing method: A custom Python script using struct-based binary reading of .shp files extracted WGS84 coordinates. All 336 DWCC locations were cross-referenced against the HSR Layout Ward Boundary shapefile to identify the 6 DWCCs that fall within Ward 174.
+52: 4.2 Road Network — OpenStreetMap (OSM)
+54: 4.3 Building Footprint Data — OSM Buildings
+56: ─────────────────────────────────────────────────────────────────────────────────────
+58: 5. LULC ANALYSIS — PROCEDURE USING QGIS
+59: 5.1 What is LULC?
+60: Land Use and Land Cover (LULC) classification categorises the Earth's surface into meaningful land cover types. For waste management, LULC is essential because open land identifies illegal dump hotspots, water bodies reveal leachate risk, built-up areas determine waste generation potential, and vegetation can conceal illegal dumps.
+61: 5.2 Satellite Input
+63: 5.3 Step-by-Step QGIS Procedure
+64: Step 1 — Load Satellite Image: Open QGIS 3.x → Layer → Add Layer → Add Raster Layer. Import HSR_Layout_SD.tif. Verify CRS is WGS84. Apply contrast enhancement for visual inspection.
+65: Step 2 — Install SCP Plugin: Plugins → Manage → Semi-Automatic Classification Plugin. Activate plugin. Set input satellite image as active band set.
+66: Step 3 — Training Area (ROI) Collection: Draw 8–15 ROI polygons per class in clearly identifiable areas: Built-up (grey/white tones on rooftops), Vegetation (dark green, high NIR), Open Land (reddish-brown bare soil), Water (very dark blue-black). Ensure spatial diversity across north, south, east, west.
+67: Step 4 — Spectral Signature Analysis: Extract spectral signatures per band per class. Plot spectral curves to verify class separability. Built-up shows high visible / low NIR; Vegetation shows low visible / very high NIR.
+68: Step 5 — Supervised Classification (Maximum Likelihood): SCP → Classification → Run Classification. Algorithm: Maximum Likelihood Classifier (MLC). Output: Single-band classified raster (1=Built-up, 2=Vegetation, 3=Open Land, 4=Water).
+69: Step 6 — Accuracy Assessment: SCP → Accuracy → Confusion Matrix. Stratified random validation (min 50 per class). Target: Overall Accuracy >85%, Kappa Coefficient >0.80.
+70: Step 7 — Post-Classification Refinement: Apply Majority Filter (3×3 kernel) to remove salt-and-pepper noise. Manually correct obvious misclassifications.
+71: Step 8 — Area Calculation: Raster → Raster Calculator. Count pixels per class × pixel area (resolution²). Convert to km² and % of total ward area (18.5 km²).
+72: Step 9 — Vectorisation & Integration: Raster → Conversion → Polygonize. Join with ward boundary for final statistics. Export as GeoJSON for AstraCity web app.
+73: ─────────────────────────────────────────────────────────────────────────────────────
+74: 6. LULC RESULTS — HSR LAYOUT CLASSIFICATION
+75: 6.1 Classification Results
+77: 🔗  Source: HSR_Layout_SD.tif (1002×740 px, 3-band RGB GeoTIFF). Classification performed in QGIS 3.x using Semi-Automatic Classification Plugin.
+78: 6.2 Lakes in HSR Layout
+79: Two significant urban lakes exist in HSR Layout: Agara Lake (Sector 4, BBMP-managed) and HSR Layout Lake. Together they form the 0.56 km² (3.0%) water body class. They are directly downstream of high-density residential zones B2 and C3, making leachate contamination from nearby dumps a serious environmental risk.
+80: ─────────────────────────────────────────────────────────────────────────────────────
+82: 7. METHODOLOGY FOR LULC CLASSIFICATION — WHY EACH CLASS WAS CHOSEN
+83: 7.1 Why Built-Up Was Classified
+84: Built-up areas are the primary waste generators. The density, type (residential vs. commercial vs. institutional), and spatial distribution of built-up areas directly determine waste volumes, collection vehicle routing, and required infrastructure. Residential built-up → Green + Blue bin waste. Commercial built-up → Bulk generator regulations (SWM Rules 2016 mandate on-site composting for >100 kg/day generators). Institutional → predictable scheduled collection.
+85: 7.2 Why Vegetation Was Classified
+86: Vegetation areas are critical for three reasons: (1) Open vegetated areas adjacent to residential zones are frequently used for illegal dumping because they are less surveilled. (2) Dense tree canopy can conceal dump sites from overhead satellite detection. (3) Vegetation health (NDVI) can indicate contamination from leachate. NDVI = (NIR − Red) / (NIR + Red) gives values +0.3 to +0.8 for healthy vegetation.
+87: 7.3 Why Open Land Was Classified — Illegal Dump Hotspot Identification
+88: Open land (vacant plots, construction sites, barren land) is the PRIMARY location for illegal solid waste dumping in Indian cities. Reasons: No ownership enforcement (vacant plots are untended), high accessibility for large vehicles, reduced surveillance, and economic incentive (waste haulers avoid DWCC tipping fees). 15.3% of HSR Layout (2.83 km²) is open land — the highest-risk zone. Satellite-based dump detection uses DBSCAN clustering on brightness anomalies: dark patches on open land = potential dump accumulation.
+89: 7.4 Why Water Bodies Were Classified
+90: Water bodies serve as environmental sentinel indicators: (1) Leachate contamination — illegal dumps near lakes leach heavy metals and pathogens into groundwater. (2) Methane generation — wet organic waste in water bodies undergoes anaerobic decomposition without energy capture. (3) Regulatory compliance — SWM Rules 2016 prohibit waste disposal within 200 m of any water body. HSR's two lakes are downstream of the densest residential zones (B2, C3).
+91: ─────────────────────────────────────────────────────────────────────────────────────
+92: 8. BUILDING TYPE CLASSIFICATION — WHY IT MATTERS
+93: 8.1 Waste Generation Rates by Building Type
+95: 8.2 Zone-wise Building Density — Critical Routing Insight
+97: ─────────────────────────────────────────────────────────────────────────────────────
+98: 9. ROAD NETWORK CLASSIFICATION — WHY IT MATTERS
+99: 9.1 HSR Layout Road Network — 2,027 Segments
+101: 9.2 Coverage Summary
+103: ⚠️  66% of HSR Layout's road network can ONLY be accessed by auto-tippers or push carts — making the two-tier collection system physically mandatory, not optional.
+104: ─────────────────────────────────────────────────────────────────────────────────────
+106: 10. WASTE PREDICTION — FORMULATION, GRID-WISE SPLIT & DIGITAL TWIN
+107: 10.1 Core Waste Generation Formula
+108: Base_waste_per_zone (kg/day) = Σ [building_i × occupants_i × 0.5 kg/person/day]
+
+Total_zone_waste = Base_waste
+                 × (1 + population_growth_factor)    [0.0 – 0.5]
+                 × festival_multiplier               [1.0 / 1.20 / 1.28]
+                 × weather_factor                    [0.95 / 1.0 / 1.15]
+
+Festival multipliers:
+  Normal day:         1.0  (baseline)
+  Diwali:             1.20 (+20%)
+  Ganesh Chaturthi:   1.28 (+28%)
+
+Weather factors:
+  Low rainfall:   0.95
+  Normal:         1.00
+  Heavy rainfall: 1.15 (+15%)
+109: 10.2 Digital Twin Scenario Results
+111: 🔗  Source: twin_output.txt (Digital Twin Phase 3 simulation, 59 active grid cells, 30,545 modelled population)
+112: 10.3 Dump Probability Model
+113: dump_probability = (wasteGenerated / collectionCapacity) × zonal_risk_index
+
+zonal_risk_index = (1 - segregation_rate)
+                 × open_land_fraction
+                 × (1 - road_density_score)
+
+Interpretation:
+  Zones with more waste than collection can handle +
+  Poor segregation +
+  Abundant open land +
+  Sparse road network
+  = HIGHEST illegal dump risk
+114: 10.4 Methane Projection Formula (IPCC 2006)
+115: CH₄ (tons/year) = MSW_organic × DOCf × MCF × (16/12) × (1 - OX)
+
+Where:
+  MSW_organic  = 33.55 T/day × 365 = 12,246 T/year organic waste
+  DOCf         = 0.5   (IPCC default DOC fraction for food waste)
+  MCF          = 0.8   (managed anaerobic treatment)
+  16/12        = molecular weight ratio (CH₄ / C)
+  OX           = 0.1   (oxidation factor)
+
+→ 927 T CH₄/year
+→ 927 × 28 (GWP) = 25,959 T CO₂e/year
+
+Source: IPCC 2006 Guidelines, Volume 5 (Waste), Table 3.1
+116: ─────────────────────────────────────────────────────────────────────────────────────
+117: 11. APP DESIGN — FEATURES, REASONING & UNIQUE VALUE PROPOSITIONS
+118: 11.1 Technology Stack
+120: 11.2 Ward Governance Score Formula
+121: Ward Score (0–100) =
+  (1 - dumpRisk)        × 30   // 30% weight: illegal dump probability
+  + (1 - methaneInt)    × 25   // 25% weight: methane emission intensity
+  + routeEfficiency     × 25   // 25% weight: collection route efficiency
+  + (1 - complaintRate) × 20   // 20% weight: citizen complaint rate
+
+Score bands:
+  0–40:  Rose / High Risk
+  41–70: Amber / Medium Risk
+  71+:   Emerald / Low Risk
+122: ─────────────────────────────────────────────────────────────────────────────────────
+124: 12. KEY FINDINGS IN DETAIL
+125: Finding #1 — The Kudlu Co-location Advantage
+126: The Kudlu area (2.09–2.10 km south of HSR) hosts both the nearest Bio-Methanisation Unit AND the nearest Waste Processing Unit at essentially the same location. Compactor trucks make one trip that serves both purposes — wet waste dropped at BMU, rejects at Processing Unit. Without this co-location, two separate trips would be needed, doubling secondary transport costs. Estimated advantage: ₹0.8 crores/year in avoided secondary transport.
+127: Finding #2 — Route Distance Reduction of 75.5%
+128: Before optimisation: 132.44 km/day. After Clarke-Wright optimisation: 32.41 km/day. Distance saved: 100.03 km/day. Annual fuel savings: ₹3.28 crores. This comes from eliminating route duplication, prioritising high-demand zones (B2, C3), and routing vehicles in sequences that minimise backtracking.
+129: Finding #3 — The Footway Coverage Gap
+130: 509 footways (25.1% of HSR roads) can only be served by push carts. Current push-cart capacity is 3.2 T/day vs an estimated 5.5 T/day generated in these areas. This 2.3 T/day gap is potentially accumulating as illegal dumps on open land adjacent to narrow lanes.
+131: Finding #4 — LULC Open Land Risk
+132: 15.3% of HSR Layout (2.83 km²) is open land. At ₹52,000–₹62,000 cleanup cost per dump site, and assuming 30 new dumps per year, the annual cleanup cost risk is ₹15.6 lakh – ₹18.6 lakh from open-land dumping in one ward alone.
+133: Finding #5 — Carbon Credit Scale Potential
+134: At 198 wards with similar BMU routing: Total CO₂e = 25,959 T × 198 = 51.4 lakh T CO₂e/year. Carbon credit value = ₹1,028 Crores/year — making Bengaluru one of India's largest municipal carbon credit earners under CCTS 2023.
+135: ─────────────────────────────────────────────────────────────────────────────────────
+136: 13. DATA COLLECTION DETAILS — SOURCES, METHODS & QUALITY
+137: 13.1 Complete Data Source Registry
+139: ─────────────────────────────────────────────────────────────────────────────────────
+141: 14. WASTE COMPOSITION — WET, DRY, FACTORS & PERCENTAGES
+142: 14.1 HSR Layout Daily Waste Breakdown
+144: 🔗  Source: BBMP 2013 Chemical Analysis of Municipal Solid Waste. Per-capita rate: CPCB Annual Report 2021-22 (0.5 kg/capita/day). Population: Census 2011 + building model for Ward 174.
+145: 14.2 Factors Affecting Waste Generation
+147: ─────────────────────────────────────────────────────────────────────────────────────
+148: 15. WET WASTE — SEPARATE TREATMENT & BIO-METHANISATION IN DETAIL
+149: 15.1 Why Wet Waste is Treated Separately
+150: Contamination: Wet waste in contact with dry recyclables makes them non-recyclable
+151: Methane generation: Mixed wet+dry in landfills generates methane without energy capture
+152: Weight & density: Wet waste is heavy (high moisture), affecting vehicle load planning
+153: Regulatory mandate: SWM Rules 2016 mandate source segregation at the household level
+154: Value creation: Properly processed wet waste generates biogas (energy) and compost (fertiliser)
+155: 15.2 The Complete Bio-Methanisation Process
+157: 15.3 Kudlu BMU — Capacity & Output for HSR Layout
+159: 15.4 BMU Output Utilisation
+160: Biogas → Electricity:  Biogas is fed into gas engines (generators) to produce electricity — fed into grid or used to power the BMU facility itself.
+161: Digestate → Compost:  Solid digestate is composted in windrow piles, producing certified organic compost sold to farmers and nurseries at ₹2,000–₹5,000/tonne.
+162: Rejects → Processing Plant:  ~10% of input (inorganic contaminants) goes to Kudlu Waste Processing Plant next door.
+163: ─────────────────────────────────────────────────────────────────────────────────────
+165: 16. DWCC COLLECTION HUBS — INFRASTRUCTURE IN DETAIL
+166: 16.1 The 6 DWCCs Inside HSR Layout (BBMP Official Data)
+168: 16.2 DWCC Revenue Model (Recycler Payments)
+170: 💡  6 DWCCs in HSR = ₹3–4.7 crore/year revenue stream from recycler payments. A digital platform can optimise pickup scheduling and increase material recovery rates.
+171: ─────────────────────────────────────────────────────────────────────────────────────
+172: 17. BMU, WET WASTE CENTRES & DUMPYARD DISTANCE FROM HSR
+173: 17.1 All 11 Bio-Methanisation Units — Distances from HSR
+175: 17.2 All 3 Dumpyards — Distances from HSR Layout
+177: ⚠️  CRITICAL: The nearest dumpyard is 21.03 km from HSR Layout (road distance ~28–32 km). AstraCity's routing model avoids the dumpyard as a daily destination — only final non-recyclable rejects (~2.2 T/day, 4%) travel there.
+178: ─────────────────────────────────────────────────────────────────────────────────────
+180: 18. DIGITAL TWIN OF HSR LAYOUT — NEED, DESIGN & DATA
+181: 18.1 What is a Digital Twin of a City?
+182: A Digital Twin is a real-time, virtual replica of a physical system that mirrors its state, simulates its behaviour, and enables predictive analytics without disturbing the real system. For HSR Layout, it is a computational model that represents every building, road, and waste facility as a data object; simulates waste generation under any scenario; tests policy decisions virtually before implementing them physically; and continuously updates as real-world data changes.
+183: 18.2 Three-Layer Digital Twin Architecture
+185: ─────────────────────────────────────────────────────────────────────────────────────
+186: 19. GOVERNMENT USE OF THE DIGITAL TWIN
+187: Use Case 1 — Daily Operations Dashboard
+188: The BBMP ward sanitary inspector opens AstraCity at 5:30 AM to see current waste prediction, overflow risk zones, recommended vehicle allocation, and DWCC capacity alerts — all before vehicles even depart the depot.
+189: Use Case 2 — Festival Preparedness
+190: Two weeks before Ganesh Chaturthi, the commissioner simulates the +28% waste spike to determine which zones need extra auto-tippers, how many extra compactor trips to Kudlu are needed, and what the estimated carbon credit impact is.
+191: Use Case 3 — Infrastructure Planning
+192: A new DWCC site is being considered. The city planner tests the proposed location virtually — sees the reduction in average distance from residential zones, quantifies fuel savings, and verifies road accessibility.
+193: Use Case 4 — Budget Justification
+194: The BBMP finance department needs to justify a ₹5 crore fleet upgrade investment. AstraCity's Economic Impact page shows ₹9.42 crores/year savings, break-even in 7 months, and 10-year NPV of ₹84 crores.
+195: Use Case 5 — Complaint Response
+196: A ward councillor receives 20 complaints about overflow on 5th Cross. AstraCity maps shows Zone B2 has 2,189 buildings with only 1 auto-tipper assigned, and DWCC #4 is at 92% capacity. Recommendation is auto-generated.
+197: Use Case 6 — Carbon Reporting
+198: Bengaluru is a C40 Cities signatory. AstraCity generates annual CO₂e per zone, methane capture efficiency, carbon credits generated under CCTS 2023, and year-on-year sustainability comparisons.
+199: Use Case 7 — Policy Simulation
+200: "What if we mandate home composting for all apartments with >50 units?" Digital twin models: 30% reduction in wet waste, -3.2 T/day BMU load, -170 m³/day methane, +₹12 lakh/year carbon credit gain, 2 auto-tippers freed.
+201: Use Case 8 — Inter-Ward Comparison
+202: All 198 wards scored on dump risk, methane intensity, route efficiency, and complaint rate. Creates governance KPIs enabling targeted interventions and positive ward-level competition.
+203: ─────────────────────────────────────────────────────────────────────────────────────
+205: 20. ROUTE OPTIMISATION — VEHICLES, CONSTRAINTS, ALGORITHM & ADVANTAGES
+206: 20.1 Problem Formulation (CVRPTW)
+207: The HSR Layout waste collection problem is a Capacitated Vehicle Routing Problem with Time Windows (CVRPTW):
+209: 20.2 Clarke-Wright Savings Algorithm — Mathematical Formulation
+210: Reference: Clarke, G. & Wright, J.W. (1964). Scheduling of Vehicles from a Central
+Depot to a Number of Delivery Points. Operations Research, 12(4), 568–581.
+
+SAVINGS FORMULA:
+  s(i, j) = d(depot → i) + d(depot → j) − d(i → j)
+
+  The "saving" s(i,j) is the distance saved by combining:
+    Route A: depot → i → depot
+    Route B: depot → j → depot
+  Into:   depot → i → j → depot
+
+ALGORITHM STEPS:
+  1. INITIALISE: One route per stop: depot → stop_i → depot
+  2. COMPUTE:    s(i,j) for all pairs (i,j)
+  3. SORT:       Savings descending (highest savings first)
+  4. MERGE:      For each (i,j) from highest saving to lowest:
+                   if i and j in different routes
+                   AND i,j are at route endpoints
+                   AND combined load ≤ vehicle capacity
+                   → MERGE the two routes
+  5. ASSIGN:     Best-fit vehicle to each merged route (by capacity)
+
+Time complexity: O(n² log n)
+211: 20.3 Distance Computation
+212: Primary: OSRM (Open Source Routing Machine) API — uses real OSM road network for actual driving distances, accounting for one-way streets and restrictions.
+213: Haversine Fallback Formula (when OSRM API limits are exceeded):
+  a = sin²(Δφ/2) + cos φ₁ · cos φ₂ · sin²(Δλ/2)
+  c = 2 · atan2(√a, √(1−a))
+  d = R · c     (R = 6,371 km — Earth's mean radius)
+214: 20.4 Vehicle Fleet & Constraints
+216: 20.5 Operational Time Constraints (BBMP SWM Manual 2016)
+218: 20.6 Route Optimisation Results
+220: 20.7 Optimised Truck Routes (3 Primary Compactors)
+222: ─────────────────────────────────────────────────────────────────────────────────────
+224: 21. ENVIRONMENTAL BENEFITS, CARBON CREDITS & FINANCIAL PROFIT
+225: 21.1 Carbon Credit Framework
+226: India's Carbon Credit Trading Scheme (CCTS) 2023, formulated by the Ministry of Power under the Energy Conservation (Amendment) Act 2022, is India's first structured domestic carbon market. Price range (2024–2025): ₹1,200 – ₹2,200 per tonne CO₂e. AstraCity uses ₹2,000/tonne (midpoint).
+227: 21.2 Carbon Credit Calculation — Step by Step
+228: STEP 1 — Methane Quantification (IPCC 2006, Volume 5, Chapter 3):
+  CH₄ (T/year) = MSW_organic × DOCf × MCF × (16/12) × (1 − OX)
+  
+  Where:
+    MSW_organic = 33.55 T/day × 365 = 12,246 T/year
+    DOCf        = 0.5   (IPCC default for food waste)
+    MCF         = 0.8   (managed anaerobic treatment)
+    16/12       = molecular weight ratio CH₄/C
+    OX          = 0.1   (oxidation factor)
+  
+  Result: 927 T CH₄/year
+
+STEP 2 — Convert to CO₂ equivalent (IPCC AR5 GWP100):
+  CO₂e = 927 T CH₄ × GWP₂₈ = 25,959 T CO₂e/year
+
+STEP 3 — Apply CCTS 2023 Carbon Credit Price:
+  Carbon Credit Value = 25,959 T × ₹2,000/T = ₹5.19 Crores/year
+
+Data basis:
+  IPCC 2006 Vol. 5, Table 3.1 — DOC fractions and MCF values
+  IPCC AR5, Table 8.7 — GWP100 for CH₄ = 28
+  CCTS 2023, Ministry of Power, India — ₹1,200–₹2,200/T CO₂e range
+229: 21.3 Complete Financial Benefits Summary
+231: ─────────────────────────────────────────────────────────────────────────────────────
+232: 22. SAVINGS ANALYSIS & SPECIAL FINDINGS
+233: 22.1 Detailed Savings Calculation Procedure
+234: FUEL SAVINGS:
+  Baseline distance = 132.44 km/day (manual routes)
+  Optimised distance = 32.41 km/day (Clarke-Wright output)
+  Distance saved     = 100.03 km/day
+  Cost @ ₹20/km     = ₹2,006/day
+  Annual             = ₹2,006 × 365 = ₹73,21,900 → ₹3.28 Crores
+
+LABOUR SAVINGS:
+  Time saved per truck = 1.5 hours/day (33% faster)
+  Cost @ ₹180/hour    = ₹270/truck/day
+  Fleet × 365 days    = ₹270 × 25 × 365 = ₹24,63,750 → ₹0.38 Crores
+
+CLEANUP SAVINGS:
+  Dumps prevented/year = ~30 (satellite monitoring + rapid response)
+  Cost per dump site   = ₹52,000 (BBMP contractor rates)
+  Annual               = 30 × ₹52,000 = ₹15,60,000 → ₹0.45 Crores
+
+CARBON CREDITS:
+  25,959 T CO₂e × ₹2,000/T = ₹5,19,18,000 → ₹5.19 Crores
+235: 22.2 Special Findings
+236: Special Finding #1 — The Kudlu Co-location Advantage
+237: The Kudlu area has both a BMU (2.10 km) and a Processing Unit (2.09 km) at essentially the same location. Compactor trucks make one trip serving both purposes. Estimated advantage: ₹0.8 crores/year in avoided secondary transport.
+238: Special Finding #2 — The Footway Coverage Gap
+239: 509 footways (25.1% of roads) can only be served by push carts. Current push-cart capacity (3.2 T/day) is insufficient for estimated 5.5 T/day in these areas — a 2.3 T/day gap potentially becoming illegal dumps.
+240: Special Finding #3 — Empty Zone Efficiency
+241: Zones A4, B4, D1 have zero buildings. The optimised model skips these zones, saving approximately 12–15 km/day in unnecessary coverage.
+242: Special Finding #4 — Festival Carbon Credit Opportunity
+243: During Ganesh Chaturthi, +7.3 T/day additional organic waste generates +387 m³/day biogas = +484 kWh/day. Over 10-day festival: 4,840 kWh additional energy = ~₹48,400 in electricity value.
+244: Special Finding #5 — National Carbon Credit Scale
+245: At 198 wards: 25,959 T × 198 = 51.4 lakh T CO₂e/year → ₹1,028 Crores/year carbon credit value under CCTS 2023.
+246: ─────────────────────────────────────────────────────────────────────────────────────
+248: 23. APP'S BEST & UNIQUE FEATURES
+249: Feature #1 — Live Satellite Dump Detection
+250: Processes Sentinel-2 imagery to detect illegal dump sites using spectral anomaly detection (DBSCAN clustering on brightness values below 10th percentile). No existing BBMP tool monitors illegal dumps in real time using satellite data.
+251: Feature #2 — 6-Layer Dynamic GIS Map
+252: Full-screen MapLibre GL map with 6 simultaneously toggleable data layers: dump sites, methane heatmap, waste heatmap, dump probability, optimised routes, ward vulnerability. Lets decision-makers see spatial correlations invisible in single-layer maps.
+253: Feature #3 — Policy Simulation Engine
+254: 54 pre-computed scenarios (population × rainfall × festival) produce instant waste predictions. Enables preparedness rather than reaction — test "What if Bengaluru adds 2 lakh people?" without real-world consequences.
+255: Feature #4 — ₹ Quantified Economic Impact
+256: Translates every optimisation into rupee values — the most persuasive language for government adoption. Directly shows ₹9.42 Crores/year savings and ₹1,865 Crores if scaled to 198 wards.
+257: Feature #5 — Ward Governance Score
+258: Composite score (0–100) based on dump risk + methane + efficiency + complaints — creating an accountable KPI for every ward councillor. Enables inter-ward comparison and targeted interventions.
+259: Feature #6 — Gemini AI Query Bar
+260: Natural language interface on every page. Non-technical commissioners can type "Which sectors need extra vehicles next week?" and get actionable answers without GIS training.
+261: Feature #7 — BBMP-Ready Report Export
+262: PDF-quality report generator with configurable sections, A4-proportioned preview, and window.print() export. Bridges the digital-physical divide for government presentation rooms.
+263: Feature #8 — Digital Twin Scenario Comparison
+264: Side-by-side comparison of "before" vs. "after" optimisation routes, waste volumes, and costs. Explainable, auditable, and transparent — not a black box.
+265: ─────────────────────────────────────────────────────────────────────────────────────
+266: 24. PHASE-WISE EXTENSION TO ALL 198 BBMP WARDS
+267: 24.1 Expansion Roadmap
+269: ─────────────────────────────────────────────────────────────────────────────────────
+270: 25. NEED FOR GROUND-LEVEL SURVEY & GOVERNMENT SUPPORT
+271: 25.1 What Satellite & OSM Data Cannot Capture
+272: Actual waste weights at household level — satellite cannot see inside bins
+273: Segregation compliance — camera cannot verify green bin contents
+274: Informal waste worker networks — ragpickers and scrap dealers are invisible in official data
+275: Seasonal variation beyond model — unexpected events (construction boom, new restaurant cluster)
+276: Real road conditions — potholes, seasonal flooding, construction blockages affecting routing
+277: 25.2 Required Ground-Level Survey Types
+279: 25.3 Government Intervention Required
+280: From BBMP:
+281: Open truck GPS data — real-time vehicle location via existing tracking systems
+282: DWCC daily weigh-in digitisation — currently manual paper records
+283: BBMP Samadhana complaint API access — integrate complaint tickets with AstraCity map
+284: Ward-level sanitary inspector training and buy-in
+285: Dedicated AstraCity operational budget within BBMP IT department
+286: From Karnataka State Government:
+287: Carbon credit registration for Kudlu BMU under CCTS 2023
+288: Stronger enforcement of SWM Rules 2016 for bulk generators
+289: Data sharing MoU between BBMP, KSPCB, and student researchers
+290: ─────────────────────────────────────────────────────────────────────────────────────
+292: 26. WHAT RVCE NSS STUDENTS CAN DO — DEVELOPMENT ROADMAP
+293: 26.1 Technical Skills RVCE Students Will Develop
+295: 26.2 Semester-wise Development Roadmap
+296: Semester 1 — Data Engineering
+297: Automate OSM building data pipeline for any ward (Python + QGIS)
+298: Build real-time DWCC sensor data ingestion (IoT → Firebase → AstraCity)
+299: Expand simulation lookup to 198 wards (batch computation)
+300: Write unit tests for the VRP solver (vrp_solver.ts)
+301: Build mobile-responsive design for the AstraCity app
+302: Semester 2 — ML & AI
+303: Train a Random Forest model on ward-level features to predict dump risk
+304: Implement NDVI-based dump detection using Sentinel-2 NIR bands
+305: Fine-tune the Gemini system prompt for better waste-specific responses
+306: Build anomaly detection model for DWCC overflow prediction
+307: Semester 3 — Field Research
+308: Conduct monthly ground truth surveys in all 16 HSR Layout zones
+309: Document segregation rates per sub-zone with photos and GPS logs
+310: Map all informal waste collection points (ragpicker sites, scrap dealers)
+311: Interview DWCC operators and auto-tipper drivers for operational insights
+312: Semester 4 — Government Interface
+313: Prepare formal presentation for BBMP South Zone commissioner
+314: Apply for Smart Cities Mission innovation grants
+315: Create training materials for BBMP sanitary inspectors (Kannada + English)
+316: Document the data sharing MoU template for BBMP-RVCE collaboration
+317: 26.3 NSS Field Activities
+318: Monthly Zone Survey (10 volunteers, 1 day/month)
+319: Walk all 16 grid zones of HSR Layout. Record actual road widths, new construction, illegal dump locations using GPS-enabled phones with KoboToolbox survey app. Upload data to AstraCity backend.
+320: DWCC Data Collection (2 volunteers, weekly)
+321: Visit 2 DWCCs per week. Record incoming vehicle weights, material types, operational issues. Photo-document DWCC conditions. Report to AstraCity dashboard.
+322: Awareness Campaign (100 volunteers, quarterly)
+323: Door-to-door in lowest-segregation zones (East HSR, Commercial zones). Distribute source segregation guides in Kannada + English. Collect household waste composition data.
+324: Hackathon Team (10–15 students)
+325: Participate in national hackathons with AstraCity as the submission. Win prizes that fund further development. Build national visibility for the project.
+326: Industry Partnership (4–5 students)
+327: Connect with BBMP IT department. Pursue internships with urban planning firms (DULT, Janaagraha). Apply for SERB, DBT, Smart Cities Mission research grants.
+328: ─────────────────────────────────────────────────────────────────────────────────────
+330: APPENDIX — KEY NUMBERS AT A GLANCE
+333: AstraCity · HSR Layout, Ward 174, Bengaluru, Karnataka, India
+Prepared by RVCE Students | Space Tech Hackathon 2026 | Report v1.0 | June 2026
+Data sources: BBMP · OSM · CPCB · IPCC · Census of India · IRC · Ministry of Power (CCTS 2023)

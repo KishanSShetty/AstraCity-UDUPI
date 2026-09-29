@@ -1,0 +1,93 @@
+{
+  "vehicle_fleet": [
+    { "id": "AT-01", "type": "auto_tipper", "capacity_kg": 500, "fuel": "CNG", "min_road_width_m": 2, "color": "#2ECC71", "zone": "A", "speed_factor": 1.0 },
+    { "id": "AT-02", "type": "auto_tipper", "capacity_kg": 500, "fuel": "CNG", "min_road_width_m": 2, "color": "#27AE60", "zone": "A", "speed_factor": 1.0 },
+    { "id": "AT-03", "type": "auto_tipper", "capacity_kg": 500, "fuel": "CNG", "min_road_width_m": 2, "color": "#1ABC9C", "zone": "B", "speed_factor": 1.0 },
+    { "id": "AT-04", "type": "auto_tipper", "capacity_kg": 500, "fuel": "CNG", "min_road_width_m": 2, "color": "#16A085", "zone": "B", "speed_factor": 1.0 },
+    { "id": "AT-05", "type": "auto_tipper", "capacity_kg": 500, "fuel": "CNG", "min_road_width_m": 2, "color": "#2ECC71", "zone": "C", "speed_factor": 1.0 },
+    { "id": "AT-06", "type": "auto_tipper", "capacity_kg": 500, "fuel": "CNG", "min_road_width_m": 2, "color": "#27AE60", "zone": "C", "speed_factor": 1.0 },
+    { "id": "AT-07", "type": "auto_tipper", "capacity_kg": 500, "fuel": "CNG", "min_road_width_m": 2, "color": "#1ABC9C", "zone": "D", "speed_factor": 1.0 },
+    { "id": "AT-08", "type": "auto_tipper", "capacity_kg": 500, "fuel": "CNG", "min_road_width_m": 2, "color": "#16A085", "zone": "D", "speed_factor": 1.0 },
+    { "id": "AT-09", "type": "auto_tipper", "capacity_kg": 500, "fuel": "CNG", "min_road_width_m": 2, "color": "#2ECC71", "zone": "E", "speed_factor": 1.0 },
+    { "id": "AT-10", "type": "auto_tipper", "capacity_kg": 500, "fuel": "CNG", "min_road_width_m": 2, "color": "#27AE60", "zone": "E", "speed_factor": 1.0 },
+    { "id": "AT-11", "type": "auto_tipper", "capacity_kg": 500, "fuel": "CNG", "min_road_width_m": 2, "color": "#1ABC9C", "zone": "F", "speed_factor": 1.0 },
+    { "id": "AT-12", "type": "auto_tipper", "capacity_kg": 500, "fuel": "CNG", "min_road_width_m": 2, "color": "#16A085", "zone": "F", "speed_factor": 1.0 },
+    { "id": "C-01", "type": "small_compactor", "capacity_kg": 5000, "fuel": "Diesel", "min_road_width_m": 6, "color": "#3498DB", "zone": "All", "speed_factor": 0.7 },
+    { "id": "C-02", "type": "large_compactor", "capacity_kg": 10000, "fuel": "Diesel", "min_road_width_m": 9, "color": "#9B59B6", "zone": "All", "speed_factor": 0.5 },
+    { "id": "GT-01", "type": "garbage_truck", "capacity_kg": 5000, "fuel": "Diesel", "min_road_width_m": 6, "color": "#E74C3C", "zone": "All", "speed_factor": 0.7 },
+    { "id": "GT-02", "type": "garbage_truck", "capacity_kg": 5000, "fuel": "Diesel", "min_road_width_m": 6, "color": "#C0392B", "zone": "All", "speed_factor": 0.7 }
+  ],
+  "vehicle_road_compatibility": {
+    "auto_tipper": ["trunk", "primary", "secondary", "tertiary", "residential", "service"],
+    "small_compactor": ["trunk", "primary", "secondary"],
+    "large_compactor": ["trunk", "primary"],
+    "hook_loader": ["trunk"],
+    "garbage_truck": ["trunk", "primary", "secondary"]
+  },
+  "road_width_thresholds": {
+    "trunk": ">12m",
+    "primary": ">9m",
+    "secondary": ">6m",
+    "tertiary": ">4m",
+    "residential": "2-4m",
+    "service": "2-3m",
+    "footway": "<2m",
+    "path": "<2m"
+  },
+  "time_windows": {
+    "primary_collection": { "start": "06:00", "end": "10:00", "label": "Morning Door-to-Door" },
+    "secondary_transport": { "start": "10:00", "end": "18:00", "label": "DWCC to Processing" },
+    "night_restriction": { "start": "22:00", "end": "06:00", "vehicle_limit_kg": 3500, "label": "Heavy Vehicle Ban" }
+  },
+  "waste_routing": {
+    "wet_organic": {
+      "destination": "kudlu_bmu",
+      "coordinates": [77.650711, 12.896183],
+      "distance_km": 2.1,
+      "label": "Kudlu BMU (Bio-Methanisation)"
+    },
+    "dry_recyclable": {
+      "destination": "nearest_dwcc_with_capacity",
+      "label": "Nearest DWCC with >=20% headroom"
+    },
+    "hazardous": {
+      "destination": "authorised_handler",
+      "label": "KSPCB Authorised Handler"
+    },
+    "final_rejects": {
+      "destination": "yelahanka_dumpyard",
+      "coordinates": [77.645922, 13.103583],
+      "distance_km": 21.03,
+      "label": "Yelahanka Dumpyard"
+    }
+  },
+  "dwcc_capacity": {
+    "default_tpd": 3,
+    "alert_thresholds": {
+      "yellow": 70,
+      "red": 90,
+      "critical": 100
+    }
+  },
+  "fallback_routing": {
+    "kudlu_unavailable": {
+      "redirect_to": "carmelaram_wpu",
+      "coordinates": [77.686032, 12.857962],
+      "distance_km": 7.64,
+      "label": "Carmelaram Processing Unit (Fallback)"
+    }
+  },
+  "depot": {
+    "coordinates": [77.6460, 13.3409],
+    "label": "Udupi City Depot (Ward Centre)"
+  },
+  "collection_zones": [
+    { "id": "A", "area": "NE HSR", "sectors": "2-3", "dwcc_ids": ["#240", "#241"], "tpd": 5.5 },
+    { "id": "B", "area": "NW HSR", "sectors": "3-west", "dwcc_ids": ["#240"], "tpd": 5.0 },
+    { "id": "C", "area": "Central HSR", "sectors": "2-east", "dwcc_ids": ["#242", "#32"], "tpd": 5.2 },
+    { "id": "D", "area": "SW HSR", "sectors": "1", "dwcc_ids": ["#243"], "tpd": 4.8 },
+    { "id": "E", "area": "S HSR", "sectors": "1-south", "dwcc_ids": ["#244"], "tpd": 4.3 },
+    { "id": "F", "area": "Main roads", "sectors": "all", "dwcc_ids": [], "tpd": 16.5 },
+    { "id": "G", "area": "Kudlu run", "sectors": "exit-hsr", "dwcc_ids": [], "tpd": 33.55 }
+  ]
+}

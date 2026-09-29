@@ -1,0 +1,324 @@
+===PARA 0===
+Abstract
+
+===PARA 1===
+The current municipal solid waste management practice in Indian megacities is facing a long-standing challenge of spatial in-efficiency, which is mainly attributed to the lack of geographic intelligence in the real-time context. Implementing digital twins of the city in spatial decision making demands requires an environment where spatial query processing is integrated with the platform for decision modeling, analysis, planning and presentation. AstraCity is a spatial decision making support environment for building and integration of digital twin of HSR Layout (Ward 174) of Bengaluru which comprises 9471 geo-referenced buildings, 2027 classified road segments and 6 Dry Waste Collection Centres. The Sentinel-2 multispectral data was pre-processed in QGIS with supervised Maximum Likelihood Classification technique and classified into four land use / land cover classes: Built-up (64.1%), Vegetation (17.6%), Open Land (15.3%) and Water Bodies (3.0%). Parcels of open land then underwent screening for the risk of illegal dumping using DBSCAN clustering. The Clarke-Wright Savings heuristic was used to solve a Capacitated Vehicle Routing Problem with Time Windows and reduce the daily fleet distance 75.5% (from 132.44 to 32.41 km). The IPCC approach by first order decay was used for quantifying CH₄ emissions, and it was estimated to be 927 tonnes CH₄ per annum (25,959 tonnes CO₂-equivalent), monetised at approximately ₹5.19 crores annually, per arrangement of the Carbon Credit Trading Scheme (CCTS) 2023. The holistic approach has been designed to show an annual savings of ₹9.42 crores annually for a single ward with a conservative estimate of more than ₹1,865 crores annually for the entire programme for the system. The results highlight the opportunities of a satellite remote sensing and combinatorial optimisation-based approach that can be brought together in a single civic-technology tool for the purpose of environmental accounting.
+
+===PARA 2===
+1. Introduction
+
+===PARA 3===
+India’s Urban Waste Challenge in the context of waste management.Urban Waste Challenge in the Indian context- Waste Management.
+
+===PARA 4===
+The urban centers in India are growing at a rate that always exceeds their Civic waste capabilities. The quantity of municipal solid waste (MSW) generated in Bengaluru is between 5,000 and 6,000 tonnes per day (daily) and is often regarded as the technology capital of India (CPCB, 2022). In the area of collection, transport and disposal – the one area for which the Bruhat Bengaluru Mahanagara Palike (BBMP) spends upwards of ₹800 crores of Rupees annually and still the results are not good enough. Collection times are still drawn 20 or more years ago from paper maps, and sanitary inspectors use a complaint register and almost their own memory to identify collections and paths. No documented scheme or structure is in place to identify the emergence of new illegal dump sites, lines of sight do not exist to estimate methane emissions on a ward level, and a dynamic redeployment of fleet resources does not currently exist during surge periods (e.g., monsoons, festivals).
+
+===PARA 5===
+This dysfunction is because of the lack of spatial intelligence in the administrative decision making process. If civic officials can't access a map to better visualise waste generation gradients, can't add road-width limitations to vehicle allocation tables, and can't model the financial effect of different policy options, the waste management regime will always simply react as opposed to limit waste.
+
+===PARA 6===
+1.2 Justifications for HSR Layout (Ward 174) being chosen as Pilot
+
+===PARA 7===
+This investigation was selected with peculiar reason of being this HSR Layout as it represents in miniature form all the structural related issues that are facing Bengaluru city at large. The ward is spread over 18.5 km² and has a population of about 1,10,000 in 9,471 building footprints, mostly independent houses (8,998 footprints, or 94.8%) and 250 apartment complexes, 137 commercial buildings, 39 IT offices and 15 educational institutions (OpenStreetMap building footprints, cross-referenced with projections in Census 2011). Even though the waste generation estimated in the ward is 55 tonnes per day, based on the CPCB set goal of 0.5 kg/ day per capita, the ward does not have any landfills, bio-methanisation units or waste processing plants within its administrative boundaries. The nearest bio-methanisation unit (BMU) is present 2.10 km south of the project, at Kudlu Gate while the nearest dump yard is present 21.03 km away at Yelahanka. Dry Waste Collection Centres (DWCCs) operate within the ward, and the only 6 have an acceptance capacity of about 2.5 tonnes per day, meeting only 15 TMCD of dry-waste.
+
+===PARA 8===
+This infrastructure gap, along with the complexity of the varied road network, with 41,4% of its segments being narrow residential lanes (2-4 m width) plus another 25,1% of roads being footpaths only accessible by push carts, makes it a complex space to test an integrated platform of spatial intelligence.
+
+===PARA 9===
+1.3 Objectives and Scope
+
+===PARA 10===
+The aim of the present study was to achieve the following tasks: (a) build a combination of satellite-derived land cover data, building footprint data, road network data, waste infrastructure data and locations into a digital twin of Ward 174; (b) create classification of land use in the ward based on supervised remote sensing in order to pinpoint areas of increased illegal dumping risk; (c) develop an algorithm for ward-level waste collection routing problem, in the shape of a Capacitated Vehicle Routing Problem with Time Windows, and solve it with Clarke Wright Savings heuristic; (d) calculate methane emissions and quantify the potential carbon-credit from those emissions within the boundaries of the ward using IPCC methodology; and (e) package all analytical outputs together into a web-based application that is accessible for non-technical public administration personnel.
+
+===PARA 11===
+2. Literature Review and Theoretical Background
+
+===PARA 12===
+2.1 Solid Waste Management in Indian Municipalities
+
+===PARA 13===
+Under the Solid Waste Management Rules of 2016 under Environment Protection Act, 1986, the source segregation is to be done in households, processing in bulk generators (more than 100kg/day) needs to be decentralised and scientific disposal and progressive reduction in landfills need to be done. (Ministry of Environment, Forest and Climate Change, 2016). Although these mandates have been put in place, adherence is far from consistent. As per the CPCB Annual Report (2021-22), per-capita waste generation was at an average of 0.5 kg/person/day in Class-I cities, with Bengaluru faring in the bottom half of the absolute waste generation rate (AWGR) as per the report. Recent research by Sharholy et al. (2008) has highlighted the issue of implementation gap between the policy intent and the reality at the ground level, with lack of institutional coordination, insufficient spatial information on practices and limited computing power at the Urban Local Bodies (ULB) being cited as causes.
+
+===PARA 14===
+2.2 Digital Twins for Urban Infrastructure.2.2 Digital Twins in Urban Infrastructure.
+
+===PARA 15===
+The basic idea of using a digital twin, introduced by the aerospace industry for construction (Grieves, 2014) and expanded into efforts for smart cities, is the creation of continuous synchronization between a virtual digital duplicate of a physical system. For the urban context, Dembski et al. (2020) showed how a digital twin could consume multiple data inputs and streams, such as sensor feeds, GIS layers, demographic datasets and so on, to allow modeling of different scenarios without impacting the physical system. In the context of waste management, the digital twin should capture these three interacting elements: (1) the stationary spatial fabric (buildings, roads, facilities) (2) the dynamics of the generation and flow model (waste volume under different conditions); (3) the optimisation layer (routing, scheduling, resource allocation). This three-layer architecture is the one used in the present work.
+
+===PARA 16===
+2.3 Remote Sensing for Waste Site Identification
+
+===PARA 17===
+Several research groups have performed monitoring of open dumps by satellite. Karimi et al. (2017) used Random Forest classifiers and the Landsat-8 imagery to map dump sites in cities located in developing countries. Sentinel-2's 10m spatial resolution for visible data and 20m for SWIR bands provides an ideal compromise between spatial detail and coverage for wards. The Semi-Automatic Classification Plugin (SCP) for QGIS (Congedo, 2021) helps to perform supervised classification without the need to pay proprietary software licences, which is important for resource limited research teams.
+
+===PARA 18===
+Capacitated Vehicle Routing Problem (CVRP):
+
+===PARA 19===
+The waste-collection routing problem naturally fits into the combinatorial optimisation framework of the Capacitated Vehicle Routing Problem with Time Windows (CVRPTW) with its various variants (Toth and Vigo, 2014). In comparison to constructive heuristics, the Clarke-Wright Savings Algorithm is widely-used for its simplicity, computational efficiency (O(n² log n)), and its effectiveness. Initial steps of the algorithm will create a unique route for each collection point to the depot, and then repeatively join two routes if doing so saves the most distance possible that still meets vehicle capacity and time window requirements. Independently, although the introduced problem can be solved with margins narrower than those obtained through metaheuristic solutions (genetic algorithms, ant colony optimisation), due to its determinism, transparency and the fact it only needs browser in the solution process, the Clarke-Wright heuristic was selected in this context.
+
+===PARA 20===
+2.5 Methane Estimation and Carbon Markets
+
+===PARA 21===
+Estimates of CH4 emissions from solid waste disposal facilities are calculated using the Guidelines for National Greenhouse Gas Inventories (Vol. 5, Chapter 3) developed by the IPCC in 2006.The IPCC 2006 Guidelines for National Greenhouse Gas Inventories (Vol. 5, Chapter 3) represent the accepted transfer of knowledge framework for estimating CH4 emissions from solid waste disposal facilities. The parameters used in the Tier-1 first order decay (FOD) method are the degradable organic carbon fraction (DOCf), the methane correction factor (MCF), the ratio of the molecular weight of methane to carbon (16/12) and an oxidation factor (OX). The India domestic carbon market, implemented through the Carbon Credit Trading Scheme (CCTS) 2023 under the Energy Conservation (Amendment) Act 2022, will give carbon credits a 'market' price through verified reductions of CO₂ emissions, with the price range for carbon credits set at ₹1200 to ₹2200 per tonne CO₂-equivalent (tCO₂e) from 2024-2025.
+
+===PARA 22===
+Select the study area and gather data.3. Study Area and Data Acquisition
+
+===PARA 23===
+3.1 Geographic Setting
+
+===PARA 24===
+HSR Layout is located in the south east quadrant of Bengaluru (centroidal coordinates are approximately 12.915N, 77.640E) between the Outer Ring Road (ORR) corridor in the north and east direction. The ward covers an area of 18.5 km² and is designated as Ward 174 in BBMP scheme. The Agara lake and HSR Layout lake consists of about 0.56 km² (3.0% ward area) which are directly downstream of the densest residential clusters and are, therefore, sensitive to waste accumulation close by (leachate).
+
+===PARA 25===
+Table 9: Key Statistics — HSR Layout (Ward 174)
+
+===PARA 26===
+3.2 Data Sources and Pre-processing
+
+===PARA 27===
+Giving this study, eighteen different datasets were collected. The locations of three (one of which is in Ward 174) city-wide functional dumpyards, 336 Dry Waste Collection Centres (Dry waste collection centres), eleven bio-methanisation units and eight waste processing plants were obtained through BBMP official GIS shapefiles. A python script, customized to parse the point shapefiles (.shp) was used which ran WGS84 coords in a binary stream over the whole point file and then correlated them with the ward boundaries polygon (.dbf).
+
+===PARA 28===
+Road network data derived from OpenStreetMap using export from GeoFabrik, resulting in 2027 classified segments in the ward. The building footprints are extracted using the Overpass API, with use-type of each building classified as residential, apartment, commercial, institutional, medical or unclassified.
+
+===PARA 29===
+Data from the study period includes sentinel-2 level-2A imagery (ESA Copernicus programme) downloaded, cropped to the ward boundary and saved as a three-band RGB GeoTIFF file (HSR_Layout_SD.tif, 1002 x 740 pixels, WGS84 / EPSG:4326).
+
+===PARA 30===
+The population estimates were calculated based on the data provided from the Census 2011 ward level data and completed through a model of building occupancy (4 persons per independent house; 284 persons per apartment building using average building unit numbers and household sizes).
+
+===PARA 31===
+Table 14: Waste Composition — HSR Layout Ward
+
+===PARA 32===
+The composition percentages of waste (61% wet/organic, 30% dry/recyclable, 5% hazardous/sanitary and 4% inert) have been taken from the Chemical Analysis of Municipal Solid Waste conducted by BBMP in 2013. The per capita generation was adopted based on CPCB Annual Report 2021-22 and then set at 0.5 kg/person/day.
+
+===PARA 33===
+4. Methodology
+
+===PARA 34===
+4.1 LULC Classification Workflow
+
+===PARA 35===
+For Land Use / Land Cover mapping supervised classification was carried out in QGIS 3.x using Semi-Automatic Classification Plugin (SCP). The procedure was 9 steps:
+
+===PARA 36===
+The coordinate reference system of the Sentinel-2 was checked and loaded as WGS84. Contrast enhancement was performed for visual inspection.
+
+===PARA 37===
+Changing to the input image as active band and activation of the SCP plugin.The transfer to the input image as active band and activation of the SCP plugin.
+
+===PARA 38===
+Within each class a number of training regions of interests (ROIs) — in total between eight and fifteen polygons — were digitised categorically, as follows: Built-up (grey to white tones that are characteristic for rooftops and paved surfaces); Vegetation (dark green colour tones that are characterised by high near-infrared reflectance); Open Land (reddish-brown bare soil signatures); and Water Bodies (very dark blue-black returns). Spatial diversity was achieved by placing ROIs in all four quadrants of the ward.
+
+===PARA 39===
+(iv) The spectral signatures were computed for every class and plotted to see the inter-class separability. The reflectance properties of built-up surfaces were found to be high, with suppressed NIR response while vegetation had the opposite characteristics of high NIR and suppressed visible band.
+
+===PARA 40===
+The Maximum Likelihood Classifier (MLC) was run and resulted in one raster band classified with integer values ranging from each classified source.
+
+===PARA 41===
+Validation was stratified random sampling (at least 50 from each class) to evaluate the accuracy of the output maps using a confusion matrix and by requiring an overall accuracy greater than 85 percent and a Kappa index greater than 0.80.
+
+===PARA 42===
+(vii) After subjecting the data to a 3×3 majority filtering to suppress salt-and-pepper noise, mistakingly identified data was manually corrected in the data set with a high content of such noise.
+
+===PARA 43===
+(viii) The per-class number of pixels was then re-calculated as an area (km²) based on a specified resolution of the pixels, and presented as a percentage of the total ward area.
+
+===PARA 44===
+The classified raster was vectorised (polygonised) and merged (polygon overlay) with the ward boundary, to use for zonal statistics; it was then exported to the web platform as GeoJSON.
+
+===PARA 45===
+4.2 Detection of illegal dumps using DBSCAN cluster.
+
+===PARA 46===
+The open-land areas detected by LULC were then screened for possible illegal dump accumulations. The brightness anomaly approach was used: Candidate anomalies were identified as pixels with brightness within polygons of Openland whose brightness value was less than the tenth percentile of the local distribution. Each of these candidate points was then given to the Density-Based Spatial Clustering of Applications with Noise (DBSCAN) algorithm to group anomalies together in a single dump-site.
+
+===PARA 47===
+Table 12: Detected Potential Illegal Dump Sites — DBSCAN Clustering
+
+===PARA 48===
+Four potential sites were selected ranging in size from 147 m² to 264 m² with two being high-risk, an action that warranted cleanup the same day (priority P0) and two being medium-risk, where 48 hours of response were considered acceptable (priority P1).
+
+===PARA 49===
+4.3 Waste Generation Modelling and Scenario Simulation
+
+===PARA 50===
+The generation of waste was modelled at the grid-cell level (59 active cells covering the ward) based on building-level occupancy and per-capita generation rate (0.5 kg/person/day), scaling due to population growth (0.0–0.5), festival multipliers (Diwali: 1.20; Ganesh Chaturthi: 1.28), and weather adjustment factors (low rainfall: 0.95, normal: 1.00, heavy rainfall: 1.15). A total of 54 pre-computed scenarios were generated, which combines three population growth levels, three festival conditions, and three weather states, so as to have policy exploration using the platform in real-time.
+
+===PARA 51===
+A dump-probability index was also derived as a product of the waste-to-collection capacity ratio and a zonal risk score, comprised of a segregation failure rate, a fraction of open land and inverse road-density. Regions with very high waste surpluses, poor waste separation rates, lots of empty houses and few roads were classified as having the highest dump-risk.
+
+===PARA 52===
+Assigned to 4.4 Capacitated Vehicle Routing, Clarke-Wright Savings Heuristic)
+
+===PARA 53===
+Waste-collection routing: (a) minimize total fleet distance; (b) In the routing system one vehicle must serve one zone in each day; (c) the load to one vehicle must not exceed its rated distance per day (cum); (d) all vehicles must start and end their days at a single collection centre (77.6392°E, 12.9158°N); (e) routing system is limited to a short time window of 06:00-10:00 AM, depending on the weekly schedule; (f) the type of vehicle to be used is pre-determined by the width of the waste to be collected, according to IRC standards.
+
+===PARA 54===
+Implemented Clarke-Wright Savings Algorithm in TypeScript to run on client-side. The saving s(i,j), which is equal to d(depot→i) + d(depot→j) – d(i→j), has been calculated over all pairs of collection points (i, j). The savings were sorted in descending order and then, routes were iteratively merged depending on their capacity and their endpoints. Real driving distances were served by the Open Source Routing Machine (OSRM) API and, when the API rate limit is hit, using a Haversine formula as a fallback.
+
+===PARA 55===
+Roughly 25 vehicles were in the fleet, including 12 auto-tippers, of 500 kg and at least 2 m width; 2 large compactors, 10,000 kg, at least 6 m width; 2 small compactors, 5,000 kg, at least 4 m width; 8 push compactors, 200 kg, any width; 1 liquid tanker (5,000 L, at least 9 m wide).
+
+===PARA 56===
+Table 6: Fleet Composition — HSR Layout Collection Vehicles
+
+===PARA 57===
+4.5 Methane Quantification (IPCC Tier-1 Framework)
+
+===PARA 58===
+The methane production per year was estimated as subjected to the following relation:
+
+===PARA 59===
+CH₄ (tonnes/year) = MSW_organic × DOCf × MCF × (16/12) × (1 − OX)
+
+===PARA 60===
+however, MSW_organic = 33.55 tonnes/day × 365 = 12,246 tonnes/year (where the 61% organic fraction is multiplied by the 16/12 MWC from carbon to methane, and the oxidation factor, OX = 0.1, which is the IPCC default for food waste under sludge from managed anaerobic conditions at the Kudlu BMU). The resulting methane was turned back into CO₂-equivalent to use the GWP of 100 (IPCC Fifth Assessment Report, Table. 8.7).
+
+===PARA 61===
+4.7 Valuation of off-farm resources and agricultural land.4.8 Quantifying economic and carbon-credit values.
+
+===PARA 62===
+The financial model involved grouping five streams of benefits: (a) fuel savings by optimising routes; (b) the cost of clean up activities of illegal dumps; (c) the savings in labour hours; (d) the revenue generated through CCTS (Carbon credit trading) 2023 at ₹2,000 per tonne of CO₂ equivalent (based on the midpoint of the range of ₹1,200–₹2,200 per tonne of CO₂ equivalent); and (e) the revenue generated through selling compost from the bi-methanisation digestate.
+
+===PARA 63===
+5. Results
+
+===PARA 64===
+5.1 LULC Classification Output
+
+===PARA 65===
+Supervised classification result was as follows: Built-up areas cover 64.1% of ward area (11.85 km²), indicating the high density of built-up areas such as independent houses, apartments buildings and commercial buildings etc. in the HSR Layout. Parks, avenue trees and private gardens accounted for 17.6% (3.26 km²) of the vegetation. Open land accounted for 15.3% (2.83 km²) between vacant plots and construction sites, a proportion which has important implications in the context of the missing active surveillance of open land parcels, risking illegal dumping actions. 3.0% (0.56 km²) of water bodies were found to be occupied, primarily by Agara Lake, HSR Layout Lake and minor drainage, etc.
+
+===PARA 66===
+Table 1: LULC Classification Results for HSR Layout (Ward 174)
+
+===PARA 67===
+5.2 Infrastructure Gap Assessment
+
+===PARA 68===
+The spatial analysis highlighted a significant lack of infrastructure. There is no dumpyard within ward area, no BMUs and no waste processing plant. The available capacity from the six DWCCs is in total around 15 tonnes per day but the dry-waste demand is about 16.5 tonnes per day, suggesting there are likely to be days in high demand for dry waste, such as at festival times of the year or on weekends. The wet waste of Kudlu's ward is processed by the nearest BMU in Kudlu and the inert fraction (4%) is brought from the ward to the nearest dumpyard at Yelahanka, covering a distance of 21-km (approx. 28–32 km by road).
+
+===PARA 69===
+5.3 Road Network Characterisation
+
+===PARA 70===
+Table 2: Road Network Classification — HSR Layout
+
+===PARA 71===
+There are 2,027 road segments in total in the ward, with just 352 (17.4%) being wide enough for a conventional truck (4 m +). A further 1,019 segments (50.3%) allow for footprint access by an auto-tipper (2 to 4 m wide) and 560 segments (27.6%) are footways/pathways only accessible by push cart. Some 4.7% (or about 96) of the segments were judged to be completely unserviceable in any traditional collection mode. This distribution suggests that in the majority of cases, only a minority of the wards' roads will be physically able to support the motorised waste collection truck – and a tiered fleet will be required for the majority of the remainder.
+
+===PARA 72===
+Table 3: Waste Generation Scenarios — HSR Layout Ward
+
+===PARA 73===
+5.4 Waste Generation Scenarios
+
+===PARA 74===
+Table 5: Compactor Route Assignments
+
+===PARA 75===
+Table 8: Methane Emissions and Carbon-Credit Potential
+
+===PARA 76===
+Table 4: Route Optimisation Performance — Clarke-Wright Heuristic
+
+===PARA 77===
+At the baseline condition (normal weather scenario, no festival, with zero population growth), the digital twin calculated an average of 14.08 tonnes of waste per day in the 59 active grid cells and 30,545 modelled population inside the 59 grid cells. It grew to 16.19 tonnes (+15%) after heavy rains and then to 18.02 tonnes (+28%) during Ganesh Chaturthi festivals, and to 21.86 (+55%) tonnes for the compound worst case scenario — this took place when other grid cells were full.
+
+===PARA 78===
+Table 7: Aggregate Annual Financial Impact — HSR Layout
+
+===PARA 79===
+5.5 Route Optimisation Outcomes
+
+===PARA 80===
+The daily fleet travel she was able to reduce to with the application of the Clarke-Wright heuristic was 132.44 km (pre-optimisation, manual route assignments) to 32.41 km, or a 75.5% reduction. The compactor routes traced were segmented into 3 main routes: Truck 1 was assigned 12.54 km with 8 zones in the western part of the region (3050kg); Truck 2 was assigned 9.63 km with 8 zones in the central part of the region (3115kg); Truck 3 was assigned 15.93 km, with 8 zones in the eastern part (3104kg). Daily fuel cost declined from ₹2,072 to ₹507 (₹1,565 saved per day). The networks were improved by 15.3% to 95.3% coverage and the average collection time was reduced from 4.5 hrs/vc/day to 3 hrs/vc/day.
+
+===PARA 81===
+5.6 Methane Emissions and Carbon-Credit Potential
+
+===PARA 82===
+Table 13: Waste Segregation Disparities by Sub-Zone
+
+===PARA 83===
+This IPCC 'Tier-1' calculation was 927 tonnes CH4 per year or 25,959 tonnes CO₂-equivalent (CO₂e) per year. This amounts to ₹5.19 crore of carbon-credit value per year for one ward at the mid-point price of the carbon market framework at CCTS 2023. The energy potential of biogas produced was estimated at 21,285 kWh per day which corresponds to an average of 3.035 kWh per household per day (hhd), enough to power around 7095 hhd.
+
+===PARA 84===
+5.7 Aggregate Financial Impact
+
+===PARA 85===
+The total annual economic benefit of HSR Layout was estimated at ₹9.42 crores; this was composed of the following individual economic benefits: fuel savings of ₹3.28 crores, carbon credit revenue of ₹5.19 crores, avoiding rubbish cleanup, which was valued at ₹0.45 crores, labour-hour savings of ₹0.38 crores and sales income from composting ₹0.12 crores. All 198 BBMP wards analyzed conservatively indicates a total savings of ₹1,865 crores per year at city level.
+
+===PARA 86===
+6. Discussion
+
+===PARA 87===
+6.1 Kudlu’s Games, Weddings and Events (GWE) Service Segment Performance and Strategy
+
+===PARA 88===
+An exception is the near equivalence of separating distances between the nearest BMU and Waste Processing Plant in the Kudlu area (separation < 10 m). This allows for compactor trucks to drop off wet waste at the BMU and take inorganic rejects to the processing plant in one trip, instead of another 4.2 km per day, per truck for the inorganics. This fortunate co-location was expected to save ₹0.8 crores per annum.
+
+===PARA 89===
+6.2 The Footway Diversity Gap
+
+===PARA 90===
+The present number of push-carts (3.2 tonnes/day) is also less than the estimated 5.5 tonnes/day in the footway adjacent zones (a gap of 2.3 tonnes/day). Such excess deposits are presumably made at illegal dump sites on open lots located along the narrow lanes, and thus strengthen the dumping patterns that are being sought to be resolved by the system. This means either having more push-carts or area-specific decentralised composting requirements for household clusters on small streets.
+
+===PARA 91===
+Table 10: AstraCity Platform — Technology Stack
+
+===PARA 92===
+6.3 Dsparities between sub-zones in terms of segregation.
+
+===PARA 93===
+There was a significant difference in the Ward in terms of how well waste segregated was. The segregation rate for Northern HSR was the highest at 68%, followed by the commercial areas at 38%. East HSR (42%) was designated as critical and will be monitored and subject to penalty enforcement. The spatial differences highlight the importance of different engagement approaches, with awareness campaigns potentially working more effectively in more compliant northern parts, and enforcement and enforcement of mandatory audit for bulk generators being expected to be required in the commercial and Eastern areas.
+
+===PARA 94===
+6.4 Festival and Weather Sensitivity
+
+===PARA 95===
+Table 11: Proposed Extension Roadmap — Phased Deployment
+
+===PARA 96===
+The worst case scenario (+55%) requires serious overlooking of operations because meteorological conditions during these times are in conflict with operational situations during Ganesh Chaturthi. The digital twin can simulate the compound surge and then determine the amount of bin overflow (five bins over their capacity) which helps the administration to plan ahead for more additional auto-tippers as well as plan for an additional compactor run to the Kudlu BMU.
+
+===PARA 97===
+6.5 Scalability and Limitations
+
+===PARA 98===
+This influences the platform's architecture, including the use of browser-side computation, open-source mapping libraries, and no server-side dependencies for the routing solver when deployed, which all help to lower deployment barriers for resource-constrained ULBs. There are, however, a number of constraints that need to be noted: No ground truth validation of identified satellite dump sites has been done so far. The waste-generation model is based on the CPCB averages of waste generation instead of use of ward specific weigh-balance data. Segregations are estimated on a field observation basis and not systematic household surveys. The model needs to be further developed to include sensors on the bins that communicate with the Internet of Things and GPS sensors located on the trucks and periodic ground-truth survey campaigns for calibration and validation of the model parameters.
+
+===PARA 99===
+7.The AstraCity Platform: Architecture and Governance Interface
+
+===PARA 100===
+7.1 Technology Stack
+
+===PARA 101===
+AstraCity is a Next.js 14 (App Router), TypeScript and React 18 app styled with Tailwind CSS v3.4, with geospatial rendering using MapLibre GL JS v5.20.2, powered by OpenFreeMap tiles at no cost through the API! Data visualisation is built with Recharts 3.8 and UI animations are created with Framer Motion 12.36. The global implementation of state management, using Zustand 5.0. Google Gemini 1.5 Flash' is capable of handling natural language searches, meaning that non-technical commissioners can ask questions in a conversation with the platform. PDF report generation: printed using a combination of jsPDF and html2canvas for rendering on the browser.
+
+===PARA 102===
+7.2 Governance Applications
+
+===PARA 103===
+To achieve this, eight governance use cases were designed into the platform that include : daily operations dashboarding (pre-departure waste prediction & vehicle allocation); Festival preparedness simulation; Infra site-selection test; ROI & budget justification vis modules; Zone diagnostics based on complaints input; Carbon reporting for C40 Cities obligations; Policy scenario modelling (e.g. compulsory apartment-level composting); Inter-wards performance benchmarking (composite Ward Governance Score). All 198 wards are compared and accounted for in the governance score, which is based on four main factors: dump-risk proportion (30% weighting), methane intensity (25%), route efficiency (25%) and citizen complaint rate (20%) which are combined into a governance score index on a 0–100 scale.
+
+===PARA 104===
+8. Proposed Extension Roadmap
+
+===PARA 105===
+The system is planned to grow phasewise. Phase 1 (Collaborative effort, from months 1 to 6): initial validation of the pilot of HSR and at any two DWCCs deployment of IoT bin sensors and according to 2 field surveys, prediction accuracy above 85% validation. Phase 2 (months 7-18) covers 50 wards across BBMP's South Zone, with involvement of the BBMP complaint API and training of sanitary inspectors with a BBMP specific mobile application. Phase 3 (months 19-36) aims to roll out live GPS-tracks on trucks and an IoT sensor at all 336 DWCCs across all 198 wards in full Bengaluru. Phase 4 (year 3 onwards) bundles the system into the Software-as-a-Service delivery so others smart cities mission municipalities may use it, with ward-boundary shapefiles and OpenStreetMap data as inputs.
+
+===PARA 106===
+9. Conclusion
+
+===PARA 107===
+This work confirms that the use of GPS-enabled spatial analysis capacities, combinatorial route optimization tools and the environment friendly accounting necessary for the IPCC can transform a municipality's approach to solid waste management and all these capabilities can be integrated in a single and accessible platform. The AstraCity platform was developed to identify both a 75.5% reduction in the distance of the collection fleet in HSR Layout alone and quantify of 25,959 tonnes of CO₂-equivalent emissions annual saving that can be monetised as carbon credits. The same platform can be used to estimate an aggregate financial benefit of ₹9.42 crores per year. The open-land risk mapping, segregation disparity analysis and festival-surge simulation features make the project a valuable resource for civic decision makers to gain actionable, spatially informed intelligence that was missing from the administrative process. Though next steps involve ground level validation and integration of sensors, the basic architecture outlined in this document provides a replicable template for all of Indian cities to improve data-driven waste governance. 
+

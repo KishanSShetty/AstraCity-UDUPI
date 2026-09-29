@@ -1,0 +1,2195 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.573519,
+          12.95221
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.95221,
+        "_lon": 77.573519,
+        "_dist_to_hsr_km": 8.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.573867,
+          12.95279
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.95279,
+        "_lon": 77.573867,
+        "_dist_to_hsr_km": 8.9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.60047,
+          12.94393
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.94393,
+        "_lon": 77.60047,
+        "_dist_to_hsr_km": 5.92
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.600469,
+          12.94391
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.94391,
+        "_lon": 77.600469,
+        "_dist_to_hsr_km": 5.92
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.620897,
+          12.94994
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.94994,
+        "_lon": 77.620897,
+        "_dist_to_hsr_km": 4.79
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.61465,
+          12.934294
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.934294,
+        "_lon": 77.61465,
+        "_dist_to_hsr_km": 4.05
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.601585,
+          12.92716
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.92716,
+        "_lon": 77.601585,
+        "_dist_to_hsr_km": 5.02
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.60047,
+          12.94391
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.94391,
+        "_lon": 77.60047,
+        "_dist_to_hsr_km": 5.92
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.556546,
+          12.90675
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.90675,
+        "_lon": 77.556546,
+        "_dist_to_hsr_km": 9.73
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.56331,
+          12.932375
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.932375,
+        "_lon": 77.56331,
+        "_dist_to_hsr_km": 9.18
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.570166,
+          12.92729
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.92729,
+        "_lon": 77.570166,
+        "_dist_to_hsr_km": 8.34
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.56951,
+          12.918245
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.918245,
+        "_lon": 77.56951,
+        "_dist_to_hsr_km": 8.3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.577196,
+          12.93261
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.93261,
+        "_lon": 77.577196,
+        "_dist_to_hsr_km": 7.72
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.580471,
+          12.93228
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.93228,
+        "_lon": 77.580471,
+        "_dist_to_hsr_km": 7.37
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.580471,
+          12.93232
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.93232,
+        "_lon": 77.580471,
+        "_dist_to_hsr_km": 7.37
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.599874,
+          12.91651
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.91651,
+        "_lon": 77.599874,
+        "_dist_to_hsr_km": 5.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.599874,
+          12.91651
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.91651,
+        "_lon": 77.599874,
+        "_dist_to_hsr_km": 5.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.614484,
+          12.9234
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.9234,
+        "_lon": 77.614484,
+        "_dist_to_hsr_km": 3.56
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.649028,
+          12.91263
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.91263,
+        "_lon": 77.649028,
+        "_in_hsr": true,
+        "_dist_to_hsr_km": 0.39
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.615624,
+          12.88328
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.88328,
+        "_lon": 77.615624,
+        "_dist_to_hsr_km": 4.78
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.622582,
+          12.91763
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.91763,
+        "_lon": 77.622582,
+        "_dist_to_hsr_km": 2.56
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.599874,
+          12.91651
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.91651,
+        "_lon": 77.599874,
+        "_dist_to_hsr_km": 5.0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.576818,
+          12.90696
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.90696,
+        "_lon": 77.576818,
+        "_dist_to_hsr_km": 7.54
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.58091,
+          12.92075
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.92075,
+        "_lon": 77.58091,
+        "_dist_to_hsr_km": 7.09
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.564882,
+          12.91758
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.91758,
+        "_lon": 77.564882,
+        "_dist_to_hsr_km": 8.8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.560707,
+          12.90291
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.90291,
+        "_lon": 77.560707,
+        "_dist_to_hsr_km": 9.33
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.601993,
+          12.8696
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.8696,
+        "_lon": 77.601993,
+        "_dist_to_hsr_km": 6.91
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.615636,
+          12.8833
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.8833,
+        "_lon": 77.615636,
+        "_dist_to_hsr_km": 4.78
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.615611,
+          12.88325
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.88325,
+        "_lon": 77.615611,
+        "_dist_to_hsr_km": 4.79
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.646174,
+          12.89435
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.89435,
+        "_lon": 77.646174,
+        "_dist_to_hsr_km": 2.24
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.652488,
+          12.87249
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.87249,
+        "_lon": 77.652488,
+        "_dist_to_hsr_km": 4.72
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.626696,
+          12.87293
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.87293,
+        "_lon": 77.626696,
+        "_dist_to_hsr_km": 5.07
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.594837,
+          12.85666
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.85666,
+        "_lon": 77.594837,
+        "_dist_to_hsr_km": 8.49
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.594837,
+          12.85666
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.85666,
+        "_lon": 77.594837,
+        "_dist_to_hsr_km": 8.49
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.695438,
+          12.986807
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.986807,
+        "_lon": 77.695438,
+        "_dist_to_hsr_km": 9.66
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.670006,
+          12.99131
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.99131,
+        "_lon": 77.670006,
+        "_dist_to_hsr_km": 8.93
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.660701,
+          13.002158
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 13.002158,
+        "_lon": 77.660701,
+        "_dist_to_hsr_km": 9.88
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.667272,
+          12.981192
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.981192,
+        "_lon": 77.667272,
+        "_dist_to_hsr_km": 7.77
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.679383,
+          12.972889
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.972889,
+        "_lon": 77.679383,
+        "_dist_to_hsr_km": 7.43
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.690492,
+          12.972017
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.972017,
+        "_lon": 77.690492,
+        "_dist_to_hsr_km": 8.01
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.655973,
+          12.964194
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.964194,
+        "_lon": 77.655973,
+        "_dist_to_hsr_km": 5.63
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.648925,
+          12.969415
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.969415,
+        "_lon": 77.648925,
+        "_dist_to_hsr_km": 6.11
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.636348,
+          12.977569
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.977569,
+        "_lon": 77.636348,
+        "_dist_to_hsr_km": 7.09
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.636452,
+          12.987412
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.987412,
+        "_lon": 77.636452,
+        "_dist_to_hsr_km": 8.17
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.637658,
+          12.999213
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.999213,
+        "_lon": 77.637658,
+        "_dist_to_hsr_km": 9.46
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.609355,
+          12.99541
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.99541,
+        "_lon": 77.609355,
+        "_dist_to_hsr_km": 9.83
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.608031,
+          12.986942
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.986942,
+        "_lon": 77.608031,
+        "_dist_to_hsr_km": 9.05
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.603203,
+          12.983053
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.983053,
+        "_lon": 77.603203,
+        "_dist_to_hsr_km": 8.92
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.579963,
+          12.975863
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.975863,
+        "_lon": 77.579963,
+        "_dist_to_hsr_km": 9.89
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.577959,
+          12.961192
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.961192,
+        "_lon": 77.577959,
+        "_dist_to_hsr_km": 9.02
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.597194,
+          12.95464
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.95464,
+        "_lon": 77.597194,
+        "_dist_to_hsr_km": 6.92
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.572695,
+          12.944887
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.944887,
+        "_lon": 77.572695,
+        "_dist_to_hsr_km": 8.63
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.578177,
+          12.937412
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.937412,
+        "_lon": 77.578177,
+        "_dist_to_hsr_km": 7.78
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.578422,
+          12.9312
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.9312,
+        "_lon": 77.578422,
+        "_dist_to_hsr_km": 7.56
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.586458,
+          12.931877
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.931877,
+        "_lon": 77.586458,
+        "_dist_to_hsr_km": 6.74
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.574407,
+          12.916094
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.916094,
+        "_lon": 77.574407,
+        "_dist_to_hsr_km": 7.76
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.57141,
+          12.909914
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.909914,
+        "_lon": 77.57141,
+        "_dist_to_hsr_km": 8.1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.575071,
+          12.905485
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.905485,
+        "_lon": 77.575071,
+        "_dist_to_hsr_km": 7.75
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.571336,
+          12.902645
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.902645,
+        "_lon": 77.571336,
+        "_dist_to_hsr_km": 8.2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.570806,
+          12.896137
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.896137,
+        "_lon": 77.570806,
+        "_dist_to_hsr_km": 8.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.563197,
+          12.906965
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.906965,
+        "_lon": 77.563197,
+        "_dist_to_hsr_km": 9.01
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.584335,
+          12.890552
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.890552,
+        "_lon": 77.584335,
+        "_dist_to_hsr_km": 7.19
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.589236,
+          12.886717
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.886717,
+        "_lon": 77.589236,
+        "_dist_to_hsr_km": 6.88
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.605856,
+          12.896548
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.896548,
+        "_lon": 77.605856,
+        "_dist_to_hsr_km": 4.79
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.583105,
+          12.876024
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.876024,
+        "_lon": 77.583105,
+        "_dist_to_hsr_km": 8.05
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.580214,
+          12.864996
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.864996,
+        "_lon": 77.580214,
+        "_dist_to_hsr_km": 9.01
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.591722,
+          12.858219
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.858219,
+        "_lon": 77.591722,
+        "_dist_to_hsr_km": 8.59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.587826,
+          12.854623
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.854623,
+        "_lon": 77.587826,
+        "_dist_to_hsr_km": 9.17
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.601427,
+          12.871299
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.871299,
+        "_lon": 77.601427,
+        "_dist_to_hsr_km": 6.81
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.60938,
+          12.879096
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.879096,
+        "_lon": 77.60938,
+        "_dist_to_hsr_km": 5.59
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.61705,
+          12.889318
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.889318,
+        "_lon": 77.61705,
+        "_dist_to_hsr_km": 4.21
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.626641,
+          12.89119
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.89119,
+        "_lon": 77.626641,
+        "_dist_to_hsr_km": 3.33
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.619928,
+          12.883988
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.883988,
+        "_lon": 77.619928,
+        "_dist_to_hsr_km": 4.42
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.626756,
+          12.872561
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.872561,
+        "_lon": 77.626756,
+        "_dist_to_hsr_km": 5.11
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.643043,
+          12.880121
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.880121,
+        "_lon": 77.643043,
+        "_dist_to_hsr_km": 3.84
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.614551,
+          12.930991
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.930991,
+        "_lon": 77.614551,
+        "_dist_to_hsr_km": 3.87
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.646882,
+          12.922184
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.922184,
+        "_lon": 77.646882,
+        "_in_hsr": true,
+        "_dist_to_hsr_km": 0.86
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.64545,
+          12.91811
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.91811,
+        "_lon": 77.64545,
+        "_in_hsr": true,
+        "_dist_to_hsr_km": 0.41
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.647549,
+          12.912182
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.912182,
+        "_lon": 77.647549,
+        "_in_hsr": true,
+        "_dist_to_hsr_km": 0.31
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.633119,
+          12.905361
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.905361,
+        "_lon": 77.633119,
+        "_in_hsr": true,
+        "_dist_to_hsr_km": 1.73
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.640772,
+          12.899075
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.899075,
+        "_lon": 77.640772,
+        "_in_hsr": true,
+        "_dist_to_hsr_km": 1.81
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.676734,
+          12.912793
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.912793,
+        "_lon": 77.676734,
+        "_dist_to_hsr_km": 3.34
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.687832,
+          12.911165
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.911165,
+        "_lon": 77.687832,
+        "_dist_to_hsr_km": 4.55
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.695516,
+          12.936679
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.936679,
+        "_lon": 77.695516,
+        "_dist_to_hsr_km": 5.91
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.693505,
+          12.950633
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.950633,
+        "_lon": 77.693505,
+        "_dist_to_hsr_km": 6.53
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.658522,
+          12.95705
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.95705,
+        "_lon": 77.658522,
+        "_dist_to_hsr_km": 4.92
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.637548,
+          12.959535
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.959535,
+        "_lon": 77.637548,
+        "_dist_to_hsr_km": 5.09
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.633323,
+          12.954277
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.954277,
+        "_lon": 77.633323,
+        "_dist_to_hsr_km": 4.63
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.613641,
+          12.962199
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.962199,
+        "_lon": 77.613641,
+        "_dist_to_hsr_km": 6.36
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.613677,
+          12.95084
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.95084,
+        "_lon": 77.613677,
+        "_dist_to_hsr_km": 5.35
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.619265,
+          12.953662
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.953662,
+        "_lon": 77.619265,
+        "_dist_to_hsr_km": 5.23
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.61719,
+          12.94717
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.94717,
+        "_lon": 77.61719,
+        "_dist_to_hsr_km": 4.79
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.627041,
+          12.944193
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.944193,
+        "_lon": 77.627041,
+        "_dist_to_hsr_km": 3.89
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.618721,
+          12.975476
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.975476,
+        "_lon": 77.618721,
+        "_dist_to_hsr_km": 7.4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.629032,
+          12.97204
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.97204,
+        "_lon": 77.629032,
+        "_dist_to_hsr_km": 6.66
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.662536,
+          12.99996
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.99996,
+        "_lon": 77.662536,
+        "_dist_to_hsr_km": 9.67
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.676121,
+          12.99535
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.99535,
+        "_lon": 77.676121,
+        "_dist_to_hsr_km": 9.56
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.672857,
+          12.97678
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.97678,
+        "_lon": 77.672857,
+        "_dist_to_hsr_km": 7.51
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.658657,
+          12.96736
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.96736,
+        "_lon": 77.658657,
+        "_dist_to_hsr_km": 6.04
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.619658,
+          12.98892
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.98892,
+        "_lon": 77.619658,
+        "_dist_to_hsr_km": 8.75
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.614996,
+          12.9931
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.9931,
+        "_lon": 77.614996,
+        "_dist_to_hsr_km": 9.36
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.644484,
+          12.9752
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.9752,
+        "_lon": 77.644484,
+        "_dist_to_hsr_km": 6.75
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.643148,
+          12.9607
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.9607,
+        "_lon": 77.643148,
+        "_dist_to_hsr_km": 5.15
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.631229,
+          12.97146
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.97146,
+        "_lon": 77.631229,
+        "_dist_to_hsr_km": 6.53
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.61975,
+          12.97666
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.97666,
+        "_lon": 77.61975,
+        "_dist_to_hsr_km": 7.47
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.580544,
+          12.97713
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.97713,
+        "_lon": 77.580544,
+        "_dist_to_hsr_km": 9.94
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.58051,
+          12.977087
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.977087,
+        "_lon": 77.58051,
+        "_dist_to_hsr_km": 9.94
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.580951,
+          12.97712
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.97712,
+        "_lon": 77.580951,
+        "_dist_to_hsr_km": 9.91
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.601827,
+          12.98385
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.98385,
+        "_lon": 77.601827,
+        "_dist_to_hsr_km": 9.08
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.614506,
+          12.96477
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.96477,
+        "_lon": 77.614506,
+        "_dist_to_hsr_km": 6.55
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.6401,
+          12.96108
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.96108,
+        "_lon": 77.6401,
+        "_dist_to_hsr_km": 5.22
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.617322,
+          12.95623
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.95623,
+        "_lon": 77.617322,
+        "_dist_to_hsr_km": 5.58
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.618399,
+          12.95335
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.95335,
+        "_lon": 77.618399,
+        "_dist_to_hsr_km": 5.25
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.617547,
+          12.95048
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0          0Place",
+        "HasLabel": "mark",
+        "_lat": 12.95048,
+        "_lon": 77.617547,
+        "_dist_to_hsr_km": 5.05
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.576196,
+          12.9665
+        ]
+      },
+      "properties": {
+        "Name": "BBMP dry waste collection centr",
+        "FolderPath": "es                                                                                                                                                                                                                                      0   -1  0.00000000000e",
+        "PopupInfo": "-1         0\u001a",
+        "_lat": 12.9665,
+        "_lon": 77.576196,
+        "_dist_to_hsr_km": 9.52
+      }
+    }
+  ]
+}

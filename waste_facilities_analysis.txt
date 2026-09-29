@@ -1,0 +1,1606 @@
+================================================================================
+BBMP WASTE MANAGEMENT SHAPEFILES — COMPLETE ANALYSIS
+================================================================================
+
+================================================================================
+  DUMPYARDS
+  File: BBMP_Dumpyards
+================================================================================
+  .shp: 232 bytes
+  .dbf: MISSING
+  .shx: 124 bytes
+  .prj: 266 bytes
+  .cpg: MISSING
+
+  Records (from .shx): 3
+  Reading geometries from .shp...
+  Points extracted: 3
+
+  [!] NO .dbf FILE - No attribute data available
+
+  ╔════════════════════════════════════════╗
+  ║  TOTAL DUMPYARDS:    3              
+  ║  Inside HSR Layout:           0              
+  ╚════════════════════════════════════════╝
+
+  --- ALL 3 RECORDS ---
+  [  1] Lat: 13.153942, Lon: 77.668878 |   26.74 km from HSR
+  [  2] Lat: 13.10395, Lon: 77.646467 |   21.07 km from HSR
+  [  3] Lat: 13.103583, Lon: 77.645922 |   21.03 km from HSR
+
+  --- 10 NEAREST TO HSR (outside boundary) ---
+    [1] 21.03 km — (13.103583, 77.645922) 
+    [2] 21.07 km — (13.10395, 77.646467) 
+    [3] 26.74 km — (13.153942, 77.668878) 
+
+
+================================================================================
+  DRY WASTE COLLECTION CENTRES (DWCCs)
+  File: BBMP_Dry_Waste_Collection_Centres
+================================================================================
+  .shp: 14,884 bytes
+  .dbf: 361,890 bytes
+  .shx: 2,788 bytes
+  .prj: 266 bytes
+  .cpg: 5 bytes
+
+  Records (from .shx): 336
+  Reading geometries from .shp...
+  Points extracted: 336
+
+  Reading attributes from .dbf...
+  Attribute records: 336
+  Fields: ['OID_', 'Name', 'FolderPath', 'SymbolID', 'AltMode', 'Base', 'Snippet', 'PopupInfo', 'HasLabel', 'LabelID']
+
+  ╔════════════════════════════════════════╗
+  ║  TOTAL DRY WASTE COLLECTION CENTRES (DWCCs):  336              
+  ║  Inside HSR Layout:           6              
+  ╚════════════════════════════════════════╝
+
+  --- ALL 336 RECORDS ---
+  [  1] Lat: 13.10928, Lon: 77.576778 |   22.92 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  2] Lat: 13.06894, Lon: 77.563879 |   19.34 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  3] Lat: 12.952, Lon: 77.551614 |   11.05 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  4] Lat: 12.95221, Lon: 77.573519 |   8.9 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  5] Lat: 12.95279, Lon: 77.573867 |   8.9 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  6] Lat: 12.94393, Lon: 77.60047 |   5.92 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  7] Lat: 12.94391, Lon: 77.600469 |   5.92 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  8] Lat: 12.94994, Lon: 77.620897 |   4.79 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  9] Lat: 12.934294, Lon: 77.61465 |   4.05 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 10] Lat: 12.92716, Lon: 77.601585 |   5.02 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 11] Lat: 12.94391, Lon: 77.60047 |   5.92 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 12] Lat: 12.94938, Lon: 77.558509 |   10.24 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 13] Lat: 13.08489, Lon: 77.540406 |   22.13 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 14] Lat: 12.9483, Lon: 77.553112 |   10.75 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 15] Lat: 12.9461, Lon: 77.548455 |   11.14 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 16] Lat: 12.94318, Lon: 77.543603 |   11.55 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 17] Lat: 12.91477, Lon: 77.481763 |   17.8 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 18] Lat: 12.93327, Lon: 77.513681 |   14.49 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 19] Lat: 12.90675, Lon: 77.556546 |   9.73 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 20] Lat: 12.93568, Lon: 77.539583 |   11.77 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 21] Lat: 12.93398, Lon: 77.553432 |   10.26 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 22] Lat: 12.932375, Lon: 77.56331 |   9.18 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 23] Lat: 12.92729, Lon: 77.570166 |   8.34 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 24] Lat: 13.0721, Lon: 77.531312 |   21.48 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 25] Lat: 12.918245, Lon: 77.56951 |   8.3 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 26] Lat: 12.93261, Lon: 77.577196 |   7.72 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 27] Lat: 12.93228, Lon: 77.580471 |   7.37 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 28] Lat: 12.93232, Lon: 77.580471 |   7.37 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 29] Lat: 12.91651, Lon: 77.599874 |   5.0 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 30] Lat: 12.91651, Lon: 77.599874 |   5.0 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 31] Lat: 12.9234, Lon: 77.614484 |   3.56 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 32] Lat: 12.91263, Lon: 77.649028 | [IN HSR]
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 33] Lat: 12.88328, Lon: 77.615624 |   4.78 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 34] Lat: 12.91763, Lon: 77.622582 |   2.56 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 35] Lat: 13.05554, Lon: 77.512969 |   21.3 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 36] Lat: 12.91651, Lon: 77.599874 |   5.0 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 37] Lat: 12.90696, Lon: 77.576818 |   7.54 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 38] Lat: 12.92075, Lon: 77.58091 |   7.09 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 39] Lat: 12.91758, Lon: 77.564882 |   8.8 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 40] Lat: 12.90291, Lon: 77.560707 |   9.33 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 41] Lat: 12.90594, Lon: 77.550767 |   10.37 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 42] Lat: 12.91993, Lon: 77.546548 |   10.8 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 43] Lat: 12.9034, Lon: 77.539487 |   11.61 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 44] Lat: 12.8696, Lon: 77.601993 |   6.91 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 45] Lat: 12.8833, Lon: 77.615636 |   4.78 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 46] Lat: 13.05579, Lon: 77.512992 |   21.32 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 47] Lat: 12.88325, Lon: 77.615611 |   4.79 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 48] Lat: 12.89435, Lon: 77.646174 |   2.24 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 49] Lat: 12.87249, Lon: 77.652488 |   4.72 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 50] Lat: 12.87293, Lon: 77.626696 |   5.07 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 51] Lat: 12.85666, Lon: 77.594837 |   8.49 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 52] Lat: 12.85666, Lon: 77.594837 |   8.49 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 53] Lat: 12.86823, Lon: 77.563386 |   10.33 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 54] Lat: 12.87848, Lon: 77.541751 |   11.99 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 55] Lat: 13.035286, Lon: 77.482014 |   22.27 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 56] Lat: 13.053787, Lon: 77.487075 |   23.16 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 57] Lat: 13.03767, Lon: 77.561765 |   16.46 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 58] Lat: 13.058999, Lon: 77.501953 |   22.4 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 59] Lat: 13.052991, Lon: 77.510085 |   21.31 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 60] Lat: 13.075801, Lon: 77.524361 |   22.26 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 61] Lat: 13.080812, Lon: 77.539824 |   21.78 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 62] Lat: 13.098904, Lon: 77.566737 |   22.23 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 63] Lat: 13.108365, Lon: 77.576785 |   22.82 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 64] Lat: 13.094001, Lon: 77.578976 |   21.24 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 65] Lat: 13.098124, Lon: 77.587408 |   21.38 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 66] Lat: 13.105642, Lon: 77.600363 |   21.82 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 67] Lat: 13.11453, Lon: 77.610211 |   22.58 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 68] Lat: 13.04069, Lon: 77.582168 |   15.64 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 69] Lat: 13.072449, Lon: 77.630249 |   17.65 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 70] Lat: 13.073912, Lon: 77.599055 |   18.44 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 71] Lat: 13.051184, Lon: 77.596281 |   16.13 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 72] Lat: 13.055484, Lon: 77.567848 |   17.82 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 73] Lat: 13.057574, Lon: 77.549924 |   19.01 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 74] Lat: 13.043799, Lon: 77.531058 |   19.02 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 75] Lat: 13.025242, Lon: 77.512146 |   19.03 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 76] Lat: 13.012177, Lon: 77.51845 |   17.58 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 77] Lat: 13.008818, Lon: 77.529532 |   16.41 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 78] Lat: 13.014588, Lon: 77.52608 |   17.11 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 79] Lat: 13.02408, Lon: 77.586098 |   13.81 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 80] Lat: 13.010461, Lon: 77.537545 |   15.87 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 81] Lat: 13.024616, Lon: 77.537104 |   17.0 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 82] Lat: 13.012843, Lon: 77.548101 |   15.24 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 83] Lat: 13.029672, Lon: 77.548078 |   16.63 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 84] Lat: 13.031664, Lon: 77.559411 |   16.05 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 85] Lat: 13.037564, Lon: 77.562202 |   16.42 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 86] Lat: 13.033891, Lon: 77.56626 |   15.84 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 87] Lat: 13.036574, Lon: 77.597274 |   14.56 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 88] Lat: 13.027853, Lon: 77.591004 |   13.94 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 89] Lat: 13.029839, Lon: 77.589326 |   14.22 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 90] Lat: 13.03172, Lon: 77.590921 |   14.34 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 91] Lat: 13.027493, Lon: 77.581578 |   14.37 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 92] Lat: 13.023056, Lon: 77.601149 |   13.01 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 93] Lat: 13.017659, Lon: 77.595686 |   12.7 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 94] Lat: 13.014332, Lon: 77.595188 |   12.39 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 95] Lat: 13.015956, Lon: 77.599376 |   12.36 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 96] Lat: 13.015743, Lon: 77.605552 |   12.08 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 97] Lat: 13.024933, Lon: 77.610282 |   12.88 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 98] Lat: 13.034742, Lon: 77.613783 |   13.82 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 99] Lat: 13.033596, Lon: 77.622266 |   13.49 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [100] Lat: 13.03319, Lon: 77.662113 |   13.31 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [101] Lat: 13.03763, Lon: 77.561771 |   16.45 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [102] Lat: 13.027276, Lon: 77.662822 |   12.67 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [103] Lat: 13.027408, Lon: 77.708542 |   14.27 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [104] Lat: 13.018675, Lon: 77.70366 |   13.16 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [105] Lat: 13.005152, Lon: 77.693474 |   11.32 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [106] Lat: 12.98509, Lon: 77.714878 |   10.83 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [107] Lat: 12.986807, Lon: 77.695438 |   9.66 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [108] Lat: 12.99131, Lon: 77.670006 |   8.93 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [109] Lat: 13.002158, Lon: 77.660701 |   9.88 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [110] Lat: 13.006629, Lon: 77.653026 |   10.27 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [111] Lat: 12.981192, Lon: 77.667272 |   7.77 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [112] Lat: 13.10949, Lon: 77.576493 |   22.95 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [113] Lat: 13.04253, Lon: 77.641867 |   14.24 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [114] Lat: 12.972889, Lon: 77.679383 |   7.43 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [115] Lat: 12.972017, Lon: 77.690492 |   8.01 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [116] Lat: 12.964194, Lon: 77.655973 |   5.63 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [117] Lat: 12.969415, Lon: 77.648925 |   6.11 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [118] Lat: 12.977569, Lon: 77.636348 |   7.09 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [119] Lat: 12.987412, Lon: 77.636452 |   8.17 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [120] Lat: 12.999213, Lon: 77.637658 |   9.46 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [121] Lat: 13.007308, Lon: 77.630948 |   10.45 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [122] Lat: 13.00874, Lon: 77.624167 |   10.74 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [123] Lat: 13.017345, Lon: 77.626883 |   11.62 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [124] Lat: 13.042564, Lon: 77.64188 |   14.25 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [125] Lat: 13.010914, Lon: 77.618784 |   11.12 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [126] Lat: 13.010525, Lon: 77.612293 |   11.28 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [127] Lat: 13.001617, Lon: 77.609574 |   10.46 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [128] Lat: 13.004108, Lon: 77.61794 |   10.42 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [129] Lat: 12.99541, Lon: 77.609355 |   9.83 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [130] Lat: 12.986942, Lon: 77.608031 |   9.05 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [131] Lat: 12.983053, Lon: 77.603203 |   8.92 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [132] Lat: 12.995353, Lon: 77.599933 |   10.28 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [133] Lat: 13.007245, Lon: 77.592026 |   11.86 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [134] Lat: 13.008465, Lon: 77.575975 |   12.91 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [135] Lat: 13.03784, Lon: 77.680775 |   14.22 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [136] Lat: 13.004865, Lon: 77.57254 |   12.82 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [137] Lat: 13.007258, Lon: 77.560208 |   13.89 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [138] Lat: 12.996835, Lon: 77.557476 |   13.26 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [139] Lat: 12.992792, Lon: 77.568091 |   12.13 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [140] Lat: 12.994418, Lon: 77.572123 |   11.96 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [141] Lat: 12.987123, Lon: 77.574674 |   11.18 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [142] Lat: 12.989093, Lon: 77.589829 |   10.29 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [143] Lat: 12.975863, Lon: 77.579963 |   9.89 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [144] Lat: 13.003362, Lon: 77.540553 |   15.11 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [145] Lat: 12.998557, Lon: 77.536333 |   15.12 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [146] Lat: 13.03782, Lon: 77.680788 |   14.22 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [147] Lat: 12.993901, Lon: 77.53227 |   15.16 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [148] Lat: 12.988983, Lon: 77.524035 |   15.6 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [149] Lat: 12.981617, Lon: 77.5184 |   15.71 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [150] Lat: 12.982435, Lon: 77.512076 |   16.36 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [151] Lat: 12.985335, Lon: 77.509789 |   16.73 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [152] Lat: 12.978725, Lon: 77.504163 |   16.95 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [153] Lat: 12.986242, Lon: 77.494199 |   18.28 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [154] Lat: 12.964602, Lon: 77.476377 |   19.21 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [155] Lat: 12.956759, Lon: 77.520312 |   14.41 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [156] Lat: 12.970243, Lon: 77.51983 |   15.01 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [157] Lat: 13.02487, Lon: 77.638077 |   12.3 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [158] Lat: 12.966555, Lon: 77.525353 |   14.3 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [159] Lat: 12.96816, Lon: 77.531546 |   13.76 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [160] Lat: 12.970281, Lon: 77.531568 |   13.87 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [161] Lat: 12.976319, Lon: 77.533637 |   13.98 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [162] Lat: 12.969453, Lon: 77.538818 |   13.12 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [163] Lat: 12.968349, Lon: 77.543285 |   12.64 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [164] Lat: 12.979833, Lon: 77.546028 |   13.04 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [165] Lat: 12.981123, Lon: 77.53801 |   13.85 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [166] Lat: 12.984779, Lon: 77.535885 |   14.26 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [167] Lat: 12.991785, Lon: 77.547385 |   13.71 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [168] Lat: 13.00957, Lon: 77.618808 |   10.97 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [169] Lat: 12.988566, Lon: 77.551213 |   13.17 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [170] Lat: 12.98851, Lon: 77.556927 |   12.68 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [171] Lat: 12.988469, Lon: 77.561097 |   12.34 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [172] Lat: 12.981934, Lon: 77.563346 |   11.68 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [173] Lat: 12.975707, Lon: 77.565136 |   11.1 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [174] Lat: 12.968729, Lon: 77.5663 |   10.53 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [175] Lat: 12.963898, Lon: 77.564706 |   10.38 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [176] Lat: 12.967554, Lon: 77.562581 |   10.79 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [177] Lat: 12.958932, Lon: 77.561412 |   10.41 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [178] Lat: 12.95696, Lon: 77.561701 |   10.28 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [179] Lat: 13.02775, Lon: 77.616148 |   13.0 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [180] Lat: 12.954922, Lon: 77.553341 |   11.0 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [181] Lat: 12.952741, Lon: 77.544053 |   11.84 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [182] Lat: 12.957498, Lon: 77.53777 |   12.67 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [183] Lat: 12.961932, Lon: 77.548934 |   11.77 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [184] Lat: 12.963706, Lon: 77.55343 |   11.43 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [185] Lat: 12.966404, Lon: 77.556238 |   11.31 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [186] Lat: 12.961192, Lon: 77.577959 |   9.02 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [187] Lat: 12.95464, Lon: 77.597194 |   6.92 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [188] Lat: 12.944887, Lon: 77.572695 |   8.63 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [189] Lat: 12.937412, Lon: 77.578177 |   7.78 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [190] Lat: 13.0278, Lon: 77.616167 |   13.01 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [191] Lat: 12.9312, Lon: 77.578422 |   7.56 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [192] Lat: 12.931877, Lon: 77.586458 |   6.74 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [193] Lat: 12.916094, Lon: 77.574407 |   7.76 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [194] Lat: 12.909914, Lon: 77.57141 |   8.1 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [195] Lat: 12.905485, Lon: 77.575071 |   7.75 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [196] Lat: 12.902645, Lon: 77.571336 |   8.2 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [197] Lat: 12.896137, Lon: 77.570806 |   8.4 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [198] Lat: 12.906965, Lon: 77.563197 |   9.01 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [199] Lat: 12.914202, Lon: 77.551074 |   10.29 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [200] Lat: 12.905897, Lon: 77.548519 |   10.61 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [201] Lat: 13.03942, Lon: 77.560974 |   16.67 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [202] Lat: 12.906116, Lon: 77.541574 |   11.36 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [203] Lat: 12.904465, Lon: 77.540013 |   11.54 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [204] Lat: 12.89562, Lon: 77.546254 |   11.01 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [205] Lat: 12.899346, Lon: 77.552467 |   10.28 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [206] Lat: 12.924027, Lon: 77.553181 |   10.12 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [207] Lat: 12.926899, Lon: 77.553673 |   10.1 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [208] Lat: 12.92608, Lon: 77.544555 |   11.07 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [209] Lat: 12.935051, Lon: 77.54094 |   11.61 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [210] Lat: 12.933369, Lon: 77.542621 |   11.4 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [211] Lat: 12.941705, Lon: 77.541934 |   11.68 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [212] Lat: 13.03123, Lon: 77.529643 |   18.1 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [213] Lat: 12.93588, Lon: 77.549132 |   10.76 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [214] Lat: 12.935383, Lon: 77.553451 |   10.3 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [215] Lat: 12.929926, Lon: 77.538417 |   11.79 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [216] Lat: 12.931997, Lon: 77.527938 |   12.94 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [217] Lat: 12.939074, Lon: 77.516583 |   14.29 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [218] Lat: 12.926383, Lon: 77.513213 |   14.45 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [219] Lat: 12.954649, Lon: 77.503458 |   16.08 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [220] Lat: 12.919099, Lon: 77.483031 |   17.67 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [221] Lat: 12.890552, Lon: 77.584335 |   7.19 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [222] Lat: 12.886717, Lon: 77.589236 |   6.88 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [223] Lat: 13.09053, Lon: 77.584508 |   20.68 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [224] Lat: 13.04154, Lon: 77.496474 |   21.5 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [225] Lat: 12.883052, Lon: 77.514633 |   14.66 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [226] Lat: 12.896548, Lon: 77.605856 |   4.79 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [227] Lat: 12.866072, Lon: 77.563244 |   10.46 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [228] Lat: 12.876024, Lon: 77.583105 |   8.05 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [229] Lat: 12.864996, Lon: 77.580214 |   9.01 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [230] Lat: 12.858219, Lon: 77.591722 |   8.59 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [231] Lat: 12.854623, Lon: 77.587826 |   9.17 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [232] Lat: 12.871299, Lon: 77.601427 |   6.81 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [233] Lat: 12.879096, Lon: 77.60938 |   5.59 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [234] Lat: 12.889318, Lon: 77.61705 |   4.21 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [235] Lat: 13.01462, Lon: 77.515071 |   18.03 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [236] Lat: 12.89119, Lon: 77.626641 |   3.33 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [237] Lat: 12.883988, Lon: 77.619928 |   4.42 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [238] Lat: 12.872561, Lon: 77.626756 |   5.11 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [239] Lat: 12.880121, Lon: 77.643043 |   3.84 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [240] Lat: 12.930991, Lon: 77.614551 |   3.87 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [241] Lat: 12.922184, Lon: 77.646882 | [IN HSR]
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [242] Lat: 12.91811, Lon: 77.64545 | [IN HSR]
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [243] Lat: 12.912182, Lon: 77.647549 | [IN HSR]
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [244] Lat: 12.905361, Lon: 77.633119 | [IN HSR]
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [245] Lat: 12.899075, Lon: 77.640772 | [IN HSR]
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [246] Lat: 13.01522, Lon: 77.536539 |   16.31 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [247] Lat: 12.912793, Lon: 77.676734 |   3.34 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [248] Lat: 12.911165, Lon: 77.687832 |   4.55 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [249] Lat: 12.936679, Lon: 77.695516 |   5.91 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [250] Lat: 12.950633, Lon: 77.693505 |   6.53 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [251] Lat: 12.961941, Lon: 77.756162 |   13.05 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [252] Lat: 12.99371, Lon: 77.759137 |   15.1 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [253] Lat: 13.029893, Lon: 77.731428 |   15.82 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [254] Lat: 12.95705, Lon: 77.658522 |   4.92 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [255] Lat: 12.959535, Lon: 77.637548 |   5.09 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [256] Lat: 12.954277, Lon: 77.633323 |   4.63 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [257] Lat: 13.01559, Lon: 77.550344 |   15.29 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [258] Lat: 12.962199, Lon: 77.613641 |   6.36 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [259] Lat: 12.95084, Lon: 77.613677 |   5.35 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [260] Lat: 12.953662, Lon: 77.619265 |   5.23 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [261] Lat: 12.94717, Lon: 77.61719 |   4.79 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [262] Lat: 12.944193, Lon: 77.627041 |   3.89 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [263] Lat: 12.975476, Lon: 77.618721 |   7.4 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [264] Lat: 12.97204, Lon: 77.629032 |   6.66 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [265] Lat: 13.01577, Lon: 77.555484 |   14.93 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [266] Lat: 13.01371, Lon: 77.602798 |   11.98 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [267] Lat: 13.02785, Lon: 77.616189 |   13.01 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [268] Lat: 12.99996, Lon: 77.662536 |   9.67 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [269] Lat: 13.0074, Lon: 77.695358 |   11.63 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [270] Lat: 13.00739, Lon: 77.695318 |   11.63 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [271] Lat: 13.08916, Lon: 77.589344 |   20.37 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [272] Lat: 13.00731, Lon: 77.695304 |   11.62 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [273] Lat: 12.99535, Lon: 77.676121 |   9.56 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [274] Lat: 12.97678, Lon: 77.672857 |   7.51 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [275] Lat: 12.96736, Lon: 77.658657 |   6.04 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [276] Lat: 13.00651, Lon: 77.631889 |   10.34 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [277] Lat: 13.00114, Lon: 77.610533 |   10.37 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [278] Lat: 13.00162, Lon: 77.601453 |   10.82 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [279] Lat: 12.99925, Lon: 77.574108 |   12.23 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [280] Lat: 13.00721, Lon: 77.574318 |   12.91 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [281] Lat: 13.003727, Lon: 77.54288 |   14.94 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [282] Lat: 13.11799, Lon: 77.616378 |   22.85 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [283] Lat: 12.9995, Lon: 77.515324 |   17.03 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [284] Lat: 13.00588, Lon: 77.503097 |   18.52 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [285] Lat: 12.96389, Lon: 77.486795 |   18.11 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [286] Lat: 12.99485, Lon: 77.525576 |   15.82 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [287] Lat: 12.99883, Lon: 77.528548 |   15.81 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [288] Lat: 12.99639, Lon: 77.560711 |   12.97 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [289] Lat: 13.00237, Lon: 77.571786 |   12.65 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [290] Lat: 12.98892, Lon: 77.619658 |   8.75 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [291] Lat: 12.9931, Lon: 77.614996 |   9.36 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [292] Lat: 12.9752, Lon: 77.644484 |   6.75 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [293] Lat: 13.06906, Lon: 77.631953 |   17.25 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [294] Lat: 12.99473, Lon: 77.695889 |   10.43 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [295] Lat: 12.97467, Lon: 77.761751 |   14.22 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [296] Lat: 12.9607, Lon: 77.643148 |   5.15 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [297] Lat: 12.97146, Lon: 77.631229 |   6.53 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [298] Lat: 12.97666, Lon: 77.61975 |   7.47 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [299] Lat: 12.988, Lon: 77.579749 |   10.88 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [300] Lat: 12.97713, Lon: 77.580544 |   9.94 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [301] Lat: 12.977087, Lon: 77.58051 |   9.94 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [302] Lat: 12.98598, Lon: 77.566352 |   11.73 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [303] Lat: 12.996051, Lon: 77.55719 |   13.22 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [304] Lat: 13.05887, Lon: 77.591178 |   17.12 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [305] Lat: 12.99585, Lon: 77.551682 |   13.65 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [306] Lat: 12.98383, Lon: 77.529628 |   14.78 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [307] Lat: 12.99233, Lon: 77.529096 |   15.34 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [308] Lat: 12.978669, Lon: 77.52675 |   14.76 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [309] Lat: 12.97326, Lon: 77.539117 |   13.3 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [310] Lat: 12.97626, Lon: 77.546608 |   12.77 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [311] Lat: 12.98377, Lon: 77.548512 |   13.07 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [312] Lat: 12.99777, Lon: 77.557308 |   13.35 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [313] Lat: 12.97712, Lon: 77.580951 |   9.91 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [314] Lat: 12.98385, Lon: 77.601827 |   9.08 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [315] Lat: 13.06414, Lon: 77.583674 |   17.96 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [316] Lat: 12.96477, Lon: 77.614506 |   6.55 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [317] Lat: 12.96108, Lon: 77.6401 |   5.22 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [318] Lat: 12.95623, Lon: 77.617322 |   5.58 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [319] Lat: 12.95335, Lon: 77.618399 |   5.25 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [320] Lat: 12.95048, Lon: 77.617547 |   5.05 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [321] Lat: 12.96816, Lon: 77.564303 |   10.68 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [322] Lat: 12.96746, Lon: 77.563584 |   10.7 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [323] Lat: 12.97389, Lon: 77.545374 |   12.75 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [324] Lat: 12.97031, Lon: 77.536998 |   13.34 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [325] Lat: 12.96551, Lon: 77.526477 |   14.14 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [326] Lat: 13.06893, Lon: 77.563741 |   19.35 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [327] Lat: 12.96572, Lon: 77.518269 |   14.97 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [328] Lat: 12.95838, Lon: 77.524947 |   14.0 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [329] Lat: 12.93156, Lon: 77.491462 |   16.86 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [330] Lat: 12.95628, Lon: 77.529238 |   13.48 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [331] Lat: 12.95077, Lon: 77.537867 |   12.39 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [332] Lat: 12.96316, Lon: 77.550205 |   11.71 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [333] Lat: 12.9604, Lon: 77.552131 |   11.38 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [334] Lat: 12.9645, Lon: 77.554676 |   11.35 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [335] Lat: 12.96546, Lon: 77.567195 |   10.25 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0          0Place
+        HasLabel: mark
+  [336] Lat: 12.9665, Lon: 77.576196 |   9.52 km from HSR
+        Name: BBMP dry waste collection centr
+        Info: -1         0
+
+  --- INSIDE HSR LAYOUT (6 records) ---
+    HSR #32: (12.91263, 77.649028)
+      Name: BBMP dry waste collection centr
+      PopupInfo: -1         0          0Place
+      HasLabel: mark
+    HSR #241: (12.922184, 77.646882)
+      Name: BBMP dry waste collection centr
+      PopupInfo: -1         0          0Place
+      HasLabel: mark
+    HSR #242: (12.91811, 77.64545)
+      Name: BBMP dry waste collection centr
+      PopupInfo: -1         0          0Place
+      HasLabel: mark
+    HSR #243: (12.912182, 77.647549)
+      Name: BBMP dry waste collection centr
+      PopupInfo: -1         0          0Place
+      HasLabel: mark
+    HSR #244: (12.905361, 77.633119)
+      Name: BBMP dry waste collection centr
+      PopupInfo: -1         0          0Place
+      HasLabel: mark
+    HSR #245: (12.899075, 77.640772)
+      Name: BBMP dry waste collection centr
+      PopupInfo: -1         0          0Place
+      HasLabel: mark
+
+  --- 10 NEAREST TO HSR (outside boundary) ---
+    [1] 2.24 km — (12.89435, 77.646174) -1         0          0Place
+    [2] 2.56 km — (12.91763, 77.622582) -1         0          0Place
+    [3] 3.33 km — (12.89119, 77.626641) -1         0          0Place
+    [4] 3.34 km — (12.912793, 77.676734) -1         0          0Place
+    [5] 3.56 km — (12.9234, 77.614484) -1         0          0Place
+    [6] 3.84 km — (12.880121, 77.643043) -1         0          0Place
+    [7] 3.87 km — (12.930991, 77.614551) -1         0          0Place
+    [8] 3.89 km — (12.944193, 77.627041) -1         0          0Place
+    [9] 4.05 km — (12.934294, 77.61465) -1         0          0Place
+    [10] 4.21 km — (12.889318, 77.61705) -1         0          0Place
+
+
+================================================================================
+  BIO-METHANISATION UNITS (BMUs)
+  File: BBMP_BIO-Methanisation
+================================================================================
+  .shp: 584 bytes
+  .dbf: 12,190 bytes
+  .shx: 188 bytes
+  .prj: 266 bytes
+  .cpg: 5 bytes
+
+  Records (from .shx): 11
+  Reading geometries from .shp...
+  Points extracted: 11
+
+  Reading attributes from .dbf...
+  Attribute records: 11
+  Fields: ['OID_', 'Name', 'FolderPath', 'SymbolID', 'AltMode', 'Base', 'Snippet', 'PopupInfo', 'HasLabel', 'LabelID']
+
+  ╔════════════════════════════════════════╗
+  ║  TOTAL BIO-METHANISATION UNITS (BMUs):   11              
+  ║  Inside HSR Layout:           0              
+  ╚════════════════════════════════════════╝
+
+  --- ALL 11 RECORDS ---
+  [  1] Lat: 13.084772, Lon: 77.540728 |   22.1 km from HSR
+        Name: Document/bio_mithanization_unit
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  2] Lat: 12.896183, Lon: 77.650711 |   2.1 km from HSR
+        Name: Document/bio_mithanization_unit
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  3] Lat: 12.872922, Lon: 77.626697 |   5.07 km from HSR
+        Name: Document/bio_mithanization_unit
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  4] Lat: 12.932492, Lon: 77.580367 |   7.39 km from HSR
+        Name: Document/bio_mithanization_unit
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  5] Lat: 12.933803, Lon: 77.614044 |   4.07 km from HSR
+        Name: Document/bio_mithanization_unit
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  6] Lat: 13.021314, Lon: 77.563294 |   14.88 km from HSR
+        Name: Document/bio_mithanization_unit
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  7] Lat: 12.976875, Lon: 77.5805 |   9.92 km from HSR
+        Name: Document/bio_mithanization_unit
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  8] Lat: 12.965878, Lon: 77.576706 |   9.44 km from HSR
+        Name: Document/bio_mithanization_unit
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  9] Lat: 12.960922, Lon: 77.640711 |   5.19 km from HSR
+        Name: Document/bio_mithanization_unit
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 10] Lat: 12.933792, Lon: 77.614061 |   4.07 km from HSR
+        Name: Document/bio_mithanization_unit
+        Info: -1         0          0Place
+        HasLabel: mark
+  [ 11] Lat: 12.936267, Lon: 77.579978 |   7.55 km from HSR
+        Name: Document/bio_mithanization_unit
+        Info: -1         0
+
+  --- 10 NEAREST TO HSR (outside boundary) ---
+    [1] 2.1 km — (12.896183, 77.650711) -1         0          0Place
+    [2] 4.07 km — (12.933803, 77.614044) -1         0          0Place
+    [3] 4.07 km — (12.933792, 77.614061) -1         0          0Place
+    [4] 5.07 km — (12.872922, 77.626697) -1         0          0Place
+    [5] 5.19 km — (12.960922, 77.640711) -1         0          0Place
+    [6] 7.39 km — (12.932492, 77.580367) -1         0          0Place
+    [7] 7.55 km — (12.936267, 77.579978) -1         0
+    [8] 9.44 km — (12.965878, 77.576706) -1         0          0Place
+    [9] 9.92 km — (12.976875, 77.5805) -1         0          0Place
+    [10] 14.88 km — (13.021314, 77.563294) -1         0          0Place
+
+
+================================================================================
+  WASTE PROCESSING UNITS
+  File: BBMP_Waste_Processing_Units
+================================================================================
+  .shp: 452 bytes
+  .dbf: 8,962 bytes
+  .shx: 164 bytes
+  .prj: 266 bytes
+  .cpg: 5 bytes
+
+  Records (from .shx): 8
+  Reading geometries from .shp...
+  Points extracted: 8
+
+  Reading attributes from .dbf...
+  Attribute records: 8
+  Fields: ['OID_', 'Name', 'FolderPath', 'SymbolID', 'AltMode', 'Base', 'Snippet', 'PopupInfo', 'HasLabel', 'LabelID']
+
+  ╔════════════════════════════════════════╗
+  ║  TOTAL WASTE PROCESSING UNITS:    8              
+  ║  Inside HSR Layout:           0              
+  ╚════════════════════════════════════════╝
+
+  --- ALL 8 RECORDS ---
+  [  1] Lat: 12.97386, Lon: 77.441004 |   23.18 km from HSR
+        Name: BBMP waste processing units
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  2] Lat: 12.968195, Lon: 77.444193 |   22.67 km from HSR
+        Name: BBMP waste processing units
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  3] Lat: 13.031319, Lon: 77.479684 |   22.21 km from HSR
+        Name: BBMP waste processing units
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  4] Lat: 12.882866, Lon: 77.430853 |   23.58 km from HSR
+        Name: BBMP waste processing units
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  5] Lat: 12.875929, Lon: 77.506767 |   15.69 km from HSR
+        Name: BBMP waste processing units
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  6] Lat: 12.896044, Lon: 77.649861 |   2.09 km from HSR
+        Name: BBMP waste processing units
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  7] Lat: 12.857962, Lon: 77.686032 |   7.64 km from HSR
+        Name: BBMP waste processing units
+        Info: -1         0          0Place
+        HasLabel: mark
+  [  8] Lat: 13.122286, Lon: 77.540021 |   25.8 km from HSR
+        Name: BBMP waste processing units
+        Info: -1         0
+
+  --- 10 NEAREST TO HSR (outside boundary) ---
+    [1] 2.09 km — (12.896044, 77.649861) -1         0          0Place
+    [2] 7.64 km — (12.857962, 77.686032) -1         0          0Place
+    [3] 15.69 km — (12.875929, 77.506767) -1         0          0Place
+    [4] 22.21 km — (13.031319, 77.479684) -1         0          0Place
+    [5] 22.67 km — (12.968195, 77.444193) -1         0          0Place
+    [6] 23.18 km — (12.97386, 77.441004) -1         0          0Place
+    [7] 23.58 km — (12.882866, 77.430853) -1         0          0Place
+    [8] 25.8 km — (13.122286, 77.540021) -1         0
+
+
+================================================================================
+FINAL SUMMARY
+================================================================================
+
+  Bengaluru (BBMP) Totals:
+    Dumpyards:                    3
+    Dry Waste Collection Centres: 336
+    Bio-Methanisation Units:      11
+    Waste Processing Units:       8
+
+  Inside HSR Layout (Ward 174):
+    Dumpyards:                    0
+    Dry Waste Collection Centres: 6
+    Bio-Methanisation Units:      0
+    Waste Processing Units:       0

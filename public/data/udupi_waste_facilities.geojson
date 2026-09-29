@@ -1,0 +1,80 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [74.75028, 13.35028] },
+      "properties": {
+        "name": "Karvalu SWM Plant & Landfill",
+        "type": "LANDFILL",
+        "subtype": "Engineered Regional Landfill",
+        "operator": "Udupi CMC",
+        "area_acres": 22,
+        "status": "Operational",
+        "capacity_tons": 180000,
+        "address": "Karvalu village, Alevoor, ~8 km from Udupi city",
+        "icon": "landfill"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [74.75028, 13.35068] },
+      "properties": {
+        "name": "Karvalu Material Recovery Facility (MRF)",
+        "type": "MRF",
+        "subtype": "Centralized MRF",
+        "operator": "Udupi CMC / SHGs",
+        "status": "Operational",
+        "description": "Centralized sorting of plastics, paper, metal, glass",
+        "address": "Karvalu SWM campus, Alevoor",
+        "icon": "mrf"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [74.7455, 13.3415] },
+      "properties": {
+        "name": "Beedinagudde Dry Waste Center / MRF",
+        "type": "DWCC",
+        "subtype": "Decentralized DWC + MRF",
+        "operator": "Udupi CMC / SHGs",
+        "status": "Functional",
+        "description": "Multiple sheds, conveyor belts, shredder. Key dry waste center inside city.",
+        "address": "Shardamantapa Beedinagudde Rd, Kasturba Nagara, Maruthi Veethika, Udupi 576101",
+        "icon": "dwcc",
+        "ward": "Kasturba Nagar (Ward 24)"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [74.7370, 13.3377] },
+      "properties": {
+        "name": "Karavali Junction Dry Waste Center",
+        "type": "DWCC",
+        "subtype": "Dry Waste Collection Centre",
+        "operator": "Udupi CMC",
+        "status": "Announced",
+        "description": "One of three announced dry waste collection centers for Udupi city",
+        "address": "Near Karavali Junction, Udupi",
+        "icon": "dwcc",
+        "geocode_accuracy": "approximate"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [74.7868, 13.3520] },
+      "properties": {
+        "name": "Manipal Dry Waste Center",
+        "type": "DWCC",
+        "subtype": "Dry Waste Collection Centre",
+        "operator": "Udupi CMC",
+        "status": "Planned",
+        "description": "Third announced dry waste collection center for Udupi city, in Manipal area",
+        "address": "Manipal, Udupi district",
+        "icon": "dwcc",
+        "ward": "Manipal (Ward 18)",
+        "geocode_accuracy": "approximate"
+      }
+    }
+  ]
+}

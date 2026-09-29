@@ -1,0 +1,42 @@
+[
+  {
+    "id": "DWCC-001",
+    "lat": 12.91263,
+    "lon": 77.649028,
+    "risk": "high",
+    "area_sqm": 500.0,
+    "pixel_count": 10,
+    "detected": "Udupi CMC Official",
+    "ward": "Udupi City"
+  },
+  {
+    "id": "DWCC-002",
+    "lat": 12.922184,
+    "lon": 77.646882,
+    "risk": "high",
+    "area_sqm": 500.0,
+    "pixel_count": 10,
+    "detected": "Udupi CMC Official",
+    "ward": "Udupi City"
+  },
+  {
+    "id": "DWCC-003",
+    "lat": 12.91811,
+    "lon": 77.64545,
+    "risk": "medium",
+    "area_sqm": 500.0,
+    "pixel_count": 10,
+    "detected": "Udupi CMC Official",
+    "ward": "Udupi City"
+  },
+  {
+    "id": "DWCC-004",
+    "lat": 12.912182,
+    "lon": 77.647549,
+    "risk": "medium",
+    "area_sqm": 500.0,
+    "pixel_count": 10,
+    "detected": "Udupi CMC Official",
+    "ward": "Udupi City"
+  }
+]
