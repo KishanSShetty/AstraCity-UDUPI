@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import ROUTING_CONFIG from '../../lib/routing_config.json';
+import { UDUPI_DATA } from '@/lib/constants';
 
 // ============================================================
 // TYPES
@@ -71,7 +72,7 @@ interface FacilityFeature {
 }
 
 // ============================================================
-// VEHICLE CONFIG (from routing_config.json)
+// VEHICLE CONFIG & UDUPI FACILITIES
 // ============================================================
 const VEHICLE_TYPE_META: Record<string, { label: string; icon: string; capacity: string }> = {
   auto_tipper: { label: 'Auto Tipper', icon: '🛺', capacity: '500 kg' },
@@ -82,23 +83,20 @@ const VEHICLE_TYPE_META: Record<string, { label: string; icon: string; capacity:
 };
 
 const DWCC_LIST = [
-  { id: 'DWCC-1', lat: 12.91263, lon: 77.64903, label: 'DWCC Sector 2 East', capacity_tpd: 3 },
-  { id: 'DWCC-2', lat: 12.92218, lon: 77.64688, label: 'DWCC Sector 3 North', capacity_tpd: 3 },
-  { id: 'DWCC-3', lat: 12.91811, lon: 77.64545, label: 'DWCC Sector 3 Central', capacity_tpd: 3 },
-  { id: 'DWCC-4', lat: 12.91218, lon: 77.64755, label: 'DWCC Sector 2 East', capacity_tpd: 3 },
-  { id: 'DWCC-5', lat: 12.90536, lon: 77.63312, label: 'DWCC Sector 1 SW', capacity_tpd: 3 },
-  { id: 'DWCC-6', lat: 12.89907, lon: 77.64077, label: 'DWCC Sector 1 South', capacity_tpd: 3 },
+  { id: 'DWCC-1', lat: 13.3415, lon: 74.7455, label: 'Beedinagudde Dry Waste Center', capacity_tpd: 5 },
+  { id: 'DWCC-2', lat: 13.3377, lon: 74.7370, label: 'Karavali Junction DWCC', capacity_tpd: 4 },
+  { id: 'DWCC-3', lat: 13.3533, lon: 74.7042, label: 'Malpe Coastal DWCC', capacity_tpd: 5 },
+  { id: 'DWCC-4', lat: 13.3525, lon: 74.7872, label: 'Manipal Academic Belt DWCC', capacity_tpd: 6 },
+  { id: 'DWCC-5', lat: 13.3800, lon: 74.7450, label: 'Santhekatte DWCC', capacity_tpd: 5 },
+  { id: 'DWCC-6', lat: 13.35028, lon: 74.75028, label: 'Karvalu Central SWM Plant', capacity_tpd: 15 },
 ];
 
-const BMU_KUDLU = { lat: 12.896183, lon: 77.650711, label: 'Kudlu BMU' };
-const DEPOT = { lat: 13.3409, lon: 77.6460 };
+const BMU_BEEDINAGUDDE = { lat: 13.3415, lon: 74.7460, label: 'Beedinagudde BMU' };
+const DEPOT = { lat: 13.3409, lon: 74.7421 };
 
-// ============================================================
-// COMPONENT
-// ============================================================
-// Road type data for compliance checker
+// Road type data for Udupi compliance checker
 const ROAD_TYPES = [
-  { type: 'Trunk (ORR)', count: 38, pct: 1.9, width: '>12m', vehicles: ['All'], color: '#f97316' },
+  { type: 'Trunk (NH 66)', count: 38, pct: 1.9, width: '>12m', vehicles: ['All'], color: '#f97316' },
   { type: 'Primary', count: 10, pct: 0.5, width: '>9m', vehicles: ['Compactor', 'Truck', 'Auto'], color: '#eab308' },
   { type: 'Secondary', count: 113, pct: 5.6, width: '>6m', vehicles: ['Compactor', 'Truck', 'Auto'], color: '#22c55e' },
   { type: 'Tertiary', count: 191, pct: 9.4, width: '>4m', vehicles: ['Auto Tipper'], color: '#3b82f6' },
@@ -108,7 +106,7 @@ const ROAD_TYPES = [
   { type: 'Other', count: 147, pct: 7.3, width: 'Varies', vehicles: ['—'], color: '#475569' },
 ];
 
-// Simulated DWCC loads (updates after VRP solve)
+// Simulated DWCC loads
 const INITIAL_LOADS = DWCC_LIST.map(d => ({ ...d, load_kg: 0, load_pct: 0, status: 'normal' as 'normal' | 'yellow' | 'red' | 'critical' }));
 
 export default function RoutingDashboard() {
@@ -121,7 +119,7 @@ export default function RoutingDashboard() {
   const [facilityData, setFacilityData] = useState<Record<string, { features: FacilityFeature[] }>>({});
   const [error, setError] = useState<string | null>(null);
   const [dwccLoads, setDwccLoads] = useState(INITIAL_LOADS);
-  const [kudluAvailable, setKudluAvailable] = useState(true);
+  const [facilityAvailable, setFacilityAvailable] = useState(true);
   const [showHeatmap, setShowHeatmap] = useState(false);
   const [showZones, setShowZones] = useState(false);
   const mapRef = useRef<HTMLDivElement>(null);
@@ -175,14 +173,14 @@ export default function RoutingDashboard() {
       const res = await fetch('/api/vrp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({}), // Uses defaults
+        body: JSON.stringify({}),
       });
       const data = await res.json();
       if (!data.success) throw new Error('VRP solver returned no solution');
       setVrpResult(data);
 
       // Simulate DWCC load distribution from VRP assignments
-      const newLoads = DWCC_LIST.map((d, i) => {
+      const newLoads = DWCC_LIST.map((d) => {
         const assignedLoad = data.assignments.reduce((sum: number, a: VRPAssignment) => {
           const matchingStop = a.stops.find((s: VRPStop) => s.id === d.id);
           return sum + (matchingStop ? matchingStop.demand_kg : 0);
@@ -225,45 +223,48 @@ export default function RoutingDashboard() {
     }
   }, []);
 
-  // Initialize map
+  // Initialize map centered on Udupi
   useEffect(() => {
     if (!mapRef.current || mapInstanceRef.current) return;
     
     const initMap = async () => {
-      
       const map = new maplibregl.Map({
         container: mapRef.current!,
         style: 'https://tiles.openfreemap.org/styles/positron',
         center: [DEPOT.lon, DEPOT.lat],
-        zoom: 14,
+        zoom: 13,
         attributionControl: false,
       });
 
       map.addControl(new maplibregl.NavigationControl(), 'top-right');
       
       map.on('load', () => {
-        // HSR Ward boundary
-        map.addSource('hsr-boundary', {
+        // Udupi City boundary
+        map.addSource('udupi-boundary', {
           type: 'geojson',
-          data: { type: 'Feature', properties: {}, geometry: { type: 'Polygon', coordinates: [[[77.622725, 12.897941], [77.669342, 12.897941], [77.669342, 12.931016], [77.622725, 12.931016], [77.622725, 12.897941]]] } },
+          data: { 
+            type: 'Feature', 
+            properties: {}, 
+            geometry: { 
+              type: 'Polygon', 
+              coordinates: [[[74.69, 13.31], [74.81, 13.31], [74.81, 13.39], [74.69, 13.39], [74.69, 13.31]]] 
+            } 
+          },
         });
-        map.addLayer({ id: 'hsr-fill', type: 'fill', source: 'hsr-boundary', paint: { 'fill-color': '#14b8a6', 'fill-opacity': 0.04 } });
-        map.addLayer({ id: 'hsr-outline', type: 'line', source: 'hsr-boundary', paint: { 'line-color': '#14b8a6', 'line-width': 2, 'line-dasharray': [3, 2] } });
+        map.addLayer({ id: 'udupi-fill', type: 'fill', source: 'udupi-boundary', paint: { 'fill-color': '#14b8a6', 'fill-opacity': 0.04 } });
+        map.addLayer({ id: 'udupi-outline', type: 'line', source: 'udupi-boundary', paint: { 'line-color': '#14b8a6', 'line-width': 2, 'line-dasharray': [3, 2] } });
 
-        // Waste Density Heatmap (building-count based)
+        // Waste Density Heatmap across Udupi Wards
         const heatPoints: GeoJSON.Feature[] = [];
-        const gridSize = 8;
-        const lonMin = 77.622725, lonMax = 77.669342, latMin = 12.897941, latMax = 12.931016;
-        const buildingDensities = [141,149,473,0,1383,2189,1734,0,276,554,2082,158,0,1,128,203];
-        for (let r = 0; r < 4; r++) {
+        const lonMin = 74.70, lonMax = 74.79, latMin = 13.32, latMax = 13.37;
+        const buildingDensities = [400, 650, 1200, 850, 1500, 2100, 1800, 950, 1100, 1400, 800, 600];
+        for (let r = 0; r < 3; r++) {
           for (let c = 0; c < 4; c++) {
             const idx = r * 4 + c;
-            const w = buildingDensities[idx] || 0;
-            if (w > 0) {
-              const lon = lonMin + (c + 0.5) * (lonMax - lonMin) / 4;
-              const lat = latMax - (r + 0.5) * (latMax - latMin) / 4;
-              heatPoints.push({ type: 'Feature', geometry: { type: 'Point', coordinates: [lon, lat] }, properties: { weight: w / 2189 } });
-            }
+            const w = buildingDensities[idx] || 500;
+            const lon = lonMin + (c + 0.5) * (lonMax - lonMin) / 4;
+            const lat = latMax - (r + 0.5) * (latMax - latMin) / 3;
+            heatPoints.push({ type: 'Feature', geometry: { type: 'Point', coordinates: [lon, lat] }, properties: { weight: w / 2100 } });
           }
         }
         map.addSource('waste-heatmap', { type: 'geojson', data: { type: 'FeatureCollection', features: heatPoints } });
@@ -273,21 +274,21 @@ export default function RoutingDashboard() {
           paint: {
             'heatmap-weight': ['get', 'weight'],
             'heatmap-intensity': 1.5,
-            'heatmap-radius': 40,
+            'heatmap-radius': 45,
             'heatmap-color': ['interpolate', ['linear'], ['heatmap-density'], 0, 'rgba(0,0,0,0)', 0.2, '#22c55e', 0.5, '#eab308', 0.8, '#ef4444', 1, '#dc2626'],
             'heatmap-opacity': 0.6,
           },
         });
 
-        // --- NEW ROAD ACCESSIBILITY ZONES ---
-        // Green Corridors: Main arteries (27th Main, 19th Main, ORR) where Heavy Compactors are allowed.
+        // Road accessibility corridors (NH 66, Manipal Road, Malpe Port Road)
         map.addSource('arterial-roads', {
           type: 'geojson',
           data: {
             type: 'FeatureCollection',
             features: [
-              { type: 'Feature', geometry: { type: 'LineString', coordinates: [[77.6392, 12.9158], [77.64903, 12.91263], [77.64688, 12.92218], [77.64545, 12.91811], [77.63312, 12.90536]] }, properties: {} },
-              { type: 'Feature', geometry: { type: 'LineString', coordinates: [[77.6392, 12.9158], [77.64077, 12.89907]] }, properties: {} }
+              { type: 'Feature', geometry: { type: 'LineString', coordinates: [[74.7450, 13.3800], [74.7421, 13.3409], [74.7370, 13.3377]] }, properties: {} },
+              { type: 'Feature', geometry: { type: 'LineString', coordinates: [[74.7421, 13.3409], [74.7872, 13.3525]] }, properties: {} },
+              { type: 'Feature', geometry: { type: 'LineString', coordinates: [[74.7421, 13.3409], [74.7042, 13.3533]] }, properties: {} }
             ]
           }
         });
@@ -297,16 +298,14 @@ export default function RoutingDashboard() {
           paint: { 'line-color': '#10b981', 'line-width': 6, 'line-opacity': 0.8 }
         });
 
-        // Red Blocks: Dense interior residential grids (Sectors 1-4) where ONLY Auto Tippers can go.
+        // Residential narrow lane blocks
         map.addSource('residential-blocks', {
           type: 'geojson',
           data: {
             type: 'FeatureCollection',
             features: [
-              // Sector 1 interior
-              { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.63312, 12.90536], [77.64077, 12.89907], [77.6450, 12.9050], [77.6380, 12.9100], [77.63312, 12.90536]]] }, properties: {} },
-              // Sector 2/3 interior
-              { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.64688, 12.92218], [77.6520, 12.9180], [77.64903, 12.91263], [77.64545, 12.91811], [77.64688, 12.92218]]] }, properties: {} }
+              { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.740, 13.345], [74.748, 13.345], [74.748, 13.339], [74.740, 13.339], [74.740, 13.345]]] }, properties: {} },
+              { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.770, 13.355], [74.785, 13.355], [74.785, 13.348], [74.770, 13.348], [74.770, 13.355]]] }, properties: {} }
             ]
           }
         });
@@ -321,22 +320,22 @@ export default function RoutingDashboard() {
           paint: { 'line-color': '#ef4444', 'line-width': 2, 'line-dasharray': [2, 2], 'line-opacity': 0.8 }
         });
 
-        // DWCCs
+        // Udupi DWCC Markers
         const dwccFeatures = DWCC_LIST.map(d => ({ type: 'Feature' as const, geometry: { type: 'Point' as const, coordinates: [d.lon, d.lat] }, properties: { label: d.label, id: d.id } }));
         map.addSource('dwccs', { type: 'geojson', data: { type: 'FeatureCollection', features: dwccFeatures } });
         map.addLayer({ id: 'dwcc-circles', type: 'circle', source: 'dwccs', paint: { 'circle-radius': 8, 'circle-color': '#2ECC71', 'circle-stroke-color': '#fff', 'circle-stroke-width': 2, 'circle-opacity': 0.9 } });
         map.addLayer({ id: 'dwcc-labels', type: 'symbol', source: 'dwccs', layout: { 'text-field': ['get', 'id'], 'text-size': 10, 'text-offset': [0, 1.5], 'text-anchor': 'top' }, paint: { 'text-color': '#166534', 'text-halo-color': '#fff', 'text-halo-width': 1 } });
 
-        // Kudlu BMU + WPU
+        // Processing Facilities (Beedinagudde BMU & Karvalu SWM)
         map.addSource('bmu', { type: 'geojson', data: { type: 'FeatureCollection', features: [
-          { type: 'Feature', geometry: { type: 'Point', coordinates: [BMU_KUDLU.lon, BMU_KUDLU.lat] }, properties: { label: 'Kudlu BMU' } },
-          { type: 'Feature', geometry: { type: 'Point', coordinates: [77.649861, 12.896044] }, properties: { label: 'Kudlu WPU' } },
+          { type: 'Feature', geometry: { type: 'Point', coordinates: [BMU_BEEDINAGUDDE.lon, BMU_BEEDINAGUDDE.lat] }, properties: { label: 'Beedinagudde BMU' } },
+          { type: 'Feature', geometry: { type: 'Point', coordinates: [74.75028, 13.35028] }, properties: { label: 'Karvalu Landfill & MRF' } },
         ] } });
         map.addLayer({ id: 'bmu-circle', type: 'circle', source: 'bmu', paint: { 'circle-radius': 10, 'circle-color': '#3498DB', 'circle-stroke-color': '#fff', 'circle-stroke-width': 2 } });
         map.addLayer({ id: 'bmu-label', type: 'symbol', source: 'bmu', layout: { 'text-field': ['get', 'label'], 'text-size': 11, 'text-offset': [0, 1.5], 'text-anchor': 'top' }, paint: { 'text-color': '#1e40af', 'text-halo-color': '#fff', 'text-halo-width': 1 } });
 
-        // Depot
-        map.addSource('depot', { type: 'geojson', data: { type: 'FeatureCollection', features: [{ type: 'Feature', geometry: { type: 'Point', coordinates: [DEPOT.lon, DEPOT.lat] }, properties: { label: 'Depot' } }] } });
+        // Udupi Central Depot
+        map.addSource('depot', { type: 'geojson', data: { type: 'FeatureCollection', features: [{ type: 'Feature', geometry: { type: 'Point', coordinates: [DEPOT.lon, DEPOT.lat] }, properties: { label: 'Udupi CMC Depot' } }] } });
         map.addLayer({ id: 'depot-circle', type: 'circle', source: 'depot', paint: { 'circle-radius': 7, 'circle-color': '#F59E0B', 'circle-stroke-color': '#fff', 'circle-stroke-width': 2 } });
 
         // Popups
@@ -344,13 +343,13 @@ export default function RoutingDashboard() {
           if (!e.features?.[0]) return;
           const p = e.features[0].properties;
           const c = (e.features[0].geometry as GeoJSON.Point).coordinates;
-          new maplibregl.Popup({ offset: 15 }).setLngLat(c as [number, number]).setHTML(`<div style="font-family:Inter,sans-serif;padding:4px;"><strong>${p?.id||''}</strong><br/><span style="color:#666">${p?.label||''}</span><br/><small>${(c[1] as number).toFixed(5)}, ${(c[0] as number).toFixed(5)}</small><br/><small>Capacity: 3 TPD</small></div>`).addTo(map);
+          new maplibregl.Popup({ offset: 15 }).setLngLat(c as [number, number]).setHTML(`<div style="font-family:Inter,sans-serif;padding:4px;"><strong>${p?.id||''}</strong><br/><span style="color:#666">${p?.label||''}</span><br/><small>${(c[1] as number).toFixed(5)}, ${(c[0] as number).toFixed(5)}</small><br/><small>Udupi CMC Facility</small></div>`).addTo(map);
         });
         map.on('click', 'bmu-circle', (e) => {
           if (!e.features?.[0]) return;
           const p = e.features[0].properties;
           const c = (e.features[0].geometry as GeoJSON.Point).coordinates;
-          new maplibregl.Popup({ offset: 15 }).setLngLat(c as [number, number]).setHTML(`<div style="font-family:Inter,sans-serif;padding:4px;"><strong>${p?.label||''}</strong><br/><span style="color:#3b82f6">2.1 km from HSR · Wet waste processing</span><br/><small>${(c[1] as number).toFixed(5)}, ${(c[0] as number).toFixed(5)}</small></div>`).addTo(map);
+          new maplibregl.Popup({ offset: 15 }).setLngLat(c as [number, number]).setHTML(`<div style="font-family:Inter,sans-serif;padding:4px;"><strong>${p?.label||''}</strong><br/><span style="color:#3b82f6">Udupi Central Waste Processing</span><br/><small>${(c[1] as number).toFixed(5)}, ${(c[0] as number).toFixed(5)}</small></div>`).addTo(map);
         });
         map.on('mouseenter', 'dwcc-circles', () => { map.getCanvas().style.cursor = 'pointer'; });
         map.on('mouseleave', 'dwcc-circles', () => { map.getCanvas().style.cursor = ''; });
@@ -419,7 +418,7 @@ export default function RoutingDashboard() {
           <div style={{ width: 40, height: 40, borderRadius: 12, background: 'linear-gradient(135deg, #14b8a6, #2563eb)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>♻</div>
           <div>
             <h1 style={{ fontSize: 20, fontWeight: 700, margin: 0, letterSpacing: -0.5 }}>AstraCity Routing Engine</h1>
-            <p style={{ fontSize: 12, color: '#94a3b8', margin: 0 }}>Udupi City · Udupi CMC · {ROUTING_CONFIG.vehicle_fleet.length} Vehicles · 6 DWCCs · Kudlu BMU</p>
+            <p style={{ fontSize: 12, color: '#94a3b8', margin: 0 }}>Udupi City · Udupi CMC · {ROUTING_CONFIG.vehicle_fleet.length} Vehicles · 6 DWCCs · Karvalu SWM / Beedinagudde BMU</p>
           </div>
         </div>
         <motion.button
@@ -490,7 +489,7 @@ export default function RoutingDashboard() {
             </button>
           </div>
           
-          {/* Zone Math Explanation Tooltip (Mixing with previous UI plan) */}
+          {/* Two-Tier Math Explanation */}
           <div style={{ position: 'absolute', top: 90, left: 12, zIndex: 10 }}>
             <AnimatePresence>
               {showZones && (
@@ -502,28 +501,28 @@ export default function RoutingDashboard() {
                 >
                   <h3 style={{ fontSize: 13, fontWeight: 700, marginBottom: 8, color: '#60a5fa' }}>Two-Tier Routing Math</h3>
                   <div style={{ fontSize: 11, color: '#cbd5e1', marginBottom: 12 }}>
-                    <p style={{ marginBottom: 4 }}><strong>Red Zones (66% of HSR):</strong> Residential grids &lt;4m wide.</p>
-                    <p><strong>Green Lines (15%):</strong> Arterial roads &gt;6m wide.</p>
+                    <p style={{ marginBottom: 4 }}><strong>Red Zones (77.9% of Udupi):</strong> Residential lanes &lt;4m wide.</p>
+                    <p><strong>Green Lines (17.4%):</strong> Arterial & Trunk roads &gt;6m wide.</p>
                   </div>
                   <div style={{ background: 'rgba(0,0,0,0.3)', padding: 10, borderRadius: 8, fontSize: 11 }}>
                     <span style={{ color: '#ef4444', fontWeight: 600 }}>1. Primary Collection</span><br />
-                    <span style={{ color: '#94a3b8' }}><strong>12 Auto Rickshaws</strong> running 3 rounds/day (18,000 kg capacity) cover the red zones.</span>
+                    <span style={{ color: '#94a3b8' }}><strong>12 Auto Rickshaws</strong> running 3 rounds/day cover the narrow residential lanes.</span>
                     <div style={{ margin: '8px 0', borderTop: '1px solid rgba(255,255,255,0.1)' }} />
                     <span style={{ color: '#10b981', fontWeight: 600 }}>2. Secondary Collection</span><br />
-                    <span style={{ color: '#94a3b8' }}>VRP assigns <strong>2 Compactors</strong> strictly to the green main roads.</span>
+                    <span style={{ color: '#94a3b8' }}>VRP assigns <strong>2 Heavy Compactors</strong> strictly to main arterial roads.</span>
                   </div>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
           
-          {/* Bottom Left controls */}
+          {/* Bottom Left Status */}
           <div style={{ position: 'absolute', bottom: 30, left: 12, zIndex: 10 }}>
             <button
-              onClick={() => setKudluAvailable(!kudluAvailable)}
-              style={{ padding: '6px 12px', borderRadius: 8, border: 'none', cursor: 'pointer', fontSize: 11, fontWeight: 600, background: kudluAvailable ? 'rgba(15,23,42,0.85)' : '#ef4444', color: '#fff', backdropFilter: 'blur(8px)' }}
+              onClick={() => setFacilityAvailable(!facilityAvailable)}
+              style={{ padding: '6px 12px', borderRadius: 8, border: 'none', cursor: 'pointer', fontSize: 11, fontWeight: 600, background: facilityAvailable ? 'rgba(15,23,42,0.85)' : '#ef4444', color: '#fff', backdropFilter: 'blur(8px)' }}
             >
-              {kudluAvailable ? '✅ Kudlu Online' : '⚠️ Kudlu Offline → Carmelaram'}
+              {facilityAvailable ? '✅ Beedinagudde BMU Online' : '⚠️ BMU Offline → Karvalu SWM Redirect'}
             </button>
           </div>
         </div>
@@ -538,10 +537,10 @@ export default function RoutingDashboard() {
                 {/* KPI Cards */}
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 20 }}>
                   {[
-                    { label: 'Daily Waste', value: '55 TPD', color: '#14b8a6', sub: '110K residents' },
+                    { label: 'Daily Waste', value: `${UDUPI_DATA.daily_waste_tons} TPD`, color: '#14b8a6', sub: `${(UDUPI_DATA.population/1000).toFixed(0)}K residents` },
                     { label: 'Fleet Size', value: ROUTING_CONFIG.vehicle_fleet.length.toString(), color: '#3b82f6', sub: `${new Set(ROUTING_CONFIG.vehicle_fleet.map((v: any) => v.type)).size} types` },
-                    { label: 'DWCCs In-Ward', value: '6', color: '#22c55e', sub: '18 TPD capacity' },
-                    { label: 'BMU Distance', value: '2.1 km', color: '#f59e0b', sub: 'Kudlu (South)' },
+                    { label: 'DWCCs In-Ward', value: '6', color: '#22c55e', sub: '40 TPD capacity' },
+                    { label: 'BMU Distance', value: '1.2 km', color: '#f59e0b', sub: 'Beedinagudde' },
                   ].map((kpi, i) => (
                     <motion.div
                       key={kpi.label}
@@ -585,10 +584,10 @@ export default function RoutingDashboard() {
                 <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 10, color: '#cbd5e1' }}>Waste Stream Routing</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 20 }}>
                   {[
-                    { stream: 'Wet/Organic (61%)', dest: 'Kudlu BMU', dist: '2.1 km S', color: '#22c55e' },
-                    { stream: 'Dry/Recyclable (30%)', dest: '6 DWCCs', dist: '< 1 km', color: '#3b82f6' },
-                    { stream: 'Hazardous (5%)', dest: 'Auth. Handler', dist: 'Variable', color: '#ef4444' },
-                    { stream: 'Rejects (4%)', dest: 'Yelahanka', dist: '21 km N', color: '#64748b' },
+                    { stream: 'Wet/Organic (61%)', dest: 'Beedinagudde BMU', dist: '1.2 km', color: '#22c55e' },
+                    { stream: 'Dry/Recyclable (30%)', dest: '6 DWCCs / Karvalu MRF', dist: '< 2 km', color: '#3b82f6' },
+                    { stream: 'Hazardous (5%)', dest: 'KSPCB Authorised Handler', dist: 'Karvalu', color: '#ef4444' },
+                    { stream: 'Rejects (4%)', dest: 'Karvalu Regional Landfill', dist: '8.2 km', color: '#64748b' },
                   ].map(s => (
                     <div key={s.stream} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', borderRadius: 8, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.04)' }}>
                       <div style={{ width: 8, height: 8, borderRadius: '50%', background: s.color, flexShrink: 0 }} />
@@ -704,7 +703,7 @@ export default function RoutingDashboard() {
                       );
                     })}
 
-                    <h3 style={{ fontSize: 13, fontWeight: 600, color: '#94a3b8', margin: '24px 0 12px' }}>Primary Fleet (Pre-Assigned Blocks)</h3>
+                    <h3 style={{ fontSize: 13, fontWeight: 600, color: '#94a3b8', margin: '24px 0 12px' }}>Primary Fleet (Pre-Assigned Sector Lanes)</h3>
                     {ROUTING_CONFIG.vehicle_fleet.filter((v: any) => v.type === 'auto_tipper').map((v: any, i: number) => (
                       <motion.div
                         key={v.id}
@@ -722,7 +721,7 @@ export default function RoutingDashboard() {
                         </div>
                         <div style={{ flex: 1 }}>
                           <p style={{ fontSize: 13, fontWeight: 600, margin: 0 }}>{v.id}</p>
-                          <p style={{ fontSize: 10, color: '#94a3b8', margin: 0 }}>Auto Rickshaw · 500 kg · Zone {v.zone}</p>
+                          <p style={{ fontSize: 10, color: '#94a3b8', margin: 0 }}>Auto Rickshaw · 500 kg · Sector {v.zone}</p>
                         </div>
                         <div style={{ textAlign: 'right' }}>
                           <p style={{ fontSize: 11, fontWeight: 600, margin: 0, color: '#e2e8f0' }}>3 Rounds/Day</p>
@@ -745,7 +744,7 @@ export default function RoutingDashboard() {
             {activeTab === 'loadbalance' && (
               <motion.div key="loadbalance" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
                 <h2 style={{ fontSize: 18, fontWeight: 700, marginBottom: 16 }}>⚖️ DWCC Load Balancing</h2>
-                <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 16 }}>Capacity: 3 TPD per DWCC · Alert: 🟡 70% · 🔴 90% · 💀 100%</p>
+                <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 16 }}>Capacity: 5 TPD per DWCC · Alert: 🟡 70% · 🔴 90% · 💀 100%</p>
 
                 {dwccLoads.map((d, i) => {
                   const barColor = d.status === 'critical' ? '#ef4444' : d.status === 'red' ? '#f97316' : d.status === 'yellow' ? '#eab308' : '#22c55e';
@@ -806,7 +805,7 @@ export default function RoutingDashboard() {
             {activeTab === 'compliance' && (
               <motion.div key="compliance" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }}>
                 <h2 style={{ fontSize: 18, fontWeight: 700, marginBottom: 16 }}>🛣️ Road-Width Compliance</h2>
-                <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 16 }}>IRC road classification × vehicle compatibility · 2,027 segments</p>
+                <p style={{ fontSize: 12, color: '#94a3b8', marginBottom: 16 }}>IRC road classification × vehicle compatibility · 2,027 Udupi road segments</p>
 
                 {/* Road type bars */}
                 {ROAD_TYPES.map((r, i) => (
@@ -839,7 +838,7 @@ export default function RoutingDashboard() {
                 <div style={{ marginTop: 16, padding: 14, borderRadius: 10, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
                   <p style={{ fontSize: 13, fontWeight: 600, margin: '0 0 10px', color: '#cbd5e1' }}>Vehicle Coverage Matrix</p>
                   {[
-                    { vehicle: '🏗️ Hook Loader', roads: 'Trunk only', count: 38, pct: 1.9, color: '#E67E22' },
+                    { vehicle: '🏗️ Hook Loader', roads: 'Trunk only (NH 66)', count: 38, pct: 1.9, color: '#E67E22' },
                     { vehicle: '🚛 Large Compactor', roads: 'Trunk + Primary', count: 48, pct: 2.4, color: '#9B59B6' },
                     { vehicle: '🚛 Small Compactor', roads: '+ Secondary', count: 161, pct: 7.9, color: '#3498DB' },
                     { vehicle: '🛺 Auto Tipper', roads: '+ Tertiary + Residential', count: 1371, pct: 67.6, color: '#2ECC71' },
@@ -874,7 +873,7 @@ export default function RoutingDashboard() {
                 <h2 style={{ fontSize: 18, fontWeight: 700, marginBottom: 16 }}>Udupi CMC Facilities</h2>
 
                 {/* DWCCs */}
-                <h3 style={{ fontSize: 14, fontWeight: 600, color: '#22c55e', marginBottom: 8 }}>🟢 DWCCs Inside HSR — 6</h3>
+                <h3 style={{ fontSize: 14, fontWeight: 600, color: '#22c55e', marginBottom: 8 }}>🟢 Udupi DWCCs & MRFs — 6</h3>
                 {DWCC_LIST.map(d => (
                   <div key={d.id} style={{ padding: '10px 14px', borderRadius: 8, marginBottom: 6, background: 'rgba(34,197,94,0.05)', border: '1px solid rgba(34,197,94,0.1)', fontSize: 12 }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -887,30 +886,30 @@ export default function RoutingDashboard() {
                 ))}
 
                 {/* BMU */}
-                <h3 style={{ fontSize: 14, fontWeight: 600, color: '#3b82f6', marginTop: 16, marginBottom: 8 }}>🔵 Nearest BMU</h3>
+                <h3 style={{ fontSize: 14, fontWeight: 600, color: '#3b82f6', marginTop: 16, marginBottom: 8 }}>🔵 Bio-Methanisation Plant</h3>
                 <div style={{ padding: '10px 14px', borderRadius: 8, background: 'rgba(59,130,246,0.05)', border: '1px solid rgba(59,130,246,0.1)', fontSize: 12 }}>
-                  <strong>Kudlu BMU</strong> — 2.10 km South<br />
-                  <span style={{ color: '#94a3b8', fontSize: 11 }}>Bio-Methanisation · Wet waste · 33.55 TPD</span><br />
-                  <span style={{ color: '#64748b', fontSize: 10 }}>{BMU_KUDLU.lat}, {BMU_KUDLU.lon}</span>
+                  <strong>Beedinagudde BMU</strong> — 1.20 km Central<br />
+                  <span style={{ color: '#94a3b8', fontSize: 11 }}>Bio-Methanisation · Wet waste · 43.92 TPD processing capacity</span><br />
+                  <span style={{ color: '#64748b', fontSize: 10 }}>{BMU_BEEDINAGUDDE.lat}, {BMU_BEEDINAGUDDE.lon}</span>
                 </div>
 
-                {/* Dumpyards */}
-                <h3 style={{ fontSize: 14, fontWeight: 600, color: '#ef4444', marginTop: 16, marginBottom: 8 }}>🔴 Dumpyards — 0 in HSR</h3>
-                <div style={{ padding: '10px 14px', borderRadius: 8, background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.1)', fontSize: 12 }}>
-                  <p style={{ margin: 0, color: '#fca5a5' }}>All 3 Udupi CMC dumpyards are in North Udupi (21-27 km away)</p>
-                  <p style={{ margin: '4px 0 0', color: '#64748b', fontSize: 11 }}>Nearest: Yelahanka — 21.03 km</p>
+                {/* Landfill / MRF */}
+                <h3 style={{ fontSize: 14, fontWeight: 600, color: '#eab308', marginTop: 16, marginBottom: 8 }}>🟡 Regional SWM Campus</h3>
+                <div style={{ padding: '10px 14px', borderRadius: 8, background: 'rgba(234,179,8,0.05)', border: '1px solid rgba(234,179,8,0.1)', fontSize: 12 }}>
+                  <p style={{ margin: 0, fontWeight: 600, color: '#fef08a' }}>Karvalu SWM Plant & Engineered Landfill</p>
+                  <p style={{ margin: '4px 0 0', color: '#94a3b8', fontSize: 11 }}>22-acre centralized campus in Alevoor (~8 km from city center)</p>
                 </div>
 
                 {/* Stats */}
                 <div style={{ marginTop: 16, padding: 14, borderRadius: 10, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
-                  <p style={{ fontSize: 13, fontWeight: 600, margin: '0 0 8px', color: '#cbd5e1' }}>Udupi Udupi CMC Totals</p>
+                  <p style={{ fontSize: 13, fontWeight: 600, margin: '0 0 8px', color: '#cbd5e1' }}>Udupi CMC Infrastructure</p>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, fontSize: 11 }}>
-                    <div>DWCCs: <strong>336</strong></div>
-                    <div>BMUs: <strong>11</strong></div>
-                    <div>Processing Units: <strong>8</strong></div>
-                    <div>Dumpyards: <strong>3</strong></div>
+                    <div>DWCCs: <strong>16</strong></div>
+                    <div>BMUs: <strong>2</strong></div>
+                    <div>Central MRF: <strong>1</strong></div>
+                    <div>Landfill: <strong>1 (Engineered)</strong></div>
                   </div>
-                  <p style={{ margin: '8px 0 0', fontSize: 10, color: '#64748b' }}>Source: Udupi CMC Official Shapefiles (June 2026)</p>
+                  <p style={{ margin: '8px 0 0', fontSize: 10, color: '#64748b' }}>Source: Udupi CMC SWM Master Plan (2026)</p>
                 </div>
               </motion.div>
             )}

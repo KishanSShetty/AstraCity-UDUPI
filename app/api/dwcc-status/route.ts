@@ -2,39 +2,29 @@ import { NextResponse } from 'next/server';
 
 /**
  * GET /api/dwcc-status — Returns real-time DWCC load and capacity status for Udupi City.
- * 
- * Response structure:
- * {
- *   dwccs: [{ id, label, lat, lon, capacity_tpd, load_kg, load_pct, status }],
- *   total_capacity_tpd: 18,
- *   total_load_kg: number,
- *   avg_utilization_pct: number,
- *   alerts: [{ dwcc_id, level, message }]
- * }
  */
 
 const DWCC_CONFIG = [
-  { id: 'DWCC-1', label: 'Sector 2 East',    lat: 12.91263,  lon: 77.64903, capacity_tpd: 3 },
-  { id: 'DWCC-2', label: 'Sector 3 North',   lat: 12.92218,  lon: 77.64688, capacity_tpd: 3 },
-  { id: 'DWCC-3', label: 'Sector 3 Central',  lat: 12.91811,  lon: 77.64545, capacity_tpd: 3 },
-  { id: 'DWCC-4', label: 'Sector 2 East Alt', lat: 12.91218,  lon: 77.64755, capacity_tpd: 3 },
-  { id: 'DWCC-5', label: 'Sector 1 SW',       lat: 12.90536,  lon: 77.63312, capacity_tpd: 3 },
-  { id: 'DWCC-6', label: 'Sector 1 South',    lat: 12.89907,  lon: 77.64077, capacity_tpd: 3 },
+  { id: 'DWCC-1', label: 'Beedinagudde Dry Waste Center', lat: 13.3415, lon: 74.7455, capacity_tpd: 5 },
+  { id: 'DWCC-2', label: 'Karavali Junction DWCC',       lat: 13.3377, lon: 74.7370, capacity_tpd: 4 },
+  { id: 'DWCC-3', label: 'Malpe Coastal DWCC',           lat: 13.3533, lon: 74.7042, capacity_tpd: 5 },
+  { id: 'DWCC-4', label: 'Manipal Academic Belt DWCC',    lat: 13.3525, lon: 74.7872, capacity_tpd: 6 },
+  { id: 'DWCC-5', label: 'Santhekatte Commercial DWCC',  lat: 13.3800, lon: 74.7450, capacity_tpd: 5 },
+  { id: 'DWCC-6', label: 'Karvalu Central SWM Plant',     lat: 13.35028, lon: 74.75028, capacity_tpd: 15 },
 ];
 
 export async function GET() {
-  // Simulate realistic load distribution based on HSR waste generation
-  // Total dry waste directed to DWCCs: 30% of 55 TPD = 16.5 TPD across 6 DWCCs (2.75 TPD avg)
+  // Total dry waste generated in Udupi: 30% of 72 TPD = 21.6 TPD across 6 DWCCs
   const hour = new Date().getHours();
   const collectionFactor = hour >= 6 && hour <= 10 ? 0.85 : hour <= 18 ? 0.65 : 0.35;
 
   const loads = [
-    2760, // DWCC-1: Sector 2 has highest building density (2189 buildings)
-    2250, // DWCC-2: Sector 3 North, moderate
-    2040, // DWCC-3: Sector 3 Central
-    2640, // DWCC-4: Sector 2 East Alt, high density area
-    1350, // DWCC-5: Sector 1 SW, lower density
-    1650, // DWCC-6: Sector 1 South, moderate
+    3600, // DWCC-1: Beedinagudde (Ward 24) - Central high volume
+    2800, // DWCC-2: Karavali Junction
+    3400, // DWCC-3: Malpe Fishery & Commercial Belt
+    4200, // DWCC-4: Manipal Health Sciences & Campus
+    3200, // DWCC-5: Santhekatte Market
+    4400, // DWCC-6: Karvalu Central SWM Facility
   ];
 
   const dwccs = DWCC_CONFIG.map((d, i) => {
@@ -57,15 +47,15 @@ export async function GET() {
       dwcc_id: d.id,
       level: d.status,
       message: d.status === 'critical'
-        ? `${d.id} at ${d.load_pct}% — OVERFLOW! Redirect vehicles to ${d.load_pct > 100 ? 'DWCC-5' : 'DWCC-3'}`
+        ? `${d.label} at ${d.load_pct}% — OVERFLOW! Redirect vehicles to Karvalu Central SWM`
         : d.status === 'red'
-        ? `${d.id} at ${d.load_pct}% — approaching capacity, consider redistribution`
-        : `${d.id} at ${d.load_pct}% — monitoring`,
+        ? `${d.label} at ${d.load_pct}% — approaching capacity, consider redistribution`
+        : `${d.label} at ${d.load_pct}% — monitoring`,
     }));
 
   return NextResponse.json({
     dwccs,
-    total_capacity_tpd: 18,
+    total_capacity_tpd: 40,
     total_load_kg,
     avg_utilization_pct,
     collection_window: hour >= 6 && hour <= 10 ? 'Primary (06:00-10:00)' : hour <= 18 ? 'Secondary (10:00-18:00)' : 'Night',

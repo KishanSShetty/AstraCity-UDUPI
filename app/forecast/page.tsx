@@ -4,11 +4,41 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, ReferenceLine } from 'recharts';
+import { Calendar as CalendarIcon, Plus, Trash2, ChevronLeft, ChevronRight, Settings, Building, Building2, MapPin, Recycle, Truck, Info } from 'lucide-react';
 import { UDUPI_DATA } from '@/lib/constants';
+
+interface Festival {
+  date: string;
+  name: string;
+}
+
+const initialFestivals: Festival[] = [
+  { date: '2026-01-14', name: 'Udupi Rathotsava (Makara Sankranti)' },
+  { date: '2026-01-18', name: 'Paryaya' },
+  { date: '2026-09-04', name: 'Astami Udupi (Krishna Janmashtami)' },
+  { date: '2026-09-14', name: 'Ganesh Chaturthi' },
+];
 
 export default function ForecastPage() {
   const [mounted, setMounted] = useState(false);
   const [weatherLoaded, setWeatherLoaded] = useState(false);
+
+  const [festivals, setFestivals] = useState<Festival[]>(initialFestivals);
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+  const [newFestDate, setNewFestDate] = useState('');
+  const [newFestName, setNewFestName] = useState('');
+
+  // Simulation states
+  const [demolition, setDemolition] = useState(false);
+  const [apartments, setApartments] = useState(false);
+  const [encroachment, setEncroachment] = useState(false);
+  const [segregation, setSegregation] = useState(0);
+
+  const getFestivalName = (dateStr: string) => {
+    const ymd = dateStr.split('T')[0];
+    const found = festivals.find(f => f.date === ymd);
+    return found ? found.name : null;
+  };
 
   const BASE_WET = UDUPI_DATA.waste_wet_tons; 
   const BASE_DRY = UDUPI_DATA.waste_dry_tons;  
@@ -31,11 +61,22 @@ export default function ForecastPage() {
       is_weekend: isWeekend,
       temp: 28,
       rain: 0,
-      is_festival: false,
+      is_festival: !!initialFestivals.find(f => f.date === dayStr),
     };
   });
 
   const [days, setDays] = useState(createInitialDays());
+
+  // Sync festivals when user adds/removes them
+  useEffect(() => {
+    if (mounted) {
+      setDays(prev => prev.map(d => {
+        const ymd = d.date.split('T')[0];
+        const isFest = !!festivals.find(f => f.date === ymd);
+        return { ...d, is_festival: d.is_festival || isFest };
+      }));
+    }
+  }, [festivals, mounted]);
 
   // Fetch real 10-day weather forecast from Open-Meteo API (free, no API key)
   useEffect(() => {
@@ -70,7 +111,7 @@ export default function ForecastPage() {
   }, []);
 
   // --- THE FORMULA PREDICTION MODEL ---
-  const calculateDay = (d: typeof initialDays[0]) => {
+  const calculateDay = (d: ReturnType<typeof createInitialDays>[0]) => {
     let mult_wet = 1.0;
     let mult_dry = 1.0;
 
@@ -91,6 +132,25 @@ export default function ForecastPage() {
       mult_wet += 0.10;
       mult_dry += 0.05;
     }
+
+    // 4. City Simulation Scenarios
+    if (demolition) {
+      mult_dry *= 1.40; // C&D waste mostly affects dry/inert
+      mult_wet *= 1.10;
+    }
+    if (apartments) {
+      mult_wet *= 1.18;
+      mult_dry *= 1.18;
+    }
+    if (encroachment) {
+      mult_wet *= 1.05;
+      mult_dry *= 1.05;
+    }
+
+    // Segregation drive reduces the overall mixed waste going into formula
+    const reductionFactor = segregation * 0.008; 
+    mult_wet *= (1 - reductionFactor);
+    mult_dry *= (1 - reductionFactor);
 
     const wet = Number((BASE_WET * mult_wet).toFixed(2));
     const dry = Number((BASE_DRY * mult_dry).toFixed(2));
@@ -140,7 +200,15 @@ export default function ForecastPage() {
         <div className="lg:col-span-2 space-y-8">
           <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm overflow-x-auto">
             <h2 className="text-xl font-extrabold text-slate-900 mb-2">Live Parameter Inputs</h2>
-            <p className="text-sm text-slate-500 mb-6">{weatherLoaded ? '✅ Live weather data from Open-Meteo API (Udupi: 13.34°N, 74.74°E).  Adjust sliders to override. <a href="https://api.open-meteo.com/v1/forecast?latitude=13.3409&longitude=74.7421&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Asia/Kolkata&forecast_days=10" target="_blank" className="text-sky-500 hover:text-sky-600 underline font-bold ml-2">View Raw API Data →</a>' : '⏳ Loading weather data from Open-Meteo API...'}</p>
+            <p className="text-sm text-slate-500 mb-6">
+              {weatherLoaded ? (
+                <>
+                  ✅ Live weather data from Open-Meteo API (Udupi: 13.34°N, 74.74°E). Adjust sliders to override. <a href="https://api.open-meteo.com/v1/forecast?latitude=13.3409&longitude=74.7421&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Asia/Kolkata&forecast_days=10" target="_blank" className="text-sky-500 hover:text-sky-600 underline font-bold ml-2">View Raw API Data →</a>
+                </>
+              ) : (
+                '⏳ Loading weather data from Open-Meteo API...'
+              )}
+            </p>
 
             <table className="w-full text-left text-sm text-slate-500">
               <thead className="bg-slate-50 border-b border-slate-200">
@@ -173,7 +241,10 @@ export default function ForecastPage() {
                       </div>
                     </td>
                     <td className="px-3 py-3">
-                      <input type="checkbox" checked={d.is_festival} onChange={(e) => updateDay(i, 'is_festival', e.target.checked)} className="accent-orange-500 w-4 h-4 cursor-pointer" />
+                      <div className="flex items-center gap-2">
+                        <input type="checkbox" checked={d.is_festival} onChange={(e) => updateDay(i, 'is_festival', e.target.checked)} className="accent-orange-500 w-4 h-4 cursor-pointer" />
+                        {getFestivalName(d.date) && <span className="text-[10px] bg-orange-100 text-orange-700 px-2 py-0.5 rounded-full font-bold truncate max-w-[80px]" title={getFestivalName(d.date) ?? ''}>{getFestivalName(d.date)}</span>}
+                      </div>
                     </td>
                     <td className="px-3 py-3 font-black text-slate-900 text-xs">
                       {d.total_waste} T
@@ -223,9 +294,288 @@ export default function ForecastPage() {
               <li className="flex justify-between"><span>Temp &gt; 34°C:</span> <span className="text-blue-600 font-bold">+12% Dry</span></li>
               <li className="flex justify-between"><span>Festival day:</span> <span className="text-orange-500 font-bold">+35% Wet, +15% Dry</span></li>
               <li className="flex justify-between"><span>Weekend:</span> <span className="text-sky-600 font-bold">+10% Wet, +5% Dry</span></li>
+              {(demolition || apartments || encroachment || segregation > 0) && <li className="border-t border-slate-100 my-2"></li>}
+              {demolition && <li className="flex justify-between"><span>Demolition:</span> <span className="text-rose-600 font-bold">+40% Dry, +10% Wet</span></li>}
+              {apartments && <li className="flex justify-between"><span>New Apts:</span> <span className="text-rose-600 font-bold">+18% All</span></li>}
+              {encroachment && <li className="flex justify-between"><span>Encroachment:</span> <span className="text-rose-600 font-bold">+5% All</span></li>}
+              {segregation > 0 && <li className="flex justify-between"><span>Segregation:</span> <span className="text-emerald-600 font-bold">-{segregation * 0.8}% Waste</span></li>}
             </ul>
           </div>
         </div>
+
+        {/* 🏙️ CITY SCENARIOS SECTION (SIMULATION) */}
+        <div className="lg:col-span-3 space-y-6 mt-4">
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+            <h2 className="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2">
+               <Settings className="w-6 h-6 text-teal-600" />
+               City Simulation Scenarios
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              
+              {/* Demolition */}
+              <div className="flex flex-col gap-3 p-4 border border-slate-100 rounded-2xl hover:border-slate-300 transition-colors bg-slate-50">
+                <div className="flex justify-between items-start">
+                  <div className="p-2 bg-rose-100 text-rose-600 rounded-lg"><Building2 className="w-5 h-5" /></div>
+                  <button 
+                    onClick={() => setDemolition(!demolition)}
+                    className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${demolition ? 'bg-teal-500' : 'bg-slate-300'}`}
+                  >
+                    <div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 ${demolition ? 'translate-x-6' : 'translate-x-0'}`} />
+                  </button>
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 text-sm">Building Demolition</h3>
+                  <p className="text-xs text-slate-500 mt-1">Massive C&D waste spike (+40% dry) from urban redevelopment.</p>
+                </div>
+              </div>
+
+              {/* Apartments */}
+              <div className="flex flex-col gap-3 p-4 border border-slate-100 rounded-2xl hover:border-slate-300 transition-colors bg-slate-50">
+                <div className="flex justify-between items-start">
+                  <div className="p-2 bg-blue-100 text-blue-600 rounded-lg"><Building className="w-5 h-5" /></div>
+                  <button 
+                    onClick={() => setApartments(!apartments)}
+                    className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${apartments ? 'bg-teal-500' : 'bg-slate-300'}`}
+                  >
+                    <div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 ${apartments ? 'translate-x-6' : 'translate-x-0'}`} />
+                  </button>
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 text-sm">New Apartments</h3>
+                  <p className="text-xs text-slate-500 mt-1">Addition of +500 residential units in expanding areas (+18%).</p>
+                </div>
+              </div>
+
+              {/* Encroachment */}
+              <div className="flex flex-col gap-3 p-4 border border-slate-100 rounded-2xl hover:border-slate-300 transition-colors bg-slate-50">
+                <div className="flex justify-between items-start">
+                  <div className="p-2 bg-amber-100 text-amber-600 rounded-lg"><MapPin className="w-5 h-5" /></div>
+                  <button 
+                    onClick={() => setEncroachment(!encroachment)}
+                    className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${encroachment ? 'bg-teal-500' : 'bg-slate-300'}`}
+                  >
+                    <div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 ${encroachment ? 'translate-x-6' : 'translate-x-0'}`} />
+                  </button>
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 text-sm">Space Encroachment</h3>
+                  <p className="text-xs text-slate-500 mt-1">Illegal dumping risk near open land areas (+5%).</p>
+                </div>
+              </div>
+
+              {/* Segregation Drive */}
+              <div className="flex flex-col gap-3 p-4 border border-slate-100 rounded-2xl hover:border-slate-300 transition-colors bg-slate-50">
+                <div className="flex justify-between items-start">
+                  <div className="p-2 bg-emerald-100 text-emerald-600 rounded-lg"><Recycle className="w-5 h-5" /></div>
+                  <span className="text-xs font-extrabold text-emerald-700 bg-emerald-100 px-2 py-1 rounded-md">+{segregation}%</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-slate-800 text-sm">Segregation Drive</h3>
+                  <p className="text-xs text-slate-500 mt-1">Improves waste processing efficiency.</p>
+                </div>
+                <input 
+                  type="range" 
+                  min="0" max="50" step="10" 
+                  value={segregation}
+                  onChange={(e) => setSegregation(Number(e.target.value))}
+                  className="w-full mt-2 accent-teal-600 cursor-pointer"
+                />
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        {/* 📅 CALENDAR SECTION (Full Width) */}
+        <div className="lg:col-span-3 space-y-6 mt-4">
+          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+              <div>
+                <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                  <CalendarIcon className="w-6 h-6 text-orange-500" />
+                  Udupi Local Calendar & Festivals
+                </h2>
+                <p className="text-sm text-slate-500">Track and manage local events like Paryaya, Rathotsava, and Astami that impact waste generation.</p>
+              </div>
+              
+              <div className="flex items-center gap-4 bg-slate-50 p-2 rounded-xl border border-slate-100">
+                <button onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1))} className="p-2 hover:bg-white rounded-lg transition-colors shadow-sm text-slate-600 hover:text-teal-600">
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+                <span className="font-bold text-slate-800 min-w-[120px] text-center">
+                  {currentMonth.toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                </span>
+                <button onClick={() => setCurrentMonth(new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1))} className="p-2 hover:bg-white rounded-lg transition-colors shadow-sm text-slate-600 hover:text-teal-600">
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+              {/* Calendar Grid */}
+              <div className="lg:col-span-3">
+                <div className="grid grid-cols-7 gap-2">
+                  {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(day => <div key={day} className="text-center font-bold text-xs text-slate-400 py-2">{day}</div>)}
+                  {Array.from({ length: new Date(currentMonth.getFullYear(), currentMonth.getMonth(), 1).getDay() }).map((_, i) => <div key={`empty-${i}`} className="h-20 bg-slate-50/50 rounded-xl" />)}
+                  {Array.from({ length: new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 0).getDate() }).map((_, i) => {
+                    const day = i + 1;
+                    const dateStr = `${currentMonth.getFullYear()}-${String(currentMonth.getMonth() + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+                    const fest = festivals.find(f => f.date === dateStr);
+                    const isToday = new Date().toISOString().split('T')[0] === dateStr;
+
+                    return (
+                      <div key={day} className={`h-20 border rounded-xl p-2 relative flex flex-col items-start transition-all ${isToday ? 'bg-teal-50 border-teal-200 shadow-sm' : 'bg-white border-slate-100 hover:border-slate-300'} ${fest ? 'border-orange-200 bg-gradient-to-br from-orange-50 to-white' : ''}`}>
+                        <span className={`text-sm font-bold ${isToday ? 'text-teal-700' : 'text-slate-700'}`}>{day}</span>
+                        {fest && <span className="text-[10px] mt-1 text-orange-700 font-extrabold bg-orange-100/80 w-full p-1 rounded-md line-clamp-2 leading-tight" title={fest.name}>{fest.name}</span>}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Add Festival Panel */}
+              <div className="space-y-4">
+                <div className="bg-slate-50 border border-slate-100 p-4 rounded-2xl">
+                  <h3 className="font-bold text-slate-800 text-sm mb-3">Add Local Event</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <label className="text-xs font-bold text-slate-500 mb-1 block">Event Name</label>
+                      <input type="text" value={newFestName} onChange={(e) => setNewFestName(e.target.value)} placeholder="e.g. Kola / Jatre" className="w-full text-sm p-2 rounded-lg border border-slate-200 focus:outline-teal-500" />
+                    </div>
+                    <div>
+                      <label className="text-xs font-bold text-slate-500 mb-1 block">Date</label>
+                      <input type="date" value={newFestDate} onChange={(e) => setNewFestDate(e.target.value)} className="w-full text-sm p-2 rounded-lg border border-slate-200 focus:outline-teal-500" />
+                    </div>
+                    <button 
+                      onClick={() => {
+                        if (newFestName && newFestDate) {
+                          setFestivals([...festivals, { name: newFestName, date: newFestDate }]);
+                          setNewFestName('');
+                          setNewFestDate('');
+                        }
+                      }}
+                      disabled={!newFestName || !newFestDate}
+                      className="w-full flex items-center justify-center gap-2 bg-slate-900 hover:bg-teal-600 disabled:bg-slate-300 text-white font-bold py-2 px-4 rounded-lg transition-colors text-sm"
+                    >
+                      <Plus className="w-4 h-4" /> Add Event
+                    </button>
+                  </div>
+                </div>
+
+                <div className="bg-white border border-slate-100 p-4 rounded-2xl max-h-[300px] overflow-y-auto shadow-sm">
+                  <h3 className="font-bold text-slate-800 text-sm mb-3 flex justify-between items-center">
+                    Configured Events <span className="bg-slate-100 text-slate-600 text-xs px-2 py-0.5 rounded-full">{festivals.length}</span>
+                  </h3>
+                  <ul className="space-y-2">
+                    {festivals.sort((a,b) => a.date.localeCompare(b.date)).map((f, i) => (
+                      <li key={i} className="flex items-center justify-between group p-2 hover:bg-slate-50 rounded-lg transition-colors">
+                        <div className="flex flex-col">
+                          <span className="text-xs font-bold text-slate-700">{f.name}</span>
+                          <span className="text-[10px] text-slate-500 font-medium">{new Date(f.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
+                        </div>
+                        <button 
+                          onClick={() => setFestivals(festivals.filter((_, idx) => idx !== i))}
+                          className="text-slate-300 hover:text-red-500 transition-colors opacity-0 group-hover:opacity-100"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 🚚 FLEET LOGISTICS SECTION */}
+        {(() => {
+          const maxWasteDay = computedData.reduce((max, d) => d.total_waste > max.total_waste ? d : max, computedData[0]);
+          const peakTotal = maxWasteDay.total_waste;
+          
+          const baseAuto = Math.ceil(peakTotal / 3);
+          const autoBuffer = Math.ceil(baseAuto * 0.1);
+          
+          const baseCompactor = Math.ceil((peakTotal - BASE_HAZ) / 20);
+          const compactorBuffer = Math.ceil(baseCompactor * 0.1);
+          
+          let heavyWaste = BASE_HAZ;
+          if (demolition) heavyWaste += (BASE_DRY * 0.40);
+          const baseTractor = Math.ceil(heavyWaste / 6);
+          const tractorBuffer = Math.max(1, Math.ceil(baseTractor * 0.1));
+
+          return (
+            <div className="lg:col-span-3 space-y-6 mt-4">
+              <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/10 blur-[100px] rounded-full pointer-events-none" />
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 relative z-10">
+                  <div>
+                    <h2 className="text-xl font-extrabold text-white flex items-center gap-2">
+                      <Truck className="w-6 h-6 text-teal-400" />
+                      Dynamic Fleet Optimization
+                    </h2>
+                    <p className="text-sm text-slate-400">Maximum vehicles required to handle the 10-day peak of <span className="text-teal-400 font-bold">{peakTotal} Tons</span> (expected on {new Date(maxWasteDay.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}).</p>
+                  </div>
+                  <div className="bg-slate-800 border border-slate-700 text-slate-300 text-xs p-3 rounded-xl flex gap-3 max-w-sm">
+                    <Info className="w-8 h-8 text-teal-500 shrink-0" />
+                    <p>Calculated using standard SWM methodology: Vehicles complete 2 trips/day. A 10% standby buffer is included for maintenance.</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                  {/* Primary Collection */}
+                  <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
+                    <h3 className="text-teal-400 font-bold text-sm mb-1 uppercase tracking-wider">Primary Collection</h3>
+                    <p className="text-slate-400 text-xs mb-4">Door-to-door (Narrow lanes)</p>
+                    <div className="flex items-end gap-3 mb-4">
+                      <span className="text-4xl font-black text-white">{baseAuto + autoBuffer}</span>
+                      <span className="text-slate-500 font-bold pb-1">Auto Tippers</span>
+                    </div>
+                    <ul className="text-xs text-slate-300 space-y-1 font-medium bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                      <li className="flex justify-between"><span>Capacity:</span> <span className="text-white font-bold">1.5 Tons</span></li>
+                      <li className="flex justify-between"><span>Trips/Day:</span> <span className="text-white font-bold">2 (Total 3T)</span></li>
+                      <li className="flex justify-between border-t border-slate-700 pt-1 mt-1"><span>Active:</span> <span className="text-white font-bold">{baseAuto} vehicles</span></li>
+                      <li className="flex justify-between"><span>Buffer (10%):</span> <span className="text-amber-400 font-bold">+{autoBuffer} vehicles</span></li>
+                    </ul>
+                  </div>
+
+                  {/* Secondary Transport */}
+                  <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
+                    <h3 className="text-sky-400 font-bold text-sm mb-1 uppercase tracking-wider">Secondary Transport</h3>
+                    <p className="text-slate-400 text-xs mb-4">Transfer Station to Landfill</p>
+                    <div className="flex items-end gap-3 mb-4">
+                      <span className="text-4xl font-black text-white">{baseCompactor + compactorBuffer}</span>
+                      <span className="text-slate-500 font-bold pb-1">Compactors</span>
+                    </div>
+                    <ul className="text-xs text-slate-300 space-y-1 font-medium bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                      <li className="flex justify-between"><span>Capacity:</span> <span className="text-white font-bold">10.0 Tons</span></li>
+                      <li className="flex justify-between"><span>Trips/Day:</span> <span className="text-white font-bold">2 (Total 20T)</span></li>
+                      <li className="flex justify-between border-t border-slate-700 pt-1 mt-1"><span>Active:</span> <span className="text-white font-bold">{baseCompactor} vehicles</span></li>
+                      <li className="flex justify-between"><span>Buffer (10%):</span> <span className="text-amber-400 font-bold">+{compactorBuffer} vehicles</span></li>
+                    </ul>
+                  </div>
+
+                  {/* Heavy / C&D */}
+                  <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
+                    <h3 className="text-rose-400 font-bold text-sm mb-1 uppercase tracking-wider">Heavy / C&D Waste</h3>
+                    <p className="text-slate-400 text-xs mb-4">Debris & Hazardous Material</p>
+                    <div className="flex items-end gap-3 mb-4">
+                      <span className="text-4xl font-black text-white">{baseTractor + tractorBuffer}</span>
+                      <span className="text-slate-500 font-bold pb-1">Tractors</span>
+                    </div>
+                    <ul className="text-xs text-slate-300 space-y-1 font-medium bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                      <li className="flex justify-between"><span>Capacity:</span> <span className="text-white font-bold">3.0 Tons</span></li>
+                      <li className="flex justify-between"><span>Trips/Day:</span> <span className="text-white font-bold">2 (Total 6T)</span></li>
+                      <li className="flex justify-between border-t border-slate-700 pt-1 mt-1"><span>Active:</span> <span className="text-white font-bold">{baseTractor} vehicles</span></li>
+                      <li className="flex justify-between"><span>Buffer (10%):</span> <span className="text-amber-400 font-bold">+{tractorBuffer} vehicles</span></li>
+                    </ul>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          );
+        })()}
 
       </main>
     </div>

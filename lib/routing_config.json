@@ -41,28 +41,28 @@
   },
   "waste_routing": {
     "wet_organic": {
-      "destination": "kudlu_bmu",
-      "coordinates": [77.650711, 12.896183],
-      "distance_km": 2.1,
-      "label": "Kudlu BMU (Bio-Methanisation)"
+      "destination": "beedinagudde_bmu",
+      "coordinates": [74.7460, 13.3415],
+      "distance_km": 1.2,
+      "label": "Beedinagudde BMU (Bio-Methanisation)"
     },
     "dry_recyclable": {
       "destination": "nearest_dwcc_with_capacity",
-      "label": "Nearest DWCC with >=20% headroom"
+      "label": "Nearest Udupi DWCC with >=20% headroom"
     },
     "hazardous": {
       "destination": "authorised_handler",
-      "label": "KSPCB Authorised Handler"
+      "label": "KSPCB Authorised Handler (Karvalu SWM)"
     },
     "final_rejects": {
-      "destination": "yelahanka_dumpyard",
-      "coordinates": [77.645922, 13.103583],
-      "distance_km": 21.03,
-      "label": "Yelahanka Dumpyard"
+      "destination": "karvalu_landfill",
+      "coordinates": [74.75028, 13.35028],
+      "distance_km": 8.2,
+      "label": "Karvalu Regional Engineered Landfill"
     }
   },
   "dwcc_capacity": {
-    "default_tpd": 3,
+    "default_tpd": 4,
     "alert_thresholds": {
       "yellow": 70,
       "red": 90,
@@ -70,24 +70,23 @@
     }
   },
   "fallback_routing": {
-    "kudlu_unavailable": {
-      "redirect_to": "carmelaram_wpu",
-      "coordinates": [77.686032, 12.857962],
-      "distance_km": 7.64,
-      "label": "Carmelaram Processing Unit (Fallback)"
+    "beedinagudde_unavailable": {
+      "redirect_to": "karvalu_mrf",
+      "coordinates": [74.75028, 13.35068],
+      "distance_km": 8.2,
+      "label": "Karvalu Central MRF (Fallback)"
     }
   },
   "depot": {
-    "coordinates": [77.6460, 13.3409],
-    "label": "Udupi City Depot (Ward Centre)"
+    "coordinates": [74.7421, 13.3409],
+    "label": "Udupi City Central Depot (Beedinagudde)"
   },
   "collection_zones": [
-    { "id": "A", "area": "NE HSR", "sectors": "2-3", "dwcc_ids": ["#240", "#241"], "tpd": 5.5 },
-    { "id": "B", "area": "NW HSR", "sectors": "3-west", "dwcc_ids": ["#240"], "tpd": 5.0 },
-    { "id": "C", "area": "Central HSR", "sectors": "2-east", "dwcc_ids": ["#242", "#32"], "tpd": 5.2 },
-    { "id": "D", "area": "SW HSR", "sectors": "1", "dwcc_ids": ["#243"], "tpd": 4.8 },
-    { "id": "E", "area": "S HSR", "sectors": "1-south", "dwcc_ids": ["#244"], "tpd": 4.3 },
-    { "id": "F", "area": "Main roads", "sectors": "all", "dwcc_ids": [], "tpd": 16.5 },
-    { "id": "G", "area": "Kudlu run", "sectors": "exit-hsr", "dwcc_ids": [], "tpd": 33.55 }
+    { "id": "A", "area": "Beedinagudde & Maruthi Veethika", "sectors": "Central", "dwcc_ids": ["DWCC-1"], "tpd": 8.5 },
+    { "id": "B", "area": "Karavali Junction & City Center", "sectors": "South-West", "dwcc_ids": ["DWCC-2"], "tpd": 7.2 },
+    { "id": "C", "area": "Malpe Port & Coastal Belt", "sectors": "West", "dwcc_ids": ["DWCC-3"], "tpd": 11.4 },
+    { "id": "D", "area": "Manipal University Hilltop", "sectors": "East", "dwcc_ids": ["DWCC-4"], "tpd": 14.8 },
+    { "id": "E", "area": "Santhekatte & Ambagilu", "sectors": "North", "dwcc_ids": ["DWCC-5"], "tpd": 10.1 },
+    { "id": "F", "area": "Alevoor & Karvalu Suburb", "sectors": "South-East", "dwcc_ids": ["DWCC-6"], "tpd": 20.0 }
   ]
 }

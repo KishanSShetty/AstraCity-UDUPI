@@ -138,21 +138,28 @@ export default function RoutesAnalysisPage() {
       <div className="max-w-7xl mx-auto px-6 pt-24">
         
         {/* HEADER */}
-        <header className="mb-8">
+        <header className="mb-12 relative">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-teal-400/20 rounded-full blur-[120px] pointer-events-none -z-10" />
+          <div className="absolute top-0 right-1/4 w-96 h-96 bg-indigo-500/20 rounded-full blur-[120px] pointer-events-none -z-10" />
+          
+          <motion.div initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} className="flex items-center gap-3 mb-6">
+            <span className="px-4 py-1.5 text-xs font-black tracking-widest uppercase bg-teal-100/50 text-teal-700 rounded-full border border-teal-200 shadow-sm backdrop-blur-md">AI Routing Module</span>
+          </motion.div>
+
           <motion.h1 
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-4xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400 mb-4 tracking-tighter relative z-10"
+            className="text-5xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight relative z-10"
           >
-            Route Intelligence
+            Route <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-500 to-indigo-600">Intelligence</span>
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.1 }}
-            className="text-xl text-slate-500 font-medium tracking-wide mb-8 relative z-10"
+            className="text-lg md:text-xl text-slate-500 font-medium leading-relaxed max-w-2xl mb-10 relative z-10"
           >
-            Udupi City · Two-Tier Collection & Vehicle Optimization System
+            Dynamic Two-Tier Collection & Vehicle Optimization System for Udupi City. Maximising coverage while minimizing fleet overhead.
           </motion.p>
 
           {/* VRP Integration Banner */}
@@ -160,38 +167,48 @@ export default function RoutesAnalysisPage() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="flex items-center gap-4 bg-gradient-to-r from-teal-500/10 to-indigo-500/10 border border-teal-500/20 rounded-2xl p-4 mb-6 relative z-10"
+            className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 bg-white/70 backdrop-blur-xl border border-white/50 shadow-xl rounded-3xl p-6 mb-10 relative z-10 overflow-hidden"
           >
-            <div className="w-10 h-10 bg-teal-500/20 text-teal-400 rounded-xl flex items-center justify-center text-lg">⚡</div>
-            <div className="flex-1">
-              <p className="text-sm font-bold text-teal-600">Powered by Clarke-Wright VRP Solver</p>
-              <p className="text-xs text-slate-500">Route optimisation: 132.44 km → {optimizedDistance} km ({savings}% reduction) · Solver time: ~1 ms</p>
+            <div className="absolute inset-0 bg-gradient-to-r from-teal-500/5 to-indigo-500/5 pointer-events-none" />
+            <div className="flex items-center gap-5 relative z-10">
+              <div className="w-14 h-14 bg-gradient-to-br from-teal-400 to-indigo-500 rounded-2xl flex items-center justify-center shadow-lg shadow-teal-500/20 shrink-0">
+                <Sparkles className="w-6 h-6 text-white" />
+              </div>
+              <div>
+                <h3 className="text-lg font-black text-slate-900 mb-1">Powered by Clarke-Wright VRP Solver</h3>
+                <p className="text-sm font-medium text-slate-600">
+                  Route optimisation: <span className="line-through text-slate-400 mr-1">132.44 km</span> 
+                  <span className="font-bold text-teal-600 bg-teal-50 border border-teal-100 px-2 py-0.5 rounded-md ml-1">{optimizedDistance} km</span> 
+                  <span className="text-emerald-500 font-bold ml-2">({savings}% reduction)</span> 
+                  <span className="text-slate-400 ml-2 hidden sm:inline">· Solver time: ~1 ms</span>
+                </p>
+              </div>
             </div>
-            <div className="flex gap-2">
-              <Link href="/routing" className="px-4 py-2 bg-teal-500/10 border border-teal-500/30 text-teal-600 rounded-xl text-xs font-bold hover:bg-teal-500/20 transition-colors">🚛 Routing Engine</Link>
-              <Link href="/analytics" className="px-4 py-2 bg-indigo-500/10 border border-indigo-500/30 text-indigo-600 rounded-xl text-xs font-bold hover:bg-indigo-500/20 transition-colors">📊 Analytics</Link>
+            <div className="flex flex-wrap gap-3 relative z-10 w-full md:w-auto shrink-0">
+              <Link href="/routing" className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-teal-500 hover:bg-teal-600 text-white rounded-xl text-sm font-bold shadow-lg shadow-teal-500/30 transition-all hover:-translate-y-0.5"><Route className="w-4 h-4" /> Routing Engine</Link>
+              <Link href="/analytics" className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl text-sm font-bold shadow-sm border border-indigo-100 transition-all hover:-translate-y-0.5"><Target className="w-4 h-4" /> Analytics</Link>
             </div>
           </motion.div>
 
           {/* Tab Switcher */}
-          <div className="flex gap-2 bg-slate-50 p-1.5 rounded-2xl w-fit border border-slate-200 backdrop-blur-md relative z-10">
+          <div className="flex flex-wrap gap-2 bg-white/50 p-2 rounded-2xl w-fit border border-slate-200 shadow-sm backdrop-blur-xl relative z-10">
             <button
               onClick={() => setActiveSection('overview')}
-              className={`px-6 py-3 rounded-xl text-sm font-bold transition-all duration-200 ${activeSection === 'overview' ? 'bg-teal-50 shadow-sm border border-teal-100 text-teal-600 border border-teal-500/30' : 'text-slate-500 hover:text-slate-900'}`}
+              className={`px-6 py-3 rounded-xl text-sm font-extrabold transition-all duration-300 flex items-center gap-2 ${activeSection === 'overview' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-500 hover:bg-white hover:text-slate-900'}`}
             >
-              <LayoutGrid className="w-4 h-4 inline-block mr-1" /> Network Overview
+              <LayoutGrid className="w-4 h-4" /> Network Overview
             </button>
             <button
               onClick={() => setActiveSection('optimizer')}
-              className={`px-6 py-3 rounded-xl text-sm font-bold transition-all duration-200 ${activeSection === 'optimizer' ? 'bg-indigo-50 shadow-sm border border-indigo-100 text-indigo-600 border border-indigo-500/30' : 'text-slate-500 hover:text-slate-900'}`}
+              className={`px-6 py-3 rounded-xl text-sm font-extrabold transition-all duration-300 flex items-center gap-2 ${activeSection === 'optimizer' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-500 hover:bg-white hover:text-slate-900'}`}
             >
-              <Settings className="w-4 h-4 inline-block mr-1" /> Vehicle Optimizer
+              <Settings className="w-4 h-4" /> Vehicle Optimizer
             </button>
             <button
               onClick={() => setActiveSection('engine')}
-              className={`px-6 flex items-center gap-2 py-3 rounded-xl text-sm font-bold transition-all duration-200 ${activeSection === 'engine' ? 'bg-slate-100 shadow-md text-teal-600 border border-slate-900' : 'text-slate-500 hover:text-slate-900'}`}
+              className={`px-6 py-3 rounded-xl text-sm font-extrabold transition-all duration-300 flex items-center gap-2 ${activeSection === 'engine' ? 'bg-slate-900 text-white shadow-md' : 'text-slate-500 hover:bg-white hover:text-slate-900'}`}
             >
-              <Settings className="w-4 h-4" /> Live AI Engine
+              <Cpu className="w-4 h-4" /> Live AI Engine
             </button>
           </div>
         </header>
@@ -208,48 +225,80 @@ export default function RoutesAnalysisPage() {
             <motion.section variants={fadeInUp}>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* TRUCK ROUTES */}
-                <div className="bg-teal-500/5 border border-teal-500/30 rounded-3xl p-8 shadow-sm relative overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-teal-50 rounded-bl-[100px] pointer-events-none" />
-                  <div className="flex items-center gap-3 mb-6 relative z-10">
-                    <div className="w-14 h-14 bg-teal-50 text-teal-600 rounded-2xl flex items-center justify-center text-3xl shadow-sm border border-teal-100"><Truck className="w-10 h-10 mb-1" /></div>
-                    <h2 className="text-2xl font-black text-slate-900 uppercase tracking-wider">Truck Routes</h2>
-                  </div>
-                  <div className="mb-6 relative z-10">
-                    <div className="text-5xl font-black text-teal-600 mb-1">{UDUPI_DATA.truck_roads} <span className="text-lg font-bold text-slate-500">segments</span></div>
-                    <div className="text-lg font-bold text-slate-500">{UDUPI_DATA.truck_roads_pct}% of network</div>
-                  </div>
-                  <div className="space-y-3 relative z-10">
-                    <div className="text-sm font-bold text-slate-500 uppercase tracking-widest">Types: Trunk, Primary, Secondary, Tertiary</div>
-                    <div className="inline-block bg-teal-50 border border-teal-500/30 text-teal-700 px-4 py-2 rounded-xl font-semibold text-sm">
-                      &quot;Large waste trucks — bulk collection&quot;
+                <div className="bg-white border border-slate-200 backdrop-blur-xl rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/10 blur-[80px] rounded-full pointer-events-none group-hover:scale-110 transition-transform duration-700" />
+                  
+                  <div className="flex flex-col h-full relative z-10">
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="w-16 h-16 bg-gradient-to-br from-teal-400 to-teal-600 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-teal-500/30">
+                        <Truck className="w-8 h-8" />
+                      </div>
+                      <div>
+                        <h2 className="text-sm font-black text-slate-500 uppercase tracking-widest mb-1">Primary Network</h2>
+                        <div className="text-2xl font-black text-slate-900">Truck Routes</div>
+                      </div>
+                    </div>
+                    
+                    <div className="mb-8">
+                      <div className="flex items-baseline gap-2 mb-2">
+                        <span className="text-6xl font-black text-teal-500 tracking-tighter">{UDUPI_DATA.truck_roads}</span>
+                        <span className="text-xl font-bold text-slate-400">segments</span>
+                      </div>
+                      <div className="inline-flex items-center gap-2 bg-teal-50 text-teal-700 px-3 py-1.5 rounded-lg text-sm font-bold border border-teal-200">
+                        <MapPin className="w-4 h-4" /> {UDUPI_DATA.truck_roads_pct}% of total network
+                      </div>
+                    </div>
+                    
+                    <div className="mt-auto pt-6 border-t border-slate-100">
+                      <p className="text-sm font-medium text-slate-500 leading-relaxed">
+                        <strong className="text-slate-800">Assigned to:</strong> Large waste trucks for bulk collection across Trunk, Primary, Secondary, and Tertiary roads.
+                      </p>
                     </div>
                   </div>
                 </div>
 
                 {/* AUTO ROUTES */}
-                <div className="bg-amber-500/5 border border-amber-500/30 rounded-3xl p-8 shadow-sm relative overflow-hidden hover:shadow-lg transition-shadow">
-                  <div className="absolute top-0 right-0 w-40 h-40 bg-amber-50 rounded-bl-[100px] pointer-events-none" />
-                  <div className="flex items-center gap-3 mb-6 relative z-10">
-                    <div className="w-14 h-14 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center text-3xl shadow-sm border border-amber-100"><TrainFront className="w-10 h-10 mb-1" /></div>
-                    <h2 className="text-2xl font-black text-slate-900 uppercase tracking-wider">Auto Routes</h2>
-                  </div>
-                  <div className="mb-6 relative z-10">
-                    <div className="text-5xl font-black text-amber-500 mb-1">{UDUPI_DATA.auto_roads} <span className="text-lg font-bold text-slate-500">segments</span></div>
-                    <div className="text-lg font-bold text-slate-500">{UDUPI_DATA.auto_roads_pct}% of network</div>
-                  </div>
-                  <div className="space-y-3 relative z-10">
-                    <div className="text-sm font-bold text-slate-500 uppercase tracking-widest">Types: Residential, Service, Footway, Path</div>
-                    <div className="inline-block bg-amber-50 border border-amber-500/30 text-amber-300 px-4 py-2 rounded-xl font-semibold text-sm">
-                      &quot;Auto rickshaws + handcarts — last-mile collection&quot;
+                <div className="bg-white border border-slate-200 backdrop-blur-xl rounded-3xl p-8 shadow-xl hover:shadow-2xl transition-all relative overflow-hidden group">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-amber-500/10 blur-[80px] rounded-full pointer-events-none group-hover:scale-110 transition-transform duration-700" />
+                  
+                  <div className="flex flex-col h-full relative z-10">
+                    <div className="flex items-center gap-4 mb-8">
+                      <div className="w-16 h-16 bg-gradient-to-br from-amber-400 to-orange-500 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-amber-500/30">
+                        <TrainFront className="w-8 h-8" />
+                      </div>
+                      <div>
+                        <h2 className="text-sm font-black text-slate-500 uppercase tracking-widest mb-1">Last-Mile Network</h2>
+                        <div className="text-2xl font-black text-slate-900">Auto Routes</div>
+                      </div>
+                    </div>
+                    
+                    <div className="mb-8">
+                      <div className="flex items-baseline gap-2 mb-2">
+                        <span className="text-6xl font-black text-amber-500 tracking-tighter">{UDUPI_DATA.auto_roads}</span>
+                        <span className="text-xl font-bold text-slate-400">segments</span>
+                      </div>
+                      <div className="inline-flex items-center gap-2 bg-amber-50 text-amber-700 px-3 py-1.5 rounded-lg text-sm font-bold border border-amber-200">
+                        <MapPin className="w-4 h-4" /> {UDUPI_DATA.auto_roads_pct}% of total network
+                      </div>
+                    </div>
+                    
+                    <div className="mt-auto pt-6 border-t border-slate-100">
+                      <p className="text-sm font-medium text-slate-500 leading-relaxed">
+                        <strong className="text-slate-800">Assigned to:</strong> Auto rickshaws and handcarts navigating narrow Residential, Service, and Footway paths.
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
               
-              <div className="mt-8 text-center">
-                <span className="inline-block bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 font-bold font-extrabold px-8 py-4 rounded-full shadow-sm text-lg tracking-wide">
-                  <Sparkles className="w-6 h-6 inline-block mb-1" /> {UDUPI_DATA.total_coverage_pct}% Total Coverage
-                </span>
+              <div className="mt-10 flex justify-center">
+                <div className="inline-flex items-center gap-4 bg-slate-900 text-white px-8 py-4 rounded-2xl shadow-xl shadow-slate-900/20 hover:scale-105 transition-transform cursor-default">
+                  <div className="p-2 bg-emerald-500 rounded-xl"><Sparkles className="w-6 h-6 text-white" /></div>
+                  <div>
+                    <div className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-0.5">Total System Coverage</div>
+                    <div className="text-2xl font-black text-emerald-400">{UDUPI_DATA.total_coverage_pct}% of Udupi</div>
+                  </div>
+                </div>
               </div>
             </motion.section>
 
@@ -289,7 +338,7 @@ export default function RoutesAnalysisPage() {
                         <th className="px-5 py-4 font-extrabold text-slate-500 uppercase tracking-widest text-[11px]">Avg Width</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-white/5">
+                    <tbody className="divide-y divide-slate-100">
                       {UDUPI_DATA.road_breakdown.map((r, i) => (
                         <tr key={i} className="hover:bg-slate-50 transition-colors">
                           <td className="px-5 py-3.5 font-semibold text-slate-900">{r.type}</td>
@@ -440,15 +489,15 @@ export default function RoutesAnalysisPage() {
                       <button 
                         key={grid.id} 
                         onClick={() => setSelectedGrid(grid)}
-                        className={`px-4 py-3 rounded-xl text-left flex flex-col justify-between h-full border-2 transition-all ${selectedGrid.id === grid.id ? 'bg-indigo-500 text-slate-900 shadow-[0_0_20px_rgba(99,102,241,0.4)] border-indigo-400 shadow-md ring-1 ring-indigo-200' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-slate-100 hover:border-slate-300'}`}
+                        className={`px-4 py-3.5 rounded-2xl text-left flex flex-col justify-between h-full border-2 transition-all duration-200 ${selectedGrid.id === grid.id ? 'bg-slate-900 text-white shadow-xl shadow-slate-900/20 border-slate-900 ring-2 ring-slate-900/10' : 'bg-slate-50 text-slate-700 border-slate-200 hover:bg-white hover:border-slate-300 hover:shadow-sm'}`}
                       >
                         <div>
-                          <div className="text-sm font-bold mb-1">{grid.id}</div>
-                          <div className="text-[10px] opacity-60 mb-2 leading-tight truncate">
+                          <div className="text-sm font-black mb-1 tracking-tight">{grid.id}</div>
+                          <div className={`text-[10px] font-medium mb-2 leading-tight truncate ${selectedGrid.id === grid.id ? 'text-slate-300' : 'text-slate-500'}`}>
                              {grid.description}
                           </div>
                         </div>
-                        <div className={`text-xs font-bold mt-auto ${selectedGrid.id === grid.id ? 'text-indigo-600' : 'text-teal-600'}`}>{grid.waste} Tons</div>
+                        <div className={`text-xs font-black mt-auto ${selectedGrid.id === grid.id ? 'text-teal-400' : 'text-teal-600'}`}>{grid.waste} Tons</div>
                       </button>
                     ))}
                   </div>
@@ -694,11 +743,11 @@ export default function RoutesAnalysisPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <motion.div variants={fadeInUp} className="p-8 bg-rose-500/5 rounded-3xl border border-rose-500/10">
                 <div className="text-sm font-bold text-rose-600 uppercase tracking-widest mb-3 flex items-center gap-2"><MapPin className="w-4 h-4"/> Original Route Grid</div>
-                <div className="text-6xl font-black text-rose-300">{oldDistance} <span className="text-2xl font-bold text-rose-600/50">km</span></div>
+                <div className="text-6xl font-black text-rose-600 tracking-tight">{oldDistance} <span className="text-2xl font-bold text-rose-600/50">km</span></div>
               </motion.div>
               <motion.div variants={fadeInUp} className="p-8 bg-emerald-500/5 rounded-3xl border border-emerald-500/10">
                 <div className="text-sm font-bold text-emerald-600 uppercase tracking-widest mb-3 flex items-center gap-2"><Truck className="w-4 h-4"/> Algorithm Optimized</div>
-                <div className="text-6xl font-black text-emerald-300">{optimizedDistance} <span className="text-2xl font-bold text-emerald-600/50">km</span></div>
+                <div className="text-6xl font-black text-emerald-600 tracking-tight">{optimizedDistance} <span className="text-2xl font-bold text-emerald-600/50">km</span></div>
               </motion.div>
             </div>
 
@@ -709,7 +758,7 @@ export default function RoutesAnalysisPage() {
               </div>
               <div className="p-6 bg-slate-50 rounded-[2rem] border border-slate-200 backdrop-blur-sm hover:bg-slate-100 transition-colors">
                 <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Ann. Fuel Savings</div>
-                <div className="text-3xl font-black text-slate-900">₹{annualSavings.toLocaleString('en-IN')}</div>
+                <div className="text-3xl font-black text-slate-900">₹{Number(annualSavings).toLocaleString('en-IN')}</div>
               </div>
               <div className="p-6 bg-slate-50 rounded-[2rem] border border-slate-200 backdrop-blur-sm hover:bg-slate-100 transition-colors">
                 <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Coverage Impr.</div>
@@ -718,15 +767,15 @@ export default function RoutesAnalysisPage() {
             </motion.div>
 
             <motion.div variants={fadeInUp} className="space-y-6 relative z-10">
-              <div className="p-8 border border-slate-100 rounded-[2.5rem] bg-slate-50 shadow-inner">
-                <h2 className="text-xl font-bold mb-6 text-slate-200">Generated Real-time Waypoints</h2>
+              <div className="p-8 border border-slate-200 rounded-[2.5rem] bg-slate-50 shadow-inner">
+                <h2 className="text-xl font-black mb-6 text-slate-900">Generated Real-time Waypoints</h2>
                 <div className="flex flex-wrap gap-2.5 text-sm font-medium">
                   {optimizedRoute.length > 0 ? optimizedRoute.map((stop, i) => (
                     <div key={i} className="flex items-center gap-2.5">
-                      <span className="px-4 py-2.5 bg-indigo-500/5 hover:bg-indigo-500/30 text-indigo-700 rounded-xl border border-indigo-500/10 shadow-sm transition-colors cursor-default">
+                      <span className="px-4 py-2.5 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 rounded-xl border border-indigo-200 shadow-sm transition-colors cursor-default font-semibold">
                         {stop.replace(/_/g, ' ')}
                       </span>
-                      {i < optimizedRoute.length - 1 && <span className="text-slate-700 font-black">→</span>}
+                      {i < optimizedRoute.length - 1 && <span className="text-slate-400 font-black">→</span>}
                     </div>
                   )) : (
                     <div className="text-slate-500 font-mono text-sm opacity-60">Awaiting VRP Node Generation...</div>
