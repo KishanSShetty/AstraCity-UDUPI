@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, LabelList } from 'recharts';
-import gridData from '@/public/data/district_grid_zones.json';
+import gridData from '@/public/data/ward_grid_zones.json';
 import dynamic from 'next/dynamic';
 
 const GridZoneMap = dynamic(() => import('@/components/map/GridZoneMap'), {
@@ -12,7 +12,7 @@ const GridZoneMap = dynamic(() => import('@/components/map/GridZoneMap'), {
     <div className="w-full h-full bg-slate-100 rounded-2xl border border-slate-200 flex items-center justify-center">
       <div className="text-center">
         <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-teal-500 mx-auto mb-3" />
-        <p className="text-slate-500 text-sm font-medium">Loading District Grid Map...</p>
+        <p className="text-slate-500 text-sm font-medium">Loading Grid Map...</p>
       </div>
     </div>
   ),
@@ -30,17 +30,13 @@ export default function GridWisePage() {
   const zones = gridData.zones as Zone[];
   const [selectedZone, setSelectedZone] = useState<Zone | null>(null);
   const [filterRisk, setFilterRisk] = useState<string>('All');
-  const [filterType, setFilterType] = useState<'All' | 'Urban' | 'Rural'>('All');
-  const [sortKey, setSortKey] = useState<'waste_tons_day' | 'population' | 'buildings' | 'area_sqkm'>('waste_tons_day');
+  const [sortKey, setSortKey] = useState<'waste_total_tons' | 'population' | 'total_buildings' | 'total_roads'>('waste_total_tons');
   const [sortDir, setSortDir] = useState<'desc' | 'asc'>('desc');
 
   // Summary stats
-  const totalBuildings = useMemo(() => zones.reduce((a, z) => a + z.buildings, 0), [zones]);
+  const totalBuildings = useMemo(() => zones.reduce((a, z) => a + z.total_buildings, 0), [zones]);
   const totalPop = useMemo(() => zones.reduce((a, z) => a + z.population, 0), [zones]);
-  const totalWaste = useMemo(() => zones.reduce((a, z) => a + z.waste_tons_day, 0), [zones]);
-  const totalArea = useMemo(() => zones.reduce((a, z) => a + z.area_sqkm, 0), [zones]);
-  const urbanZones = useMemo(() => zones.filter(z => z.is_urban), [zones]);
-  const ruralZones = useMemo(() => zones.filter(z => !z.is_urban), [zones]);
+  const totalWaste = useMemo(() => zones.reduce((a, z) => a + z.waste_total_tons, 0), [zones]);
 
   const riskCounts = useMemo(() => ({
     High: zones.filter(z => z.risk === 'High').length,
@@ -52,31 +48,26 @@ export default function GridWisePage() {
   const processed = useMemo(() => {
     let result = [...zones];
     if (filterRisk !== 'All') result = result.filter(z => z.risk === filterRisk);
-    if (filterType === 'Urban') result = result.filter(z => z.is_urban);
-    if (filterType === 'Rural') result = result.filter(z => !z.is_urban);
     result.sort((a, b) => {
       const va = a[sortKey] as number;
       const vb = b[sortKey] as number;
       return sortDir === 'desc' ? vb - va : va - vb;
     });
     return result;
-  }, [zones, filterRisk, filterType, sortKey, sortDir]);
+  }, [zones, filterRisk, sortKey, sortDir]);
 
-  // Waste distribution chart
-  const wasteDistChart = useMemo(() => {
-    return [
-      { name: 'Urban (CMC)', value: Number(urbanZones.reduce((a, z) => a + z.waste_tons_day, 0).toFixed(1)), fill: '#00d4aa' },
-      { name: 'Rural', value: Number(ruralZones.reduce((a, z) => a + z.waste_tons_day, 0).toFixed(1)), fill: '#64748b' },
-    ];
-  }, [urbanZones, ruralZones]);
 
-  // Risk-wise waste chart
-  const riskWasteChart = useMemo(() => {
+
+  // Building chart data for bar chart
+  const buildingChartData = useMemo(() => {
     return [
-      { name: 'High Risk', value: Number(zones.filter(z => z.risk === 'High').reduce((a, z) => a + z.waste_tons_day, 0).toFixed(1)), fill: '#e11d48' },
-      { name: 'Medium Risk', value: Number(zones.filter(z => z.risk === 'Medium').reduce((a, z) => a + z.waste_tons_day, 0).toFixed(1)), fill: '#d97706' },
-      { name: 'Low Risk', value: Number(zones.filter(z => z.risk === 'Low').reduce((a, z) => a + z.waste_tons_day, 0).toFixed(1)), fill: '#059669' },
-    ];
+      { name: 'Residential Houses', count: zones.reduce((a, z) => a + z.residential_houses, 0), fill: '#F4A460' },
+      { name: 'Apartments', count: zones.reduce((a, z) => a + z.apartments, 0), fill: '#E8824A' },
+      { name: 'Commercial', count: zones.reduce((a, z) => a + z.commercial, 0), fill: '#6CB4E4' },
+      { name: 'Offices', count: zones.reduce((a, z) => a + z.offices, 0), fill: '#4169E1' },
+      { name: 'Hospitals', count: zones.reduce((a, z) => a + z.hospitals, 0), fill: '#FF4444' },
+      { name: 'Schools', count: zones.reduce((a, z) => a + z.schools, 0), fill: '#FFD700' },
+    ].filter(d => d.count > 0);
   }, [zones]);
 
   const handleSort = (key: typeof sortKey) => {
@@ -94,17 +85,17 @@ export default function GridWisePage() {
       >
 
         {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* SECTION 1: Page Header                                        */}
+        {/* SECTION 1: Page Header (same as OSM)                          */}
         {/* ═══════════════════════════════════════════════════════════════ */}
         <header className="flex flex-col xl:flex-row justify-between items-start xl:items-center gap-6 pb-6 border-b border-slate-200">
           <div>
             <h1 className="text-4xl md:text-5xl font-extrabold text-teal-600 tracking-tight mb-2">
-              District Grid-Wise Analysis
+              Grid-Wise Zone Analysis
             </h1>
             <div className="flex items-center gap-4 flex-wrap">
-              <span className="text-xl text-slate-500 font-light">Udupi District, Karnataka</span>
+              <span className="text-xl text-slate-500 font-light">Udupi City &middot; Udupi</span>
               <span className="bg-slate-100 border border-slate-200 text-slate-600 text-xs px-3 py-1.5 rounded-full font-mono tracking-wider">
-                {zones.length} zones mapped - 2km grid
+                {zones.length} zones mapped &middot; 500m grid
               </span>
             </div>
           </div>
@@ -115,8 +106,8 @@ export default function GridWisePage() {
               <span className="text-2xl font-black text-slate-900">{zones.length}</span>
             </div>
             <div className="bg-white shadow-sm border border-slate-200 px-5 py-3 rounded-2xl flex flex-col min-w-[120px]">
-              <span className="text-slate-600 text-xs font-bold uppercase tracking-wider mb-1">Area</span>
-              <span className="text-2xl font-black text-teal-600">{totalArea.toFixed(0)} km2</span>
+              <span className="text-slate-600 text-xs font-bold uppercase tracking-wider mb-1">Buildings</span>
+              <span className="text-2xl font-black text-teal-600">{totalBuildings.toLocaleString('en-IN')}</span>
             </div>
             <div className="bg-white shadow-sm border border-slate-200 px-5 py-3 rounded-2xl flex flex-col min-w-[120px]">
               <span className="text-slate-600 text-xs font-bold uppercase tracking-wider mb-1">Population</span>
@@ -131,6 +122,7 @@ export default function GridWisePage() {
 
         {/* ═══════════════════════════════════════════════════════════════ */}
         {/* SECTION 2: Two-Column Layout (LEFT Map, RIGHT Analytics)      */}
+        {/* Same pattern as OSM: 55% left / 45% right                     */}
         {/* ═══════════════════════════════════════════════════════════════ */}
         <div className="flex flex-col lg:flex-row gap-8">
 
@@ -145,9 +137,9 @@ export default function GridWisePage() {
               className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xl flex flex-col"
             >
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-slate-900">Udupi District Grid Map</h2>
+                <h2 className="text-2xl font-bold text-slate-900">Udupi City Grid Map</h2>
                 <span className="bg-teal-50 border border-teal-200 text-teal-600 text-sm font-bold px-4 py-2 rounded-lg">
-                  District-Wide - MapLibre GL
+                  Interactive &middot; MapLibre GL
                 </span>
               </div>
               
@@ -162,7 +154,7 @@ export default function GridWisePage() {
               </div>
               
               <p className="text-slate-500 text-sm font-light text-center mt-4">
-                Risk-coded grid zones across entire Udupi District - Ward boundaries shown in color - Click any zone for details
+                Risk-coded grid zones with colored ward boundaries &middot; Click any zone for detailed popup &middot; Udupi City, Udupi
               </p>
             </motion.div>
 
@@ -173,11 +165,10 @@ export default function GridWisePage() {
               transition={{ delay: 0.3 }}
               className="bg-white border border-slate-200 rounded-3xl p-6 shadow-lg"
             >
-              <h2 className="text-xl font-bold mb-4 text-teal-600">District Risk Profile</h2>
+              <h2 className="text-xl font-bold mb-4 text-teal-600">Risk Profile Summary</h2>
               <p className="text-slate-600 text-lg leading-relaxed font-light mb-6">
-                Udupi District is divided into <strong className="text-slate-900">{zones.length} grid zones</strong> at 2km resolution, covering <strong className="text-slate-900">{totalArea.toFixed(0)} sq km</strong> with <strong className="text-slate-900">{totalPop.toLocaleString('en-IN')} residents</strong>. 
-                Daily waste generation: <strong className="text-teal-600">{totalWaste.toFixed(1)} tons</strong>. 
-                Urban CMC zones: <strong className="text-slate-900">{urbanZones.length}</strong> | Rural zones: <strong className="text-slate-900">{ruralZones.length}</strong>.
+                Udupi City is divided into <strong className="text-slate-900">{zones.length} grid zones</strong> at 500m resolution, covering <strong className="text-slate-900">7.04 sq km</strong> with <strong className="text-slate-900">{totalPop.toLocaleString('en-IN')} residents</strong>. 
+                Daily waste generation: <strong className="text-teal-600">{totalWaste.toFixed(1)} tons</strong> &mdash; analyzed by risk level for optimized collection scheduling.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -185,7 +176,7 @@ export default function GridWisePage() {
                   const c = RISK_COLORS[risk];
                   const count = riskCounts[risk];
                   const zns = zones.filter(z => z.risk === risk);
-                  const waste = zns.reduce((a, z) => a + z.waste_tons_day, 0);
+                  const waste = zns.reduce((a, z) => a + z.waste_total_tons, 0);
                   return (
                     <button
                       key={risk}
@@ -193,7 +184,7 @@ export default function GridWisePage() {
                       className={`${c.bg} p-4 rounded-2xl border-2 transition-all hover:shadow-md ${filterRisk === risk ? c.border : 'border-transparent'}`}
                     >
                       <div className={`${c.text} font-black text-xl mb-1`}>{count} zones</div>
-                      <div className="text-slate-500 text-xs font-bold uppercase tracking-wider">{risk} Risk - {waste.toFixed(1)}T/day</div>
+                      <div className="text-slate-500 text-xs font-bold uppercase tracking-wider">{risk} Risk &middot; {waste.toFixed(1)}T/day</div>
                       {filterRisk === risk && (
                         <div className={`mt-2 text-[10px] font-bold ${c.text}`}>Click to clear</div>
                       )}
@@ -208,18 +199,18 @@ export default function GridWisePage() {
           {/* RIGHT COLUMN (45%) - Analytics */}
           <div className="w-full lg:w-[45%] flex flex-col gap-8">
 
-            {/* Urban vs Rural Waste Distribution */}
+            {/* Building Type Breakdown */}
             <motion.div 
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.4 }}
               className="bg-white border border-slate-200 rounded-3xl p-6 shadow-lg flex flex-col"
             >
-              <h2 className="text-xl font-bold mb-6 text-slate-900">Waste: Urban vs Rural</h2>
-              <div className="h-[180px] w-full">
+              <h2 className="text-xl font-bold mb-6 text-slate-900">Building Type Breakdown</h2>
+              <div className="h-[280px] w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart 
-                    data={wasteDistChart} 
+                    data={buildingChartData} 
                     layout="vertical" 
                     margin={{ top: 5, right: 50, left: 20, bottom: 5 }}
                   >
@@ -230,102 +221,44 @@ export default function GridWisePage() {
                       axisLine={false} 
                       tickLine={false} 
                       tick={{ fill: '#64748b', fontSize: 13 }}
-                      width={100}
+                      width={130}
                     />
                     <Tooltip 
                       cursor={{fill: 'rgba(0,0,0,0.05)'}}
                       contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', color: '#0f172a', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                      formatter={(value: any) => [`${value}T/day`, 'Waste']}
                     />
-                    <Bar dataKey="value" radius={[0, 8, 8, 0]} maxBarSize={40}>
-                      {wasteDistChart.map((entry, index) => (
+                    <Bar dataKey="count" radius={[0, 4, 4, 0]} maxBarSize={40}>
+                      {buildingChartData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={entry.fill} />
                       ))}
-                      <LabelList dataKey="value" position="right" fill="#0f172a" fontSize={13} fontFamily="monospace" formatter={(v: any) => `${v}T`} />
+                      <LabelList dataKey="count" position="right" fill="#0f172a" fontSize={12} fontFamily="monospace" />
                     </Bar>
                   </BarChart>
                 </ResponsiveContainer>
               </div>
             </motion.div>
 
-            {/* Risk-wise Waste Distribution */}
-            <motion.div 
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 }}
-              className="bg-white border border-slate-200 rounded-3xl p-6 shadow-lg flex flex-col"
-            >
-              <h2 className="text-xl font-bold mb-6 text-slate-900">Waste by Risk Level</h2>
-              <div className="h-[200px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart 
-                    data={riskWasteChart} 
-                    layout="vertical" 
-                    margin={{ top: 5, right: 50, left: 20, bottom: 5 }}
-                  >
-                    <XAxis type="number" hide />
-                    <YAxis 
-                      dataKey="name" 
-                      type="category" 
-                      axisLine={false} 
-                      tickLine={false} 
-                      tick={{ fill: '#64748b', fontSize: 13 }}
-                      width={110}
-                    />
-                    <Tooltip 
-                      cursor={{fill: 'rgba(0,0,0,0.05)'}}
-                      contentStyle={{ backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', color: '#0f172a', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}
-                      formatter={(value: any) => [`${value}T/day`, 'Waste']}
-                    />
-                    <Bar dataKey="value" radius={[0, 8, 8, 0]} maxBarSize={40}>
-                      {riskWasteChart.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={entry.fill} />
-                      ))}
-                      <LabelList dataKey="value" position="right" fill="#0f172a" fontSize={13} fontFamily="monospace" formatter={(v: any) => `${v}T`} />
-                    </Bar>
-                  </BarChart>
-                </ResponsiveContainer>
-              </div>
-            </motion.div>
-
-            {/* Zone Rankings Table */}
+            {/* Zone Waste Rankings Table */}
             <motion.div 
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.6 }}
               className="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-lg flex-1 flex flex-col"
             >
-              <div className="p-6 pb-4 flex flex-col gap-3">
-                <div className="flex justify-between items-center">
-                  <h2 className="text-xl font-bold text-slate-900">Zone Rankings</h2>
-                  <div className="flex gap-1.5">
-                    {['All', 'High', 'Medium', 'Low'].map(r => (
-                      <button
-                        key={r}
-                        onClick={() => setFilterRisk(r)}
-                        className={`px-2.5 py-1 rounded-md text-[10px] font-bold transition-all ${
-                          filterRisk === r 
-                            ? 'bg-teal-500 text-slate-900 shadow-sm' 
-                            : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
-                        }`}
-                      >
-                        {r}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+              <div className="p-6 pb-4 flex justify-between items-center">
+                <h2 className="text-xl font-bold text-slate-900">Zone Waste Rankings</h2>
                 <div className="flex gap-1.5">
-                  {(['All', 'Urban', 'Rural'] as const).map(t => (
+                  {['All', 'High', 'Medium', 'Low'].map(r => (
                     <button
-                      key={t}
-                      onClick={() => setFilterType(t)}
+                      key={r}
+                      onClick={() => setFilterRisk(r)}
                       className={`px-2.5 py-1 rounded-md text-[10px] font-bold transition-all ${
-                        filterType === t 
+                        filterRisk === r 
                           ? 'bg-teal-500 text-slate-900 shadow-sm' 
                           : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
                       }`}
                     >
-                      {t}
+                      {r}
                     </button>
                   ))}
                 </div>
@@ -334,24 +267,23 @@ export default function GridWisePage() {
                 <table className="w-full text-left text-sm">
                   <thead className="bg-teal-50 text-teal-900 font-bold border-y border-teal-100 sticky top-0 z-10">
                     <tr>
-                      <th className="py-3 px-4 cursor-pointer hover:text-teal-700" onClick={() => handleSort('waste_tons_day')}>
-                        Zone
+                      <th className="py-3 px-4 cursor-pointer hover:text-teal-700" onClick={() => handleSort('waste_total_tons')}>
+                        Zone {sortKey === 'waste_total_tons' ? '' : ''}
                       </th>
-                      <th className="py-3 px-4 text-center">Type</th>
-                      <th className="py-3 px-4 text-right cursor-pointer hover:text-teal-700" onClick={() => handleSort('buildings')}>
-                        Bldgs {sortKey === 'buildings' ? (sortDir === 'desc' ? '▼' : '▲') : ''}
+                      <th className="py-3 px-4 text-right cursor-pointer hover:text-teal-700" onClick={() => handleSort('total_buildings')}>
+                        Buildings {sortKey === 'total_buildings' ? (sortDir === 'desc' ? '\u25BC' : '\u25B2') : ''}
                       </th>
                       <th className="py-3 px-4 text-right cursor-pointer hover:text-teal-700" onClick={() => handleSort('population')}>
-                        Pop. {sortKey === 'population' ? (sortDir === 'desc' ? '▼' : '▲') : ''}
+                        Pop. {sortKey === 'population' ? (sortDir === 'desc' ? '\u25BC' : '\u25B2') : ''}
                       </th>
-                      <th className="py-3 px-4 text-right cursor-pointer hover:text-teal-700" onClick={() => handleSort('waste_tons_day')}>
-                        Waste {sortKey === 'waste_tons_day' ? (sortDir === 'desc' ? '▼' : '▲') : ''}
+                      <th className="py-3 px-4 text-right cursor-pointer hover:text-teal-700" onClick={() => handleSort('waste_total_tons')}>
+                        Waste/Day {sortKey === 'waste_total_tons' ? (sortDir === 'desc' ? '\u25BC' : '\u25B2') : ''}
                       </th>
                       <th className="py-3 px-4 text-right">Risk</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {processed.slice(0, 100).map((z, idx) => {
+                    {processed.map((z, idx) => {
                       const rc = RISK_COLORS[z.risk] || RISK_COLORS.Low;
                       const isSelected = selectedZone?.zone_id === z.zone_id;
                       return (
@@ -361,14 +293,9 @@ export default function GridWisePage() {
                           className={`cursor-pointer transition-colors ${isSelected ? 'bg-teal-50' : idx % 2 === 0 ? 'bg-white' : 'bg-slate-50'} hover:bg-teal-50/50`}
                         >
                           <td className="py-3 px-4 font-bold text-slate-900" style={{ borderLeft: isSelected ? '3px solid #0d9488' : '3px solid transparent' }}>{z.zone_id}</td>
-                          <td className="py-3 px-4 text-center">
-                            <span className={`px-2 py-0.5 rounded-md text-[9px] font-bold uppercase ${z.is_urban ? 'bg-teal-50 text-teal-600 border border-teal-200' : 'bg-slate-100 text-slate-500 border border-slate-200'}`}>
-                              {z.is_urban ? 'Urban' : 'Rural'}
-                            </span>
-                          </td>
-                          <td className="py-3 px-4 text-right font-mono text-slate-700">{z.buildings}</td>
+                          <td className="py-3 px-4 text-right font-mono text-slate-700">{z.total_buildings}</td>
                           <td className="py-3 px-4 text-right font-mono text-slate-700">{z.population.toLocaleString('en-IN')}</td>
-                          <td className="py-3 px-4 text-right font-mono font-bold text-amber-600">{z.waste_tons_day.toFixed(3)}T</td>
+                          <td className="py-3 px-4 text-right font-mono font-bold text-amber-600">{z.waste_total_tons.toFixed(3)}T</td>
                           <td className="py-3 px-4 text-right">
                             <span className={`px-2 py-0.5 rounded-md border text-[10px] font-bold uppercase tracking-wider ${rc.bg} ${rc.border} ${rc.text}`}>
                               {z.risk}
@@ -381,15 +308,17 @@ export default function GridWisePage() {
                 </table>
               </div>
               <div className="p-4 bg-slate-50 border-t border-slate-200 text-xs text-slate-500 font-mono tracking-wide">
-                Showing {Math.min(processed.length, 100)} of {processed.length} zones | Total: {totalWaste.toFixed(1)}T/day across {zones.length} zones
+                Total: {totalWaste.toFixed(2)}T/day across {zones.length} zones &middot; Rate: CPCB 0.5kg/person/day
               </div>
             </motion.div>
 
           </div>
         </div>
 
+
+
         {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* SECTION 3: Spatial Distribution Insights                       */}
+        {/* SECTION 4: Full-Width Spatial Insights (same as OSM)          */}
         {/* ═══════════════════════════════════════════════════════════════ */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -404,30 +333,30 @@ export default function GridWisePage() {
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-3xl bg-slate-50 p-3 rounded-xl border border-slate-200 shadow-sm">&#128308;</span>
-                <h3 className="text-lg font-bold text-rose-600">High-Risk Zones</h3>
+                <h3 className="text-lg font-bold text-rose-600">High-Risk Concentration</h3>
               </div>
               <p className="text-slate-600 font-light leading-relaxed">
-                <strong className="text-slate-900">{riskCounts.High} zones</strong> generate {zones.filter(z => z.risk === 'High').reduce((a, z) => a + z.waste_tons_day, 0).toFixed(1)}T/day, accounting for {((zones.filter(z => z.risk === 'High').reduce((a, z) => a + z.waste_tons_day, 0) / totalWaste) * 100).toFixed(0)}% of total district waste. These zones require daily collection routes and priority scheduling.
+                <strong className="text-slate-900">{riskCounts.High} zones</strong> generate {zones.filter(z => z.risk === 'High').reduce((a, z) => a + z.waste_total_tons, 0).toFixed(1)}T/day, accounting for {((zones.filter(z => z.risk === 'High').reduce((a, z) => a + z.waste_total_tons, 0) / totalWaste) * 100).toFixed(0)}% of total waste. These zones require daily collection routes and priority scheduling.
               </p>
             </div>
 
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-3xl bg-slate-50 p-3 rounded-xl border border-slate-200 shadow-sm">&#127968;</span>
-                <h3 className="text-lg font-bold text-teal-600">Urban CMC Core</h3>
+                <h3 className="text-lg font-bold text-amber-500">Residential Density</h3>
               </div>
               <p className="text-slate-600 font-light leading-relaxed">
-                <strong className="text-slate-900">{urbanZones.length} urban zones</strong> within Udupi CMC ward boundaries generate {urbanZones.reduce((a, z) => a + z.waste_tons_day, 0).toFixed(1)}T/day. These zones have colored ward boundaries visible on the map and are priority areas for door-to-door collection.
+                <strong className="text-slate-900">{buildingChartData[0]?.count?.toLocaleString('en-IN')} residential houses</strong> form the dominant building type across all {zones.length} zones. Door-to-door wet waste collection is the primary strategy, with auto-rickshaws as the optimal vehicle for narrow lanes.
               </p>
             </div>
 
             <div className="flex flex-col gap-3">
               <div className="flex items-center gap-3 mb-2">
-                <span className="text-3xl bg-slate-50 p-3 rounded-xl border border-slate-200 shadow-sm">&#127795;</span>
-                <h3 className="text-lg font-bold text-emerald-600">Rural District</h3>
+                <span className="text-3xl bg-slate-50 p-3 rounded-xl border border-slate-200 shadow-sm">&#128452;</span>
+                <h3 className="text-lg font-bold text-blue-600">DWCC Coverage</h3>
               </div>
               <p className="text-slate-600 font-light leading-relaxed">
-                <strong className="text-slate-900">{ruralZones.length} rural zones</strong> across the broader Udupi District generate {ruralZones.reduce((a, z) => a + z.waste_tons_day, 0).toFixed(1)}T/day. These areas require cluster-based collection with transfer stations for efficient waste management.
+                All <strong className="text-slate-900">{zones.length} zones</strong> are assigned across <strong className="text-slate-900">{Array.from(new Set(zones.map(z => z.assigned_dwcc))).length} DWCC centers</strong>, ensuring full coverage. Each center manages 5-7 zones with dedicated vehicle assignments for efficient dry waste collection.
               </p>
             </div>
 
@@ -435,7 +364,7 @@ export default function GridWisePage() {
         </motion.div>
 
         {/* ═══════════════════════════════════════════════════════════════ */}
-        {/* SECTION 4: District Summary                                    */}
+        {/* SECTION 5: DWCC Assignment Summary                            */}
         {/* ═══════════════════════════════════════════════════════════════ */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -443,21 +372,20 @@ export default function GridWisePage() {
           transition={{ delay: 1.0 }}
           className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm"
         >
-          <h2 className="text-xl font-extrabold text-slate-900 mb-6">District Coverage Summary</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-4">
-            {[
-              { label: 'Total Zones', value: zones.length.toString(), color: 'text-slate-900' },
-              { label: 'Urban (CMC)', value: urbanZones.length.toString(), color: 'text-teal-600' },
-              { label: 'Rural', value: ruralZones.length.toString(), color: 'text-slate-600' },
-              { label: 'High Risk', value: riskCounts.High.toString(), color: 'text-rose-600' },
-              { label: 'Medium Risk', value: riskCounts.Medium.toString(), color: 'text-amber-600' },
-              { label: 'Low Risk', value: riskCounts.Low.toString(), color: 'text-emerald-600' },
-            ].map(item => (
-              <div key={item.label} className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center hover:shadow-md transition-shadow">
-                <div className={`text-2xl font-black ${item.color} mb-1`}>{item.value}</div>
-                <div className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">{item.label}</div>
-              </div>
-            ))}
+          <h2 className="text-xl font-extrabold text-slate-900 mb-6">DWCC Assignment Summary</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+            {Array.from(new Set(zones.map(z => z.assigned_dwcc))).sort().map(dwcc => {
+              const assigned = zones.filter(z => z.assigned_dwcc === dwcc);
+              const waste = assigned.reduce((a, z) => a + z.waste_total_tons, 0);
+              return (
+                <div key={dwcc} className="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-center hover:shadow-md transition-shadow">
+                  <div className="text-xs font-mono font-bold text-teal-600 mb-2">{dwcc}</div>
+                  <div className="text-2xl font-black text-slate-900 mb-1">{assigned.length}</div>
+                  <div className="text-[10px] font-bold text-slate-500 uppercase">zones</div>
+                  <div className="text-xs font-semibold text-slate-500 mt-2">{waste.toFixed(1)}T/day</div>
+                </div>
+              );
+            })}
           </div>
         </motion.div>
 
