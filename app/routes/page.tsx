@@ -19,7 +19,7 @@ const z = ZONE_DATA.zones;
 const totalRawWaste = z.reduce((a: any, b: any) => a + (b.waste_kg_day || 0), 0) / 1000;
 const scaleFactor = UDUPI_DATA.daily_waste_tons / totalRawWaste;
 
-const HSR_GRIDS = [
+const UDUPI_GRIDS = [
   { 
     id: 'Sector 1', 
     zoneCount: 15,
@@ -59,7 +59,7 @@ const HSR_GRIDS = [
 
 export default function RoutesAnalysisPage() {
   const [mounted, setMounted] = useState(false);
-  const [selectedGrid, setSelectedGrid] = useState(HSR_GRIDS[4]);
+  const [selectedGrid, setSelectedGrid] = useState(UDUPI_GRIDS[4]);
   const [wetCompartmentRatio, setWetCompartmentRatio] = useState(60);
   const [roundsPerDay, setRoundsPerDay] = useState(3);
   const [activeSection, setActiveSection] = useState<'overview' | 'optimizer' | 'engine'>('overview');
@@ -87,7 +87,7 @@ export default function RoutesAnalysisPage() {
       .then(data => {
         if (data.success && data.assignments) {
           const stops = data.assignments.flatMap((a: any) => a.stops.map((s: any) => s.label || s.id));
-          setOldRoute(["DWCC-1", "DWCC-3", "DWCC-5", "DWCC-2", "DWCC-6", "DWCC-4", "BMU Kudlu"]);
+          setOldRoute(["DWCC-1", "DWCC-3", "DWCC-5", "DWCC-2", "DWCC-6", "DWCC-4", "Beedinagudde BMU"]);
           setOptimizedRoute(stops.slice(0, 7));
           setOldDistance("132.44");
           setOptimizedDistance(data.total_distance_km.toFixed(2));
@@ -177,10 +177,10 @@ export default function RoutesAnalysisPage() {
               <div>
                 <h3 className="text-lg font-black text-slate-900 mb-1">Powered by Clarke-Wright VRP Solver</h3>
                 <p className="text-sm font-medium text-slate-600">
-                  Route optimisation: <span className="line-through text-slate-400 mr-1">132.44 km</span> 
+                  Secondary Fleet Transfer: <span className="line-through text-slate-400 mr-1">132.44 km</span> 
                   <span className="font-bold text-teal-600 bg-teal-50 border border-teal-100 px-2 py-0.5 rounded-md ml-1">{optimizedDistance} km</span> 
                   <span className="text-emerald-500 font-bold ml-2">({savings}% reduction)</span> 
-                  <span className="text-slate-400 ml-2 hidden sm:inline">· Solver time: ~1 ms</span>
+                  <span className="text-slate-400 ml-2 hidden sm:inline">· DWCC-to-Landfill compactor loops</span>
                 </p>
               </div>
             </div>
@@ -378,7 +378,10 @@ export default function RoutesAnalysisPage() {
 
             {/* SECTION 3: Optimization Results */}
             <motion.section variants={fadeInUp}>
-              <h2 className="text-2xl font-black text-slate-900 mb-6">Optimization Results</h2>
+              <div className="mb-6">
+                <h2 className="text-2xl font-black text-slate-900 mb-1">Secondary Fleet Optimization Results</h2>
+                <p className="text-sm text-slate-500 font-medium">Calculated for compactor fleet highway transfer between 6 DWCC hubs & Karvalu SWM Plant.</p>
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                 <div className="bg-white border border-slate-200 backdrop-blur-xl rounded-2xl p-8 flex flex-col items-center justify-center text-center shadow-sm">
                   <span className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-3">Before</span>
@@ -485,7 +488,7 @@ export default function RoutesAnalysisPage() {
                 <div className="space-y-4">
                   <label className="text-xs font-bold text-slate-500 uppercase tracking-widest block">1. Select Sub-Ward Grid Area</label>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    {HSR_GRIDS.map(grid => (
+                    {UDUPI_GRIDS.map(grid => (
                       <button 
                         key={grid.id} 
                         onClick={() => setSelectedGrid(grid)}

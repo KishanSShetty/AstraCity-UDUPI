@@ -185,30 +185,29 @@ export const UDUPI_DATA = {
   
   // Data sources
   data_sources: [
-    'OpenStreetMap — buildings + roads',
+    'OpenStreetMap — Udupi buildings + roads',
     'Census 2011 Udupi CMC Karnataka',
-    'CPCB official — 0.5kg/capita/day',
+    'CPCB official — 0.435kg/capita/day',
     'Udupi CMC 2013 Chemical Analysis',
     'Udupi CMC official — udupi_cmc.gov.in',
     'IPCC 2006 Guidelines',
     'IPCC AR5 — CH4 GWP=28',
     'India Carbon Market 2024',
-    'hsrcitizenforum.in',
-    'ceeindia.org/hsr-swm',
+    'Karvalu SWM Campus Technical Audit',
+    'Beedinagudde BMU Operational Plan',
     'data.opencity.in',
     'Wikipedia — Udupi City',
-    'Deccan Herald — Kudlu plant',
-    'Beegru.com — HSR 2025 study',
-    'geoiq.io — population data',
-    'HSR_Layout_SD.tif — satellite'
+    'Deccan Herald — Karvalu SWM Plant',
+    'geoiq.io — Udupi population data',
+    'Sentinel-2 LULC Satellite Imagery (Udupi)'
   ],
   
   // Extra Info
   udupi_cmc_bio_capacity_tpd: 10,
-  kudlu_status: 'Under construction',
+  karvalu_status: 'Operational',
   swachagraha_exists: true,
-  bengaluru_total_tpd: "3000-3500",
-  udupi_cmc_wet_plants: 7,
-  udupi_cmc_wet_capacity_tpd: 1570,
-  udupi_cmc_bio_plants: 13,
+  udupi_total_tpd: "72 TPD",
+  udupi_cmc_wet_plants: 2,
+  udupi_cmc_wet_capacity_tpd: 45,
+  udupi_cmc_bio_plants: 2,
 };
