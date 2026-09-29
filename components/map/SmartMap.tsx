@@ -57,17 +57,13 @@ interface LayerConfig {
 const LAYERS: LayerConfig[] = [
   // SPATIAL
   { id: 'ward',    label: 'Ward Boundary', color: '#00d4aa', defaultOn: true, category: 'SPATIAL' },
-  { id: 'district-boundary',   label: 'District Boundary',   color: '#a855f7', defaultOn: false, category: 'SPATIAL' },
   { id: 'roads',   label: 'Road Network',  color: '#475569', defaultOn: true, category: 'SPATIAL' },
   { id: 'dumps',   label: 'Dry Waste Centers', color: '#0ea5e9', defaultOn: true, count: '4', category: 'SPATIAL' },
   { id: 'heatmap', label: 'Waste Heatmap', color: '#f59e0b', defaultOn: false, category: 'SPATIAL' },
-  { id: 'routes',  label: 'Truck Routes',  color: '#00d4aa', defaultOn: false, category: 'SPATIAL' },
 
   // BUILDING
   { id: 'building-footprints', label: 'Building Footprints', color: '#a855f7', defaultOn: false, count: '9,483', category: 'BUILDING' },
-  { id: 'district-buildings',  label: 'District Buildings', color: '#10b981', defaultOn: false, category: 'BUILDING' },
   { id: '3d-buildings',        label: '3D Buildings',        color: '#3b82f6', defaultOn: false, category: 'BUILDING' },
-  { id: 'building-types',      label: 'Building Types',      color: '#f4a460', defaultOn: false, category: 'BUILDING' },
   
 
   // DATA
@@ -653,37 +649,7 @@ export default function SmartMap() {
         });
       }
 
-      // ═══════════ Truck Routes ═══════════
-      const baselineFeatures = (truckRoutes.baseline?.segments || []).map((seg: number[][]) => ({
-        type: 'Feature' as const,
-        geometry: { type: 'LineString' as const, coordinates: seg },
-        properties: { type: 'baseline' },
-      }));
-      const optimizedFeatures = (truckRoutes.optimized?.segments || []).map((seg: number[][]) => ({
-        type: 'Feature' as const,
-        geometry: { type: 'LineString' as const, coordinates: seg },
-        properties: { type: 'optimized' },
-      }));
 
-      m.addSource('routes-baseline', {
-        type: 'geojson',
-        data: { type: 'FeatureCollection', features: baselineFeatures },
-      });
-      m.addSource('routes-optimized', {
-        type: 'geojson',
-        data: { type: 'FeatureCollection', features: optimizedFeatures },
-      });
-
-      m.addLayer({
-        id: 'routes-baseline-line', type: 'line', source: 'routes-baseline',
-        paint: { 'line-color': '#ef4444', 'line-width': 2, 'line-dasharray': [2, 2], 'line-opacity': 0.8 },
-        layout: { visibility: 'none' },
-      });
-      m.addLayer({
-        id: 'routes-optimized-line', type: 'line', source: 'routes-optimized',
-        paint: { 'line-color': '#00d4aa', 'line-width': 2, 'line-opacity': 0.9 },
-        layout: { visibility: 'none' },
-      });
 
       // ═══════════ Open Spaces ═══════════
       m.addSource('openspaces-source', { type: 'geojson', data: openSpaces });
@@ -907,7 +873,6 @@ export default function SmartMap() {
         };
 
         if (layerId === 'ward')               { setVis('ward-fill'); setVis('ward-line'); }
-        else if (layerId === 'district-boundary') { setVis('district-line'); }
         else if (layerId === 'zone-grid')     { setVis('zone-grid-fill'); setVis('zone-grid-border'); setVis('zone-grid-labels'); }
         else if (layerId === 'roads')          { setVis('roads-line'); }
         else if (layerId === 'heatmap')        { setVis('heatmap-fill'); }
@@ -916,33 +881,6 @@ export default function SmartMap() {
           setVis('building-footprints-fill');
           if (m.getLayer('building-footprints-outline')) setVis('building-footprints-outline');
         }
-        else if (layerId === 'district-buildings') {
-          if (m.getLayer('district-buildings-3d')) m.setLayoutProperty('district-buildings-3d', 'visibility', next[layerId] ? 'visible' : 'none');
-          if (next[layerId] && !is3D) {
-            m.easeTo({ pitch: 45, duration: 1000 });
-            setTimeout(() => setIs3D(true), 0);
-          }
-        }
-        else if (layerId === 'building-types') {
-          const showTyped = next[layerId];
-          const colorExpression = showTyped ? [
-            'match', ['get', 'building'],
-            'residential', '#F4A460',
-            'apartments', '#E8824A',
-            'commercial', '#6CB4E4',
-            'retail', '#4169E1',
-            'hospital', '#FF4444',
-            'school', '#FFD700',
-            'college', '#FFD700',
-            'industrial', '#A0A0A0',
-            '#94a3b8'
-          ] : '#94a3b8';
-          
-          if (m.getLayer('building-footprints-fill')) {
-            m.setPaintProperty('building-footprints-fill', 'fill-color', colorExpression);
-          }
-        }
-        else if (layerId === 'routes')         { setVis('routes-baseline-line'); setVis('routes-optimized-line'); }
         else if (layerId === 'openspaces')     { setVis('openspaces-circle'); }
         
         else if (layerId === 'water')          { setVis('water-fill'); setVis('water-lines'); }
