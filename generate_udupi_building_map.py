@@ -81,39 +81,40 @@ counts = buildings['building_type'].value_counts()
 for btype, cnt in counts.items():
     print(f"  {btype:<30} {cnt:>5} ({cnt/len(buildings)*100:.1f}%)")
 
-# Color Scheme (Warm, High Legibility, Premium Map)
+# Color Scheme — VIBRANT ORANGE for Residential (No dark outlines!)
 building_colors = {
-    'Residential (House)':      '#F6AD55', # Warm Orange/Amber (Dominant residential stock)
-    'Residential (Apartment)':  '#DD6B20', # Deep Orange
-    'Commercial/Retail':        '#3182CE', # Sky Blue
-    'Government/Office':        '#2B6CB0', # Deep Blue
-    'Educational':              '#D69E2E', # Golden Yellow
-    'Religious':                '#805AD5', # Purple
-    'Hospital/Medical':         '#E53E3E', # Crimson Red
-    'Industrial':               '#4A5568', # Dark Slate Grey
+    'Residential (House)':      '#FF7A00', # Vibrant Bright Orange
+    'Residential (Apartment)':  '#D93800', # Deep Vibrant Red-Orange
+    'Commercial/Retail':        '#0088FF', # Bright Sky Blue
+    'Government/Office':        '#1E3A8A', # Deep Navy Blue
+    'Educational':              '#EAB308', # Vivid Yellow
+    'Religious':                '#9333EA', # Vivid Purple
+    'Hospital/Medical':         '#EF4444', # Bright Red
+    'Industrial':               '#334155', # Dark Slate
 }
 
-buildings['color'] = buildings['building_type'].map(lambda x: building_colors.get(x, '#F6AD55'))
+buildings['color'] = buildings['building_type'].map(lambda x: building_colors.get(x, '#FF7A00'))
 
 # Generate high resolution map with legend
-fig = plt.figure(figsize=(22, 14), dpi=300, facecolor='#FAFAF7')
+fig = plt.figure(figsize=(22, 14), dpi=300, facecolor='#FFFFFF')
 gs = gridspec.GridSpec(1, 2, width_ratios=[78, 22], wspace=0.01)
 
 # MAP PANEL
 ax_map = fig.add_subplot(gs[0])
-ax_map.set_facecolor('#F0EAE1')
+ax_map.set_facecolor('#F8FAFC')
 
 if roads is not None:
-    roads.plot(ax=ax_map, color='#FFFFFF', linewidth=0.5, alpha=0.7, zorder=1)
+    roads.plot(ax=ax_map, color='#E2E8F0', linewidth=0.6, alpha=0.8, zorder=1)
 
-wards.plot(ax=ax_map, color='#F7F4EF', edgecolor='#CBD5E0', linewidth=1.0, alpha=0.5, zorder=2)
+wards.plot(ax=ax_map, color='#FFFFFF', edgecolor='#CBD5E1', linewidth=0.8, alpha=0.9, zorder=2)
 
 for btype, color in building_colors.items():
     subset = buildings[buildings['building_type'] == btype]
     if len(subset) > 0:
-        subset.plot(ax=ax_map, color=color, edgecolor='#2D374822', linewidth=0.2, alpha=0.9, zorder=3)
+        # Use matching color for edges to eliminate grey shadow effect!
+        subset.plot(ax=ax_map, color=color, edgecolor=color, linewidth=0.4, alpha=1.0, zorder=3)
 
-wards.boundary.plot(ax=ax_map, color='#2D3748', linewidth=1.5, zorder=10)
+wards.boundary.plot(ax=ax_map, color='#1E293B', linewidth=1.5, zorder=10)
 ax_map.set_axis_off()
 
 # LEGEND PANEL
@@ -123,9 +124,9 @@ ax_leg.set_xlim(0, 1)
 ax_leg.set_ylim(0, 1)
 ax_leg.set_axis_off()
 
-ax_leg.text(0.08, 0.95, 'Udupi City', fontsize=18, fontweight='bold', color='#1A202C', transform=ax_leg.transAxes, va='top')
-ax_leg.text(0.08, 0.91, 'Building Type Map', fontsize=13, fontweight='semibold', color='#4A5568', transform=ax_leg.transAxes, va='top')
-ax_leg.text(0.08, 0.88, f"Total: {len(buildings):,} buildings mapped", fontsize=11, color='#718096', transform=ax_leg.transAxes, va='top')
+ax_leg.text(0.08, 0.95, 'Udupi City', fontsize=18, fontweight='bold', color='#0F172A', transform=ax_leg.transAxes, va='top')
+ax_leg.text(0.08, 0.91, 'Building Type Map', fontsize=13, fontweight='semibold', color='#475569', transform=ax_leg.transAxes, va='top')
+ax_leg.text(0.08, 0.88, f"Total: {len(buildings):,} buildings mapped", fontsize=11, color='#64748B', transform=ax_leg.transAxes, va='top')
 ax_leg.plot([0.05, 0.95], [0.86, 0.86], color='#E2E8F0', linewidth=1.2, transform=ax_leg.transAxes)
 
 y = 0.82
@@ -134,16 +135,16 @@ for btype, color in building_colors.items():
     pct = (cnt / len(buildings)) * 100
     
     # Legend patch box
-    rect = plt.Rectangle((0.08, y - 0.025), 0.06, 0.03, facecolor=color, edgecolor='#2D3748', linewidth=0.5, transform=ax_leg.transAxes)
+    rect = plt.Rectangle((0.08, y - 0.025), 0.06, 0.03, facecolor=color, edgecolor='#0F172A', linewidth=0.5, transform=ax_leg.transAxes)
     ax_leg.add_patch(rect)
     
-    ax_leg.text(0.18, y, btype, fontsize=11, fontweight='bold', color='#2D3748', transform=ax_leg.transAxes, va='center')
-    ax_leg.text(0.18, y - 0.025, f"{cnt:,} buildings ({pct:.1f}%)", fontsize=9.5, color='#718096', transform=ax_leg.transAxes, va='center')
+    ax_leg.text(0.18, y, btype, fontsize=11, fontweight='bold', color='#0F172A', transform=ax_leg.transAxes, va='center')
+    ax_leg.text(0.18, y - 0.025, f"{cnt:,} buildings ({pct:.1f}%)", fontsize=9.5, color='#64748B', transform=ax_leg.transAxes, va='center')
     y -= 0.075
 
-ax_leg.text(0.08, 0.08, 'Color-coded building types derived from OpenStreetMap GIS data', fontsize=8.5, color='#A0AEC0', style='italic', transform=ax_leg.transAxes)
+ax_leg.text(0.08, 0.08, 'Color-coded building types derived from OpenStreetMap GIS data', fontsize=8.5, color='#94A3B8', style='italic', transform=ax_leg.transAxes)
 
 output_img = 'public/building_map_legend.png'
-plt.savefig(output_img, dpi=300, bbox_inches='tight', pad_inches=0.2, facecolor='#FAFAF7')
+plt.savefig(output_img, dpi=300, bbox_inches='tight', pad_inches=0.2, facecolor='#FFFFFF')
 plt.close()
-print(f"Saved updated Udupi building map to {output_img}")
+print(f"Saved updated vibrant Udupi building map to {output_img}")
