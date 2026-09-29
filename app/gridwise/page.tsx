@@ -107,11 +107,11 @@ export default function GridWisePage() {
             </div>
             <div className="bg-white shadow-sm border border-slate-200 px-5 py-3 rounded-2xl flex flex-col min-w-[120px]">
               <span className="text-slate-600 text-xs font-bold uppercase tracking-wider mb-1">Buildings</span>
-              <span className="text-2xl font-black text-teal-600">{totalBuildings.toLocaleString()}</span>
+              <span className="text-2xl font-black text-teal-600">{totalBuildings.toLocaleString('en-IN')}</span>
             </div>
             <div className="bg-white shadow-sm border border-slate-200 px-5 py-3 rounded-2xl flex flex-col min-w-[120px]">
               <span className="text-slate-600 text-xs font-bold uppercase tracking-wider mb-1">Population</span>
-              <span className="text-2xl font-black text-slate-900">{totalPop.toLocaleString()}</span>
+              <span className="text-2xl font-black text-slate-900">{totalPop.toLocaleString('en-IN')}</span>
             </div>
             <div className="bg-white shadow-sm border border-slate-200 px-5 py-3 rounded-2xl flex flex-col min-w-[120px]">
               <span className="text-slate-600 text-xs font-bold uppercase tracking-wider mb-1">Daily Waste</span>
@@ -167,7 +167,7 @@ export default function GridWisePage() {
             >
               <h2 className="text-xl font-bold mb-4 text-teal-600">Risk Profile Summary</h2>
               <p className="text-slate-600 text-lg leading-relaxed font-light mb-6">
-                Udupi City is divided into <strong className="text-slate-900">{zones.length} grid zones</strong> at 500m resolution, covering <strong className="text-slate-900">7.04 sq km</strong> with <strong className="text-slate-900">{totalPop.toLocaleString()} residents</strong>. 
+                Udupi City is divided into <strong className="text-slate-900">{zones.length} grid zones</strong> at 500m resolution, covering <strong className="text-slate-900">7.04 sq km</strong> with <strong className="text-slate-900">{totalPop.toLocaleString('en-IN')} residents</strong>. 
                 Daily waste generation: <strong className="text-teal-600">{totalWaste.toFixed(1)} tons</strong> — analyzed by risk level for optimized collection scheduling.
               </p>
               
@@ -294,7 +294,7 @@ export default function GridWisePage() {
                         >
                           <td className="py-3 px-4 font-bold text-slate-900" style={{ borderLeft: isSelected ? '3px solid #0d9488' : '3px solid transparent' }}>{z.zone_id}</td>
                           <td className="py-3 px-4 text-right font-mono text-slate-700">{z.total_buildings}</td>
-                          <td className="py-3 px-4 text-right font-mono text-slate-700">{z.population.toLocaleString()}</td>
+                          <td className="py-3 px-4 text-right font-mono text-slate-700">{z.population.toLocaleString('en-IN')}</td>
                           <td className="py-3 px-4 text-right font-mono font-bold text-amber-600">{z.waste_total_tons.toFixed(3)}T</td>
                           <td className="py-3 px-4 text-right">
                             <span className={`px-2 py-0.5 rounded-md border text-[10px] font-bold uppercase tracking-wider ${rc.bg} ${rc.border} ${rc.text}`}>
@@ -346,7 +346,7 @@ export default function GridWisePage() {
                 <h3 className="text-lg font-bold text-amber-500">Residential Density</h3>
               </div>
               <p className="text-slate-600 font-light leading-relaxed">
-                <strong className="text-slate-900">{buildingChartData[0]?.count?.toLocaleString()} residential houses</strong> form the dominant building type across all {zones.length} zones. Door-to-door wet waste collection is the primary strategy, with auto-rickshaws as the optimal vehicle for narrow lanes.
+                <strong className="text-slate-900">{buildingChartData[0]?.count?.toLocaleString('en-IN')} residential houses</strong> form the dominant building type across all {zones.length} zones. Door-to-door wet waste collection is the primary strategy, with auto-rickshaws as the optimal vehicle for narrow lanes.
               </p>
             </div>
 

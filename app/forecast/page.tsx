@@ -8,7 +8,7 @@ import { UDUPI_DATA } from '@/lib/constants';
 
 export default function ForecastPage() {
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  const [weatherLoaded, setWeatherLoaded] = useState(false);
 
   const BASE_WET = UDUPI_DATA.waste_wet_tons; 
   const BASE_DRY = UDUPI_DATA.waste_dry_tons;  
@@ -17,9 +17,10 @@ export default function ForecastPage() {
   const CAP_WET = Number((BASE_WET * 1.25).toFixed(1)); // Buffet limit
   const CAP_DRY = Number((BASE_DRY * 1.25).toFixed(1));
 
-  // Initialize 10 days with basic static calendar defaults
-  const initialDays = Array.from({ length: 10 }, (_, i) => {
-    const date = new Date(2026, 2, 22 + i); // Starts March 22
+  // Initialize 10 days starting from today
+  const createInitialDays = () => Array.from({ length: 10 }, (_, i) => {
+    const date = new Date();
+    date.setDate(date.getDate() + i);
     const dayStr = date.toISOString().split('T')[0];
     const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
     const isWeekend = date.getDay() === 0 || date.getDay() === 6;
@@ -30,11 +31,43 @@ export default function ForecastPage() {
       is_weekend: isWeekend,
       temp: 28,
       rain: 0,
-      is_festival: i === 4 || i === 8 ? true : false, // presets for Demo but fully editable
+      is_festival: false,
     };
   });
 
-  const [days, setDays] = useState(initialDays);
+  const [days, setDays] = useState(createInitialDays());
+
+  // Fetch real 10-day weather forecast from Open-Meteo API (free, no API key)
+  useEffect(() => {
+    setMounted(true);
+    const UDUPI_LAT = 13.3409;
+    const UDUPI_LON = 74.7421;
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${UDUPI_LAT}&longitude=${UDUPI_LON}&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Asia/Kolkata&forecast_days=10`;
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        if (data.daily) {
+          const { time, temperature_2m_max, precipitation_sum } = data.daily;
+          setDays(prev => prev.map((d, i) => {
+            const realDate = new Date(time[i]);
+            return {
+              ...d,
+              date: time[i],
+              day: realDate.toLocaleDateString('en-US', { weekday: 'short' }),
+              is_weekend: realDate.getDay() === 0 || realDate.getDay() === 6,
+              temp: Math.round(temperature_2m_max[i]),
+              rain: Math.round(precipitation_sum[i]),
+            };
+          }));
+          setWeatherLoaded(true);
+        }
+      })
+      .catch(err => {
+        console.error('Weather API failed, using defaults:', err);
+        setWeatherLoaded(false);
+      });
+  }, []);
 
   // --- THE FORMULA PREDICTION MODEL ---
   const calculateDay = (d: typeof initialDays[0]) => {
@@ -96,7 +129,7 @@ export default function ForecastPage() {
           <Link href="/impact" className="text-teal-600 font-bold hover:text-teal-500 transition-opacity">← Back</Link>
           <div className="w-[1px] h-4 bg-slate-300" />
           <h1 className="text-lg font-extrabold tracking-tight bg-gradient-to-r from-teal-600 to-sky-600 bg-clip-text text-transparent">
-            🔮 10-Day Formula Simulator
+            🔮 10-Day Waste Forecast — Udupi
           </h1>
         </div>
       </div>
@@ -107,7 +140,7 @@ export default function ForecastPage() {
         <div className="lg:col-span-2 space-y-8">
           <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm overflow-x-auto">
             <h2 className="text-xl font-extrabold text-slate-900 mb-2">Live Parameter Inputs</h2>
-            <p className="text-sm text-slate-500 mb-6">Modify temperature, rain, or festival flags to satisfy the math formula live.</p>
+            <p className="text-sm text-slate-500 mb-6">{weatherLoaded ? '✅ Live weather data from Open-Meteo API (Udupi: 13.34°N, 74.74°E).  Adjust sliders to override. <a href="https://api.open-meteo.com/v1/forecast?latitude=13.3409&longitude=74.7421&daily=temperature_2m_max,temperature_2m_min,precipitation_sum&timezone=Asia/Kolkata&forecast_days=10" target="_blank" className="text-sky-500 hover:text-sky-600 underline font-bold ml-2">View Raw API Data →</a>' : '⏳ Loading weather data from Open-Meteo API...'}</p>
 
             <table className="w-full text-left text-sm text-slate-500">
               <thead className="bg-slate-50 border-b border-slate-200">
@@ -124,7 +157,7 @@ export default function ForecastPage() {
                 {computedData.map((d, i) => (
                   <tr key={i} className="hover:bg-slate-50/50 transition-colors">
                     <td className="px-3 py-3 text-slate-900 font-bold text-xs">
-                      {d.date.split('-')[2]} Mar ({d.day})
+                      {new Date(d.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })} ({d.day})
                       {d.is_weekend && <span className="block text-sky-600 text-[10px] uppercase tracking-wider mt-0.5 font-black">Weekend</span>}
                     </td>
                     <td className="px-3 py-3">
@@ -182,7 +215,8 @@ export default function ForecastPage() {
           <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
             <h3 className="text-base font-extrabold text-slate-900 mb-4">Formula Multipliers Used</h3>
             <ul className="text-xs space-y-2 text-slate-500 font-medium">
-              <li className="flex justify-between"><span>Baseline Waste TPD:</span> <span className="text-slate-900 font-bold">19.78 Tons</span></li>
+              <li className="flex justify-between"><span>Baseline Waste TPD:</span> <span className="text-slate-900 font-bold">{UDUPI_DATA.daily_waste_tons} Tons</span></li>
+              <li className="flex justify-between"><span>Weather Source:</span> <span className="text-teal-600 font-bold">{weatherLoaded ? 'Open-Meteo API ✅' : 'Default'}</span></li>
               <li className="border-t border-slate-100 my-2"></li>
               <li className="flex justify-between"><span>Rain &gt; 20mm:</span> <span className="text-emerald-600 font-bold">+25% Wet</span></li>
               <li className="flex justify-between"><span>Rain &gt; 0mm:</span> <span className="text-emerald-600 font-bold">+8% Wet</span></li>

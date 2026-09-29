@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useRouter } from 'next/navigation';
+
 
 const SmartMap = dynamic(() => import('@/components/map/SmartMap'), {
   ssr: false,
@@ -14,12 +14,12 @@ const SmartMap = dynamic(() => import('@/components/map/SmartMap'), {
 });
 
 export default function MapPage() {
-  const router = useRouter();
+  
 
   return (
     <div className="flex flex-col" style={{ height: 'calc(100vh - 65px)' }}>
 
-      {/* ── View Switcher Bar ──────────────────────────────────────────────── */}
+      {/* ── Header Bar ──────────────────────────────────────────────── */}
       <div
         className="shrink-0 flex items-center justify-center gap-3 py-2.5 px-4"
         style={{
@@ -27,52 +27,12 @@ export default function MapPage() {
           borderBottom: '1px solid rgba(255,255,255,0.07)',
         }}
       >
-        <span className="text-xs font-semibold text-slate-600 tracking-wide select-none">
-          Switch View:
-        </span>
-
-        {/* Pill toggle */}
-        <div
-          className="relative flex items-center p-0.5 rounded-full"
-          style={{
-            background: 'rgba(255,255,255,0.07)',
-            border: '1px solid rgba(0,0,0,0.1)',
-          }}
-        >
-          {/* sliding highlight — always on left (HSR) */}
-          <div
-            className="absolute top-0.5 bottom-0.5 rounded-full"
-            style={{
-              width: 'calc(50% - 2px)',
-              background: 'linear-gradient(135deg, #00d4aa, #0ea5e9)',
-              boxShadow: '0 0 16px rgba(0,212,170,0.35)',
-              left: '2px',
-            }}
-          />
-
-          <button
-            id="view-btn-hsr"
-            className="relative z-10 px-4 py-1.5 rounded-full text-xs font-bold transition-colors duration-200 flex items-center gap-1.5 select-none"
-            style={{ color: '#fff', minWidth: 130 }}
-          >
-            <span>📍</span>
-            <span>Udupi City</span>
-          </button>
-
-          <button
-            id="view-btn-vehicle"
-            onClick={() => router.push('/vehicle-sim')}
-            className="relative z-10 px-4 py-1.5 rounded-full text-xs font-bold transition-colors duration-200 flex items-center gap-1.5 select-none"
-            style={{ color: '#64748b', minWidth: 130 }}
-          >
-            <span>🚛</span>
-            <span>Vehicle Sim</span>
-          </button>
+        <div className="flex items-center gap-2 px-4 py-1.5 rounded-full" style={{ background: 'linear-gradient(135deg, #00d4aa, #0ea5e9)' }}>
+          <span>📍</span>
+          <span className="text-xs font-bold text-white">Udupi City</span>
         </div>
-
-        {/* Active view descriptor */}
         <span className="text-[11px] text-slate-500 hidden sm:block select-none">
-          Detailed Udupi City · Real Udupi CMC data · 9,471 buildings
+          Detailed Udupi City · Real Udupi CMC data · 11,429 buildings
         </span>
       </div>
 

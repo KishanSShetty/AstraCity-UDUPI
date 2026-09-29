@@ -318,7 +318,7 @@ export default function SmartMap() {
                 </div>
                 <div style="background:#1f2937;padding:8px;border-radius:6px;">
                   <div style="color:#94a3b8;font-size:10px;text-transform:uppercase;">Population</div>
-                  <div style="color:#00d4aa;font-size:16px;font-weight:bold;text-shadow:none;">${Number(props.population).toLocaleString()}</div>
+                  <div style="color:#00d4aa;font-size:16px;font-weight:bold;text-shadow:none;">${Number(props.population).toLocaleString('en-IN')}</div>
                 </div>
                 <div style="background:#1f2937;padding:8px;border-radius:6px;">
                   <div style="color:#94a3b8;font-size:10px;text-transform:uppercase;">Residential</div>
@@ -961,7 +961,7 @@ export default function SmartMap() {
       <div className="shrink-0 bg-[#0a0f1a] border-b border-white/10 px-6 py-2 flex items-center justify-center gap-0 text-xs font-semibold tracking-wide">
         {[
           { label: 'sq km', value: `${UDUPI_DATA.area_sq_km}`, warn: false },
-          { label: 'population', value: UDUPI_DATA.population_building_based.toLocaleString(), warn: false },
+          { label: 'population', value: UDUPI_DATA.population_building_based.toLocaleString('en-IN'), warn: false },
           { label: 'waste/day', value: `${UDUPI_DATA.daily_waste_tons}T`, warn: false },
           { label: 'route saving', value: `${UDUPI_DATA.route_improvement_pct}%`, warn: false },
           { label: 'waste facilities', value: `${UDUPI_DATA.dump_sites_detected}`, warn: false },
@@ -1100,7 +1100,7 @@ export default function SmartMap() {
                 <div className="space-y-1">
                   <div className="flex justify-between text-xs text-slate-300">
                     <span>Total:</span>
-                    <span className="font-mono font-bold text-white">{UDUPI_DATA.population_building_based.toLocaleString()}</span>
+                    <span className="font-mono font-bold text-white">{UDUPI_DATA.population_building_based.toLocaleString('en-IN')}</span>
                   </div>
                   <div className="flex justify-between text-xs text-slate-400">
                     <span>Houses 8,998 × 4:</span>
@@ -1128,7 +1128,7 @@ export default function SmartMap() {
                 <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">DAILY WASTE</div>
                 <div className="flex justify-between text-xs text-slate-300 font-bold mb-1">
                   <span>Total:</span>
-                  <span className="text-white">{UDUPI_DATA.daily_waste_kg.toLocaleString()} kg</span>
+                  <span className="text-white">{UDUPI_DATA.daily_waste_kg.toLocaleString('en-IN')} kg</span>
                 </div>
                 <div className="text-[10px] text-slate-500 text-right -mt-1 mb-2">({UDUPI_DATA.daily_waste_display}/day)</div>
                 
@@ -1229,8 +1229,8 @@ export default function SmartMap() {
             </div>
             <div className="h-px bg-white/10" />
             <SidebarSection title="Satellite Analysis" icon="🛰️">
-              <SidebarRow icon="🏠" label="Rooftops mapped" value={UDUPI_DATA.total_buildings.toLocaleString()} />
-              <SidebarRow icon="👥" label="Population (building-based)" value={UDUPI_DATA.population_building_based.toLocaleString()} />
+              <SidebarRow icon="🏠" label="Rooftops mapped" value={UDUPI_DATA.total_buildings.toLocaleString('en-IN')} />
+              <SidebarRow icon="👥" label="Population (building-based)" value={UDUPI_DATA.population_building_based.toLocaleString('en-IN')} />
               <SidebarRow icon="📦" label="Waste generated" value={`${UDUPI_DATA.daily_waste_tons} T/day`} highlight />
               <SidebarRow icon="🌿" label="Green cover" value="26.1%" />
               <SidebarRow icon="📐" label="Total area" value={`${UDUPI_DATA.area_sq_km} sq km`} />

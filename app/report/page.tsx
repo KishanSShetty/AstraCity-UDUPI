@@ -165,7 +165,7 @@ export default function ReportPage() {
               <section>
                 <h2 className="text-xl font-extrabold text-slate-800 uppercase tracking-wider border-b border-slate-200 pb-2 mb-4">1. Executive Summary</h2>
                 <p className="font-medium text-slate-600 leading-relaxed text-justify">
-                  Udupi City Ward Analysis reveals a population base of {UDUPI_DATA.population_building_based.toLocaleString()} (building-based, Census 2011 Karnataka method) generating {UDUPI_DATA.daily_waste_display} of aggregate daily waste. Using GEOIQ.IO boundaries paired with OpenStreetMap extracts and Census 2011 calibrators, we have mapped localized waste generation hotspots and optimized collection routing algorithms to reduce daily required travel. Wait times at transfer stations and baseline carbon expenditures present distinct targets for immediate route recalibration.
+                  Udupi City Ward Analysis reveals a population base of {UDUPI_DATA.population_building_based.toLocaleString('en-IN')} (building-based, Census 2011 Karnataka method) generating {UDUPI_DATA.daily_waste_display} of aggregate daily waste. Using GEOIQ.IO boundaries paired with OpenStreetMap extracts and Census 2011 calibrators, we have mapped localized waste generation hotspots and optimized collection routing algorithms to reduce daily required travel. Wait times at transfer stations and baseline carbon expenditures present distinct targets for immediate route recalibration.
                 </p>
               </section>
             )}
@@ -232,7 +232,7 @@ export default function ReportPage() {
                 <h2 className="text-xl font-extrabold text-slate-800 uppercase tracking-wider border-b border-slate-200 pb-2 mb-4">4. Methane Emission Projection</h2>
                 <div className="bg-white rounded-xl p-8 flex items-center justify-center text-center">
                   <div>
-                    <span className="block text-5xl font-black text-teal-600 mb-3">{economicParams.methaneReductionTons.toLocaleString()} <span className="text-lg">tons</span></span>
+                    <span className="block text-5xl font-black text-teal-600 mb-3">{economicParams.methaneReductionTons.toLocaleString('en-IN')} <span className="text-lg">tons</span></span>
                     <span className="uppercase text-xs font-bold tracking-widest text-slate-600">Net CO2 Equivalent Reduced</span>
                   </div>
                 </div>
@@ -244,7 +244,7 @@ export default function ReportPage() {
                 <h2 className="text-xl font-extrabold text-slate-800 uppercase tracking-wider border-b border-slate-200 pb-2 mb-4">5. Recommended Actions</h2>
                 <ul className="list-disc pl-5 font-medium text-slate-600 space-y-3">
                   <li>Immediately deploy <span className="font-bold text-slate-800">Dynamic Re-routing Protocol</span> to Eastern and Northern zones targeting {economicParams.optimizedRouteKm}km optimized caps.</li>
-                  <li>Schedule rapid interventions at {economicParams.dumpsPreventedPerYear.toLocaleString()} localized micro-dumping hot spots recorded in highest-vulnerability wards.</li>
+                  <li>Schedule rapid interventions at {economicParams.dumpsPreventedPerYear.toLocaleString('en-IN')} localized micro-dumping hot spots recorded in highest-vulnerability wards.</li>
                   <li>Incentivize dispatching vehicles 45 minutes prior to peak traffic convolution metrics.</li>
                   <li>Relocate secondary transfer collection assets to ease bottlenecking at primary central nodes.</li>
                 </ul>

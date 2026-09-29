@@ -3,61 +3,61 @@
 
 export const UDUPI_DATA = {
   // Area
-  area_sq_km: 18.5,
-  area_hectares: 1850,
+  area_sq_km: 68.33,
+  area_hectares: 6833,
   sectors: 7,
 
   // Population
   population: 165401,
-  population_houses: 35992,
-  population_apts: 71000,
-  population_offices: 585,
-  population_hospitals: 100,
-  population_schools: 2250,
-  population_others: 90,
+  population_houses: 40688,
+  population_apts: 5484,
+  population_offices: 855,
+  population_hospitals: 2850,
+  population_schools: 25650,
+  population_others: 1545,
   population_source: 'Buildings × Census 2011 Karnataka',
   population_building_based: 165401,
 
   // Waste
-  waste_per_capita: 0.5,
-  waste_per_capita_kg: 0.5,
-  waste_daily_tons: 55,
-  daily_waste_tons: 55,
-  waste_daily_kg: 55000,
-  daily_waste_kg: 55000,
-  waste_display: '55 tons/day',
-  waste_daily_display: '55 tons/day',
-  daily_waste_display: '55 tons/day',
+  waste_per_capita: 0.435,
+  waste_per_capita_kg: 0.435,
+  waste_daily_tons: 72,
+  daily_waste_tons: 72,
+  waste_daily_kg: 72000,
+  daily_waste_kg: 72000,
+  waste_display: '72 tons/day',
+  waste_daily_display: '72 tons/day',
+  daily_waste_display: '72 tons/day',
   
-  waste_wet_tons: 33.55,
+  waste_wet_tons: 43.92,
   waste_wet_pct: 61,
-  waste_wet_kg: 33550,
+  waste_wet_kg: 43920,
   
-  waste_dry_tons: 16.5,
+  waste_dry_tons: 21.6,
   waste_dry_pct: 30,
-  waste_dry_kg: 16500,
+  waste_dry_kg: 21600,
   
-  waste_haz_tons: 2.75,
-  waste_hazardous_tons: 2.75,
+  waste_haz_tons: 3.6,
+  waste_hazardous_tons: 3.6,
   waste_haz_pct: 5,
   waste_hazardous_pct: 5,
-  waste_hazardous_kg: 2750,
+  waste_hazardous_kg: 3600,
   
-  waste_other_tons: 2.2,
+  waste_other_tons: 2.88,
   waste_other_pct: 4,
-  waste_other_kg: 2200,
+  waste_other_kg: 2880,
   
   waste_diversion_pct: 80,
   waste_source: 'Udupi CMC 2013 Chemical Analysis',
 
   // Buildings
-  buildings_total: 9471,
-  total_buildings: 9471,
-  buildings_density: 512,
-  building_density_per_sqkm: 512,
+  buildings_total: 11429,
+  total_buildings: 11429,
+  buildings_density: 167,
+  building_density_per_sqkm: 167,
   buildings_avg_sqm: 163,
   buildings_footprint_ha: 154.4,
-  buildings_residential_pct: 94.8,
+  buildings_residential_pct: 93.0,
 
   // Roads
   roads_total: 2027,
@@ -175,12 +175,12 @@ export const UDUPI_DATA = {
 
   // Legacy Breakdown for backward compatibility
   population_breakdown: {
-    houses:     { count: 8998, per_unit: 4,   total: 35992 },
-    apartments: { count: 250,  per_unit: 284, total: 71000 },
-    offices:    { count: 39,   per_unit: 15,  total: 585   },
-    hospitals:  { count: 2,    per_unit: 50,  total: 100   },
-    schools:    { count: 15,   per_unit: 150, total: 2250  },
-    others:     { count: 30,   per_unit: 3,   total: 90    },
+    houses:     { count: 10172, per_unit: 4,   total: 40688 },
+    apartments: { count: 457,  per_unit: 12, total: 5484 },
+    offices:    { count: 57,   per_unit: 15,  total: 855   },
+    hospitals:  { count: 57,    per_unit: 50,  total: 2850   },
+    schools:    { count: 171,   per_unit: 150, total: 25650  },
+    others:     { count: 515,   per_unit: 3,   total: 1545    },
   },
   
   // Data sources

@@ -282,10 +282,10 @@ export default function AnalyticsPage() {
             {carbonData && (
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14, marginTop: 20 }}>
                 {[
-                  { label: 'CO₂e Avoided/Year', value: `${carbonData.carbon.co2e_tonnes_year.toLocaleString()} T`, color: '#22c55e' },
+                  { label: 'CO₂e Avoided/Year', value: `${carbonData.carbon.co2e_tonnes_year.toLocaleString('en-IN')} T`, color: '#22c55e' },
                   { label: 'Carbon Credit Value', value: carbonData.carbon.credit_value_mid_cr, color: '#a78bfa' },
-                  { label: 'Energy Potential', value: `${carbonData.carbon.energy_kwh_day.toLocaleString()} kWh/day`, color: '#f59e0b' },
-                  { label: 'Homes Powered', value: carbonData.carbon.homes_powered.toLocaleString(), color: '#3b82f6' },
+                  { label: 'Energy Potential', value: `${carbonData.carbon.energy_kwh_day.toLocaleString('en-IN')} kWh/day`, color: '#f59e0b' },
+                  { label: 'Homes Powered', value: carbonData.carbon.homes_powered.toLocaleString('en-IN'), color: '#3b82f6' },
                 ].map((c, i) => (
                   <motion.div key={c.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
                     style={{ padding: '16px 14px', borderRadius: 12, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>

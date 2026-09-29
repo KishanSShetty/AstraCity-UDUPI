@@ -8,24 +8,24 @@ import Image from 'next/image';
 import { UDUPI_DATA } from '@/lib/constants';
 
 const buildingData = {
-  total: 9471,
+  total: 11429,
   source: "OpenStreetMap",
   types: {
-    "Residential (House)": 8998,
-    "Residential (Apartment)": 250,
-    "Commercial/Retail": 136,
-    "Other/Unclassified": 42,
-    "Office/IT": 39,
-    "Educational": 15,
-    "Religious": 10,
-    "Government/Civic": 3,
-    "Hospital/Medical": 2,
+    "Residential (House)": 10172,
+    "Residential (Apartment)": 457,
+    "Commercial/Retail": 343,
+    "Educational": 171,
+    "Religious": 91,
+    "Hospital/Medical": 57,
+    "Office/IT": 57,
+    "Government/Civic": 34,
+    "Other/Unclassified": 47,
   },
   area_stats: {
-    mean_sqm: 163.7,
-    median_sqm: 114.8,
-    max_sqm: 7081.5,
-    total_footprint_ha: 155.21
+    mean_sqm: 145.2,
+    median_sqm: 108.5,
+    max_sqm: 5200.0,
+    total_footprint_ha: 165.95
   }
 };
 
@@ -42,22 +42,22 @@ const mapColors: Record<string, string> = {
 };
 
 const chartData = [
-  { name: "Residential House", count: 8998, fill: mapColors["Residential (House)"] },
-  { name: "Residential Apt", count: 250, fill: mapColors["Residential (Apartment)"] },
-  { name: "Commercial/Retail", count: 136, fill: mapColors["Commercial/Retail"] },
-  { name: "Other", count: 42, fill: mapColors["Other/Unclassified"] },
-  { name: "Office/IT", count: 39, fill: mapColors["Office/IT"] },
-  { name: "Educational", count: 15, fill: mapColors["Educational"] },
-  { name: "Religious", count: 10, fill: mapColors["Religious"] },
-  { name: "Government", count: 3, fill: mapColors["Government/Civic"] },
-  { name: "Hospital/Medical", count: 2, fill: mapColors["Hospital/Medical"] }
+  { name: "Residential House", count: 10172, fill: mapColors["Residential (House)"] },
+  { name: "Residential Apt", count: 457, fill: mapColors["Residential (Apartment)"] },
+  { name: "Commercial/Retail", count: 343, fill: mapColors["Commercial/Retail"] },
+  { name: "Educational", count: 171, fill: mapColors["Educational"] },
+  { name: "Religious", count: 91, fill: mapColors["Religious"] },
+  { name: "Hospital/Medical", count: 57, fill: mapColors["Hospital/Medical"] },
+  { name: "Office/IT", count: 57, fill: mapColors["Office/IT"] },
+  { name: "Government", count: 34, fill: mapColors["Government/Civic"] },
+  { name: "Other", count: 47, fill: mapColors["Other/Unclassified"] }
 ];
 
 const wasteTable = [
-  { type: "Wet/Organic Waste (Udupi CMC)", count: "-", waste: UDUPI_DATA.waste_wet_kg.toLocaleString(), pct: `${UDUPI_DATA.waste_wet_pct}%` },
-  { type: "Dry/Recyclable (CPCB)", count: "-", waste: UDUPI_DATA.waste_dry_kg.toLocaleString(), pct: `${UDUPI_DATA.waste_dry_pct}%` },
-  { type: "Hazardous", count: "-", waste: UDUPI_DATA.waste_hazardous_kg.toLocaleString(), pct: `${UDUPI_DATA.waste_hazardous_pct}%` },
-  { type: "Street Sweeping", count: "-", waste: UDUPI_DATA.waste_other_kg.toLocaleString(), pct: `${UDUPI_DATA.waste_other_pct}%` },
+  { type: "Wet/Organic Waste (Udupi CMC)", count: "-", waste: UDUPI_DATA.waste_wet_kg.toLocaleString('en-IN'), pct: `${UDUPI_DATA.waste_wet_pct}%` },
+  { type: "Dry/Recyclable (CPCB)", count: "-", waste: UDUPI_DATA.waste_dry_kg.toLocaleString('en-IN'), pct: `${UDUPI_DATA.waste_dry_pct}%` },
+  { type: "Hazardous", count: "-", waste: UDUPI_DATA.waste_hazardous_kg.toLocaleString('en-IN'), pct: `${UDUPI_DATA.waste_hazardous_pct}%` },
+  { type: "Street Sweeping", count: "-", waste: UDUPI_DATA.waste_other_kg.toLocaleString('en-IN'), pct: `${UDUPI_DATA.waste_other_pct}%` },
 ];
 
 export default function OsmAnalysisPage() {
@@ -79,7 +79,7 @@ export default function OsmAnalysisPage() {
             <div className="flex items-center gap-4">
               <span className="text-xl text-slate-500 font-light">Udupi City · Udupi</span>
               <span className="bg-slate-100 border border-slate-200 text-slate-600 text-xs px-3 py-1.5 rounded-full font-mono tracking-wider">
-                {UDUPI_DATA.buildings_total.toLocaleString()} buildings mapped · OpenStreetMap
+                {UDUPI_DATA.buildings_total.toLocaleString('en-IN')} buildings mapped · OpenStreetMap
               </span>
             </div>
           </div>
@@ -87,7 +87,7 @@ export default function OsmAnalysisPage() {
           <div className="flex flex-wrap gap-4">
             <div className="bg-white shadow-sm border border-slate-200 px-5 py-3 rounded-2xl flex flex-col min-w-[130px]">
               <span className="text-slate-600 text-xs font-bold uppercase tracking-wider mb-1">Total Buildings</span>
-              <span className="text-2xl font-black text-slate-900">{UDUPI_DATA.buildings_total.toLocaleString()}</span>
+              <span className="text-2xl font-black text-slate-900">{UDUPI_DATA.buildings_total.toLocaleString('en-IN')}</span>
             </div>
             <div className="bg-white shadow-sm border border-slate-200 px-5 py-3 rounded-2xl flex flex-col min-w-[130px]">
               <span className="text-slate-600 text-xs font-bold uppercase tracking-wider mb-1">Total Footprint</span>
@@ -153,7 +153,7 @@ export default function OsmAnalysisPage() {
             >
               <h2 className="text-xl font-bold mb-4 text-teal-600">City View Context</h2>
               <p className="text-slate-600 text-lg leading-relaxed font-light mb-6">
-                Udupi City has <strong className="text-slate-900">{UDUPI_DATA.buildings_total.toLocaleString()} mapped buildings</strong> across <strong className="text-slate-900">{UDUPI_DATA.area_sq_km} sq km</strong>, housing <strong className="text-slate-900">{UDUPI_DATA.population.toLocaleString()} residents</strong> — calculated from Census 2011 Karnataka household sizes applied to each building type. Daily waste: <strong className="text-teal-600">{UDUPI_DATA.waste_display}</strong>.
+                Udupi City has <strong className="text-slate-900">{UDUPI_DATA.buildings_total.toLocaleString('en-IN')} mapped buildings</strong> across <strong className="text-slate-900">{UDUPI_DATA.area_sq_km} sq km</strong>, housing <strong className="text-slate-900">{UDUPI_DATA.population.toLocaleString('en-IN')} residents</strong> — calculated from Census 2011 Karnataka household sizes applied to each building type. Daily waste: <strong className="text-teal-600">{UDUPI_DATA.waste_display}</strong>.
               </p>
               
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -251,7 +251,7 @@ export default function OsmAnalysisPage() {
                     <tr className="bg-teal-600/5 border-t border-teal-600/10">
                       <td className="py-5 px-6 font-bold text-slate-900">TOTAL GENERATED</td>
                       <td className="py-5 px-6 text-right font-mono font-bold text-slate-900">-</td>
-                      <td className="py-5 px-6 text-right font-mono font-bold text-teal-700">{UDUPI_DATA.waste_daily_kg.toLocaleString()} kg</td>
+                      <td className="py-5 px-6 text-right font-mono font-bold text-teal-700">{UDUPI_DATA.waste_daily_kg.toLocaleString('en-IN')} kg</td>
                       <td className="py-5 px-6 text-right font-mono font-bold text-slate-900">100%</td>
                     </tr>
                   </tbody>
@@ -282,7 +282,7 @@ export default function OsmAnalysisPage() {
                 <h3 className="text-lg font-bold text-teal-600">Residential Dominance</h3>
               </div>
               <p className="text-slate-600 font-light leading-relaxed">
-                <strong className="text-slate-900">{UDUPI_DATA.buildings_residential_pct}%</strong> of Udupi City&apos;s {UDUPI_DATA.buildings_total.toLocaleString()} buildings are residential — 8,998 houses and 250 apartments. This makes door-to-door collection the most efficient waste pickup strategy.
+                <strong className="text-slate-900">{UDUPI_DATA.buildings_residential_pct}%</strong> of Udupi City&apos;s {UDUPI_DATA.buildings_total.toLocaleString('en-IN')} buildings are residential — 8,998 houses and 250 apartments. This makes door-to-door collection the most efficient waste pickup strategy.
               </p>
             </div>
 

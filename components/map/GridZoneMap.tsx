@@ -170,7 +170,7 @@ export default function GridZoneMap({ onZoneClick, selectedZoneId }: GridZoneMap
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
                 <div style="background:#1e293b;padding:10px;border-radius:8px;">
                   <div style="color:#94a3b8;font-size:9px;text-transform:uppercase;font-weight:700;letter-spacing:0.08em;">Population</div>
-                  <div style="color:#00d4aa;font-size:18px;font-weight:900;">${Number(p.population).toLocaleString()}</div>
+                  <div style="color:#00d4aa;font-size:18px;font-weight:900;">${Number(p.population).toLocaleString('en-IN')}</div>
                 </div>
                 <div style="background:#1e293b;padding:10px;border-radius:8px;">
                   <div style="color:#94a3b8;font-size:9px;text-transform:uppercase;font-weight:700;letter-spacing:0.08em;">Buildings</div>

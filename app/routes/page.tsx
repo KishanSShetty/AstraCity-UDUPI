@@ -316,7 +316,7 @@ export default function RoutesAnalysisPage() {
                       ))}
                       <tr className="bg-slate-50 font-bold border-t-2 border-slate-200">
                         <td className="px-5 py-4 text-slate-900 uppercase tracking-wider text-xs">TOTAL</td>
-                        <td className="px-5 py-4 text-right font-mono text-slate-900">{UDUPI_DATA.road_segments.toLocaleString()}</td>
+                        <td className="px-5 py-4 text-right font-mono text-slate-900">{UDUPI_DATA.road_segments.toLocaleString('en-IN')}</td>
                         <td className="px-5 py-4 text-right font-mono text-slate-900">100%</td>
                         <td className="px-5 py-4"></td>
                         <td className="px-5 py-4"></td>
@@ -709,7 +709,7 @@ export default function RoutesAnalysisPage() {
               </div>
               <div className="p-6 bg-slate-50 rounded-[2rem] border border-slate-200 backdrop-blur-sm hover:bg-slate-100 transition-colors">
                 <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Ann. Fuel Savings</div>
-                <div className="text-3xl font-black text-slate-900">₹{annualSavings.toLocaleString()}</div>
+                <div className="text-3xl font-black text-slate-900">₹{annualSavings.toLocaleString('en-IN')}</div>
               </div>
               <div className="p-6 bg-slate-50 rounded-[2rem] border border-slate-200 backdrop-blur-sm hover:bg-slate-100 transition-colors">
                 <div className="text-xs font-bold text-slate-500 uppercase tracking-widest mb-2">Coverage Impr.</div>

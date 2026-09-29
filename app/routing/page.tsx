@@ -663,7 +663,7 @@ export default function RoutingDashboard() {
 
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, fontSize: 11, marginBottom: 8 }}>
                           <div><span style={{ color: '#94a3b8' }}>Distance:</span> <strong>{osrmRoute ? osrmRoute.distance_km : a.total_distance_km} km</strong></div>
-                          <div><span style={{ color: '#94a3b8' }}>Total Load:</span> <strong>{a.total_load_kg.toLocaleString()} kg</strong></div>
+                          <div><span style={{ color: '#94a3b8' }}>Total Load:</span> <strong>{a.total_load_kg.toLocaleString('en-IN')} kg</strong></div>
                         </div>
                         
                         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 12, fontSize: 11, background: 'rgba(0,0,0,0.2)', padding: 10, borderRadius: 8, marginTop: 8 }}>
@@ -929,10 +929,10 @@ export default function RoutingDashboard() {
                     <h3 style={{ fontSize: 14, fontWeight: 600, marginBottom: 10, color: '#22c55e' }}>🌿 Carbon Credits (CCTS 2023)</h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: 6, marginBottom: 16 }}>
                       {[
-                        { label: 'CO₂e Avoided/Year', value: `${carbonResult.carbon.co2e_tonnes_year.toLocaleString()} tonnes` },
+                        { label: 'CO₂e Avoided/Year', value: `${carbonResult.carbon.co2e_tonnes_year.toLocaleString('en-IN')} tonnes` },
                         { label: 'Carbon Credit Value', value: carbonResult.carbon.credit_value_mid_cr },
-                        { label: 'Energy Potential/Day', value: `${carbonResult.carbon.energy_kwh_day.toLocaleString()} kWh` },
-                        { label: 'Homes Powered', value: carbonResult.carbon.homes_powered.toLocaleString() },
+                        { label: 'Energy Potential/Day', value: `${carbonResult.carbon.energy_kwh_day.toLocaleString('en-IN')} kWh` },
+                        { label: 'Homes Powered', value: carbonResult.carbon.homes_powered.toLocaleString('en-IN') },
                       ].map(item => (
                         <div key={item.label} style={{ display: 'flex', justifyContent: 'space-between', padding: '8px 12px', borderRadius: 6, background: 'rgba(255,255,255,0.02)', fontSize: 12 }}>
                           <span style={{ color: '#94a3b8' }}>{item.label}</span>

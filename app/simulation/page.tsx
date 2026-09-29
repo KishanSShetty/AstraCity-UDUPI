@@ -32,7 +32,7 @@ const SpinnerIcon = () => (
 function AnimatedNumber({ value }: { value: number }) {
   const spring = useSpring(value, { stiffness: 60, damping: 15 });
   const display = useTransform(spring, (current) => 
-    Number.isInteger(value) ? Math.round(current).toLocaleString() : current.toFixed(1)
+    Number.isInteger(value) ? Math.round(current).toLocaleString('en-IN') : current.toFixed(1)
   );
 
   useEffect(() => {
@@ -68,9 +68,9 @@ export default function SimulationPanel() {
   }, []);
 
   const baselineValues = {
-    wasteGenerated: UDUPI_DATA.daily_waste_tons || 23.11,
+    wasteGenerated: UDUPI_DATA.daily_waste_tons || 72,
     dumpsPredicted: UDUPI_DATA.dump_sites_detected || 4,
-    landfillInflow: Math.round((UDUPI_DATA.daily_waste_tons || 23.11) * 0.65), // Estimate based on 110t
+    landfillInflow: Math.round((UDUPI_DATA.daily_waste_tons || 72) * 0.65),
     methaneProjection: 420,
     subRoadCoverage: 89,
     costPerDay: 2100,
@@ -85,7 +85,7 @@ export default function SimulationPanel() {
     setIsRunning(true);
     
     setTimeout(() => {
-      const baseWaste = UDUPI_DATA.daily_waste_tons || 23.11;
+      const baseWaste = UDUPI_DATA.daily_waste_tons || 72;
       const baseDumps = UDUPI_DATA.dump_sites_detected || 4;
       let newCoverage = 89;
       let newCost = 2100;
@@ -220,18 +220,18 @@ export default function SimulationPanel() {
                 <span className="text-teal-600"><Activity className="w-4 h-4 inline-block mr-1"/></span> Verified Building-Based Data
               </div>
               <div className="mb-2 border-b border-slate-100 pb-2">
-                <div className="flex justify-between"><span className="text-slate-500">Population:</span> <span className="text-slate-800 font-bold">{UDUPI_DATA.population.toLocaleString()}</span></div>
+                <div className="flex justify-between"><span className="text-slate-500">Population:</span> <span className="text-slate-800 font-bold">{UDUPI_DATA.population.toLocaleString('en-IN')}</span></div>
                 <div className="flex justify-between"><span className="text-slate-500">Method:</span> <span className="text-slate-600">Buildings × household size</span></div>
-                <div className="flex justify-between"><span className="text-slate-500 ml-2">Houses:</span> <span className="text-slate-600">8,998 × 4.0 = {UDUPI_DATA.population_houses.toLocaleString()}</span></div>
-                <div className="flex justify-between"><span className="text-slate-500 ml-2">Apts:</span> <span className="text-slate-600">250 × 284 = {UDUPI_DATA.population_apts.toLocaleString()}</span></div>
-                <div className="flex justify-between"><span className="text-slate-500 ml-2">Offices:</span> <span className="text-slate-600">39 × 15 = {UDUPI_DATA.population_offices}</span></div>
-                <div className="flex justify-between"><span className="text-slate-500 ml-2">Hospitals:</span> <span className="text-slate-600">2 × 50 = {UDUPI_DATA.population_hospitals}</span></div>
-                <div className="flex justify-between"><span className="text-slate-500 ml-2">Schools:</span> <span className="text-slate-600">15 × 150 = {UDUPI_DATA.population_schools.toLocaleString()}</span></div>
-                <div className="flex justify-between"><span className="text-slate-500 ml-2">Others:</span> <span className="text-slate-600">30 × 3 = {UDUPI_DATA.population_others}</span></div>
+                <div className="flex justify-between"><span className="text-slate-500 ml-2">Houses:</span> <span className="text-slate-600">{UDUPI_DATA.population_breakdown.houses.count.toLocaleString('en-IN')} × {UDUPI_DATA.population_breakdown.houses.per_unit} = {UDUPI_DATA.population_houses.toLocaleString('en-IN')}</span></div>
+                <div className="flex justify-between"><span className="text-slate-500 ml-2">Apts:</span> <span className="text-slate-600">{UDUPI_DATA.population_breakdown.apartments.count.toLocaleString('en-IN')} × {UDUPI_DATA.population_breakdown.apartments.per_unit} = {UDUPI_DATA.population_apts.toLocaleString('en-IN')}</span></div>
+                <div className="flex justify-between"><span className="text-slate-500 ml-2">Offices:</span> <span className="text-slate-600">{UDUPI_DATA.population_breakdown.offices.count} × {UDUPI_DATA.population_breakdown.offices.per_unit} = {UDUPI_DATA.population_offices}</span></div>
+                <div className="flex justify-between"><span className="text-slate-500 ml-2">Hospitals:</span> <span className="text-slate-600">{UDUPI_DATA.population_breakdown.hospitals.count} × {UDUPI_DATA.population_breakdown.hospitals.per_unit} = {UDUPI_DATA.population_hospitals}</span></div>
+                <div className="flex justify-between"><span className="text-slate-500 ml-2">Schools:</span> <span className="text-slate-600">{UDUPI_DATA.population_breakdown.schools.count} × {UDUPI_DATA.population_breakdown.schools.per_unit} = {UDUPI_DATA.population_schools.toLocaleString('en-IN')}</span></div>
+                <div className="flex justify-between"><span className="text-slate-500 ml-2">Others:</span> <span className="text-slate-600">{UDUPI_DATA.population_breakdown.others.count} × {UDUPI_DATA.population_breakdown.others.per_unit} = {UDUPI_DATA.population_others}</span></div>
               </div>
               <div className="mb-2 border-b border-slate-100 pb-2">
                 <div className="flex justify-between"><span className="text-slate-500">Per capita:</span> <span className="text-slate-800">{UDUPI_DATA.waste_per_capita_kg} kg/day (CPCB)</span></div>
-                <div className="flex justify-between"><span className="text-slate-500">Daily Waste:</span> <span className="text-slate-800 font-bold text-amber-600">{UDUPI_DATA.daily_waste_kg.toLocaleString()} kg = {UDUPI_DATA.daily_waste_display}</span></div>
+                <div className="flex justify-between"><span className="text-slate-500">Daily Waste:</span> <span className="text-slate-800 font-bold text-amber-600">{UDUPI_DATA.daily_waste_kg.toLocaleString('en-IN')} kg = {UDUPI_DATA.daily_waste_display}</span></div>
               </div>
               <div className="mb-3 border-b border-slate-100 pb-3">
                 <div className="text-teal-500 font-bold mb-1">Composition (Udupi CMC 2013 Official):</div>
@@ -242,29 +242,29 @@ export default function SimulationPanel() {
                 <div className="text-slate-500 ml-2 mt-1 text-[9px] italic">Udupi CMC data: wet rose 42% (1999) → 61% (2013). Bio-meth critical.</div>
               </div>
               <div className="mb-2">
-                <div className="text-teal-500 font-bold mb-1">Scenarios from {UDUPI_DATA.waste_daily_tons}T base:</div>
-                <div className="flex justify-between"><span className="text-slate-500 ml-2">Heavy rain:</span> <span className="text-slate-600">55 × 1.15 = 63.3T</span></div>
-                <div className="flex justify-between"><span className="text-slate-500 ml-2">Festival:</span> <span className="text-slate-600">55 × 1.28 = 70.4T</span></div>
-                <div className="flex justify-between"><span className="text-slate-500 ml-2">Worst case:</span> <span className="text-slate-600">55 × 1.49 = 81.9T</span></div>
+                <div className="text-teal-500 font-bold mb-1">Scenarios from {UDUPI_DATA.daily_waste_tons}T base:</div>
+                <div className="flex justify-between"><span className="text-slate-500 ml-2">Heavy rain:</span> <span className="text-slate-600">{UDUPI_DATA.daily_waste_tons} × 1.15 = {(UDUPI_DATA.daily_waste_tons * 1.15).toFixed(1)}T</span></div>
+                <div className="flex justify-between"><span className="text-slate-500 ml-2">Festival:</span> <span className="text-slate-600">{UDUPI_DATA.daily_waste_tons} × 1.28 = {(UDUPI_DATA.daily_waste_tons * 1.28).toFixed(1)}T</span></div>
+                <div className="flex justify-between"><span className="text-slate-500 ml-2">Worst case:</span> <span className="text-slate-600">{UDUPI_DATA.daily_waste_tons} × 1.49 = {(UDUPI_DATA.daily_waste_tons * 1.49).toFixed(1)}T</span></div>
               </div>
               <div className="text-[10px] text-slate-500 text-right mt-2 pt-2 border-t border-slate-200">Source: CPCB + Census 2011 Karnataka</div>
 
               {/* Climate block */}
               <div className="mt-3 border-t border-slate-100 pt-3">
                 <div className="text-emerald-500 font-bold mb-1 text-xs uppercase tracking-wider">Climate Impact (IPCC 2006)</div>
-                <div className="flex justify-between text-xs"><span className="text-slate-500">CH₄ produced:</span> <span className="text-teal-700">3,548 m³/day</span></div>
-                <div className="flex justify-between text-xs"><span className="text-slate-500">CO₂ equivalent:</span> <span className="text-blue-300">71.1 T/day captured</span></div>
-                <div className="flex justify-between text-xs"><span className="text-slate-500">Energy output:</span> <span className="text-amber-300">21,285 kWh/day</span></div>
+                <div className="flex justify-between text-xs"><span className="text-slate-500">CH₄ produced:</span> <span className="text-teal-700">9,205 m³/day</span></div>
+                <div className="flex justify-between text-xs"><span className="text-slate-500">CO₂ equivalent:</span> <span className="text-blue-300">184.6 T/day captured</span></div>
+                <div className="flex justify-between text-xs"><span className="text-slate-500">Energy output:</span> <span className="text-amber-300">55,230 kWh/day</span></div>
                 <div className="flex justify-between text-xs"><span className="text-slate-500">Methane risk:</span> <span className="text-green-400 font-bold">LOW <CheckCircle2 className="w-3 h-3 inline-block ml-1 text-emerald-600"/> (0 dumps)</span></div>
                 <div className="text-[9px] text-slate-500 mt-1 italic">CH₄ GWP = 28× CO₂ (IPCC AR5) · 6 kWh/m³</div>
               </div>
             </div>
 
-            {/* HSR Scenario: Demolition Spikes */}
+            {/* Scenario: Demolition Spikes */}
             <div className="flex items-center justify-between bg-white border border-slate-200 p-4 rounded-xl shadow-sm hover:border-slate-300 transition-colors">
               <div className="flex flex-col gap-1 max-w-[70%]">
                 <span className="text-sm font-bold text-slate-700">Building Demolition Phase</span>
-                <span className="text-xs font-medium text-slate-500">Massive C&D waste spike (+40%) from BDA Complex rebuild</span>
+                <span className="text-xs font-medium text-slate-500">Massive C&D waste spike (+40%) from urban redevelopment</span>
               </div>
               <button 
                 onClick={() => setDemolition(!demolition)}
@@ -274,11 +274,11 @@ export default function SimulationPanel() {
               </button>
             </div>
 
-            {/* HSR Scenario: Apartment Addition */}
+            {/* Scenario: Apartment Addition */}
             <div className="flex items-center justify-between bg-white border border-slate-200 p-4 rounded-xl shadow-sm hover:border-slate-300 transition-colors">
               <div className="flex flex-col gap-1 max-w-[70%]">
                 <span className="text-sm font-bold text-slate-700">New Apartment Complex</span>
-                <span className="text-xs font-medium text-slate-500">Addition of +500 units near Sector 2 borders</span>
+                <span className="text-xs font-medium text-slate-500">Addition of +500 residential units in expanding areas</span>
               </div>
               <button 
                 onClick={() => setApartments(!apartments)}
@@ -288,11 +288,11 @@ export default function SimulationPanel() {
               </button>
             </div>
 
-            {/* HSR Scenario: Open Space Encroachment */}
+            {/* Scenario: Open Space Encroachment */}
             <div className="flex items-center justify-between bg-white border border-slate-200 p-4 rounded-xl shadow-sm hover:border-slate-300 transition-colors">
               <div className="flex flex-col gap-1 max-w-[70%]">
                 <span className="text-sm font-bold text-slate-700">Open Space Encroachment</span>
-                <span className="text-xs font-medium text-slate-500">Illegal dumping high risk simulation near Agara Lake</span>
+                <span className="text-xs font-medium text-slate-500">Illegal dumping risk simulation near open land areas</span>
               </div>
               <button 
                 onClick={() => setEncroachment(!encroachment)}
@@ -302,7 +302,7 @@ export default function SimulationPanel() {
               </button>
             </div>
 
-            {/* HSR Scenario: Fleet Optimization */}
+            {/* Scenario: Fleet Optimization */}
             <div className="flex items-center justify-between bg-white border border-slate-200 p-4 rounded-xl shadow-sm hover:border-slate-300 transition-colors">
               <div className="flex flex-col gap-1 max-w-[70%]">
                 <span className="text-sm font-bold text-slate-700">Expand Collection Fleet</span>
@@ -344,7 +344,7 @@ export default function SimulationPanel() {
             {isRunning ? (
               <>
                 <SpinnerIcon />
-                <span>Simulating Layout Impact...</span>
+                <span>Simulating Scenario Impact...</span>
               </>
             ) : (
               'Run Simulation'
@@ -503,7 +503,7 @@ export default function SimulationPanel() {
               href="/impact" 
               className="bg-slate-50 hover:bg-slate-100 text-slate-900 px-6 py-3 rounded-xl font-bold transition-colors flex items-center gap-2 border border-slate-200 shadow-sm hover:shadow w-full sm:w-auto justify-center"
             >
-              <span>View HSR Analytics Dashboard</span>
+              <span>View Udupi Impact Dashboard</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </Link>
           </div>
