@@ -28,11 +28,6 @@ export default function ForecastPage() {
   const [newFestDate, setNewFestDate] = useState('');
   const [newFestName, setNewFestName] = useState('');
 
-  // Simulation states
-  const [demolition, setDemolition] = useState(false);
-  const [apartments, setApartments] = useState(false);
-  const [encroachment, setEncroachment] = useState(false);
-  const [segregation, setSegregation] = useState(0);
 
   const getFestivalName = (dateStr: string) => {
     const ymd = dateStr.split('T')[0];
@@ -133,24 +128,6 @@ export default function ForecastPage() {
       mult_dry += 0.05;
     }
 
-    // 4. City Simulation Scenarios
-    if (demolition) {
-      mult_dry *= 1.40; // C&D waste mostly affects dry/inert
-      mult_wet *= 1.10;
-    }
-    if (apartments) {
-      mult_wet *= 1.18;
-      mult_dry *= 1.18;
-    }
-    if (encroachment) {
-      mult_wet *= 1.05;
-      mult_dry *= 1.05;
-    }
-
-    // Segregation drive reduces the overall mixed waste going into formula
-    const reductionFactor = segregation * 0.008; 
-    mult_wet *= (1 - reductionFactor);
-    mult_dry *= (1 - reductionFactor);
 
     const wet = Number((BASE_WET * mult_wet).toFixed(2));
     const dry = Number((BASE_DRY * mult_dry).toFixed(2));
@@ -294,97 +271,10 @@ export default function ForecastPage() {
               <li className="flex justify-between"><span>Temp &gt; 34°C:</span> <span className="text-blue-600 font-bold">+12% Dry</span></li>
               <li className="flex justify-between"><span>Festival day:</span> <span className="text-orange-500 font-bold">+35% Wet, +15% Dry</span></li>
               <li className="flex justify-between"><span>Weekend:</span> <span className="text-sky-600 font-bold">+10% Wet, +5% Dry</span></li>
-              {(demolition || apartments || encroachment || segregation > 0) && <li className="border-t border-slate-100 my-2"></li>}
-              {demolition && <li className="flex justify-between"><span>Demolition:</span> <span className="text-rose-600 font-bold">+40% Dry, +10% Wet</span></li>}
-              {apartments && <li className="flex justify-between"><span>New Apts:</span> <span className="text-rose-600 font-bold">+18% All</span></li>}
-              {encroachment && <li className="flex justify-between"><span>Encroachment:</span> <span className="text-rose-600 font-bold">+5% All</span></li>}
-              {segregation > 0 && <li className="flex justify-between"><span>Segregation:</span> <span className="text-emerald-600 font-bold">-{segregation * 0.8}% Waste</span></li>}
             </ul>
           </div>
         </div>
 
-        {/* 🏙️ CITY SCENARIOS SECTION (SIMULATION) */}
-        <div className="lg:col-span-3 space-y-6 mt-4">
-          <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-sm">
-            <h2 className="text-xl font-extrabold text-slate-900 mb-6 flex items-center gap-2">
-               <Settings className="w-6 h-6 text-teal-600" />
-               City Simulation Scenarios
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              
-              {/* Demolition */}
-              <div className="flex flex-col gap-3 p-4 border border-slate-100 rounded-2xl hover:border-slate-300 transition-colors bg-slate-50">
-                <div className="flex justify-between items-start">
-                  <div className="p-2 bg-rose-100 text-rose-600 rounded-lg"><Building2 className="w-5 h-5" /></div>
-                  <button 
-                    onClick={() => setDemolition(!demolition)}
-                    className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${demolition ? 'bg-teal-500' : 'bg-slate-300'}`}
-                  >
-                    <div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 ${demolition ? 'translate-x-6' : 'translate-x-0'}`} />
-                  </button>
-                </div>
-                <div>
-                  <h3 className="font-bold text-slate-800 text-sm">Building Demolition</h3>
-                  <p className="text-xs text-slate-500 mt-1">Massive C&D waste spike (+40% dry) from urban redevelopment.</p>
-                </div>
-              </div>
-
-              {/* Apartments */}
-              <div className="flex flex-col gap-3 p-4 border border-slate-100 rounded-2xl hover:border-slate-300 transition-colors bg-slate-50">
-                <div className="flex justify-between items-start">
-                  <div className="p-2 bg-blue-100 text-blue-600 rounded-lg"><Building className="w-5 h-5" /></div>
-                  <button 
-                    onClick={() => setApartments(!apartments)}
-                    className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${apartments ? 'bg-teal-500' : 'bg-slate-300'}`}
-                  >
-                    <div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 ${apartments ? 'translate-x-6' : 'translate-x-0'}`} />
-                  </button>
-                </div>
-                <div>
-                  <h3 className="font-bold text-slate-800 text-sm">New Apartments</h3>
-                  <p className="text-xs text-slate-500 mt-1">Addition of +500 residential units in expanding areas (+18%).</p>
-                </div>
-              </div>
-
-              {/* Encroachment */}
-              <div className="flex flex-col gap-3 p-4 border border-slate-100 rounded-2xl hover:border-slate-300 transition-colors bg-slate-50">
-                <div className="flex justify-between items-start">
-                  <div className="p-2 bg-amber-100 text-amber-600 rounded-lg"><MapPin className="w-5 h-5" /></div>
-                  <button 
-                    onClick={() => setEncroachment(!encroachment)}
-                    className={`relative w-12 h-6 rounded-full transition-colors duration-300 ${encroachment ? 'bg-teal-500' : 'bg-slate-300'}`}
-                  >
-                    <div className={`absolute top-1 left-1 bg-white w-4 h-4 rounded-full transition-transform duration-300 ${encroachment ? 'translate-x-6' : 'translate-x-0'}`} />
-                  </button>
-                </div>
-                <div>
-                  <h3 className="font-bold text-slate-800 text-sm">Space Encroachment</h3>
-                  <p className="text-xs text-slate-500 mt-1">Illegal dumping risk near open land areas (+5%).</p>
-                </div>
-              </div>
-
-              {/* Segregation Drive */}
-              <div className="flex flex-col gap-3 p-4 border border-slate-100 rounded-2xl hover:border-slate-300 transition-colors bg-slate-50">
-                <div className="flex justify-between items-start">
-                  <div className="p-2 bg-emerald-100 text-emerald-600 rounded-lg"><Recycle className="w-5 h-5" /></div>
-                  <span className="text-xs font-extrabold text-emerald-700 bg-emerald-100 px-2 py-1 rounded-md">+{segregation}%</span>
-                </div>
-                <div>
-                  <h3 className="font-bold text-slate-800 text-sm">Segregation Drive</h3>
-                  <p className="text-xs text-slate-500 mt-1">Improves waste processing efficiency.</p>
-                </div>
-                <input 
-                  type="range" 
-                  min="0" max="50" step="10" 
-                  value={segregation}
-                  onChange={(e) => setSegregation(Number(e.target.value))}
-                  className="w-full mt-2 accent-teal-600 cursor-pointer"
-                />
-              </div>
-
-            </div>
-          </div>
-        </div>
 
         {/* 📅 CALENDAR SECTION (Full Width) */}
         <div className="lg:col-span-3 space-y-6 mt-4">
@@ -500,7 +390,6 @@ export default function ForecastPage() {
           const compactorBuffer = Math.ceil(baseCompactor * 0.1);
           
           let heavyWaste = BASE_HAZ;
-          if (demolition) heavyWaste += (BASE_DRY * 0.40);
           const baseTractor = Math.ceil(heavyWaste / 6);
           const tractorBuffer = Math.max(1, Math.ceil(baseTractor * 0.1));
 
