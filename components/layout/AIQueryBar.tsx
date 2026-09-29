@@ -2,6 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { UDUPI_DATA } from '@/lib/constants';
 
 export default function AIQueryBar() {
   const [query, setQuery] = useState('');
@@ -23,13 +24,13 @@ export default function AIQueryBar() {
       // Mock Responses for fallback (no API key)
       setTimeout(() => {
         const mocks: Record<string, string> = {
-          "Show me illegal dumps": "Udupi City has 0 dumpyards inside the ward. All 3 Udupi CMC dumpyards are in North Udupi (21-27 km away). The nearest is Yelahanka at 21.03 km, handling only 4% final rejects. This clean separation saves ~₹45 lakh annually in land value depreciation.",
-          "Which DWCCs are at risk": "DWCC-1 (Sector 2 East) and DWCC-4 are running at 92% and 88% capacity respectively, approaching the 90% red alert threshold. Redistributing 500 kg/day to DWCC-5 (45% load) would save ₹12,000/day in emergency overflow transport costs.",
-          "How many vehicles do we need": "Udupi City deploys 10 vehicles: 5 Auto Tippers (CNG, 500 kg each) covering 67.6% of residential roads, 2 Garbage Trucks and 1 Small Compactor on secondary roads, plus 1 Large Compactor and 1 Hook Loader for trunk/primary roads. Route optimisation reduced fleet distance from 132.44 km to 8.47 km — a 94% improvement.",
-          "What is the carbon credit value": "Kudlu BMU processes 33.55 TPD wet waste, avoiding 25,959 tonnes CO₂e annually through methane capture. At CCTS 2023 pricing (₹1,200-2,200/tonne), this generates ~₹4.42 Cr/year in carbon credits, plus ₹1.21 Cr/year in operational savings from route optimisation.",
-          "default": "Based on AstraCity routing intelligence: Udupi City (Udupi CMC) generates 55 TPD waste from 110K residents. Our Clarke-Wright VRP solver achieved 94% route reduction (132→8.47 km), saving ₹1.21 Cr/year in operations and generating ₹4.42 Cr/year in carbon credits from Kudlu BMU."
+          "Show me illegal dumps": `Udupi City has ${UDUPI_DATA.dump_sites_detected} dump sites detected via satellite imagery, with ${UDUPI_DATA.high_risk_dumps} categorized as high risk. Eliminating these prevents toxic runoff and creates localized cleanup jobs.`,
+          "methane risk": `By processing wet waste at the ${UDUPI_DATA.bio_meth_units} biomethanation plants (like Karvalu), Udupi avoids ${UDUPI_DATA.co2e_year} tons of CO₂e annually. This eliminates severe methane risk and generates ₹${UDUPI_DATA.savings_carbon_cr} Cr in carbon credits.`,
+          "cost savings": `Processing ${UDUPI_DATA.waste_daily_tons} TPD locally via ${UDUPI_DATA.dwcc_count} DWCCs saves ₹1500/ton in landfill costs. This decentralized methodology generates significant annual savings for the CMC while creating circular economy jobs.`,
+          "methodology": "AstraCity uses geospatial mapping and building footprint data to estimate waste generation per zone. We prioritize decentralized processing (DWCCs & Biomethanation) to eliminate landfill reliance.",
+          "default": `Based on AstraCity intelligence: Udupi City generates ${UDUPI_DATA.waste_daily_tons} TPD from ${UDUPI_DATA.population} residents. Processing this waste via ${UDUPI_DATA.dwcc_count} DWCCs averts ${UDUPI_DATA.co2e_year} tons of CO₂e/year and generates ₹${UDUPI_DATA.savings_carbon_cr} Cr in carbon credits.`
         };
-        const key = Object.keys(mocks).find(k => query.toLowerCase().includes(k.toLowerCase().split(' ').slice(0, 3).join(' ')));
+        const key = Object.keys(mocks).find(k => query.toLowerCase().includes(k.toLowerCase().split(' ').slice(0, 2).join(' ')));
         const resText = key ? mocks[key] : mocks["default"];
         setResponse(resText);
         setIsLoading(false);
@@ -44,21 +45,23 @@ export default function AIQueryBar() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           systemInstruction: {
-            parts: [{ text: `You are AstraCity's routing intelligence assistant for Udupi City (Udupi CMC), Udupi.
+            parts: [{ text: `You are AstraCity's AI assistant for Udupi City SWM (Solid Waste Management).
 
-REAL DATA CONTEXT:
-- Ward: Udupi City (Udupi CMC), Area: 68.23 sq km, Population: 110,000
-- Daily waste: 55 TPD (61% wet→Kudlu BMU, 30% dry→6 DWCCs, 5% hazardous→handler, 4% rejects→Yelahanka)
-- 6 DWCCs inside ward (3 TPD each = 18 TPD capacity), nearest BMU: Kudlu 2.1 km south
-- Fleet: 10 vehicles (5 Auto Tippers 500kg CNG, 1 Small Compactor 5T, 1 Large Compactor 10T, 1 Hook Loader 16T, 2 Garbage Trucks 5T)
-- Road network: 2,027 segments (41.4% residential 2-4m, 25.1% footway <2m, 9.4% tertiary, 5.6% secondary, 1.9% trunk ORR)
-- Auto Tippers can access 67.6% roads, compactors only 7.9%, hook loaders only 1.9%
-- VRP solver (Clarke-Wright Savings): 8.47 km total vs 132.44 km baseline = 94% reduction
-- Carbon credits: ~₹4.42 Cr/year from Kudlu BMU methane avoidance (25,959 T CO₂e/year)
-- Operational savings: ₹1.21 Cr/year (₹2800→₹2200/tonne)
-- Udupi CMC collection windows: Primary 06:00-10:00, Secondary 10:00-18:00, Night ban >3.5T 22:00-06:00
+REAL DATA CONTEXT (RAG Knowledge Base):
+- City: ${UDUPI_DATA.city}, Population: ${UDUPI_DATA.population}, Area: ${UDUPI_DATA.area_sq_km} sq km
+- Daily waste: ${UDUPI_DATA.daily_waste_tons} TPD (${UDUPI_DATA.waste_wet_pct}% wet, ${UDUPI_DATA.waste_dry_pct}% dry)
+- Infrastructure: ${UDUPI_DATA.dwcc_count} DWCCs, ${UDUPI_DATA.bio_meth_units} Biomethanation plants (Karvalu SWM Campus)
+- Methane Avoidance: ${UDUPI_DATA.methane_m3_per_day} m³/day, Carbon Credits: ~₹${UDUPI_DATA.carbon_credits_cr} Cr/year
+- Economics: Decentralized processing saves ₹1500/ton vs landfilling.
+- LULC: ${UDUPI_DATA.lulc_builtup}% built-up, ${UDUPI_DATA.lulc_vegetation}% vegetation.
+- Dumpsites detected: ${UDUPI_DATA.dump_sites_detected} (High risk: ${UDUPI_DATA.high_risk_dumps})
 
-Answer in 2-3 sentences max. Use real numbers. Always mention relevant cost savings or risk factors.` }]
+METHODOLOGY KNOWLEDGE:
+- AstraCity uses geospatial clustering to map waste generation directly to building footprints.
+- We do not use centralized landfills; we process wet waste via biomethanation and dry waste via DWCCs.
+- This creates circular economy jobs and mitigates methane emissions.
+
+Answer in 2-3 sentences max. Use real numbers from the context above. Be professional, analytical, and highly specific to Udupi. Do not mention truck routing.` }]
           },
           contents: [{ parts: [{ text: query }] }]
         })
