@@ -4,8 +4,11 @@ import path from 'path';
 
 export async function GET() {
   try {
-    // Pointing directly to the ~2MB raw Udupi CMC file that has the actual separated geometries
-    const filePath = path.join(process.cwd(), 'data', 'Udupi CMC.geojson');
+    // Pointing to Udupi CMC ward geometries file with fallback
+    let filePath = path.join(process.cwd(), 'data', 'Udupi CMC.geojson');
+    if (!fs.existsSync(filePath)) {
+      filePath = path.join(process.cwd(), 'public', 'data', 'udupi_wards.geojson');
+    }
     const fileContents = fs.readFileSync(filePath, 'utf8');
     const geojson = JSON.parse(fileContents);
     
