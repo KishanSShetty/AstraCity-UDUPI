@@ -19,11 +19,23 @@ export default function AIQueryBar() {
     setIsLoading(true);
     setResponse(""); // Clear previous response
 
-    const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
+    // Prioritize Groq API key provided by user, then fallbacks
+    const apiKeys = [
+      process.env.NEXT_PUBLIC_GROQ_API_KEY,
+      process.env.NEXT_PUBLIC_GEMINI_API_KEY,
+      process.env.NEXT_PUBLIC_GEMINI_API_KEY_2,
+      process.env.NEXT_PUBLIC_GEMINI_API_KEY_3
+    ].filter(Boolean);
+    
+    // Pick the first available key (Groq will be first if present)
+    const apiKey = apiKeys.length > 0 ? apiKeys[0] : null;
+
     if (!apiKey) {
       // Mock Responses for fallback (no API key)
       setTimeout(() => {
         const mocks: Record<string, string> = {
+          "hi": "Hello! I am the AstraCity AI assistant for Udupi. How can I help you analyze our Solid Waste Management data today?",
+          "hello": "Hello! I am the AstraCity AI assistant for Udupi. How can I help you analyze our Solid Waste Management data today?",
           "Show me illegal dumps": `Udupi City has ${UDUPI_DATA.dump_sites_detected} dump sites detected via satellite imagery, with ${UDUPI_DATA.high_risk_dumps} categorized as high risk. Eliminating these prevents toxic runoff and creates localized cleanup jobs.`,
           "methane risk": `By processing wet waste at the ${UDUPI_DATA.bio_meth_units} biomethanation plants (like Karvalu), Udupi avoids ${UDUPI_DATA.co2e_year} tons of CO₂e annually. This eliminates severe methane risk and generates ₹${UDUPI_DATA.savings_carbon_cr} Cr in carbon credits.`,
           "cost savings": `Processing ${UDUPI_DATA.waste_daily_tons} TPD locally via ${UDUPI_DATA.dwcc_count} DWCCs saves ₹1500/ton in landfill costs. This decentralized methodology generates significant annual savings for the CMC while creating circular economy jobs.`,
@@ -40,12 +52,9 @@ export default function AIQueryBar() {
     }
 
     try {
-      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          systemInstruction: {
-            parts: [{ text: `You are AstraCity's AI assistant for Udupi City SWM (Solid Waste Management).
+      const isGroq = apiKey?.startsWith('gsk_');
+      
+      const systemPrompt = `You are AstraCity's AI assistant for Udupi City SWM (Solid Waste Management).
 
 REAL DATA CONTEXT (RAG Knowledge Base):
 - City: ${UDUPI_DATA.city}, Population: ${UDUPI_DATA.population}, Area: ${UDUPI_DATA.area_sq_km} sq km
@@ -56,23 +65,52 @@ REAL DATA CONTEXT (RAG Knowledge Base):
 - LULC: ${UDUPI_DATA.lulc_builtup}% built-up, ${UDUPI_DATA.lulc_vegetation}% vegetation.
 - Dumpsites detected: ${UDUPI_DATA.dump_sites_detected} (High risk: ${UDUPI_DATA.high_risk_dumps})
 
-METHODOLOGY KNOWLEDGE:
-- AstraCity uses geospatial clustering to map waste generation directly to building footprints.
-- We do not use centralized landfills; we process wet waste via biomethanation and dry waste via DWCCs.
-- This creates circular economy jobs and mitigates methane emissions.
+METHODOLOGY & INSTRUCTIONS:
+1. GREETINGS: If the user says hello, hi, or greets you, introduce yourself as the AstraCity AI and ask how you can help with Udupi's SWM data.
+2. THINKING & ANSWERING: Analyze the user's question, locate the relevant metric from the context above, and formulate a direct answer.
+3. CONSTRAINTS: Answer in 2-3 sentences max. Use real numbers. Be highly specific to Udupi. Do NOT mention truck routing or centralized landfills.`;
 
-Answer in 2-3 sentences max. Use real numbers from the context above. Be professional, analytical, and highly specific to Udupi. Do not mention truck routing.` }]
+      let text = "No response generated.";
+
+      if (isGroq) {
+        const res = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
           },
-          contents: [{ parts: [{ text: query }] }]
-        })
-      });
-      const data = await res.json();
-      if (data.error) {
-         setResponse("Error from AI: " + data.error.message);
+          body: JSON.stringify({
+            model: "llama3-8b-8192",
+            messages: [
+              { role: "system", content: systemPrompt },
+              { role: "user", content: query }
+            ]
+          })
+        });
+        const data = await res.json();
+        if (data.error) {
+           setResponse("Error from Groq AI: " + data.error.message);
+           return;
+        }
+        text = data.choices?.[0]?.message?.content || "No response generated.";
       } else {
-         const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
-         setResponse(text);
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            systemInstruction: { parts: [{ text: systemPrompt }] },
+            contents: [{ parts: [{ text: query }] }]
+          })
+        });
+        const data = await res.json();
+        if (data.error) {
+           setResponse("Error from Gemini AI: " + data.error.message);
+           return;
+        }
+        text = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
       }
+
+      setResponse(text);
     } catch (err: any) {
       setResponse("Failed to connect to the AI service. Please confirm your network settings and API key.");
     } finally {
