@@ -51,8 +51,8 @@ export default function FieldIngestion() {
       
       {/* Background Decorative Gradients */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-teal-500/10 rounded-full blur-[120px]"></div>
-        <div className="absolute top-1/3 -right-20 w-72 h-72 bg-emerald-500/10 rounded-full blur-[100px]"></div>
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/3 -right-20 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 pt-24 pb-12">
@@ -424,3 +424,4 @@ export default function FieldIngestion() {
     </div>
   );
 }
+

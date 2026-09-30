@@ -29,8 +29,8 @@ export default function EconomicsPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans overflow-x-hidden relative pb-20">
       {/* Background Orbs - Subtle light theme versions */}
-      <div className="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-teal-100/40 rounded-full blur-[120px] pointer-events-none z-0 mix-blend-multiply" />
-      <div className="fixed bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-indigo-100/40 rounded-full blur-[120px] pointer-events-none z-0 mix-blend-multiply" />
+      <div className="fixed top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-teal-100/40 rounded-full blur-3xl pointer-events-none z-0 mix-blend-multiply" />
+      <div className="fixed bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-indigo-100/40 rounded-full blur-3xl pointer-events-none z-0 mix-blend-multiply" />
 
       <motion.div 
         initial="hidden" 
@@ -219,7 +219,7 @@ export default function EconomicsPage() {
         {/* PITCH: ENVIRONMENTAL ECONOMICS */}
         <motion.section variants={fadeInUp} className="bg-gradient-to-br from-emerald-50 to-slate-100 border border-emerald-200 p-8 md:p-12 rounded-[2rem] shadow-lg mt-12 flex flex-col md:flex-row items-center gap-8 justify-between relative overflow-hidden">
              
-             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-100/50 rounded-full blur-[100px] pointer-events-none" />
+             <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-100/50 rounded-full blur-3xl pointer-events-none" />
              
              <div className="max-w-xl relative z-10">
                <h3 className="text-emerald-700 font-mono text-sm tracking-widest uppercase mb-4">Double-Sided ROI</h3>
@@ -243,3 +243,4 @@ export default function EconomicsPage() {
     </div>
   );
 }
+

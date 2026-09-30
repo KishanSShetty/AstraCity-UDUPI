@@ -224,8 +224,8 @@ export default function SatellitePage() {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 flex flex-col pt-24 pb-16 px-6 relative overflow-hidden transition-colors">
       
       {/* Background Gradients */}
-      <div className="absolute top-[-100px] right-[-100px] w-96 h-96 bg-teal-500/10 blur-[100px] pointer-events-none rounded-full" />
-      <div className="absolute bottom-[-100px] left-[-100px] w-[500px] h-[500px] bg-emerald-500/10 blur-[120px] pointer-events-none rounded-full" />
+      <div className="absolute top-[-100px] right-[-100px] w-96 h-96 bg-teal-500/10 blur-3xl pointer-events-none rounded-full" />
+      <div className="absolute bottom-[-100px] left-[-100px] w-[500px] h-[500px] bg-emerald-500/10 blur-3xl pointer-events-none rounded-full" />
 
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
@@ -453,3 +453,4 @@ export default function SatellitePage() {
     </div>
   );
 }
+

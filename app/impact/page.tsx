@@ -129,8 +129,8 @@ export default function ImpactDashboard() {
 
   return (
     <div className="min-h-[calc(100vh-65px)] bg-slate-50 text-slate-900 font-sans pb-24 transition-colors relative">
-      <div className="fixed top-0 left-0 w-[80%] h-[600px] bg-teal-100/40 rounded-full blur-[150px] pointer-events-none -z-10 mix-blend-multiply" />
-      <div className="fixed bottom-0 right-0 w-[80%] h-[600px] bg-indigo-100/40 rounded-full blur-[150px] pointer-events-none -z-10 mix-blend-multiply" />
+      <div className="fixed top-0 left-0 w-[80%] h-[600px] bg-teal-100/40 rounded-full blur-3xl pointer-events-none -z-10 mix-blend-multiply" />
+      <div className="fixed bottom-0 right-0 w-[80%] h-[600px] bg-indigo-100/40 rounded-full blur-3xl pointer-events-none -z-10 mix-blend-multiply" />
 
       {/* PART 3: Warning System */}
       {showWarningBanner && (
@@ -465,3 +465,4 @@ export default function ImpactDashboard() {
     </div>
   );
 }
+

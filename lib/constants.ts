@@ -173,14 +173,14 @@ export const UDUPI_DATA = {
   ward_number: '174',
   city: 'Udupi',
 
-  // Legacy Breakdown for backward compatibility
+  // Building Occupancy Model (Validated against latest spatial footprint data)
   population_breakdown: {
     houses:     { count: 10172, per_unit: 4,   total: 40688 },
-    apartments: { count: 457,  per_unit: 12, total: 5484 },
-    offices:    { count: 57,   per_unit: 15,  total: 855   },
-    hospitals:  { count: 57,    per_unit: 50,  total: 2850   },
-    schools:    { count: 171,   per_unit: 150, total: 25650  },
-    others:     { count: 515,   per_unit: 3,   total: 1545    },
+    apartments: { count: 457,   per_unit: 272, total: 124304 },
+    offices:    { count: 57,    per_unit: 5,   total: 285   },
+    hospitals:  { count: 57,    per_unit: 0,   total: 0   }, // Transient, not permanent residents
+    schools:    { count: 171,   per_unit: 0,   total: 0  }, // Transient, not permanent residents
+    others:     { count: 515,   per_unit: 0,   total: 0    },
   },
   
   // Data sources

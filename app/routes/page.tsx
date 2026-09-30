@@ -384,7 +384,7 @@ export default function RoutesAnalysisPage() {
             {/* SECTION 5: Why Two-Tier Matters */}
             <motion.section variants={fadeInUp} className="mb-8">
               <div className="bg-white rounded-3xl p-10 shadow-lg relative overflow-hidden border border-slate-200">
-                <div className="absolute top-0 right-0 w-80 h-80 bg-teal-50 blur-[80px] pointer-events-none opacity-60" />
+                <div className="absolute top-0 right-0 w-80 h-80 bg-teal-50 blur-2xl pointer-events-none opacity-60" />
                 <h2 className="text-2xl font-black text-slate-900 mb-6 relative z-10 flex items-center gap-3">
                   <span className="text-2xl">💡</span> Why Two-Tier Matters
                 </h2>
@@ -685,7 +685,7 @@ export default function RoutesAnalysisPage() {
             variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
             className="w-full bg-white p-8 md:p-12 rounded-[2.5rem] shadow-lg border border-slate-200 relative overflow-hidden"
           >
-            <div className="absolute top-[-10%] left-[-10%] w-[30vw] h-[30vw] bg-teal-500/5 rounded-full blur-[100px] pointer-events-none" />
+            <div className="absolute top-[-10%] left-[-10%] w-[30vw] h-[30vw] bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
             <h1 className="text-3xl md:text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400 mb-8 tracking-tighter flex items-center gap-3">
               <Route className="w-8 h-8 text-teal-600" /> Route Optimization Engine
             </h1>
@@ -750,7 +750,7 @@ export default function RoutesAnalysisPage() {
               return (
                 <motion.div variants={fadeInUp} className="mt-8 space-y-6 relative z-10">
                   <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/10 blur-[100px] rounded-full pointer-events-none" />
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/10 blur-3xl rounded-full pointer-events-none" />
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 relative z-10">
                       <div>
                         <h2 className="text-xl font-extrabold text-white flex items-center gap-2">
@@ -816,3 +816,4 @@ export default function RoutesAnalysisPage() {
     </div>
   );
 }
+

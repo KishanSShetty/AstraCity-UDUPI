@@ -225,8 +225,8 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="bg-black/50 border border-teal-500/30 backdrop-blur-2xl p-12 md:p-20 rounded-[4rem] relative overflow-hidden shadow-2xl"
         >
-          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-teal-900/30 rounded-full blur-[100px] pointer-events-none" />
-          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-900/30 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-teal-900/30 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-900/30 rounded-full blur-3xl pointer-events-none" />
 
           <svg className="w-16 h-16 text-teal-500 mx-auto mb-8 opacity-80" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.714 4.148-9.015 9.009-11.609l-2.016-1.571c-3.1 2.308-8.991 6.942-8.991 13.178v7.393h1.998zm-11.028 0v-7.391c0-5.714 4.148-9.015 9.009-11.609l-2.016-1.571c-3.1 2.308-8.991 6.942-8.991 13.178v7.393h1.998z" /></svg>
 
@@ -248,3 +248,4 @@ export default function Home() {
     </div>
   );
 }
+

@@ -904,8 +904,8 @@ export default function RoutingDashboard() {
                 <div style={{ marginTop: 16, padding: 14, borderRadius: 10, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)' }}>
                   <p style={{ fontSize: 13, fontWeight: 600, margin: '0 0 8px', color: '#cbd5e1' }}>Udupi CMC Infrastructure</p>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, fontSize: 11 }}>
-                    <div>DWCCs: <strong>16</strong></div>
-                    <div>BMUs: <strong>2</strong></div>
+                    <div>DWCCs: <strong>6</strong></div>
+                    <div>BMUs: <strong>1</strong></div>
                     <div>Central MRF: <strong>1</strong></div>
                     <div>Landfill: <strong>1 (Engineered)</strong></div>
                   </div>

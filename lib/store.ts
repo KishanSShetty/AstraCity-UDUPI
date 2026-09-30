@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 export type LayerId = 'dumps' | 'dryWaste' | 'processing' | 'methane' | 'compost' | 'density' | 'openSpaces' | 'segregation' | 'lulc' | 'truckHubs' | 'autoRoutes' | 'mainRoute' | 'agaraLake';
 
@@ -93,8 +94,16 @@ interface AuthStore {
   logout: () => void;
 }
 
-export const useAuthStore = create<AuthStore>((set) => ({
-  role: null,
-  login: (role) => set({ role }),
-  logout: () => set({ role: null })
-}));
+export const useAuthStore = create<AuthStore>()(
+  persist(
+    (set) => ({
+      role: null,
+      login: (role) => set({ role }),
+      logout: () => set({ role: null })
+    }),
+    {
+      name: 'auth-storage',
+      storage: createJSONStorage(() => sessionStorage),
+    }
+  )
+);

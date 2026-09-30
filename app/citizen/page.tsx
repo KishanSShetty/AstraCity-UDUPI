@@ -50,9 +50,9 @@ export default function CitizenPortal() {
       
       {/* Background Decorative Gradients */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        <div className="absolute -top-40 -left-40 w-96 h-96 bg-emerald-500/15 rounded-full blur-[140px]"></div>
-        <div className="absolute top-1/4 -right-20 w-80 h-80 bg-blue-500/15 rounded-full blur-[120px]"></div>
-        <div className="absolute -bottom-40 left-1/3 w-96 h-96 bg-teal-500/15 rounded-full blur-[140px]"></div>
+        <div className="absolute -top-40 -left-40 w-96 h-96 bg-emerald-500/15 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/4 -right-20 w-80 h-80 bg-blue-500/15 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 left-1/3 w-96 h-96 bg-teal-500/15 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-12 md:pt-20">
@@ -137,7 +137,7 @@ export default function CitizenPortal() {
                 transition={{ duration: 0.4, type: "spring", bounce: 0.3 }}
                 className="bg-slate-900/70 backdrop-blur-3xl border border-slate-800/80 rounded-[2rem] shadow-2xl p-8 md:p-12 max-w-3xl mx-auto relative overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-[80px] -z-10"></div>
+                <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/10 rounded-full blur-2xl -z-10"></div>
                 
                 <div className="mb-10 text-center">
                   <h2 className="text-3xl font-black text-white mb-3 tracking-tight">File a Cleanliness Report</h2>
@@ -249,7 +249,7 @@ export default function CitizenPortal() {
                       className="bg-slate-900/70 backdrop-blur-2xl border border-slate-800 rounded-[2rem] p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-slate-800/90 hover:border-slate-700 transition-all shadow-xl group overflow-hidden relative"
                     >
                       {/* Status Background Glow */}
-                      <div className={`absolute top-0 right-0 w-32 h-32 rounded-full blur-[80px] -z-10 opacity-30 ${
+                      <div className={`absolute top-0 right-0 w-32 h-32 rounded-full blur-2xl -z-10 opacity-30 ${
                         complaint.status === 'Resolved' ? 'bg-emerald-500' : 
                         complaint.status === 'In Progress' ? 'bg-amber-500' : 'bg-blue-500'
                       }`}></div>
@@ -316,7 +316,7 @@ export default function CitizenPortal() {
               >
                 {/* Hero Banner for Awareness */}
                 <div className="bg-gradient-to-r from-purple-900/40 to-blue-900/40 border border-purple-500/20 rounded-[2.5rem] p-8 md:p-12 relative overflow-hidden backdrop-blur-xl">
-                  <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-[100px] -z-10"></div>
+                  <div className="absolute top-0 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl -z-10"></div>
                   <h2 className="text-3xl md:text-5xl font-black text-white mb-4 tracking-tight">Swachh Udupi Mission</h2>
                   <p className="text-lg md:text-xl text-purple-200/80 max-w-2xl font-medium leading-relaxed">
                     Udupi City Municipal Council mandates 100% source segregation of waste. Together, we can prevent landfills and promote a circular economy.
@@ -418,7 +418,7 @@ export default function CitizenPortal() {
                 className="max-w-5xl mx-auto"
               >
                 <div className="bg-slate-900/70 backdrop-blur-3xl border border-slate-800 rounded-[3rem] p-8 md:p-16 shadow-2xl relative overflow-hidden">
-                  <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px] -z-10 translate-x-1/3 -translate-y-1/3"></div>
+                  <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-3xl -z-10 translate-x-1/3 -translate-y-1/3"></div>
                   
                   <div className="text-center max-w-2xl mx-auto mb-16">
                     <div className="inline-flex items-center justify-center p-4 bg-amber-500/10 text-amber-400 rounded-3xl mb-6 shadow-[0_0_30px_rgba(245,158,11,0.15)] border border-amber-500/20">
@@ -493,3 +493,4 @@ export default function CitizenPortal() {
     </div>
   );
 }
+

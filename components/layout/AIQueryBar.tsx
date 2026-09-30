@@ -75,19 +75,24 @@ export default function AIQueryBar() {
       const pendingComplaints = storeState.complaints.filter(c => c.status === 'Pending').length;
       const inProgressComplaints = storeState.complaints.filter(c => c.status === 'In Progress').length;
       
+      // Calculate Fleet Requirements dynamically based on the Core Engine Methodology
+      const dailyWaste = UDUPI_DATA.daily_waste_tons; // 72 TPD
+      const autoTippersNeeded = Math.ceil(dailyWaste / 3) + Math.ceil((dailyWaste / 3) * 0.1); // ~3 TPD/tipper + 10% reserve
+      const compactorsNeeded = Math.ceil(dailyWaste / 20) + Math.ceil((dailyWaste / 20) * 0.1); // ~20 TPD/compactor + 10% reserve
+      
       const systemPrompt = `You are VajraYield's AI assistant for Udupi City SWM (Solid Waste Management). You are having an ongoing conversation.
 
 REAL DATA CONTEXT (RAG Knowledge Base):
 - City: ${UDUPI_DATA.city}, Population: ${UDUPI_DATA.population}, Area: ${UDUPI_DATA.area_sq_km} sq km
-- Daily waste: ${UDUPI_DATA.daily_waste_tons} TPD (${UDUPI_DATA.waste_wet_pct}% wet, ${UDUPI_DATA.waste_dry_pct}% dry)
+- Daily waste: ${dailyWaste} TPD (${UDUPI_DATA.waste_wet_pct}% wet, ${UDUPI_DATA.waste_dry_pct}% dry)
 - Infrastructure: ${UDUPI_DATA.dwcc_count} DWCCs, ${UDUPI_DATA.bio_meth_units} Biomethanation plants
-- Methane Avoidance: ${UDUPI_DATA.methane_m3_per_day} m³/day, Carbon Credits: ~₹${UDUPI_DATA.carbon_credits_cr} Cr/year
 - Economics: Decentralized processing saves ₹1500/ton vs landfilling.
-- Specific Regions Waste Generation:
-  * Manipal: ~14.8 TPD (Academic/Institutional belt, processed at DWCC-4)
-  * Malpe: ~9.2 TPD (Coastal tourism and fishing industry waste)
-  * Indrali: ~4.5 TPD (Residential and transit waste near railway station)
 - Live Complaints: ${pendingComplaints} cases currently pending action, ${inProgressComplaints} cases in progress.
+
+SIMULATION PREDICTIONS (Fleet Requirements):
+- Based on 72 TPD, the digital twin core engine calculates Udupi requires:
+- Auto Tippers (Primary Collection): ${autoTippersNeeded} vehicles (assuming 3T/day capacity + 10% operational buffer).
+- Compactors (Secondary Transport): ${compactorsNeeded} vehicles (assuming 20T/day capacity + 10% operational buffer).
 
 METHODOLOGY & INSTRUCTIONS:
 1. GREETINGS: If the user says hello, hi, or greets you, introduce yourself as the VajraYield AI and ask how you can help with Udupi's SWM data.
@@ -110,7 +115,7 @@ METHODOLOGY & INSTRUCTIONS:
             'Authorization': `Bearer ${apiKey}`
           },
           body: JSON.stringify({
-            model: "openai/gpt-oss-120b",
+            model: "llama-3.1-70b-versatile",
             messages: groqMessages
           })
         });

@@ -197,8 +197,8 @@ export default function SimulationPanel() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 p-4 md:p-8 font-sans relative overflow-x-hidden">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 relative z-10">
-        <div className="fixed top-[10%] left-[0%] w-[40vw] h-[40vw] bg-teal-500/5 rounded-full blur-[150px] pointer-events-none z-0" />
-        <div className="fixed bottom-[10%] right-[0%] w-[40vw] h-[40vw] bg-indigo-500/5 rounded-full blur-[150px] pointer-events-none z-0" />
+        <div className="fixed top-[10%] left-[0%] w-[40vw] h-[40vw] bg-teal-500/5 rounded-full blur-3xl pointer-events-none z-0" />
+        <div className="fixed bottom-[10%] right-[0%] w-[40vw] h-[40vw] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none z-0" />
         
         {/* LEFT PANEL */}
         <div className="w-full md:w-[35%] bg-white border border-slate-200 backdrop-blur-xl rounded-2xl p-6 shadow-xl flex flex-col gap-8 h-fit">
@@ -365,7 +365,7 @@ export default function SimulationPanel() {
               
               {/* Card 1: Waste Generated */}
             <div className="flex flex-col justify-between bg-white border border-slate-200 backdrop-blur-xl rounded-2xl p-6 shadow-xl relative overflow-hidden group hover:border-slate-300 transition-all">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/5 blur-[80px] rounded-full pointer-events-none" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/5 blur-2xl rounded-full pointer-events-none" />
               <div className="flex justify-between items-start mb-6 z-10">
                 <div className="p-3 bg-teal-50 rounded-xl border border-teal-500/30 text-teal-600 shadow-sm">
                   <WasteIcon />
@@ -385,7 +385,7 @@ export default function SimulationPanel() {
 
             {/* Card 2: Dumps Predicted */}
             <div className="flex flex-col justify-between bg-white border border-slate-200 backdrop-blur-xl rounded-2xl p-6 shadow-xl relative overflow-hidden group hover:border-slate-300 transition-all">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/5 blur-[80px] rounded-full pointer-events-none" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-rose-500/5 blur-2xl rounded-full pointer-events-none" />
               <div className="flex justify-between items-start mb-6 z-10">
                 <div className="p-3 bg-rose-50 rounded-xl border border-rose-500/30 text-rose-600 shadow-sm">
                   <MapIcon />
@@ -405,7 +405,7 @@ export default function SimulationPanel() {
 
             {/* Card 3: Landfill Inflow */}
             <div className="flex flex-col justify-between bg-white border border-slate-200 backdrop-blur-xl rounded-2xl p-6 shadow-xl relative overflow-hidden group hover:border-slate-300 transition-all">
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-amber-500/5 blur-[80px] rounded-full pointer-events-none" />
+              <div className="absolute bottom-0 left-0 w-32 h-32 bg-amber-500/5 blur-2xl rounded-full pointer-events-none" />
               <div className="flex justify-between items-start mb-6 z-10">
                 <div className="p-3 bg-amber-50 rounded-xl border border-amber-500/30 text-amber-600 shadow-sm">
                   <TrendingDownIcon />
@@ -428,7 +428,7 @@ export default function SimulationPanel() {
 
             {/* Card 4: Methane Projection */}
             <div className="flex flex-col justify-between bg-white border border-slate-200 backdrop-blur-xl rounded-2xl p-6 shadow-xl relative overflow-hidden group hover:border-slate-300 transition-all">
-              <div className="absolute bottom-0 right-0 w-32 h-32 bg-indigo-500/5 blur-[80px] rounded-full pointer-events-none" />
+              <div className="absolute bottom-0 right-0 w-32 h-32 bg-indigo-500/5 blur-2xl rounded-full pointer-events-none" />
               <div className="flex justify-between items-start mb-6 z-10">
                 <div className="p-3 bg-indigo-50 rounded-xl border border-indigo-500/30 text-indigo-600 shadow-sm">
                   <CloudIcon />
@@ -449,7 +449,7 @@ export default function SimulationPanel() {
             {/* TWO-TIER METRICS (Fleet Coverage) */}
             <div className="col-span-1 sm:col-span-2 grid grid-cols-2 gap-6">
               <div className="bg-slate-100 rounded-2xl p-6 shadow-md relative overflow-hidden border border-slate-200 flex flex-col justify-between">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-teal-50 blur-[80px] rounded-full pointer-events-none" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-teal-50 blur-2xl rounded-full pointer-events-none" />
                 <h3 className="text-slate-500 text-xs font-extrabold uppercase tracking-wider mb-2">Sub Road Coverage</h3>
                 <div className="flex items-baseline gap-2 mt-auto">
                   <span className="text-4xl font-black text-slate-800 tracking-tighter">
@@ -460,7 +460,7 @@ export default function SimulationPanel() {
               </div>
               
               <div className="bg-slate-100 rounded-2xl p-6 shadow-md relative overflow-hidden border border-slate-200 flex flex-col justify-between">
-                <div className="absolute bottom-0 right-0 w-32 h-32 bg-rose-50 blur-[80px] rounded-full pointer-events-none" />
+                <div className="absolute bottom-0 right-0 w-32 h-32 bg-rose-50 blur-2xl rounded-full pointer-events-none" />
                 <h3 className="text-slate-500 text-xs font-extrabold uppercase tracking-wider mb-2">Daily Fleet Cost</h3>
                 <div className="flex items-baseline gap-2 mt-auto">
                   <span className="text-4xl font-black text-slate-800 tracking-tighter">
@@ -513,3 +513,4 @@ export default function SimulationPanel() {
     </div>
   );
 }
+

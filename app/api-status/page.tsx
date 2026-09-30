@@ -59,8 +59,8 @@ export default function ApiStatusPage() {
 
   return (
     <div className="min-h-screen bg-[#070b14] text-white p-8 font-sans selection:bg-teal-500/30 overflow-hidden relative">
-      <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-teal-500/10 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-indigo-500/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-4xl mx-auto mt-12 bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl relative z-10 shadow-2xl">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 border-b border-white/10 pb-6 gap-4">
@@ -115,3 +115,4 @@ export default function ApiStatusPage() {
     </div>
   )
 }
+

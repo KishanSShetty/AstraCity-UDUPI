@@ -96,8 +96,8 @@ export default function AnalysisPage() {
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 p-6 pb-24 md:p-12 font-sans selection:bg-teal-100 overflow-hidden relative">
       {/* Background Orbs */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-teal-500/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-indigo-500/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-teal-500/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-indigo-500/5 rounded-full blur-3xl pointer-events-none" />
 
       <motion.div 
         className="max-w-7xl mx-auto relative z-10"
@@ -825,3 +825,4 @@ export default function AnalysisPage() {
     </div>
   );
 }
+
