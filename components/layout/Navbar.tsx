@@ -1,5 +1,5 @@
 'use client';
-
+import { useAuthStore } from '@/lib/store';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -37,6 +37,7 @@ export default function Navbar() {
 
   const featuresRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const { logout } = useAuthStore();
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -179,9 +180,7 @@ export default function Navbar() {
                 )}
               </AnimatePresence>
             </div>
-
-
-            {/* ⓘ Info Button — VERY LAST after all links */}
+            {/* ⓘ Info Button */}
             <button
               onClick={() => setIsModalOpen(true)}
               className={`ml-2 rounded-full flex items-center justify-center transition-colors text-sm font-bold ${isHome
@@ -193,18 +192,22 @@ export default function Navbar() {
             >
               ⓘ
             </button>
+
             {/* LOGOUT BUTTON */}
             <button
               onClick={() => {
-                localStorage.removeItem('userRole');
-                localStorage.removeItem('authToken');
-                sessionStorage.clear();
-                window.location.href = '/';
+                logout();
+                if (typeof window !== 'undefined') {
+                  localStorage.removeItem('userRole');
+                  localStorage.removeItem('vajrayield_role');
+                  localStorage.removeItem('authToken');
+                  sessionStorage.clear();
+                  window.location.href = '/';
+                }
               }}
-              className="ml-3 px-3 py-1 rounded-lg text-xs font-bold border border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500 hover:text-white transition-all flex items-center gap-1.5"
-              title="Sign out of portal"
+              className="ml-3 px-3 py-1 rounded-lg text-xs font-bold border border-rose-500/30 text-rose-300 bg-rose-500/10 hover:bg-rose-500 hover:text-white transition-all flex items-center gap-1.5"
             >
-              <span>🚪</span> Logout
+              Logout
             </button>
           </div>
 
@@ -243,10 +246,14 @@ export default function Navbar() {
                   <div className="h-px w-full bg-slate-200 my-2" />
                   <button
                     onClick={() => {
-                      localStorage.removeItem('userRole');
-                      localStorage.removeItem('authToken');
-                      sessionStorage.clear();
-                      window.location.href = '/';
+                      logout();
+                      if (typeof window !== 'undefined') {
+                        localStorage.removeItem('userRole');
+                        localStorage.removeItem('vajrayield_role');
+                        localStorage.removeItem('authToken');
+                        sessionStorage.clear();
+                        window.location.href = '/';
+                      }
                     }}
                     className="flex items-center gap-2 px-4 py-3 rounded-xl text-rose-600 font-bold hover:bg-rose-50 transition-colors text-left w-full"
                   >
