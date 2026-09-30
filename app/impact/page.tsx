@@ -303,7 +303,7 @@ export default function ImpactDashboard() {
              </div>
            </div>
            <div className="mt-4 bg-amber-50 border border-amber-200 rounded-2xl px-5 py-3 text-xs text-amber-700 font-medium italic">
-             This composition data justifies AstraCity routing: wet to BMU, dry to DWCC, hazardous to contractor. Source: Udupi CMC Official Publications.
+             This composition data justifies VajraYield routing: wet to BMU, dry to DWCC, hazardous to contractor. Source: Udupi CMC Official Publications.
            </div>
          </section>
 

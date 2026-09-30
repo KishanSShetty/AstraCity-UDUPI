@@ -142,7 +142,7 @@ export default function ReportPage() {
                 <div className="w-8 h-8 rounded-full bg-teal-600 flex items-center justify-center">
                   <svg xmlns="http://www.w3.org/1000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
                 </div>
-                <h1 className="text-2xl font-black tracking-tighter text-slate-900">AstraCity</h1>
+                <h1 className="text-2xl font-black tracking-tighter text-slate-900">VajraYield</h1>
               </div>
               <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">Spatial Intelligence Platform</span>
             </div>

@@ -417,7 +417,7 @@ export default function RoutingDashboard() {
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <div style={{ width: 40, height: 40, borderRadius: 12, background: 'linear-gradient(135deg, #14b8a6, #2563eb)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20 }}>♻</div>
           <div>
-            <h1 style={{ fontSize: 20, fontWeight: 700, margin: 0, letterSpacing: -0.5 }}>AstraCity Routing Engine</h1>
+            <h1 style={{ fontSize: 20, fontWeight: 700, margin: 0, letterSpacing: -0.5 }}>VajraYield Routing Engine</h1>
             <p style={{ fontSize: 12, color: '#94a3b8', margin: 0 }}>Udupi City · Udupi CMC · {ROUTING_CONFIG.vehicle_fleet.length} Vehicles · 6 DWCCs · Karvalu SWM / Beedinagudde BMU</p>
           </div>
         </div>

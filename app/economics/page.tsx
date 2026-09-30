@@ -46,7 +46,7 @@ export default function EconomicsPage() {
             Economic Impact & Math
           </h1>
           <p className="text-slate-500 text-lg md:text-xl font-medium max-w-3xl md:mx-0 mx-auto">
-            Interact with the variables below to see exactly how AstraCity's decentralized waste processing model calculates daily and annual savings compared to traditional landfilling.
+            Interact with the variables below to see exactly how VajraYield's decentralized waste processing model calculates daily and annual savings compared to traditional landfilling.
           </p>
         </motion.header>
 
@@ -93,7 +93,7 @@ export default function EconomicsPage() {
                   <div className="text-2xl font-black text-rose-600 mt-2">₹{Math.round(costBefore).toLocaleString('en-IN')} <span className="text-sm font-normal text-rose-600">/day</span></div>
                 </div>
                 <div className="bg-emerald-50 border border-emerald-100 p-5 rounded-xl font-mono">
-                  <div className="text-emerald-600 text-xs mb-2 uppercase font-bold">AstraCity Processing</div>
+                  <div className="text-emerald-600 text-xs mb-2 uppercase font-bold">VajraYield Processing</div>
                   <div className="text-slate-700 text-lg">({totalWaste.toFixed(2)} tons) × ₹{processingCost}</div>
                   <div className="text-2xl font-black text-emerald-600 mt-2">₹{Math.round(costAfter).toLocaleString('en-IN')} <span className="text-sm font-normal text-emerald-600">/day</span></div>
                 </div>
@@ -130,7 +130,7 @@ export default function EconomicsPage() {
                   <tr className="border-b border-slate-100">
                     <th className="py-4 text-xs font-bold uppercase tracking-widest text-slate-600 w-1/3">Metric</th>
                     <th className="py-4 text-xs font-bold uppercase tracking-widest text-rose-500 w-1/3 text-center md:text-left">Traditional Landfill</th>
-                    <th className="py-4 text-xs font-bold uppercase tracking-widest text-emerald-600 w-1/3 text-center md:text-left">AstraCity Optimized</th>
+                    <th className="py-4 text-xs font-bold uppercase tracking-widest text-emerald-600 w-1/3 text-center md:text-left">VajraYield Optimized</th>
                   </tr>
                 </thead>
                 <tbody className="text-xl md:text-3xl font-bold divide-y divide-slate-100">

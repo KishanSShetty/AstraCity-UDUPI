@@ -51,14 +51,14 @@ export default function AIQueryBar() {
     if (!apiKey) {
       setTimeout(() => {
         const mocks: Record<string, string> = {
-          "hi": "Hello! I am the AstraCity AI assistant for Udupi. How can I help you analyze our Solid Waste Management data today?",
-          "hello": "Hello! I am the AstraCity AI assistant for Udupi. How can I help you analyze our Solid Waste Management data today?",
+          "hi": "Hello! I am the VajraYield AI assistant for Udupi. How can I help you analyze our Solid Waste Management data today?",
+          "hello": "Hello! I am the VajraYield AI assistant for Udupi. How can I help you analyze our Solid Waste Management data today?",
           "manipal": "Manipal (Ward 18), the academic belt of Udupi, generates approximately 14.8 TPD of waste. This is primarily processed locally at DWCC-4 to minimize transport emissions.",
           "Show me illegal dumps": `Udupi City has ${UDUPI_DATA.dump_sites_detected} dump sites detected via satellite imagery, with ${UDUPI_DATA.high_risk_dumps} categorized as high risk. Eliminating these prevents toxic runoff and creates localized cleanup jobs.`,
           "methane risk": `By processing wet waste at the ${UDUPI_DATA.bio_meth_units} biomethanation plants (like Karvalu), Udupi avoids ${UDUPI_DATA.co2e_year} tons of CO₂e annually. This eliminates severe methane risk and generates ₹${UDUPI_DATA.savings_carbon_cr} Cr in carbon credits.`,
           "cost savings": `Processing ${UDUPI_DATA.waste_daily_tons} TPD locally via ${UDUPI_DATA.dwcc_count} DWCCs saves ₹1500/ton in landfill costs. This decentralized methodology generates significant annual savings for the CMC while creating circular economy jobs.`,
-          "methodology": "AstraCity uses geospatial mapping and building footprint data to estimate waste generation per zone. We prioritize decentralized processing (DWCCs & Biomethanation) to eliminate landfill reliance.",
-          "default": `Based on AstraCity intelligence: Udupi City generates ${UDUPI_DATA.waste_daily_tons} TPD from ${UDUPI_DATA.population} residents. Processing this waste via ${UDUPI_DATA.dwcc_count} DWCCs averts ${UDUPI_DATA.co2e_year} tons of CO₂e/year and generates ₹${UDUPI_DATA.savings_carbon_cr} Cr in carbon credits.`
+          "methodology": "VajraYield uses geospatial mapping and building footprint data to estimate waste generation per zone. We prioritize decentralized processing (DWCCs & Biomethanation) to eliminate landfill reliance.",
+          "default": `Based on VajraYield intelligence: Udupi City generates ${UDUPI_DATA.waste_daily_tons} TPD from ${UDUPI_DATA.population} residents. Processing this waste via ${UDUPI_DATA.dwcc_count} DWCCs averts ${UDUPI_DATA.co2e_year} tons of CO₂e/year and generates ₹${UDUPI_DATA.savings_carbon_cr} Cr in carbon credits.`
         };
         const key = Object.keys(mocks).find(k => userMessage.toLowerCase().includes(k.toLowerCase().split(' ').slice(0, 2).join(' ')));
         const resText = key ? mocks[key] : mocks["default"];
@@ -71,7 +71,7 @@ export default function AIQueryBar() {
     try {
       const isGroq = apiKey?.startsWith('gsk_');
       
-      const systemPrompt = `You are AstraCity's AI assistant for Udupi City SWM (Solid Waste Management). You are having an ongoing conversation.
+      const systemPrompt = `You are VajraYield's AI assistant for Udupi City SWM (Solid Waste Management). You are having an ongoing conversation.
 
 REAL DATA CONTEXT (RAG Knowledge Base):
 - City: ${UDUPI_DATA.city}, Population: ${UDUPI_DATA.population}, Area: ${UDUPI_DATA.area_sq_km} sq km
@@ -84,7 +84,7 @@ REAL DATA CONTEXT (RAG Knowledge Base):
 - Key Regions: Manipal (Ward 18 / Academic Belt) generates ~14.8 TPD, processed by DWCC-4. Malpe handles coastal waste.
 
 METHODOLOGY & INSTRUCTIONS:
-1. GREETINGS: If the user says hello, hi, or greets you, introduce yourself as the AstraCity AI and ask how you can help with Udupi's SWM data.
+1. GREETINGS: If the user says hello, hi, or greets you, introduce yourself as the VajraYield AI and ask how you can help with Udupi's SWM data.
 2. THINKING & ANSWERING: Analyze the user's question, locate the relevant metric from the context above, and formulate a direct answer.
 3. CONSTRAINTS: Answer in 2-3 sentences max. Use real numbers. Be highly specific to Udupi. Do NOT mention truck routing or centralized landfills. Remember the context of the conversation.`;
 
