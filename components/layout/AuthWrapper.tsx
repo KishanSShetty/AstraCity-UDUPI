@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
-import { useAuthStore, UserRole } from '@/lib/store';
+import { useAuthStore } from '@/lib/store';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Building2, Users, ArrowLeft, Lock } from 'lucide-react';
+import { Building2, Users, ArrowLeft, Lock, ShieldCheck } from 'lucide-react';
 
 export default function AuthWrapper({ children }: { children: React.ReactNode }) {
   const { role, login } = useAuthStore();
@@ -33,7 +33,7 @@ export default function AuthWrapper({ children }: { children: React.ReactNode })
       router.push('/citizen');
     } else if (authMode === 'municipal' && password === 'admin') {
       login('municipal');
-      router.push('/map');
+      router.push('/');
     } else {
       setError('Incorrect password. Please try again.');
     }
@@ -45,8 +45,8 @@ export default function AuthWrapper({ children }: { children: React.ReactNode })
     return (
       <div className="min-h-screen bg-[#020617] flex items-center justify-center p-4 relative overflow-hidden font-sans">
         {/* Decorative Gradients */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-teal-500/10 rounded-full blur-[120px] pointer-events-none" />
 
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -61,16 +61,18 @@ export default function AuthWrapper({ children }: { children: React.ReactNode })
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
               >
-                <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-8 bg-white/5 border border-white/10">
-                  <span className="text-xl">🛰️</span>
-                  <span className="text-sm font-black tracking-widest text-teal-400 uppercase">VajraYield SWMS Login</span>
+                {/* Civic Vajra Shield Badge replacing the satellite */}
+                <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-8 bg-emerald-950/60 border border-emerald-500/30">
+                  <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                  <span className="text-sm font-black tracking-widest text-emerald-300 uppercase">
+                    VajraYield SWMS • SWM 2026
+                  </span>
                 </div>
 
                 <h1 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">Select Your Access Portal</h1>
                 <p className="text-slate-400 text-lg mb-12 max-w-2xl mx-auto">Welcome to the Udupi Solid Waste Management ecosystem. Please select your role to proceed.</p>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-
                   {/* Citizen Login */}
                   <button
                     onClick={() => { setAuthMode('citizen'); setError(''); setPassword(''); }}
