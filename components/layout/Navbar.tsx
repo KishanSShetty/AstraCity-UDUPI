@@ -14,7 +14,7 @@ const MAIN_LINKS = [
   { href: '/routes', label: 'Routes' },
   { href: '/routing', label: '🚛 Routing Engine' },
   { href: '/forecast', label: '🔮 Forecast' },
-  { href: '/methodology', label: 'Methodology' },
+  { href: '/complaints', label: '📥 Inbox' },
   { href: '/citizen', label: '👥 Citizen Portal' },
 ];
 

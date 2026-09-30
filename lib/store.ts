@@ -41,3 +41,46 @@ export const useStore = create<AppState>((set) => ({
   newSyntheticDumps: [],
   setNewSyntheticDumps: (dumps) => set({ newSyntheticDumps: dumps }),
 }));
+
+export type ComplaintStatus = 'Pending' | 'In Progress' | 'Resolved';
+
+export interface Complaint {
+  id: string;
+  location: string;
+  description: string;
+  date: string;
+  status: ComplaintStatus;
+  type: string;
+  photoUrl: string | null;
+}
+
+interface ComplaintStore {
+  complaints: Complaint[];
+  addComplaint: (complaint: Omit<Complaint, 'id' | 'date' | 'status'>) => void;
+  updateStatus: (id: string, status: ComplaintStatus) => void;
+}
+
+const mockComplaints: Complaint[] = [
+  { id: 'RPT-8422', location: 'Syndicate Circle, Manipal', description: 'Mixed waste dumped near the circle.', date: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), status: 'Pending', type: 'Mixed Waste Dump', photoUrl: null },
+  { id: 'RPT-8109', location: 'Malpe Beach Road', description: 'Bin is overflowing and attracting strays.', date: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString(), status: 'In Progress', type: 'Overflowing Bin', photoUrl: null },
+  { id: 'RPT-7944', location: 'Ajjarakadu Park', description: 'Large amount of dry leaves and branches.', date: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000).toISOString(), status: 'Resolved', type: 'Green Waste', photoUrl: null }
+];
+
+export const useComplaintStore = create<ComplaintStore>((set) => ({
+  complaints: mockComplaints,
+  addComplaint: (data) => set((state) => {
+    const newComplaint: Complaint = {
+      id: `RPT-${Math.floor(Math.random() * 9000) + 1000}`,
+      location: data.location,
+      description: data.description || 'No description provided.',
+      type: data.type,
+      photoUrl: data.photoUrl,
+      status: 'Pending',
+      date: new Date().toISOString()
+    };
+    return { complaints: [newComplaint, ...state.complaints] };
+  }),
+  updateStatus: (id, status) => set((state) => ({
+    complaints: state.complaints.map(c => c.id === id ? { ...c, status } : c)
+  }))
+}));

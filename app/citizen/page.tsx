@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Camera, MapPin, UploadCloud, AlertCircle, CheckCircle2, Leaf, FileText, Megaphone, Trophy, Clock, Image as ImageIcon } from 'lucide-react';
+import { useComplaintStore } from '@/lib/store';
 
 export default function CitizenPortal() {
   const [activeTab, setActiveTab] = useState<'report' | 'complaints' | 'guidelines'>('report');
@@ -10,6 +11,8 @@ export default function CitizenPortal() {
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
   const [location, setLocation] = useState('');
   const [description, setDescription] = useState('');
+
+  const { complaints, addComplaint } = useComplaintStore();
 
   const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -24,6 +27,12 @@ export default function CitizenPortal() {
     
     setReportState('uploading');
     setTimeout(() => {
+      addComplaint({
+        location,
+        description,
+        type: 'Citizen Report',
+        photoUrl: photoPreview
+      });
       setReportState('success');
       setTimeout(() => {
         setReportState('idle');
@@ -199,24 +208,29 @@ export default function CitizenPortal() {
                 transition={{ duration: 0.3 }}
                 className="max-w-4xl mx-auto space-y-4"
               >
-                {[
-                  { id: 'RPT-8422', loc: 'Syndicate Circle, Manipal', date: '2 hours ago', status: 'Pending', type: 'Mixed Waste Dump' },
-                  { id: 'RPT-8109', loc: 'Malpe Beach Road', date: 'Yesterday', status: 'In Progress', type: 'Overflowing Bin' },
-                  { id: 'RPT-7944', loc: 'Ajjarakadu Park', date: 'Oct 24', status: 'Resolved', type: 'Green Waste' }
-                ].map((complaint, i) => (
-                  <div key={i} className="bg-slate-900/60 backdrop-blur-xl border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 hover:bg-slate-800/80 transition-colors">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-500 shrink-0">
-                        <ImageIcon className="w-6 h-6" />
-                      </div>
+                {complaints.length === 0 ? (
+                   <div className="text-slate-400 text-center py-8">No complaints filed yet.</div>
+                ) : (
+                  complaints.map((complaint, i) => (
+                    <div key={complaint.id} className="bg-slate-900/60 backdrop-blur-xl border border-slate-800 rounded-2xl p-5 md:p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 hover:bg-slate-800/80 transition-colors">
+                      <div className="flex items-start gap-4">
+                        {complaint.photoUrl ? (
+                           <div className="w-12 h-12 rounded-xl border border-slate-800 shrink-0 overflow-hidden">
+                             <img src={complaint.photoUrl} alt="Report" className="w-full h-full object-cover" />
+                           </div>
+                        ) : (
+                          <div className="w-12 h-12 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-500 shrink-0">
+                            <ImageIcon className="w-6 h-6" />
+                          </div>
+                        )}
                       <div>
                         <div className="flex items-center gap-2 mb-1">
                           <h3 className="font-bold text-slate-200 text-lg">{complaint.type}</h3>
                           <span className="text-xs font-mono text-slate-500 bg-slate-950 px-2 py-0.5 rounded-md">#{complaint.id}</span>
                         </div>
                         <div className="flex items-center gap-3 text-sm text-slate-400">
-                          <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {complaint.loc}</span>
-                          <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {complaint.date}</span>
+                          <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {complaint.location}</span>
+                          <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {new Date(complaint.date).toLocaleDateString()}</span>
                         </div>
                       </div>
                     </div>
@@ -229,7 +243,8 @@ export default function CitizenPortal() {
                       {complaint.status}
                     </div>
                   </div>
-                ))}
+                  ))
+                )}
               </motion.div>
             )}
 
