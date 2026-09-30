@@ -8,6 +8,7 @@ import { UDUPI_DATA } from '@/lib/constants';
 
 const MAIN_LINKS = [
   { href: '/', label: 'Home' },
+  { href: '/dashboard', label: '⚡ Command Center' },
   { href: '/map', label: 'Map' },
   { href: '/osm', label: 'OSM' },
   { href: '/simulation', label: 'Simulation' },
@@ -39,6 +40,15 @@ export default function Navbar() {
   const featuresRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
   const { role, logout } = useAuthStore();
+
+  const isWorkspaceRoute = [
+    '/dashboard', '/data-ingestion', '/chat', '/network',
+    '/cases', '/profiles', '/alerts', '/financial', '/audit', '/settings'
+  ].some(prefix => pathname?.startsWith(prefix));
+
+  if (isWorkspaceRoute) {
+    return null;
+  }
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {

@@ -154,7 +154,7 @@ export default function BaselineSimulation() {
 
         map.addSource(`route-${v.id}`, {
           type: 'geojson',
-          data: { type: 'Feature', geometry: { type: 'LineString', coordinates: v.coordinates } }
+          data: { type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: v.coordinates } }
         });
         map.addLayer({
           id: `route-line-${v.id}`,

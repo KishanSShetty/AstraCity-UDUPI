@@ -20,6 +20,15 @@ export default function AuthWrapper({ children }: { children: React.ReactNode })
     setMounted(true);
   }, []);
 
+  const isWorkspaceRoute = [
+    '/dashboard', '/data-ingestion', '/chat', '/network', '/analytics',
+    '/cases', '/profiles', '/alerts', '/financial', '/audit', '/settings'
+  ].some(prefix => pathname?.startsWith(prefix));
+
+  if (isWorkspaceRoute) {
+    return <>{children}</>;
+  }
+
   useEffect(() => {
     if (!mounted || role === null) return;
 

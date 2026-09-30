@@ -5,12 +5,15 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { UDUPI_DATA } from '@/lib/constants';
 import { useComplaintStore } from '@/lib/store';
 
+import { usePathname } from 'next/navigation';
+
 interface Message {
   role: 'user' | 'assistant' | 'system';
   content: string;
 }
 
 export default function AIQueryBar() {
+  const pathname = usePathname();
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -18,6 +21,15 @@ export default function AIQueryBar() {
   const [isExpanded, setIsExpanded] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const isWorkspaceRoute = [
+    '/dashboard', '/data-ingestion', '/chat', '/network',
+    '/cases', '/profiles', '/alerts', '/financial', '/audit', '/settings'
+  ].some(prefix => pathname?.startsWith(prefix));
+
+  if (isWorkspaceRoute) {
+    return null;
+  }
 
   // Auto-scroll to bottom of chat
   useEffect(() => {
