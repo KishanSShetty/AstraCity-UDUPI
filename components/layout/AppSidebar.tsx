@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { 
   Recycle, 
   LayoutDashboard, 
@@ -28,15 +28,20 @@ import {
   Home,
   Compass,
   FolderOpen,
-  BookOpen
+  BookOpen,
+  UserCheck,
+  Lock,
+  ArrowRight
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useAuth } from "@/lib/AuthContext";
 import { useLanguage } from "@/lib/LanguageContext";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
-export const coreOperations = [
-  { label: "Public Portal Home", href: "/", icon: Home },
+// Administrative modules (Only visible to Admin / Officer)
+export const adminOperations = [
   { label: "Command Center", href: "/dashboard", icon: LayoutDashboard },
   { label: "Analytics & Carbon", href: "/analytics", icon: LineChart },
   { label: "AI SWM Copilot", href: "/chat", icon: MessageSquare },
@@ -52,12 +57,18 @@ export const complianceOperations = [
   { label: "Audit & Governance", href: "/audit", icon: ShieldCheck },
 ];
 
-export const geospatialModules = [
+// Citizen-accessible modules (Available to both Citizen and Admin)
+export const citizenModules = [
+  { label: "Public Portal Home", href: "/", icon: Home },
+  { label: "Citizen Services Hub", href: "/citizen", icon: UserCheck },
+  { label: "Report Dumping", href: "/complaints", icon: ClipboardList },
   { label: "Digital Twin Map", href: "/map", icon: MapPin },
   { label: "Ward Demographics", href: "/wards", icon: Building2 },
-  { label: "Route Optimization", href: "/routes", icon: Truck },
+  { label: "Collection Routes", href: "/routes", icon: Truck },
+];
+
+export const geospatialModules = [
   { label: "Fleet GPS Simulation", href: "/vehicle-sim", icon: Sparkles },
-  { label: "Citizen Grievances", href: "/complaints", icon: ClipboardList },
   { label: "Satellite & LULC", href: "/lulc", icon: Satellite },
   { label: "10-Day Waste Forecast", href: "/forecast", icon: Compass },
   { label: "Compliance Report", href: "/report", icon: DownloadCloud },
@@ -67,10 +78,11 @@ export const geospatialModules = [
 
 export function AppSidebar() {
   const pathname = usePathname();
-  const { user, role } = useAuth();
+  const router = useRouter();
+  const { user, role, isAdmin, isCitizen, loginAsAdmin, loginAsCitizen } = useAuth();
   
-  const displayName = user ? `${user.firstName || ''} ${user.lastName || ''}`.trim() : 'Er. K. P. Bhat';
-  const displayInitials = user ? `${user.firstName?.[0] || ''}${user.lastName?.[0] || ''}`.toUpperCase() || 'KB' : 'KB';
+  const displayName = user ? `${user.firstName || ''} ${user.lastName || ''}`.trim() : (isAdmin ? 'Er. K. P. Bhat' : 'Citizen Resident');
+  const displayInitials = user ? `${user.firstName?.[0] || ''}${user.lastName?.[0] || ''}`.toUpperCase() || 'KB' : (isAdmin ? 'KB' : 'CR');
 
   const [isCollapsed, setIsCollapsed] = React.useState(false);
   const { t } = useLanguage();
@@ -81,7 +93,7 @@ export function AppSidebar() {
       isCollapsed ? "w-[76px]" : "w-64"
     )}>
       {/* Brand Section */}
-      <Link href="/dashboard">
+      <Link href={isAdmin ? "/dashboard" : "/"}>
         <div className={cn(
           "flex h-16 items-center border-b border-slate-100 transition-all overflow-hidden whitespace-nowrap bg-emerald-50/50 hover:bg-emerald-50/80 cursor-pointer",
           isCollapsed ? "justify-center px-0" : "px-4"
@@ -95,7 +107,9 @@ export function AppSidebar() {
                 <span className="text-base font-black tracking-tight text-slate-900">AstraCity</span>
                 <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-[9px] font-bold text-emerald-800 tracking-wider">UDUPI</span>
               </div>
-              <span className="text-[10px] text-slate-500 font-medium truncate">VajraYield SWM Digital Twin</span>
+              <span className="text-[10px] text-slate-500 font-medium truncate">
+                {isAdmin ? "Municipal Admin Console" : "Public Citizen Portal"}
+              </span>
             </div>
           )}
         </div>
@@ -103,178 +117,300 @@ export function AppSidebar() {
 
       {/* Navigation Links Area */}
       <div className="flex-1 overflow-y-auto py-3 px-2.5 space-y-4 overflow-x-hidden scrollbar-thin">
-        {/* SECTION 1: Core Operations */}
-        <div className="space-y-1">
-          <div className={cn(
-            "flex items-center mb-1.5",
-            isCollapsed ? "justify-center" : "justify-between px-2"
-          )}>
+        
+        {/* Toggle Collapse Bar */}
+        <div className={cn(
+          "flex items-center mb-1.5",
+          isCollapsed ? "justify-center" : "justify-between px-2"
+        )}>
+          {!isCollapsed && (
+            <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 whitespace-nowrap">
+              {isAdmin ? "ADMIN OPERATIONS" : "CITIZEN SERVICES"}
+            </span>
+          )}
+          <button 
+            onClick={() => setIsCollapsed(!isCollapsed)}
+            className="flex h-6 w-6 items-center justify-center rounded-md hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-all"
+            title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+          >
+            {isCollapsed ? <PanelLeftOpen className="h-4 w-4" /> : <PanelLeftClose className="h-4 w-4" />}
+          </button>
+        </div>
+
+        {/* SECTION FOR CITIZEN: Citizen Services */}
+        {isCitizen && (
+          <div className="space-y-1">
+            {citizenModules.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  title={isCollapsed ? item.label : undefined}
+                  className={cn(
+                    "group flex items-center rounded-lg px-2.5 py-2 text-xs font-bold transition-all duration-150 overflow-hidden",
+                    isActive 
+                      ? "bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-xs" 
+                      : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
+                    isCollapsed ? "justify-center" : "justify-between"
+                  )}
+                >
+                  <div className="flex items-center min-w-0">
+                    <item.icon className={cn(
+                      "shrink-0 transition-colors", 
+                      isCollapsed ? "h-5 w-5" : "mr-2.5 h-4 w-4",
+                      isActive ? "text-emerald-700" : "text-slate-400 group-hover:text-slate-700"
+                    )} />
+                    {!isCollapsed && <span className="truncate">{item.label}</span>}
+                  </div>
+                  {!isCollapsed && isActive && (
+                    <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600 ml-2" />
+                  )}
+                </Link>
+              );
+            })}
+
+            {/* Admin Switcher Card in Citizen Mode */}
             {!isCollapsed && (
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 whitespace-nowrap">
-                OPERATIONS WORKSPACE
-              </span>
+              <div className="mt-4 p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs">
+                <div className="flex items-center gap-1.5 font-bold text-slate-700 mb-1">
+                  <Lock className="w-3.5 h-3.5 text-amber-500" />
+                  Admin Console Locked
+                </div>
+                <p className="text-[11px] text-slate-500 mb-2 leading-relaxed">
+                  Tipping ledgers, audits, and fleet control are restricted to municipal officers.
+                </p>
+                <button
+                  onClick={() => {
+                    loginAsAdmin();
+                    router.push('/dashboard');
+                  }}
+                  className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-1.5 px-2 rounded-lg text-[11px] transition-colors flex items-center justify-center gap-1.5 shadow-xs"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  Log in as Admin
+                </button>
+              </div>
             )}
-            <button 
-              onClick={() => setIsCollapsed(!isCollapsed)}
-              className="flex h-6 w-6 items-center justify-center rounded-md hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-all"
-              title={isCollapsed ? "Expand Sidebar" : "Collapse Sidebar"}
-            >
-              {isCollapsed ? <PanelLeftOpen className="h-4 w-4" /> : <PanelLeftClose className="h-4 w-4" />}
-            </button>
           </div>
+        )}
 
-          {coreOperations.map((item) => {
-            const isActive = pathname === item.href || (item.href !== "/" && item.href !== "/dashboard" && pathname?.startsWith(item.href));
-            return (
+        {/* SECTIONS FOR ADMIN: Full Operations Workspace */}
+        {isAdmin && (
+          <>
+            {/* 1. Core Operations */}
+            <div className="space-y-1">
               <Link
-                key={item.href}
-                href={item.href}
-                title={isCollapsed ? item.label : undefined}
+                href="/"
+                title={isCollapsed ? "Public Portal Home" : undefined}
                 className={cn(
-                  "group flex items-center rounded-lg px-2.5 py-2 text-xs font-bold transition-all duration-150 overflow-hidden",
-                  isActive 
-                    ? "bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-xs" 
-                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
+                  "group flex items-center rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all overflow-hidden mb-1",
+                  pathname === "/"
+                    ? "bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-xs"
+                    : "text-slate-500 hover:bg-slate-50 hover:text-slate-900",
                   isCollapsed ? "justify-center" : "justify-between"
                 )}
               >
                 <div className="flex items-center min-w-0">
-                  <item.icon className={cn(
-                    "shrink-0 transition-colors", 
-                    isCollapsed ? "h-5 w-5" : "mr-2.5 h-4 w-4",
-                    isActive ? "text-emerald-700" : "text-slate-400 group-hover:text-slate-700"
-                  )} />
-                  {!isCollapsed && <span className="truncate">{item.label}</span>}
+                  <Home className="shrink-0 mr-2.5 h-4 w-4 text-slate-400 group-hover:text-slate-700" />
+                  {!isCollapsed && <span className="truncate">Public Portal Home</span>}
                 </div>
-                {!isCollapsed && isActive && (
-                  <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600 ml-2" />
-                )}
               </Link>
-            );
-          })}
-        </div>
 
-        {/* SECTION 2: Municipal Compliance */}
-        <div className="space-y-1 pt-2 border-t border-slate-100">
-          {!isCollapsed && (
-            <div className="px-2 mb-1.5">
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 whitespace-nowrap">
-                COMPLIANCE & GOVERNANCE
-              </span>
+              {adminOperations.map((item) => {
+                const isActive = pathname === item.href || (item.href !== "/dashboard" && pathname?.startsWith(item.href));
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    title={isCollapsed ? item.label : undefined}
+                    className={cn(
+                      "group flex items-center rounded-lg px-2.5 py-2 text-xs font-bold transition-all duration-150 overflow-hidden",
+                      isActive 
+                        ? "bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-xs" 
+                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
+                      isCollapsed ? "justify-center" : "justify-between"
+                    )}
+                  >
+                    <div className="flex items-center min-w-0">
+                      <item.icon className={cn(
+                        "shrink-0 transition-colors", 
+                        isCollapsed ? "h-5 w-5" : "mr-2.5 h-4 w-4",
+                        isActive ? "text-emerald-700" : "text-slate-400 group-hover:text-slate-700"
+                      )} />
+                      {!isCollapsed && <span className="truncate">{item.label}</span>}
+                    </div>
+                    {!isCollapsed && isActive && (
+                      <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600 ml-2" />
+                    )}
+                  </Link>
+                );
+              })}
             </div>
-          )}
-          {complianceOperations.map((item) => {
-            const isActive = pathname === item.href || pathname?.startsWith(item.href);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                title={isCollapsed ? item.label : undefined}
-                className={cn(
-                  "group flex items-center rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all duration-150 overflow-hidden",
-                  isActive 
-                    ? "bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-xs" 
-                    : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
-                  isCollapsed ? "justify-center" : "justify-between"
-                )}
-              >
-                <div className="flex items-center min-w-0">
-                  <item.icon className={cn(
-                    "shrink-0 transition-colors", 
-                    isCollapsed ? "h-4 w-4" : "mr-2.5 h-3.5 w-3.5",
-                    isActive ? "text-emerald-700" : "text-slate-400 group-hover:text-slate-700"
-                  )} />
-                  {!isCollapsed && <span className="truncate">{item.label}</span>}
-                </div>
-                {!isCollapsed && isActive && (
-                  <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600 ml-2" />
-                )}
-              </Link>
-            );
-          })}
-        </div>
 
-        {/* SECTION 3: Geospatial Twin Engines */}
-        <div className="space-y-1 pt-2 border-t border-slate-100">
-          {!isCollapsed && (
-            <div className="px-2 mb-1.5">
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 whitespace-nowrap">
-                GEOSPATIAL TWIN ENGINES
-              </span>
+            {/* 2. Municipal Compliance & Ledgers */}
+            <div className="space-y-1 pt-2 border-t border-slate-100">
+              {!isCollapsed && (
+                <div className="px-2 mb-1.5">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 whitespace-nowrap">
+                    COMPLIANCE & GOVERNANCE
+                  </span>
+                </div>
+              )}
+              {complianceOperations.map((item) => {
+                const isActive = pathname === item.href || pathname?.startsWith(item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    title={isCollapsed ? item.label : undefined}
+                    className={cn(
+                      "group flex items-center rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all duration-150 overflow-hidden",
+                      isActive 
+                        ? "bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-xs" 
+                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
+                      isCollapsed ? "justify-center" : "justify-between"
+                    )}
+                  >
+                    <div className="flex items-center min-w-0">
+                      <item.icon className={cn(
+                        "shrink-0 transition-colors", 
+                        isCollapsed ? "h-4 w-4" : "mr-2.5 h-3.5 w-3.5",
+                        isActive ? "text-emerald-700" : "text-slate-400 group-hover:text-slate-700"
+                      )} />
+                      {!isCollapsed && <span className="truncate">{item.label}</span>}
+                    </div>
+                    {!isCollapsed && isActive && (
+                      <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-600 ml-2" />
+                    )}
+                  </Link>
+                );
+              })}
             </div>
-          )}
-          {geospatialModules.map((item) => {
-            const isActive = pathname === item.href;
-            return (
+
+            {/* 3. Geospatial Twin Engines */}
+            <div className="space-y-1 pt-2 border-t border-slate-100">
+              {!isCollapsed && (
+                <div className="px-2 mb-1.5">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 whitespace-nowrap">
+                    GEOSPATIAL TWIN ENGINES
+                  </span>
+                </div>
+              )}
               <Link
-                key={item.href}
-                href={item.href}
-                title={isCollapsed ? item.label : undefined}
+                href="/citizen"
+                title={isCollapsed ? "Citizen Services Hub" : undefined}
                 className={cn(
-                  "group flex items-center rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all duration-150 overflow-hidden",
-                  isActive 
-                    ? "bg-teal-50 text-teal-800 border border-teal-200/80 shadow-xs" 
+                  "group flex items-center rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all overflow-hidden",
+                  pathname === "/citizen"
+                    ? "bg-teal-50 text-teal-800 border border-teal-200/80 shadow-xs"
                     : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
                   isCollapsed ? "justify-center" : "justify-between"
                 )}
               >
                 <div className="flex items-center min-w-0">
-                  <item.icon className={cn(
-                    "shrink-0 transition-colors", 
-                    isCollapsed ? "h-4 w-4" : "mr-2.5 h-3.5 w-3.5",
-                    isActive ? "text-teal-700" : "text-slate-400 group-hover:text-slate-700"
-                  )} />
-                  {!isCollapsed && <span className="truncate">{item.label}</span>}
+                  <UserCheck className="shrink-0 mr-2.5 h-3.5 w-3.5 text-slate-400 group-hover:text-slate-700" />
+                  {!isCollapsed && <span className="truncate">Citizen Services Hub</span>}
                 </div>
-                {!isCollapsed && isActive && (
-                  <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-teal-600 ml-2" />
-                )}
               </Link>
-            );
-          })}
-        </div>
+              {citizenModules.slice(2).concat(geospatialModules).map((item) => {
+                const isActive = pathname === item.href;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    title={isCollapsed ? item.label : undefined}
+                    className={cn(
+                      "group flex items-center rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all duration-150 overflow-hidden",
+                      isActive 
+                        ? "bg-teal-50 text-teal-800 border border-teal-200/80 shadow-xs" 
+                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
+                      isCollapsed ? "justify-center" : "justify-between"
+                    )}
+                  >
+                    <div className="flex items-center min-w-0">
+                      <item.icon className={cn(
+                        "shrink-0 transition-colors", 
+                        isCollapsed ? "h-4 w-4" : "mr-2.5 h-3.5 w-3.5",
+                        isActive ? "text-teal-700" : "text-slate-400 group-hover:text-slate-700"
+                      )} />
+                      {!isCollapsed && <span className="truncate">{item.label}</span>}
+                    </div>
+                    {!isCollapsed && isActive && (
+                      <div className="h-1.5 w-1.5 shrink-0 rounded-full bg-teal-600 ml-2" />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+          </>
+        )}
       </div>
 
-      {/* Settings Link */}
-      <div className="p-2 border-t border-slate-100 bg-white">
-        <Link
-          href="/settings"
-          title={isCollapsed ? "Settings" : undefined}
-          className={cn(
-            "group flex items-center rounded-lg px-2.5 py-2 text-xs font-bold transition-all overflow-hidden",
-            pathname?.startsWith('/settings')
-              ? "bg-emerald-50 text-emerald-800 border border-emerald-200/80"
-              : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
-            isCollapsed ? "justify-center" : "justify-start"
-          )}
-        >
-          <Settings className={cn("shrink-0", isCollapsed ? "h-5 w-5" : "mr-2.5 h-4 w-4 text-slate-400 group-hover:text-slate-700")} />
-          {!isCollapsed && <span>Settings & Roles</span>}
-        </Link>
-      </div>
+      {/* Settings Link (Only for Admin) */}
+      {isAdmin && (
+        <div className="p-2 border-t border-slate-100 bg-white">
+          <Link
+            href="/settings"
+            title={isCollapsed ? "Settings" : undefined}
+            className={cn(
+              "group flex items-center rounded-lg px-2.5 py-2 text-xs font-bold transition-all overflow-hidden",
+              pathname?.startsWith('/settings')
+                ? "bg-emerald-50 text-emerald-800 border border-emerald-200/80"
+                : "text-slate-600 hover:bg-slate-50 hover:text-slate-900",
+              isCollapsed ? "justify-center" : "justify-start"
+            )}
+          >
+            <Settings className={cn("shrink-0", isCollapsed ? "h-5 w-5" : "mr-2.5 h-4 w-4 text-slate-400 group-hover:text-slate-700")} />
+            {!isCollapsed && <span>Settings & Roles</span>}
+          </Link>
+        </div>
+      )}
 
-      {/* User Profile Section */}
+      {/* User Profile Section with Role Toggle */}
       <div className="border-t border-slate-200 p-3 overflow-hidden bg-slate-50/70">
         <div className={cn(
-          "flex items-center rounded-lg p-1.5 transition-colors hover:bg-slate-100 cursor-pointer",
+          "flex items-center rounded-lg p-1.5 transition-colors hover:bg-slate-100",
           isCollapsed ? "justify-center" : "justify-between"
         )}>
           <div className="flex items-center space-x-2.5 min-w-0">
-            <Avatar className="h-8 w-8 border border-emerald-200 shrink-0">
+            <Avatar className={cn(
+              "h-8 w-8 border shrink-0",
+              isAdmin ? "border-emerald-300" : "border-sky-300"
+            )}>
               <AvatarImage src="" alt={displayName} />
-              <AvatarFallback className="bg-emerald-100 text-emerald-800 font-bold text-xs">{displayInitials}</AvatarFallback>
+              <AvatarFallback className={cn(
+                "font-bold text-xs",
+                isAdmin ? "bg-emerald-100 text-emerald-800" : "bg-sky-100 text-sky-800"
+              )}>
+                {displayInitials}
+              </AvatarFallback>
             </Avatar>
             {!isCollapsed && (
               <div className="flex flex-col whitespace-nowrap min-w-0">
                 <span className="text-xs font-bold text-slate-800 truncate">{displayName}</span>
-                <span className="text-[10px] text-slate-500 font-semibold truncate">Env. Engineer · CMC</span>
+                <span className="text-[10px] text-slate-500 font-semibold truncate">
+                  {isAdmin ? "Env. Engineer · CMC" : "Citizen Resident · Udupi"}
+                </span>
               </div>
             )}
           </div>
           {!isCollapsed && (
-            <Link href="/" title="Exit to Public Portal">
-              <LogOut className="h-3.5 w-3.5 shrink-0 text-slate-400 hover:text-rose-600 transition-colors" />
-            </Link>
+            <button
+              onClick={() => {
+                if (isAdmin) {
+                  loginAsCitizen();
+                  router.push('/citizen');
+                } else {
+                  loginAsAdmin();
+                  router.push('/dashboard');
+                }
+              }}
+              title={isAdmin ? "Switch to Citizen View" : "Login as Admin"}
+              className="p-1 hover:bg-slate-200 rounded text-slate-400 hover:text-slate-700 transition-colors"
+            >
+              <LogOut className="h-3.5 w-3.5" />
+            </button>
           )}
         </div>
       </div>

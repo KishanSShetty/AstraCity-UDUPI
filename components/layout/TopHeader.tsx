@@ -1,17 +1,18 @@
 "use client";
 
 import React from "react";
-import { Search, Menu, Command, ShieldCheck } from "lucide-react";
+import { Search, Menu, Command, ShieldCheck, UserCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useLanguage } from "@/lib/LanguageContext";
 import { useAuth } from "@/lib/AuthContext";
 import { usePathname, useRouter } from "next/navigation";
 import { NotificationCenter } from "./NotificationCenter";
+import { cn } from "@/lib/utils";
 
 export function TopHeader() {
   const { language, setLanguage, t } = useLanguage();
-  const { role } = useAuth();
+  const { role, isAdmin, isCitizen, loginAsAdmin, loginAsCitizen } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
   const [searchQuery, setSearchQuery] = React.useState("");
@@ -107,12 +108,39 @@ export function TopHeader() {
           </div>
         </form>
 
-        {/* User Role Badge */}
-        <div className="hidden md:flex items-center">
-          <div className="flex items-center px-2.5 py-1 bg-emerald-50 border border-emerald-200/80 rounded-md text-[11px] font-bold tracking-wide text-emerald-800 uppercase">
-            <ShieldCheck className="w-3.5 h-3.5 mr-1.5 text-emerald-600" />
-            {roleLabel}
-          </div>
+        {/* User Role Badge & Quick Switcher */}
+        <div className="flex items-center">
+          <button
+            type="button"
+            onClick={() => {
+              if (isAdmin) {
+                loginAsCitizen();
+                router.push('/citizen');
+              } else {
+                loginAsAdmin();
+                router.push('/dashboard');
+              }
+            }}
+            title={isAdmin ? "Currently Admin. Click to switch to Citizen Portal" : "Currently Citizen. Click to log in as Municipal Officer"}
+            className={cn(
+              "flex items-center px-2.5 py-1 rounded-md text-[11px] font-bold tracking-wide uppercase transition-all shadow-xs hover:opacity-90 cursor-pointer border",
+              isAdmin 
+                ? "bg-emerald-50 border-emerald-300 text-emerald-800 hover:bg-emerald-100" 
+                : "bg-sky-50 border-sky-300 text-sky-800 hover:bg-sky-100"
+            )}
+          >
+            {isAdmin ? (
+              <>
+                <ShieldCheck className="w-3.5 h-3.5 mr-1.5 text-emerald-600" />
+                <span>OFFICER / ADMIN</span>
+              </>
+            ) : (
+              <>
+                <UserCheck className="w-3.5 h-3.5 mr-1.5 text-sky-600" />
+                <span>CITIZEN / USER</span>
+              </>
+            )}
+          </button>
         </div>
 
         {/* Language Toggle */}

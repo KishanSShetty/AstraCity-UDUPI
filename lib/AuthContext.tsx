@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
-export type Role = "CONSTABLE" | "INSPECTOR" | "SUPERINTENDENT" | "ADMIN";
+export type Role = "CONSTABLE" | "INSPECTOR" | "SUPERINTENDENT" | "ADMIN" | "CITIZEN";
 
 export interface MockUser {
   id: string;
@@ -19,29 +19,52 @@ interface AuthContextType {
   setRole: (role: Role) => void;
   userId: string;
   user: MockUser | null;
+  isAdmin: boolean;
+  isCitizen: boolean;
+  loginAsAdmin: () => void;
+  loginAsCitizen: () => void;
+  logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+const ADMIN_USER: MockUser = {
+  id: "U10943",
+  firstName: "Er. K. P.",
+  lastName: "Bhat",
+  email: "swm.engineer@udupicity.gov.in",
+  role: "ADMIN",
+  badgeNumber: "CMC-SWM-4092",
+  department: "Solid Waste Management Division - Udupi City Municipal Council"
+};
+
+const CITIZEN_USER: MockUser = {
+  id: "C-9042",
+  firstName: "Citizen",
+  lastName: "Resident",
+  email: "resident@udupicity.gov.in",
+  role: "CITIZEN",
+  badgeNumber: "WARD-04-CITIZEN",
+  department: "Udupi Ward 4 (Malpe Coastal Sector)"
+};
+
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [role, setRoleState] = useState<Role>("INSPECTOR");
+  const [role, setRoleState] = useState<Role>("ADMIN");
   const [userId, setUserId] = useState<string>("U10943");
-  const [user, setUser] = useState<MockUser | null>({
-    id: "U10943",
-    firstName: "Er. K. P.",
-    lastName: "Bhat",
-    email: "swm.engineer@udupicity.gov.in",
-    role: "INSPECTOR",
-    badgeNumber: "CMC-SWM-4092",
-    department: "Solid Waste Management Division - Udupi City Municipal Council"
-  });
+  const [user, setUser] = useState<MockUser | null>(ADMIN_USER);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedRole = localStorage.getItem("udupi_swms_role") as Role;
-      if (savedRole && ["CONSTABLE", "INSPECTOR", "SUPERINTENDENT", "ADMIN"].includes(savedRole)) {
+      if (savedRole && ["CONSTABLE", "INSPECTOR", "SUPERINTENDENT", "ADMIN", "CITIZEN"].includes(savedRole)) {
         setRoleState(savedRole);
-        if (user) setUser((prev) => prev ? { ...prev, role: savedRole } : null);
+        if (savedRole === "CITIZEN") {
+          setUser(CITIZEN_USER);
+          setUserId(CITIZEN_USER.id);
+        } else {
+          setUser({ ...ADMIN_USER, role: savedRole });
+          setUserId(ADMIN_USER.id);
+        }
       }
     }
   }, []);
@@ -51,13 +74,42 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     if (typeof window !== "undefined") {
       localStorage.setItem("udupi_swms_role", newRole);
     }
-    if (user) {
-      setUser({ ...user, role: newRole });
+    if (newRole === "CITIZEN") {
+      setUser(CITIZEN_USER);
+      setUserId(CITIZEN_USER.id);
+    } else {
+      setUser({ ...ADMIN_USER, role: newRole });
+      setUserId(ADMIN_USER.id);
     }
   };
 
+  const loginAsAdmin = () => {
+    setRole("ADMIN");
+  };
+
+  const loginAsCitizen = () => {
+    setRole("CITIZEN");
+  };
+
+  const logout = () => {
+    setRole("CITIZEN");
+  };
+
+  const isAdmin = role === "ADMIN" || role === "SUPERINTENDENT" || role === "INSPECTOR";
+  const isCitizen = role === "CITIZEN" || role === "CONSTABLE";
+
   return (
-    <AuthContext.Provider value={{ role, setRole, userId, user }}>
+    <AuthContext.Provider value={{ 
+      role, 
+      setRole, 
+      userId, 
+      user, 
+      isAdmin, 
+      isCitizen, 
+      loginAsAdmin, 
+      loginAsCitizen, 
+      logout 
+    }}>
       {children}
     </AuthContext.Provider>
   );

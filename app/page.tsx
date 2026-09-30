@@ -1,9 +1,11 @@
 'use client';
 
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { motion, useMotionValue, useTransform, animate, AnimatePresence } from 'framer-motion';
 import { UDUPI_DATA } from '@/lib/constants';
+import { useAuth } from '@/lib/AuthContext';
 import { 
   ArrowRight, 
   Satellite, 
@@ -16,11 +18,20 @@ import {
   MapPin, 
   Sparkles,
   Layers,
-  Activity
+  Activity,
+  UserCheck,
+  Lock,
+  CheckCircle2,
+  X,
+  LogIn,
+  KeyRound,
+  Phone,
+  Mail
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 // Animated counter hook
 function useCounter(target: number, duration = 2.2, decimals = 0) {
@@ -88,7 +99,7 @@ function ScanText() {
 
   return (
     <div
-      className="hidden md:flex fixed bottom-5 left-72 z-20 font-mono text-[11px] font-bold tracking-widest transition-opacity duration-700 items-center gap-2 bg-white/90 border border-slate-200/80 px-3 py-1.5 rounded-full shadow-xs backdrop-blur-sm"
+      className="hidden md:flex fixed bottom-5 left-72 z-20 font-mono text-[11px] font-bold tracking-widest transition-opacity duration-700 items-center gap-2 bg-white/95 border border-slate-200/80 px-3 py-1.5 rounded-full shadow-xs backdrop-blur-sm"
       style={{ color: '#059669', opacity: fading ? 0 : 1 }}
     >
       <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -147,23 +158,46 @@ const FEATURES = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+  const { role, isAdmin, isCitizen, loginAsAdmin, loginAsCitizen } = useAuth();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalTab, setModalTab] = useState<'admin' | 'citizen'>('admin');
+  const [loginState, setLoginState] = useState<'idle' | 'logging_in'>('idle');
+
   const population = useCounter(UDUPI_DATA.population_building_based, 2.4, 0);
   const totalWaste = useCounter(UDUPI_DATA.daily_waste_tons, 2.6, 1);
   const routeSaving = useCounter(UDUPI_DATA.route_improvement_pct, 2.0, 1);
   const savedCrores = useCounter(UDUPI_DATA.annual_savings_total_cr, 2.0, 1);
+
+  const handleAdminEnter = () => {
+    setLoginState('logging_in');
+    loginAsAdmin();
+    setTimeout(() => {
+      router.push('/dashboard');
+    }, 400);
+  };
+
+  const handleCitizenEnter = () => {
+    setLoginState('logging_in');
+    loginAsCitizen();
+    setTimeout(() => {
+      router.push('/citizen');
+    }, 400);
+  };
 
   return (
     <div className="min-h-full bg-slate-50/60 text-slate-900 flex flex-col font-sans relative overflow-x-hidden">
       <ScanText />
 
       {/* Hero Section */}
-      <section className="relative z-10 flex flex-col items-center justify-center px-6 pt-12 pb-16 max-w-6xl mx-auto text-center">
+      <section className="relative z-10 flex flex-col items-center justify-center px-6 pt-10 pb-8 max-w-6xl mx-auto text-center">
         {/* Statutory Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6 bg-emerald-50 border border-emerald-200/80 shadow-xs"
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5 bg-emerald-50 border border-emerald-200/80 shadow-xs"
         >
           <span className="text-sm">🛰️</span>
           <span className="text-xs font-black tracking-widest text-emerald-800 uppercase">
@@ -176,7 +210,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight mb-4 text-slate-900"
+          className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight mb-3 text-slate-900"
         >
           Vajra<span className="text-emerald-600">Yield</span>
         </motion.h1>
@@ -186,7 +220,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="text-lg sm:text-2xl font-black tracking-tight mb-4 text-emerald-700 max-w-3xl"
+          className="text-lg sm:text-2xl font-black tracking-tight mb-3 text-emerald-700 max-w-3xl"
         >
           Spatial Digital Twin • Prescriptive Logistics • Statutory Compliance
         </motion.p>
@@ -196,32 +230,109 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.7, delay: 0.45 }}
-          className="text-sm sm:text-base md:text-lg max-w-2xl mb-12 leading-relaxed text-slate-600 font-medium"
+          className="text-sm sm:text-base md:text-lg max-w-2xl mb-8 leading-relaxed text-slate-600 font-medium"
         >
           Satellite + Census intelligence for Udupi City&apos;s 1,65,401 residents across 7 sectors, 68.23 sq km, 9,471 buildings.
         </motion.p>
 
-        {/* Action Buttons */}
+        {/* Dual Role Authentication Selector Cards */}
         <motion.div 
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.55 }}
-          className="flex flex-wrap items-center justify-center gap-3.5 mb-14"
+          transition={{ duration: 0.7, delay: 0.55 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl text-left mb-12"
         >
-          <Link href="/dashboard">
-            <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-11 px-7 rounded-xl shadow-sm text-sm flex items-center gap-2">
-              Launch Command Center <ArrowRight className="h-4 w-4" />
+          {/* 1. MUNICIPAL ADMIN / OFFICER CARD */}
+          <div className="bg-white border-2 border-emerald-500/80 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none" />
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <div className="h-10 w-10 rounded-xl bg-emerald-100 text-emerald-800 flex items-center justify-center shadow-xs">
+                  <ShieldCheck className="h-6 w-6 text-emerald-700" />
+                </div>
+                <Badge className="bg-emerald-600 text-white font-bold text-[11px] uppercase tracking-wider px-2.5 py-0.5">
+                  Officer & Admin
+                </Badge>
+              </div>
+
+              <h2 className="text-xl font-black text-slate-900 mb-1">
+                Municipal Operations Hub
+              </h2>
+              <p className="text-xs text-slate-500 mb-4 leading-relaxed">
+                For CMC Commissioners, Environmental Engineers, and Zonal Staff. Unlocks live fleet telemetry, tipping ledgers, and regulatory compliance dossiers.
+              </p>
+
+              <div className="space-y-2 mb-6 text-xs text-slate-700 font-medium">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
+                  <span>Command Center, Live GPS & Weighbridge Ingestion</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
+                  <span>Tipping Fee Ledgers & SWM 2026 Audit Trail</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
+                  <span>3-Sigma Anomaly Telemetry & AI Copilot</span>
+                </div>
+              </div>
+            </div>
+
+            <Button
+              onClick={handleAdminEnter}
+              className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-11 rounded-xl shadow-sm text-xs flex items-center justify-center gap-2 cursor-pointer transition-all"
+            >
+              Log in as Municipal Admin <ArrowRight className="h-4 w-4" />
             </Button>
-          </Link>
-          <Link href="/map">
-            <Button variant="outline" className="border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-bold h-11 px-6 rounded-xl text-sm flex items-center gap-2">
-              Explore 3D Digital Twin Map
+          </div>
+
+          {/* 2. CITIZEN / RESIDENT PORTAL CARD */}
+          <div className="bg-white border-2 border-sky-400/80 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 relative overflow-hidden flex flex-col justify-between group">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-sky-500/10 rounded-full blur-2xl pointer-events-none" />
+            <div>
+              <div className="flex items-center justify-between mb-3">
+                <div className="h-10 w-10 rounded-xl bg-sky-100 text-sky-800 flex items-center justify-center shadow-xs">
+                  <UserCheck className="h-6 w-6 text-sky-700" />
+                </div>
+                <Badge variant="outline" className="border-sky-300 bg-sky-50 text-sky-800 font-bold text-[11px] uppercase tracking-wider px-2.5 py-0.5">
+                  Public Citizen
+                </Badge>
+              </div>
+
+              <h2 className="text-xl font-black text-slate-900 mb-1">
+                Citizen & Resident Portal
+              </h2>
+              <p className="text-xs text-slate-500 mb-4 leading-relaxed">
+                For Udupi residents, shopkeepers, and ward volunteers. Submit geotagged illegal dumping complaints, track clearance status, and check collection schedules.
+              </p>
+
+              <div className="space-y-2 mb-6 text-xs text-slate-700 font-medium">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-sky-600 shrink-0" />
+                  <span>Geotagged Photo Upload for Overflowing Dumps</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-sky-600 shrink-0" />
+                  <span>Ward Waste Collection Schedule & Tipper Timings</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle2 className="h-3.5 w-3.5 text-sky-600 shrink-0" />
+                  <span>Grievance Resolution Tracking & Segregation Guide</span>
+                </div>
+              </div>
+            </div>
+
+            <Button
+              onClick={handleCitizenEnter}
+              className="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold h-11 rounded-xl shadow-sm text-xs flex items-center justify-center gap-2 cursor-pointer transition-all"
+            >
+              Enter as Citizen / Normal User <ArrowRight className="h-4 w-4" />
             </Button>
-          </Link>
+          </div>
         </motion.div>
 
         {/* 4 Key Stat Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 w-full max-w-5xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 w-full max-w-5xl mb-12">
           <StatCard value={population} label="Residents (2025)" subtext="Building × Census 2011 Karnataka" delay={0.65} />
           <StatCard value={totalWaste} suffix=" Tons" label="Daily waste generated" subtext="CPCB 0.5kg/person · 9,471 buildings" delay={0.75} />
           <StatCard value={routeSaving} suffix="%" label="Route optimization" subtext="132km → 32km · 2,027 road segments" delay={0.85} />
@@ -292,16 +403,19 @@ export default function Home() {
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link href="/dashboard">
-              <Button className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-12 px-8 rounded-xl shadow-md shadow-emerald-600/15 text-sm flex items-center gap-2">
-                Launch Municipal Operations Hub <ArrowRight className="h-4 w-4" />
-              </Button>
-            </Link>
-            <Link href="/routing">
-              <Button variant="outline" className="border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-bold h-12 px-6 rounded-xl text-sm">
-                View VRP Routing Engine
-              </Button>
-            </Link>
+            <Button 
+              onClick={handleAdminEnter}
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-12 px-8 rounded-xl shadow-md shadow-emerald-600/15 text-sm flex items-center gap-2 cursor-pointer"
+            >
+              Launch Municipal Operations Hub <ArrowRight className="h-4 w-4" />
+            </Button>
+            <Button 
+              onClick={handleCitizenEnter}
+              variant="outline" 
+              className="border-slate-300 bg-white hover:bg-slate-50 text-slate-700 font-bold h-12 px-6 rounded-xl text-sm cursor-pointer"
+            >
+              Enter Citizen Grievance Portal
+            </Button>
           </div>
         </motion.div>
       </section>
