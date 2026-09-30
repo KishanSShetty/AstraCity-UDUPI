@@ -18,7 +18,7 @@ def main():
     print("Fields:", fields)
 
     records = sf.shapeRecords()
-    hsr_entries = []
+    udupi_entries = []
 
     for idx, sr in enumerate(records):
         pt = sr.shape.points[0]
@@ -39,14 +39,14 @@ def main():
                     val = val.decode('utf-8', errors='ignore')
                 rec_dict[f_name] = val
             
-            hsr_entries.append(rec_dict)
+            udupi_entries.append(rec_dict)
 
-    print(f"\nFound {len(hsr_entries)} points near HSR Layout bounded box.")
-    print(json.dumps(hsr_entries[:3], indent=2)) # Print first 3 for review
+    print(f"\nFound {len(udupi_entries)} points near HSR Layout bounded box.")
+    print(json.dumps(udupi_entries[:3], indent=2)) # Print first 3 for review
 
-    with open('hsr_dry_waste_details.json', 'w', encoding='utf-8') as f:
-        json.dump(hsr_entries, f, indent=2)
-    print("\nSaved file to hsr_dry_waste_details.json")
+    with open('udupi_dry_waste_details.json', 'w', encoding='utf-8') as f:
+        json.dump(udupi_entries, f, indent=2)
+    print("\nSaved file to udupi_dry_waste_details.json")
 
 if __name__ == '__main__':
     main()

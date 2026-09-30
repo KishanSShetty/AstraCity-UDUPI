@@ -9,8 +9,8 @@ print("=" * 50)
 
 # Find the tif file
 tif_paths = [
-    "data/spaceTech Dataset/HSR_Layout_SD.tif",
-    "data/spaceTech Dataset/Satellite Data/HSR_Layout_SD.tif",
+    "data/spaceTech Dataset/udupi_Layout_SD.tif",
+    "data/spaceTech Dataset/Satellite Data/udupi_Layout_SD.tif",
 ]
 
 tif_path = None
@@ -20,7 +20,7 @@ for p in tif_paths:
         break
 
 if not tif_path:
-    print("ERROR: HSR_Layout_SD.tif not found")
+    print("ERROR: udupi_Layout_SD.tif not found")
     print("Tried:", tif_paths)
     exit(1)
 
@@ -120,7 +120,7 @@ try:
     print(f"  Other:      {other_pct}%")
 
     results = {
-        "source": "HSR_Layout_SD.tif",
+        "source": "udupi_Layout_SD.tif",
         "image_size": f"{width}x{height}",
         "bands": 3,
         "classification": {

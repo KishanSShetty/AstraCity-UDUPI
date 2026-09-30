@@ -9,13 +9,13 @@ MAX_LAT = 12.931016
 files = [
     ('dry_waste_centres', 
      '../public/data/dry_waste_centres.geojson',
-     '../public/data/hsr_dry_waste_centres.geojson'),
+     '../public/data/udupi_dry_waste_centres.geojson'),
     ('methane_plants',
      '../public/data/methane_plants.geojson', 
-     '../public/data/hsr_methane_plants.geojson'),
+     '../public/data/udupi_methane_plants.geojson'),
     ('dumpyards',
      '../public/data/dump_sites.json',
-     '../public/data/hsr_dumpyards.geojson'),
+     '../public/data/udupi_dumpyards.geojson'),
 ]
 
 for name, inp, out in files:

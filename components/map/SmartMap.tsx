@@ -374,10 +374,10 @@ export default function SmartMap() {
       // ═══════════════════════════════════════════════════════════════
       // Accurate Waste Heatmap — True Density via Building Points
       // ═══════════════════════════════════════════════════════════════
-      // buildings.geojson contains point features with precise waste_kg_day counts
+      // buildings_udupi_points.geojson contains point features with precise waste_kg_day counts
       m.addSource('heatmap-source', {
         type: 'geojson',
-        data: '/data/buildings_udupi.geojson',
+        data: '/data/buildings_udupi_points.geojson',
       });
 
       m.addLayer({

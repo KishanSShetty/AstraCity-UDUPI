@@ -327,7 +327,7 @@ with open(
         "training_samples": len(X_train),
         "features": features,
         "predictions": predictions,
-        "hsr_layout_baseline": {
+        "udupi_layout_baseline": {
             "normal": predictions[0][
                 "predicted_waste_tons"
             ],

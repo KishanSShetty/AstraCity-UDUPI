@@ -91,7 +91,7 @@ MASTER = {
       {"type":"Path","count":51,"pct":2.5,
        "vehicle":"Walk/Handcart"}
     ],
-    "source": "OpenStreetMap hsr_road_network.geojson"
+    "source": "OpenStreetMap udupi_road_network.geojson"
   },
   
   "infrastructure": {
@@ -114,7 +114,7 @@ MASTER = {
     "low_risk": 16,
     "lulc_buildup_pct": 61.9,
     "lulc_vegetation_pct": 1.2,
-    "image": "HSR_Layout_SD.tif",
+    "image": "udupi_Layout_SD.tif",
     "pixels": "1002x740",
     "bands": 3
   },
@@ -180,7 +180,7 @@ MASTER = {
     "Deccan Herald — Kudlu plant",
     "Beegru.com — HSR 2025 study",
     "geoiq.io — population data",
-    "HSR_Layout_SD.tif — satellite"
+    "udupi_Layout_SD.tif — satellite"
   ]
 }
 

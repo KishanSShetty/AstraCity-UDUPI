@@ -2,7 +2,7 @@ import numpy as np
 import rasterio
 
 def test():
-    with rasterio.open('HSR_Layout_SD.tif') as src:
+    with rasterio.open('udupi_Layout_SD.tif') as src:
         red = src.read(1)
         green = src.read(2)
         blue = src.read(3)

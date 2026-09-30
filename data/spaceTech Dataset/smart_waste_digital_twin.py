@@ -18,8 +18,8 @@ os.makedirs('output/digital_twin', exist_ok=True)
 # ════════════════════════════════════
 
 # Load all layers
-ward = gpd.read_file('output/hsr_ward_boundary.geojson')
-roads = gpd.read_file('output/hsr_road_network.geojson')
+ward = gpd.read_file('output/udupi_ward_boundary.geojson')
+roads = gpd.read_file('output/udupi_road_network.geojson')
 ward = ward.to_crs('EPSG:4326')
 roads = roads.to_crs('EPSG:4326')
 

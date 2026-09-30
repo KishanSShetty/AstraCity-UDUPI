@@ -155,7 +155,7 @@
     "low_risk": 16,
     "lulc_buildup_pct": 61.9,
     "lulc_vegetation_pct": 1.2,
-    "image": "HSR_Layout_SD.tif",
+    "image": "udupi_Layout_SD.tif",
     "pixels": "1002x740",
     "bands": 3
   },
@@ -221,6 +221,6 @@
     "Deccan Herald \u2014 Kudlu plant",
     "Beegru.com \u2014 HSR 2025 study",
     "geoiq.io \u2014 population data",
-    "HSR_Layout_SD.tif \u2014 satellite"
+    "udupi_Layout_SD.tif \u2014 satellite"
   ]
 }

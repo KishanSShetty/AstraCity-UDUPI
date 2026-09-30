@@ -16,7 +16,7 @@ const UDUPI_CMC_COMPOSITION_HISTORY = [
   { year: '2026', wet: 63, dry: 28, other: 9,  source: 'Projected' },
 ];
 
-const HSR_COMPOSITION_2026 = [
+const udupi_COMPOSITION_2026 = [
   { name: '🟢 Wet/Organic', pct: 61, tons: 14.10, dest: 'Bio-methanisation units (2)', color: '#22c55e' },
   { name: '🔵 Dry/Recycle', pct: 30, tons: 6.93,  dest: 'DWCC centres (16)',          color: '#3b82f6' },
   { name: '🔴 Hazardous',   pct: 5,  tons: 1.16,  dest: 'Special contractor',          color: '#ef4444' },
@@ -268,7 +268,7 @@ export default function AnalysisPage() {
                   <div>
                     <div className="flex items-center gap-3 mb-2">
                       <div className="w-3 h-3 rounded-full bg-blue-400 shadow-[0_0_10px_rgba(96,165,250,0.8)]" />
-                      <h4 className="font-semibold">HSR_Layout_SD.tif</h4>
+                      <h4 className="font-semibold">udupi_Layout_SD.tif</h4>
                     </div>
                     <p className="text-sm text-slate-600 font-light pl-6 leading-relaxed">
                       A 4.25 MB high-resolution uncompressed GeoTIFF representing bounding extent <code>EPSG:4326</code>. Used exclusively to map hyper-local LULC features within Udupi CMC.
@@ -414,7 +414,7 @@ export default function AnalysisPage() {
                     <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
                       <PieChart>
                         <Pie
-                          data={HSR_COMPOSITION_2026}
+                          data={udupi_COMPOSITION_2026}
                           cx="50%"
                           cy="50%"
                           innerRadius={60}
@@ -422,7 +422,7 @@ export default function AnalysisPage() {
                           paddingAngle={4}
                           dataKey="pct"
                         >
-                          {HSR_COMPOSITION_2026.map((entry, index) => (
+                          {udupi_COMPOSITION_2026.map((entry, index) => (
                             <Cell key={`cell-${index}`} fill={entry.color} />
                           ))}
                         </Pie>
@@ -441,7 +441,7 @@ export default function AnalysisPage() {
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-2 mt-4">
-                    {HSR_COMPOSITION_2026.map(item => (
+                    {udupi_COMPOSITION_2026.map(item => (
                       <div key={item.name} className="flex items-center gap-2">
                         <div className="w-3 h-3 rounded-full flex-shrink-0" style={{ background: item.color }} />
                         <span className="text-xs text-slate-700">{item.name.split(' ').slice(1).join(' ')} — {item.pct}%</span>
@@ -464,7 +464,7 @@ export default function AnalysisPage() {
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-200">
-                        {HSR_COMPOSITION_2026.map(item => (
+                        {udupi_COMPOSITION_2026.map(item => (
                           <tr key={item.name} className="hover:bg-slate-50">
                             <td className="py-3 px-2">
                               <div className="flex items-center gap-2">

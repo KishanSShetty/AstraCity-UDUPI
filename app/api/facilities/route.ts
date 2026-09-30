@@ -19,7 +19,7 @@ export async function GET(request: NextRequest) {
   const radiusKm = searchParams.get('radius') ? parseFloat(searchParams.get('radius')!) : null;
   const lat = searchParams.get('lat') ? parseFloat(searchParams.get('lat')!) : null;
   const lng = searchParams.get('lng') ? parseFloat(searchParams.get('lng')!) : null;
-  const hsrOnly = searchParams.get('hsr_only') === 'true';
+  const hsrOnly = searchParams.get('udupi_only') === 'true';
 
   try {
     // If type specified, return that file; otherwise return all
@@ -46,8 +46,8 @@ export async function GET(request: NextRequest) {
       if (radiusKm && lat && lng) {
         geojson = {
           ...geojson,
-          features: geojson.features.filter((f: { properties: { _dist_to_hsr_km?: number } }) =>
-            (f.properties._dist_to_hsr_km || 0) <= radiusKm
+          features: geojson.features.filter((f: { properties: { _dist_to_udupi_km?: number } }) =>
+            (f.properties._dist_to_udupi_km || 0) <= radiusKm
           ),
         };
       }

@@ -10,14 +10,14 @@ print("=" * 50)
 # ── VERIFIED CONSTANTS ──
 
 # Infrastructure (from hackathon dataset)
-HSR_DWCC_COUNT = 16
-HSR_BIO_METH_COUNT = 2
-HSR_DUMPYARDS = 0
+udupi_DWCC_COUNT = 16
+udupi_BIO_METH_COUNT = 2
+udupi_DUMPYARDS = 0
 
 # DWCC capacity (BBMP official)
 DWCC_CAPACITY_TPD = 2.5  # avg per centre
 TOTAL_DWCC_CAPACITY = (
-    HSR_DWCC_COUNT * DWCC_CAPACITY_TPD
+    udupi_DWCC_COUNT * DWCC_CAPACITY_TPD
 )  # = 40 TPD
 
 # Population (building-based)
@@ -100,7 +100,7 @@ print(f"  Other (4%):    {oth:.2f} T/day")
 print(f"    → Street sweep")
 
 print(f"\nDWCC CAPACITY CHECK")
-print(f"  HSR DWCCs:     {HSR_DWCC_COUNT}")
+print(f"  HSR DWCCs:     {udupi_DWCC_COUNT}")
 print(f"  Total capacity:{TOTAL_DWCC_CAPACITY} T/day")
 print(f"  Dry demand:    {dry:.2f} T/day")
 print(f"  Utilisation:   {dwcc_util_pct:.1f}%")
@@ -134,11 +134,11 @@ print(f"\n  HSR as % of city:  "
 waste_flow = {
     "ward": "HSR Layout",
     "infrastructure": {
-        "dwcc_count": HSR_DWCC_COUNT,
+        "dwcc_count": udupi_DWCC_COUNT,
         "dwcc_capacity_tpd_each": DWCC_CAPACITY_TPD,
         "dwcc_total_capacity_tpd": TOTAL_DWCC_CAPACITY,
-        "bio_meth_units": HSR_BIO_METH_COUNT,
-        "dumpyards": HSR_DUMPYARDS,
+        "bio_meth_units": udupi_BIO_METH_COUNT,
+        "dumpyards": udupi_DUMPYARDS,
         "source": "Hackathon dataset + BBMP"
     },
     "generation": {
@@ -177,18 +177,18 @@ waste_flow = {
         landfill_diverted_pct, 1
     ),
     "city_context": {
-        "bengaluru_dwcc_count": CITY_DWCC_COUNT,
-        "bengaluru_recyclables_tpd": 
+        "udupi_dwcc_count": CITY_DWCC_COUNT,
+        "udupi_recyclables_tpd": 
             CITY_RECYCLABLES_TPD,
-        "bengaluru_total_waste_tpd": 
+        "udupi_total_waste_tpd": 
             CITY_TOTAL_WASTE_TPD,
-        "bengaluru_segregated_tpd": 
+        "udupi_segregated_tpd": 
             CITY_SEGREGATED_TPD,
         "segregation_rate_pct": round(
             CITY_SEGREGATED_TPD /
             CITY_TOTAL_WASTE_TPD * 100, 1
         ),
-        "hsr_as_pct_of_city": round(
+        "udupi_as_pct_of_city": round(
             total_waste_tons /
             CITY_TOTAL_WASTE_TPD * 100, 1
         ),

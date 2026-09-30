@@ -14,7 +14,8 @@ const MAIN_LINKS = [
   { href: '/routes', label: 'Routes' },
   { href: '/routing', label: '🚛 Routing Engine' },
   { href: '/forecast', label: '🔮 Forecast' },
-  { href: '/citizen', label: '📋 Field Ingestion' },
+  { href: '/ingestion', label: '📋 Field Ingestion' },
+  { href: '/open-data', label: '📂 Open Data' },
   { href: '/methodology', label: 'Methodology' },
 ];
 

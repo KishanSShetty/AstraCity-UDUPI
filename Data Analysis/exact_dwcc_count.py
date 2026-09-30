@@ -3,7 +3,7 @@ import json
 import struct
 
 SHP_PATH = r'c:\Users\Kishan Shetty\Downloads\AstraSky-maing\DS\Waste methane dumpyards centers\Dry Waste Collection,Waste Processing & Landfill Locations\BBMP_Dry_Waste_Collection_Centres.shp'
-WARD_PATH = r'c:\Users\Kishan Shetty\Downloads\AstraSky-maing\public\data\hsr_ward_boundary.geojson'
+WARD_PATH = r'c:\Users\Kishan Shetty\Downloads\AstraSky-maing\public\data\udupi_ward_boundary.geojson'
 
 def point_in_polygon(x, y, polygon):
     n = len(polygon)
@@ -48,7 +48,7 @@ def main():
         print(f"  {i+1}. lat={p['lat']}, lon={p['lon']}")
     
     # Save
-    with open('exact_hsr_dwcc.json', 'w') as f:
+    with open('exact_udupi_dwcc.json', 'w') as f:
         json.dump(inside_points, f, indent=2)
 
 if __name__ == '__main__':

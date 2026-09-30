@@ -79,7 +79,7 @@ print(f"  HSR as % of city: "
 
 # Load existing corrected data
 with open('data/spaceTech Dataset/output/'
-          'hsr_corrected_data.json') as f:
+          'udupi_corrected_data.json') as f:
     data = json.load(f)
 
 # Update waste section
@@ -126,24 +126,24 @@ data['waste'] = {
 
 # Add BBMP city context
 data['bbmp_city_context'] = {
-    "bengaluru_total_tpd_min": 3000,
-    "bengaluru_total_tpd_max": 3500,
+    "udupi_total_tpd_min": 3000,
+    "udupi_total_tpd_max": 3500,
     "wet_processing_plants": 7,
     "wet_processing_capacity_tpd": 1570,
     "bio_methanation_plants": 13,
     "bio_methanation_capacity_tpd": 65,
-    "hsr_as_pct_of_city": round(
+    "udupi_as_pct_of_city": round(
         daily_waste_tons / BBMP_CITY_TPD_MIN * 100, 2
     )
 }
 
 # Save
 out_path = ('data/spaceTech Dataset/output/'
-            'hsr_corrected_data.json')
+            'udupi_corrected_data.json')
 with open(out_path, 'w') as f:
     json.dump(data, f, indent=2)
 
-dest = 'public/data/hsr_corrected_data.json'
+dest = 'public/data/udupi_corrected_data.json'
 os.makedirs('public/data', exist_ok=True)
 shutil.copy(out_path, dest)
 

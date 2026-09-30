@@ -2,8 +2,8 @@
 import sys, io, struct, os, json
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
-HSR_BOUNDS = {"lon_min": 77.622725, "lon_max": 77.669342, "lat_min": 12.897941, "lat_max": 12.931016}
-HSR_CENTER = (12.9145, 77.6460)
+udupi_BOUNDS = {"lon_min": 77.622725, "lon_max": 77.669342, "lat_min": 12.897941, "lat_max": 12.931016}
+udupi_CENTER = (12.9145, 77.6460)
 
 def haversine(lat1, lon1, lat2, lon2):
     import math
@@ -14,8 +14,8 @@ def haversine(lat1, lon1, lat2, lon2):
     return R * 2 * math.asin(math.sqrt(a))
 
 def is_in_hsr(lat, lon):
-    return (HSR_BOUNDS["lat_min"] <= lat <= HSR_BOUNDS["lat_max"] and
-            HSR_BOUNDS["lon_min"] <= lon <= HSR_BOUNDS["lon_max"])
+    return (udupi_BOUNDS["lat_min"] <= lat <= udupi_BOUNDS["lat_max"] and
+            udupi_BOUNDS["lon_min"] <= lon <= udupi_BOUNDS["lon_max"])
 
 def read_shp_points(filepath):
     points = []
@@ -85,9 +85,9 @@ def to_geojson(points, records, name, filter_radius_km=None):
         props["_lat"] = round(lat, 6)
         props["_lon"] = round(lon, 6)
         props["_in_hsr"] = is_in_hsr(lat, lon)
-        props["_dist_to_hsr_km"] = round(haversine(HSR_CENTER[0], HSR_CENTER[1], lat, lon), 2)
+        props["_dist_to_udupi_km"] = round(haversine(udupi_CENTER[0], udupi_CENTER[1], lat, lon), 2)
         
-        if filter_radius_km and props["_dist_to_hsr_km"] > filter_radius_km:
+        if filter_radius_km and props["_dist_to_udupi_km"] > filter_radius_km:
             continue
         
         feature = {

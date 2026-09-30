@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { UDUPI_DATA } from '@/lib/constants';
+import { useComplaintStore } from '@/lib/store';
 
 interface Message {
   role: 'user' | 'assistant' | 'system';
@@ -70,18 +71,23 @@ export default function AIQueryBar() {
 
     try {
       const isGroq = apiKey?.startsWith('gsk_');
+      const storeState = useComplaintStore.getState();
+      const pendingComplaints = storeState.complaints.filter(c => c.status === 'Pending').length;
+      const inProgressComplaints = storeState.complaints.filter(c => c.status === 'In Progress').length;
       
       const systemPrompt = `You are VajraYield's AI assistant for Udupi City SWM (Solid Waste Management). You are having an ongoing conversation.
 
 REAL DATA CONTEXT (RAG Knowledge Base):
 - City: ${UDUPI_DATA.city}, Population: ${UDUPI_DATA.population}, Area: ${UDUPI_DATA.area_sq_km} sq km
 - Daily waste: ${UDUPI_DATA.daily_waste_tons} TPD (${UDUPI_DATA.waste_wet_pct}% wet, ${UDUPI_DATA.waste_dry_pct}% dry)
-- Infrastructure: ${UDUPI_DATA.dwcc_count} DWCCs, ${UDUPI_DATA.bio_meth_units} Biomethanation plants (Karvalu SWM Campus)
+- Infrastructure: ${UDUPI_DATA.dwcc_count} DWCCs, ${UDUPI_DATA.bio_meth_units} Biomethanation plants
 - Methane Avoidance: ${UDUPI_DATA.methane_m3_per_day} m³/day, Carbon Credits: ~₹${UDUPI_DATA.carbon_credits_cr} Cr/year
 - Economics: Decentralized processing saves ₹1500/ton vs landfilling.
-- LULC: ${UDUPI_DATA.lulc_builtup}% built-up, ${UDUPI_DATA.lulc_vegetation}% vegetation.
-- Dumpsites detected: ${UDUPI_DATA.dump_sites_detected} (High risk: ${UDUPI_DATA.high_risk_dumps})
-- Key Regions: Manipal (Ward 18 / Academic Belt) generates ~14.8 TPD, processed by DWCC-4. Malpe handles coastal waste.
+- Specific Regions Waste Generation:
+  * Manipal: ~14.8 TPD (Academic/Institutional belt, processed at DWCC-4)
+  * Malpe: ~9.2 TPD (Coastal tourism and fishing industry waste)
+  * Indrali: ~4.5 TPD (Residential and transit waste near railway station)
+- Live Complaints: ${pendingComplaints} cases currently pending action, ${inProgressComplaints} cases in progress.
 
 METHODOLOGY & INSTRUCTIONS:
 1. GREETINGS: If the user says hello, hi, or greets you, introduce yourself as the VajraYield AI and ask how you can help with Udupi's SWM data.
@@ -104,7 +110,7 @@ METHODOLOGY & INSTRUCTIONS:
             'Authorization': `Bearer ${apiKey}`
           },
           body: JSON.stringify({
-            model: "openai/gpt-oss-20b",
+            model: "openai/gpt-oss-120b",
             messages: groqMessages
           })
         });
@@ -121,7 +127,7 @@ METHODOLOGY & INSTRUCTIONS:
           parts: [{ text: m.content }]
         }));
 
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({

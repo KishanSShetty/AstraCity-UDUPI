@@ -17,7 +17,7 @@ warnings.filterwarnings('ignore')
 # =====================================================================
 
 # Load ward boundary to get exact bounds
-ward = gpd.read_file('output/hsr_ward_boundary.geojson')
+ward = gpd.read_file('output/udupi_ward_boundary.geojson')
 bounds = ward.total_bounds
 # bounds = [minlon, minlat, maxlon, maxlat]
 
@@ -227,7 +227,7 @@ fig, ax = plt.subplots(1, 1, figsize=(16, 13), dpi=600, facecolor='#F5F5DC')
 ax.set_facecolor('#E8E0D8')
 
 try:
-    roads = gpd.read_file('output/hsr_road_network.geojson')
+    roads = gpd.read_file('output/udupi_road_network.geojson')
     roads.plot(ax=ax, color='#FFFFFF', linewidth=0.4, alpha=0.6, zorder=1)
 except:
     pass

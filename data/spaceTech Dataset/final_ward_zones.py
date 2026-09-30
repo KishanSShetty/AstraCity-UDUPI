@@ -19,7 +19,7 @@ os.makedirs(PUBLIC, exist_ok=True)
 
 # ── Load data ──
 ward = gpd.read_file(
-    f"{OUTPUT}/hsr_ward_boundary.geojson"
+    f"{OUTPUT}/udupi_ward_boundary.geojson"
 )
 ward_proj = ward.to_crs('EPSG:32643')
 
@@ -32,7 +32,7 @@ buildings = gpd.read_file(
 buildings = buildings.to_crs('EPSG:4326')
 
 roads = gpd.read_file(
-    f"{OUTPUT}/hsr_road_network.geojson"
+    f"{OUTPUT}/udupi_road_network.geojson"
 )
 roads = roads.to_crs('EPSG:4326')
 

@@ -4,7 +4,7 @@ import os
 
 BASE_DIR = r'c:\Users\Kishan Shetty\Downloads\AstraSky-maing'
 DATA_DIR = os.path.join(BASE_DIR, r'DS\Waste methane dumpyards centers\Dry Waste Collection,Waste Processing & Landfill Locations')
-GEOJSON_PATH = r'c:\Users\Kishan Shetty\Downloads\AstraSky-maing\public\data\bengaluru_wards.geojson'
+GEOJSON_PATH = r'c:\Users\Kishan Shetty\Downloads\AstraSky-maing\public\data\udupi_wards.geojson'
 OUTPUT_MD = os.path.join(BASE_DIR, r'Data Analysis\BBMP_Ward_Level_Waste_Report.md')
 
 def read_shp_pointz(path):

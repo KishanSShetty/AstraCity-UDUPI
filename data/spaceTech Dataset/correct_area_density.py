@@ -81,7 +81,7 @@ corrected_data = {
     "area": {
         "sq_km": AREA_SQ_KM,
         "hectares": AREA_SQ_KM * 100,
-        "note": "From HSR_Layout_SD.tif coverage"
+        "note": "From udupi_Layout_SD.tif coverage"
     },
     
     "population": {
@@ -137,7 +137,7 @@ corrected_data = {
                 TOTAL_ROAD_SEGMENTS * 100, 1
             )
         },
-        "source": "OpenStreetMap hsr_road_network.geojson"
+        "source": "OpenStreetMap udupi_road_network.geojson"
     },
     
     "infrastructure": {
@@ -148,7 +148,7 @@ corrected_data = {
     },
     
     "satellite": {
-        "image": "HSR_Layout_SD.tif",
+        "image": "udupi_Layout_SD.tif",
         "size_pixels": "1002x740",
         "bands": 3,
         "size_mb": 4.25
@@ -156,7 +156,7 @@ corrected_data = {
 }
 
 # Save corrected data
-out_path = f"{OUTPUT}/hsr_corrected_data.json"
+out_path = f"{OUTPUT}/udupi_corrected_data.json"
 os.makedirs(OUTPUT, exist_ok=True)
 with open(out_path, 'w') as f:
     json.dump(corrected_data, f, indent=2)
@@ -164,7 +164,7 @@ print(f"Saved: {out_path}")
 
 # Copy to public/data
 import shutil
-dest = "public/data/hsr_corrected_data.json"
+dest = "public/data/udupi_corrected_data.json"
 os.makedirs("public/data", exist_ok=True)
 shutil.copy(out_path, dest)
 print(f"Copied to: {dest}")

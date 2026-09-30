@@ -23,9 +23,9 @@ def main():
     os.makedirs('output', exist_ok=True)
     
     # 1. Inputs
-    tif_path = "HSR_Layout_SD.tif"
-    road_path = "output/hsr_road_network.geojson"
-    ward_path = "output/hsr_ward_boundary.geojson"
+    tif_path = "udupi_Layout_SD.tif"
+    road_path = "output/udupi_road_network.geojson"
+    ward_path = "output/udupi_ward_boundary.geojson"
     
     if not os.path.exists(road_path):
         print(f"Error: {road_path} not found.")

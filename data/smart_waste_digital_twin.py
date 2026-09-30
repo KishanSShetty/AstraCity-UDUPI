@@ -237,7 +237,7 @@ class WasteDigitalTwin:
 if __name__ == "__main__":
     # Define paths
     BASE_DIR = r"D:\coding_files\Projects\AstraSky"
-    WARD_SHP = os.path.join(BASE_DIR, "data", "spaceTech Dataset", "HSR Layout Ward Boundary", "HSR_Layout.shp")
+    WARD_SHP = os.path.join(BASE_DIR, "data", "spaceTech Dataset", "HSR Layout Ward Boundary", "udupi_Layout.shp")
     ROADS_SHP = os.path.join(BASE_DIR, "data", "spaceTech Dataset", "HSR Layout Road Network", "HSR Layout.shp")
     INFRA_JSON = os.path.join(BASE_DIR, "data", "dump_sites.json")
 

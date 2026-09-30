@@ -13,6 +13,6 @@
 | 5 | **Udupi CMC Compactor Upgrade Report** | Municipal Report | Referenced via New Indian Express | Compactor capacity upgrade: older models 5 tons → newer models 10 tons |
 | 6 | **Udupi CMC Capsule System Implementation** | Municipal Program | Referenced via Bangalore Mirror | Hook Loader + Capsule system: 16–18 tons per capsule, sealed transport, reduced leakage |
 | 7 | **Udupi CMC SWM Cost Constants** | Cost Analysis | Used in `economic_params.json` | Cost per km (truck): ₹15.65–22, cleanup cost per dump: ₹52,000–80,000, total trucks: 2,500–2,800 |
-| 8 | **Udupi City DWCC Data** | Udupi CMC Infrastructure | `Data Analysis/hsr_dry_waste_details.json` | 16 DWCCs in Udupi City, 40 TPD combined capacity, 17.5% utilisation rate |
+| 8 | **Udupi City DWCC Data** | Udupi CMC Infrastructure | `Data Analysis/udupi_dry_waste_details.json` | 16 DWCCs in Udupi City, 40 TPD combined capacity, 17.5% utilisation rate |
 | 9 | **Udupi City Bio-Methanisation Units** | Udupi CMC Infrastructure | `vehicle-sim/page.tsx` BMU_LOCATIONS | 2 BMU units at coordinates [77.614044, 12.933803] and [77.614061, 12.933792], 10 TPD capacity |
 | 10 | **HSR Citizen Forum** | Community Portal | https://hsrcitizenforum.in/ | Local ward data, waste management grievances, community-level waste statistics for Udupi City |

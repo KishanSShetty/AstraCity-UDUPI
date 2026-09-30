@@ -21,8 +21,8 @@ os.makedirs('output', exist_ok=True)
 # SECTION A — LOADING & NORMALIZATION
 # =====================================================================
 
-print("Loading HSR_Layout_SD.tif...")
-with rasterio.open('HSR_Layout_SD.tif') as src:
+print("Loading udupi_Layout_SD.tif...")
+with rasterio.open('udupi_Layout_SD.tif') as src:
     bounds = src.bounds
     transform = src.transform
     r_raw = src.read(1).astype(float)
@@ -314,7 +314,7 @@ ax.imshow(output_rgb,
           origin='upper')
 
 # Ward boundary — white outline, 2px, clean
-ward_file = 'output/hsr_ward_boundary.geojson'
+ward_file = 'output/udupi_ward_boundary.geojson'
 if os.path.exists(ward_file):
     ward = gpd.read_file(ward_file)
     ward.boundary.plot(ax=ax,
@@ -443,7 +443,7 @@ ax_leg.plot([0.08, 0.92], [0.092, 0.092],
 
 # Footer
 footer = [
-    "Source: HSR_Layout_SD.tif",
+    "Source: udupi_Layout_SD.tif",
     "Method: Spectral + Texture",
     "Tool: AstraCity Pipeline",
     "Projection: EPSG:4326",

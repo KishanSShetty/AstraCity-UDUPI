@@ -4,7 +4,7 @@ import os
 
 BASE_DIR = r'c:\Users\Kishan Shetty\Downloads\AstraSky-maing'
 DATA_DIR = os.path.join(BASE_DIR, r'DS\Waste methane dumpyards centers\Dry Waste Collection,Waste Processing & Landfill Locations')
-GEOJSON_PATH = r'c:\Users\Kishan Shetty\Downloads\AstraSky-maing\public\data\hsr_ward_boundary.geojson'
+GEOJSON_PATH = r'c:\Users\Kishan Shetty\Downloads\AstraSky-maing\public\data\udupi_ward_boundary.geojson'
 
 def read_shp_pointz(path):
     points = []
@@ -53,15 +53,15 @@ def main():
     points = read_shp_pointz(shp_path)
     print(f"Loaded {len(points)} total points.")
 
-    hsr_points = []
+    udupi_points = []
     for x, y in points:
         # Check if point falls inside HSR Layout bounding box
         if 12.89 <= y <= 12.94 and 77.62 <= x <= 77.68:
-            hsr_points.append({'lat': y, 'lon': x})
+            udupi_points.append({'lat': y, 'lon': x})
 
-    print(json.dumps(hsr_points, indent=2))
-    with open('hsr_dry_waste_coords.json', 'w') as f:
-        json.dump(hsr_points, f, indent=2)
+    print(json.dumps(udupi_points, indent=2))
+    with open('udupi_dry_waste_coords.json', 'w') as f:
+        json.dump(udupi_points, f, indent=2)
 
 if __name__ == '__main__':
     main()

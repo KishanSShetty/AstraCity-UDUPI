@@ -19,7 +19,7 @@ const z = ZONE_DATA.zones;
 const totalRawWaste = z.reduce((a: any, b: any) => a + (b.waste_kg_day || 0), 0) / 1000;
 const scaleFactor = UDUPI_DATA.daily_waste_tons / totalRawWaste;
 
-const HSR_GRIDS = [
+const udupi_GRIDS = [
   {
     id: 'Sector 1',
     zoneCount: 15,
@@ -59,7 +59,7 @@ const HSR_GRIDS = [
 
 export default function RoutesAnalysisPage() {
   const [mounted, setMounted] = useState(false);
-  const [selectedGrid, setSelectedGrid] = useState(HSR_GRIDS[4]);
+  const [selectedGrid, setSelectedGrid] = useState(udupi_GRIDS[4]);
   const [wetCompartmentRatio, setWetCompartmentRatio] = useState(60);
   const [roundsPerDay, setRoundsPerDay] = useState(3);
   const [activeSection, setActiveSection] = useState<'overview' | 'optimizer' | 'engine'>('overview');
@@ -435,7 +435,7 @@ export default function RoutesAnalysisPage() {
                 <div className="space-y-4">
                   <label className="text-xs font-bold text-slate-500 uppercase tracking-widest block">1. Select Sub-Ward Grid Area</label>
                   <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    {HSR_GRIDS.map(grid => (
+                    {udupi_GRIDS.map(grid => (
                       <button
                         key={grid.id}
                         onClick={() => setSelectedGrid(grid)}

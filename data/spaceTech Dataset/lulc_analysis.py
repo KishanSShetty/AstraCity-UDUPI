@@ -23,9 +23,9 @@ def get_pixel_area(res_x, res_y, is_latlon):
 def main():
     os.makedirs('output', exist_ok=True)
     
-    tif_path = "HSR_Layout_SD.tif"
-    road_path = "output/hsr_road_network.geojson"
-    ward_path = "output/hsr_ward_boundary.geojson"
+    tif_path = "udupi_Layout_SD.tif"
+    road_path = "output/udupi_road_network.geojson"
+    ward_path = "output/udupi_ward_boundary.geojson"
     dump_path = "output/dump_sites.json"
     
     if not os.path.exists(road_path):

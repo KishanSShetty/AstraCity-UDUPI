@@ -15,8 +15,8 @@ const PROCESSING_GEOJSON: any = { type: 'FeatureCollection', features: [] };
 const OPEN_SPACES_GEOJSON: any = {
   type: 'FeatureCollection',
   features: [
-    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.635, 12.920], [77.645, 12.920], [77.645, 12.925], [77.635, 12.925], [77.635, 12.920]]] }, properties: { name: 'Agara Lake Area' } },
-    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.640, 12.905], [77.644, 12.905], [77.644, 12.908], [77.640, 12.908], [77.640, 12.905]]] }, properties: { name: 'BDA Complex' } }
+    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.736, 13.3484], [74.746, 13.3484], [74.746, 13.3534], [74.736, 13.3534], [74.736, 13.3484]]] }, properties: { name: 'Agara Lake Area' } },
+    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.741, 13.3334], [74.745, 13.3334], [74.745, 13.3364], [74.741, 13.3364], [74.741, 13.3334]]] }, properties: { name: 'BDA Complex' } }
   ]
 };
 
@@ -28,8 +28,8 @@ const AGARA_GEOJSON: any = {
     geometry: {
       type: 'Polygon',
       coordinates: [[
-        [77.6398, 12.9201], [77.6412, 12.9215], [77.6435, 12.9218], [77.6448, 12.9208],
-        [77.6445, 12.9192], [77.6428, 12.9182], [77.6408, 12.9183], [77.6398, 12.9195], [77.6398, 12.9201]
+        [74.7408, 13.3485], [74.7422, 13.3499], [74.7445, 13.3502], [74.7458, 13.3492],
+        [74.7455, 13.3476], [74.7438, 13.3466], [74.7418, 13.3467], [74.7408, 13.3479], [74.7408, 13.3485]
       ]]
     }
   }]
@@ -43,8 +43,8 @@ const AGARA_BUFFER_GEOJSON: any = {
     geometry: {
       type: 'Polygon',
       coordinates: [[
-        [77.6385, 12.9185], [77.6412, 12.9228], [77.6445, 12.9231], [77.6465, 12.9210],
-        [77.6460, 12.9180], [77.6430, 12.9168], [77.6395, 12.9170], [77.6385, 12.9185]
+        [74.7395, 13.3469], [74.7422, 13.3512], [74.7455, 13.3515], [74.7475, 13.3494],
+        [74.747, 13.3464], [74.744, 13.3452], [74.7405, 13.3454], [74.7395, 13.3469]
       ]]
     }
   }]
@@ -53,20 +53,20 @@ const AGARA_BUFFER_GEOJSON: any = {
 const AGARA_LINES_GEOJSON: any = {
   type: 'FeatureCollection',
   features: [
-    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[77.6380, 12.9180], [77.6398, 12.9195]] }, properties: { label: 'D7 → Lake: 180m ⚠️' } },
-    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[77.6410, 12.9116], [77.6428, 12.9182]] }, properties: { label: 'D19 → Lake: 480m ⚠️' } },
-    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[77.6350, 12.9220], [77.6398, 12.9201]] }, properties: { label: 'D12 → Lake: 320m ⚠️' } }
+    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[74.739, 13.3464], [74.7408, 13.3479]] }, properties: { label: 'D7 → Lake: 180m ⚠️' } },
+    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[74.742, 13.34], [74.7438, 13.3466]] }, properties: { label: 'D19 → Lake: 480m ⚠️' } },
+    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[74.736, 13.3504], [74.7408, 13.3485]] }, properties: { label: 'D12 → Lake: 320m ⚠️' } }
   ]
 };
 
 const SEGREGATION_GEOJSON: any = {
   type: 'FeatureCollection',
   features: [
-    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.630, 12.915], [77.638, 12.915], [77.638, 12.925], [77.630, 12.925], [77.630, 12.915]]] }, properties: { zone: 'Zone A', color: '#8b0000' } }, 
-    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.638, 12.915], [77.646, 12.915], [77.646, 12.925], [77.638, 12.925], [77.638, 12.915]]] }, properties: { zone: 'Zone B', color: '#f97316' } }, 
-    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.646, 12.915], [77.655, 12.915], [77.655, 12.925], [77.646, 12.925], [77.646, 12.915]]] }, properties: { zone: 'Zone C', color: '#eab308' } }, 
-    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.630, 12.900], [77.640, 12.900], [77.640, 12.915], [77.630, 12.915], [77.630, 12.900]]] }, properties: { zone: 'Zone D', color: '#86efac' } }, 
-    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.640, 12.900], [77.655, 12.900], [77.655, 12.915], [77.640, 12.915], [77.640, 12.900]]] }, properties: { zone: 'Zone E', color: '#22c55e' } }  
+    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.731, 13.3434], [74.739, 13.3434], [74.739, 13.3534], [74.731, 13.3534], [74.731, 13.3434]]] }, properties: { zone: 'Zone A', color: '#8b0000' } }, 
+    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.739, 13.3434], [74.747, 13.3434], [74.747, 13.3534], [74.739, 13.3534], [74.739, 13.3434]]] }, properties: { zone: 'Zone B', color: '#f97316' } }, 
+    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.747, 13.3434], [74.756, 13.3434], [74.756, 13.3534], [74.747, 13.3534], [74.747, 13.3434]]] }, properties: { zone: 'Zone C', color: '#eab308' } }, 
+    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.731, 13.3284], [74.741, 13.3284], [74.741, 13.3434], [74.731, 13.3434], [74.731, 13.3284]]] }, properties: { zone: 'Zone D', color: '#86efac' } }, 
+    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.741, 13.3284], [74.756, 13.3284], [74.756, 13.3434], [74.741, 13.3434], [74.741, 13.3284]]] }, properties: { zone: 'Zone E', color: '#22c55e' } }  
   ]
 };
 
@@ -75,27 +75,27 @@ const WASTE_ZONES_GEOJSON: any = {
   features: [
     {
       type: 'Feature',
-      geometry: { type: 'Polygon', coordinates: [[[77.6420, 12.9080],[77.6480, 12.9080],[77.6480, 12.9150],[77.6420, 12.9150],[77.6420, 12.9080]]] },
+      geometry: { type: 'Polygon', coordinates: [[[74.743, 13.3364],[74.749, 13.3364],[74.749, 13.3434],[74.743, 13.3434],[74.743, 13.3364]]] },
       properties: { zone: 'Zone 1', name: 'HSR Main (Sector 1-2)', waste: 247, buildings: 180, population: 55000, freq: '2x daily', color: '#ef4444', status: 'Critical' }
     },
     {
       type: 'Feature',
-      geometry: { type: 'Polygon', coordinates: [[[77.6350, 12.9080],[77.6420, 12.9080],[77.6420, 12.9150],[77.6350, 12.9150],[77.6350, 12.9080]]] },
+      geometry: { type: 'Polygon', coordinates: [[[74.736, 13.3364],[74.743, 13.3364],[74.743, 13.3434],[74.736, 13.3434],[74.736, 13.3364]]] },
       properties: { zone: 'Zone 2', name: 'BDA Complex (Sector 3)', waste: 189, buildings: 150, population: 42000, freq: '1x daily', color: '#f97316', status: 'High' }
     },
     {
       type: 'Feature',
-      geometry: { type: 'Polygon', coordinates: [[[77.6420, 12.9150],[77.6480, 12.9150],[77.6480, 12.9220],[77.6420, 12.9220],[77.6420, 12.9150]]] },
+      geometry: { type: 'Polygon', coordinates: [[[74.743, 13.3434],[74.749, 13.3434],[74.749, 13.3504],[74.743, 13.3504],[74.743, 13.3434]]] },
       properties: { zone: 'Zone 3', name: 'Agara (Sector 4)', waste: 171, buildings: 130, population: 38000, freq: '1x daily', color: '#f59e0b', status: 'Medium' }
     },
     {
       type: 'Feature',
-      geometry: { type: 'Polygon', coordinates: [[[77.6350, 12.9150],[77.6420, 12.9150],[77.6420, 12.9220],[77.6350, 12.9220],[77.6350, 12.9150]]] },
+      geometry: { type: 'Polygon', coordinates: [[[74.736, 13.3434],[74.743, 13.3434],[74.743, 13.3504],[74.736, 13.3504],[74.736, 13.3434]]] },
       properties: { zone: 'Zone 4', name: 'Somasundara (Sector 5)', waste: 216, buildings: 160, population: 48000, freq: '2x daily', color: '#ef4444', status: 'Critical' }
     },
     {
       type: 'Feature',
-      geometry: { type: 'Polygon', coordinates: [[[77.6280, 12.9080],[77.6350, 12.9080],[77.6350, 12.9220],[77.6280, 12.9220],[77.6280, 12.9080]]] },
+      geometry: { type: 'Polygon', coordinates: [[[74.729, 13.3364],[74.736, 13.3364],[74.736, 13.3504],[74.729, 13.3504],[74.729, 13.3364]]] },
       properties: { zone: 'Zone 5', name: '7th Sector (Sector 6-7)', waste: 167, buildings: 140, population: 37000, freq: '1x daily', color: '#22c55e', status: 'Low' }
     }
   ]
@@ -104,28 +104,28 @@ const WASTE_ZONES_GEOJSON: any = {
 const LULC_GEOJSON: any = {
   type: 'FeatureCollection',
   features: [
-    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.641, 12.909], [77.650, 12.909], [77.650, 12.914], [77.641, 12.914], [77.641, 12.909]]] }, properties: { type: 'Built-up', color: '#e74c3c' } },
-    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.635, 12.920], [77.645, 12.920], [77.645, 12.925], [77.635, 12.925], [77.635, 12.920]]] }, properties: { type: 'Vegetation', color: '#27ae60' } },
-    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.631, 12.910], [77.636, 12.910], [77.636, 12.918], [77.631, 12.918], [77.631, 12.910]]] }, properties: { type: 'Open Bare Land', color: '#f39c12' } },
-    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.635, 12.921], [77.644, 12.921], [77.644, 12.924], [77.635, 12.924], [77.635, 12.921]]] }, properties: { type: 'Water Bodies', color: '#3498db' } },
-    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.630, 12.900], [77.640, 12.900], [77.640, 12.905], [77.630, 12.905], [77.630, 12.900]]] }, properties: { type: 'Mixed Use', color: '#9b59b6' } }
+    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.742, 13.3374], [74.751, 13.3374], [74.751, 13.3424], [74.742, 13.3424], [74.742, 13.3374]]] }, properties: { type: 'Built-up', color: '#e74c3c' } },
+    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.736, 13.3484], [74.746, 13.3484], [74.746, 13.3534], [74.736, 13.3534], [74.736, 13.3484]]] }, properties: { type: 'Vegetation', color: '#27ae60' } },
+    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.732, 13.3384], [74.737, 13.3384], [74.737, 13.3464], [74.732, 13.3464], [74.732, 13.3384]]] }, properties: { type: 'Open Bare Land', color: '#f39c12' } },
+    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.736, 13.3494], [74.745, 13.3494], [74.745, 13.3524], [74.736, 13.3524], [74.736, 13.3494]]] }, properties: { type: 'Water Bodies', color: '#3498db' } },
+    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.731, 13.3284], [74.741, 13.3284], [74.741, 13.3334], [74.731, 13.3334], [74.731, 13.3284]]] }, properties: { type: 'Mixed Use', color: '#9b59b6' } }
   ]
 };
 
-const HSR_BOUNDARY_GEOJSON: any = {
+const udupi_BOUNDARY_GEOJSON: any = {
   type: 'FeatureCollection',
   features: [
-    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[77.630, 12.900], [77.655, 12.900], [77.655, 12.925], [77.630, 12.925], [77.630, 12.900]]] }, properties: { name: 'Udupi City Boundary' } }
+    { type: 'Feature', geometry: { type: 'Polygon', coordinates: [[[74.731, 13.3284], [74.756, 13.3284], [74.756, 13.3534], [74.731, 13.3534], [74.731, 13.3284]]] }, properties: { name: 'Udupi City Boundary' } }
   ]
 };
 
 const TRUCK_HUBS_GEOJSON: any = {
   type: 'FeatureCollection',
   features: [
-    { type: 'Feature', geometry: { type: 'Point', coordinates: [77.6410, 12.9116] }, properties: { name: '27th Main Hub', limit: '8 tons', load: '6.5 tons', status: 'Available', autos: 3 } },
-    { type: 'Feature', geometry: { type: 'Point', coordinates: [77.6380, 12.9180] }, properties: { name: '19th Main Hub', limit: '8 tons', load: '8.0 tons', status: 'Full', autos: 3 } },
-    { type: 'Feature', geometry: { type: 'Point', coordinates: [77.6450, 12.9050] }, properties: { name: 'ORR Junction Hub', limit: '8 tons', load: '4.2 tons', status: 'Available', autos: 3 } },
-    { type: 'Feature', geometry: { type: 'Point', coordinates: [77.6460, 12.9130] }, properties: { name: 'BDA Complex Hub', limit: '8 tons', load: '7.1 tons', status: 'Available', autos: 3 } }
+    { type: 'Feature', geometry: { type: 'Point', coordinates: [74.742, 13.34] }, properties: { name: '27th Main Hub', limit: '8 tons', load: '6.5 tons', status: 'Available', autos: 3 } },
+    { type: 'Feature', geometry: { type: 'Point', coordinates: [74.739, 13.3464] }, properties: { name: '19th Main Hub', limit: '8 tons', load: '8.0 tons', status: 'Full', autos: 3 } },
+    { type: 'Feature', geometry: { type: 'Point', coordinates: [74.746, 13.3334] }, properties: { name: 'ORR Junction Hub', limit: '8 tons', load: '4.2 tons', status: 'Available', autos: 3 } },
+    { type: 'Feature', geometry: { type: 'Point', coordinates: [74.747, 13.3414] }, properties: { name: 'BDA Complex Hub', limit: '8 tons', load: '7.1 tons', status: 'Available', autos: 3 } }
   ]
 };
 
@@ -137,21 +137,21 @@ const MAIN_ROUTE_GEOJSON: any = {
       type: 'LineString',
       coordinates: [
         // T1 to T2
-        [77.6410, 12.9116],
-        [77.6395, 12.9130],
-        [77.6382, 12.9155],
-        [77.6380, 12.9180],
+        [74.742, 13.34],
+        [74.7405, 13.3414],
+        [74.7392, 13.3439],
+        [74.739, 13.3464],
         // T2 to T3
-        [77.6360, 12.9160],
-        [77.6390, 12.9100],
-        [77.6450, 12.9050],
+        [74.737, 13.3444],
+        [74.74, 13.3384],
+        [74.746, 13.3334],
         // T3 to T4
-        [77.6455, 12.9080],
-        [77.6458, 12.9110],
-        [77.6460, 12.9130],
+        [74.7465, 13.3364],
+        [74.7468, 13.3394],
+        [74.747, 13.3414],
         // T4 to Processing Unit
-        [77.6420, 12.9100],
-        [77.6350, 12.9080]
+        [74.743, 13.3384],
+        [74.736, 13.3364]
       ]
     }
   }]
@@ -161,17 +161,17 @@ const AUTO_ROUTES_GEOJSON: any = {
   type: 'FeatureCollection',
   features: [
     // Hub 1 - Auto A
-    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[77.6410, 12.9116], [77.6430, 12.9120], [77.6445, 12.9125], [77.6410, 12.9116]] } },
+    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[74.742, 13.34], [74.744, 13.3404], [74.7455, 13.3409], [74.742, 13.34]] } },
     // Hub 1 - Auto B
-    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[77.6410, 12.9116], [77.6415, 12.9100], [77.6425, 12.9095], [77.6410, 12.9116]] } },
+    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[74.742, 13.34], [74.7425, 13.3384], [74.7435, 13.3379], [74.742, 13.34]] } },
     // Hub 2 - Auto A
-    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[77.6380, 12.9180], [77.6395, 12.9190], [77.6410, 12.9195], [77.6380, 12.9180]] } },
+    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[74.739, 13.3464], [74.7405, 13.3474], [74.742, 13.3479], [74.739, 13.3464]] } },
     // Hub 2 - Auto B
-    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[77.6380, 12.9180], [77.6370, 12.9165], [77.6355, 12.9160], [77.6380, 12.9180]] } },
+    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[74.739, 13.3464], [74.738, 13.3449], [74.7365, 13.3444], [74.739, 13.3464]] } },
     // Hub 3 - Simulated Auto
-    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[77.6450, 12.9050], [77.6470, 12.9040], [77.6450, 12.9050]] } },
+    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[74.746, 13.3334], [74.748, 13.3324], [74.746, 13.3334]] } },
     // Hub 4 - Simulated Auto
-    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[77.6460, 12.9130], [77.6480, 12.9140], [77.6460, 12.9130]] } },
+    { type: 'Feature', geometry: { type: 'LineString', coordinates: [[74.747, 13.3414], [74.749, 13.3424], [74.747, 13.3414]] } },
   ]
 };
 
@@ -215,7 +215,7 @@ export default function MapContainer() {
     map.current = new maplibregl.Map({
       container: mapContainer.current,
       style: 'https://tiles.openfreemap.org/styles/positron',
-      center: [77.6410, 12.9116], // Centered on HSR
+      center: [74.742, 13.34], // Centered on HSR
       zoom: 14,
       pitch: 40,
     });
@@ -239,10 +239,10 @@ export default function MapContainer() {
                 return false;
               }
               return (
-                lon >= 77.622725 &&
-                lon <= 77.669342 &&
+                lon >= 74.723725 &&
+                lon <= 74.770342 &&
                 lat >= 12.897941 &&
-                lat <= 12.931016
+                lat <= 13.359416
               );
             }
           )
@@ -251,7 +251,7 @@ export default function MapContainer() {
       map.current?.resize();
 
       // HSR boundary
-      map.current!.addSource('hsr-boundary-source', { type: 'geojson', data: HSR_BOUNDARY_GEOJSON });
+      map.current!.addSource('hsr-boundary-source', { type: 'geojson', data: udupi_BOUNDARY_GEOJSON });
       map.current!.addLayer({
         id: 'hsr-boundary',
         type: 'line',
@@ -354,13 +354,13 @@ export default function MapContainer() {
       // Add Layers
       // Add Layers dynamically
       try {
-        const dwccRaw = await fetch('/data/hsr_dry_waste_centres.geojson').then(r => r.ok ? r.json() : {type: "FeatureCollection", features: []});
+        const dwccRaw = await fetch('/data/udupi_dry_waste_centres.geojson').then(r => r.ok ? r.json() : {type: "FeatureCollection", features: []});
         const dwccHSR = filterToHSR(dwccRaw);
 
-        const methRaw = await fetch('/data/hsr_methane_plants.geojson').then(r => r.ok ? r.json() : {type: "FeatureCollection", features: []});
+        const methRaw = await fetch('/data/udupi_methane_plants.geojson').then(r => r.ok ? r.json() : {type: "FeatureCollection", features: []});
         const methHSR = filterToHSR(methRaw);
 
-        const procRaw = await fetch('/data/hsr_processing_units.geojson').then(r => r.ok ? r.json() : {type: "FeatureCollection", features: []});
+        const procRaw = await fetch('/data/udupi_processing_units.geojson').then(r => r.ok ? r.json() : {type: "FeatureCollection", features: []});
         const procHSR = filterToHSR(procRaw);
 
         const dumpRaw = await fetch('/data/dump_sites.json').then(r => r.ok ? r.json() : {type: "FeatureCollection", features: []});
@@ -420,11 +420,11 @@ export default function MapContainer() {
         .then(report => {
           if (!map.current) return;
           const zoneLabels = [
-            { id: 'B2', center: [77.6402, 12.9103], label: 'B2 | 2,189 bldgs | 5.1T/day' },
-            { id: 'C3', center: [77.6519, 12.9186], label: 'C3 | 2,082 bldgs | 4.8T/day' },
-            { id: 'B3', center: [77.6519, 12.9103], label: 'B3 | 1,734 bldgs | 4.0T/day' },
-            { id: 'B1', center: [77.6285, 12.9103], label: 'B1 | 1,383 bldgs | 3.2T/day' },
-            { id: 'C2', center: [77.6402, 12.9186], label: 'C2 | 554 bldgs | 1.3T/day' }
+            { id: 'B2', center: [74.7412, 13.3387], label: 'B2 | 2,189 bldgs | 5.1T/day' },
+            { id: 'C3', center: [74.7529, 13.347], label: 'C3 | 2,082 bldgs | 4.8T/day' },
+            { id: 'B3', center: [74.7529, 13.3387], label: 'B3 | 1,734 bldgs | 4.0T/day' },
+            { id: 'B1', center: [74.7295, 13.3387], label: 'B1 | 1,383 bldgs | 3.2T/day' },
+            { id: 'C2', center: [74.7412, 13.347], label: 'C2 | 554 bldgs | 1.3T/day' }
           ];
           const features = zoneLabels.map(z => ({
             type: 'Feature',
@@ -633,7 +633,7 @@ export default function MapContainer() {
 
       // ===== HSR ZONE GRID (5x5) =====
       const createHSRGrid = () => {
-        const minLon = 77.622725, maxLon = 77.669342, minLat = 12.897941, maxLat = 12.931016;
+        const minLon = 74.723725, maxLon = 74.770342, minLat = 12.897941, maxLat = 13.359416;
         const cols = 5, rows = 5;
         const lonStep = (maxLon - minLon) / cols;
         const latStep = (maxLat - minLat) / rows;
@@ -837,7 +837,7 @@ export default function MapContainer() {
       <button
         onClick={() => {
           if (map.current) {
-            map.current.flyTo({ center: [77.6410, 12.9116], zoom: 13.5, duration: 1500 });
+            map.current.flyTo({ center: [74.742, 13.34], zoom: 13.5, duration: 1500 });
           }
         }}
         className="absolute top-4 right-4 z-[10] bg-white/90 hover:bg-white backdrop-blur-md border border-slate-200 text-slate-700 hover:text-teal-600 px-3 py-2 rounded-xl text-xs font-bold shadow-lg transition-all hover:shadow-xl flex items-center gap-1.5"

@@ -31,11 +31,11 @@ def main():
     
     # -- PART 1: Shapefiles -> GeoJSON --
     print("-- PART 1: Shapefiles -> GeoJSON --")
-    ward_shp = "HSR Layout Ward Boundary/HSR_Layout.shp"
+    ward_shp = "HSR Layout Ward Boundary/udupi_Layout.shp"
     if not os.path.exists(ward_shp): ward_shp = glob.glob("HSR*Ward*Boundary/*.shp")[0]
     gdf_ward = gpd.read_file(ward_shp)
     gdf_ward_4326 = gdf_ward.to_crs(epsg=4326)
-    gdf_ward_4326.to_file("output/hsr_ward_boundary.geojson", driver="GeoJSON")
+    gdf_ward_4326.to_file("output/udupi_ward_boundary.geojson", driver="GeoJSON")
     print("\nWard Boundary Info:")
     print(f"CRS: {gdf_ward.crs} -> {gdf_ward_4326.crs}")
     print(f"Bounds: {gdf_ward_4326.total_bounds}")
@@ -46,7 +46,7 @@ def main():
     if not os.path.exists(road_shp): road_shp = glob.glob("HSR*Road*Network/*.shp")[0]
     gdf_road = gpd.read_file(road_shp)
     gdf_road_4326 = gdf_road.to_crs(epsg=4326)
-    gdf_road_4326.to_file("output/hsr_road_network.geojson", driver="GeoJSON")
+    gdf_road_4326.to_file("output/udupi_road_network.geojson", driver="GeoJSON")
     
     gdf_road_utm = gdf_road.to_crs(epsg=32643) if gdf_road.crs else gdf_road.set_crs(epsg=4326).to_crs(epsg=32643)
     total_km = gdf_road_utm.geometry.length.sum() / 1000.0
@@ -59,7 +59,7 @@ def main():
     
     # -- PART 2: Satellite Image Analysis --
     print("\n-- PART 2: Satellite Image Analysis --")
-    tif_path = "HSR_Layout_SD.tif"
+    tif_path = "udupi_Layout_SD.tif"
     with rasterio.open(tif_path) as src:
         bands_count = src.count
         crs = src.crs
@@ -99,7 +99,7 @@ def main():
         else:
             plt.imshow(normalized_bands[0], cmap='gray')
         plt.axis('off')
-        plt.savefig("output/hsr_satellite_preview.png", bbox_inches='tight', dpi=150)
+        plt.savefig("output/udupi_satellite_preview.png", bbox_inches='tight', dpi=150)
         plt.close()
         
     # -- PART 3: Anomaly / Dump Site Detection --

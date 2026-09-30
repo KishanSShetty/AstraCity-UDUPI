@@ -8,7 +8,7 @@ import {
   PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LineChart, Line, ReferenceLine, ReferenceDot
 } from "recharts";
 import { Skeleton } from "@/components/ui/Skeleton";
-import hsrData from "@/data/hsr_ward_scores.json";
+import hsrData from "@/data/udupi_ward_scores.json";
 import { UDUPI_DATA } from "@/lib/constants";
 
 // --- Icons ---

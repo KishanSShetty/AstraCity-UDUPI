@@ -16,13 +16,13 @@ import json
 BASE = r"DS\Waste methane dumpyards centers\Dry Waste Collection,Waste Processing & Landfill Locations"
 
 # HSR Layout bounding box (from ward boundary shapefile)
-HSR_BOUNDS = {
+udupi_BOUNDS = {
     "lon_min": 77.622725,
     "lon_max": 77.669342,
     "lat_min": 12.897941,
     "lat_max": 12.931016
 }
-HSR_CENTER = (12.9145, 77.6460)
+udupi_CENTER = (12.9145, 77.6460)
 
 def haversine(lat1, lon1, lat2, lon2):
     """Distance in km between two lat/lon points."""
@@ -35,8 +35,8 @@ def haversine(lat1, lon1, lat2, lon2):
 
 def is_in_hsr(lat, lon):
     """Check if a point falls inside HSR Layout ward boundary."""
-    return (HSR_BOUNDS["lat_min"] <= lat <= HSR_BOUNDS["lat_max"] and
-            HSR_BOUNDS["lon_min"] <= lon <= HSR_BOUNDS["lon_max"])
+    return (udupi_BOUNDS["lat_min"] <= lat <= udupi_BOUNDS["lat_max"] and
+            udupi_BOUNDS["lon_min"] <= lon <= udupi_BOUNDS["lon_max"])
 
 def read_dbf(filepath):
     """Read a .dbf file and return list of record dicts."""
@@ -225,7 +225,7 @@ for filename, label in datasets:
             entry["lat"] = round(points[i][0], 6)
             entry["lon"] = round(points[i][1], 6)
             entry["in_hsr"] = is_in_hsr(points[i][0], points[i][1])
-            entry["dist_to_hsr_km"] = round(haversine(HSR_CENTER[0], HSR_CENTER[1], points[i][0], points[i][1]), 2)
+            entry["dist_to_udupi_km"] = round(haversine(udupi_CENTER[0], udupi_CENTER[1], points[i][0], points[i][1]), 2)
         if i < len(records):
             entry["attributes"] = records[i]
         merged.append(entry)
@@ -245,7 +245,7 @@ for filename, label in datasets:
     for i, entry in enumerate(merged):
         lat = entry.get("lat", "?")
         lon = entry.get("lon", "?")
-        in_h = "[IN HSR]" if entry.get("in_hsr") else f"  {entry.get('dist_to_hsr_km', '?')} km from HSR"
+        in_h = "[IN HSR]" if entry.get("in_hsr") else f"  {entry.get('dist_to_udupi_km', '?')} km from HSR"
         attrs = entry.get("attributes", {})
         
         # Extract meaningful fields
@@ -284,13 +284,13 @@ for filename, label in datasets:
         log()
     
     # Nearest to HSR
-    nearby = sorted([m for m in merged if not m.get("in_hsr", False)], key=lambda x: x.get("dist_to_hsr_km", 999))[:10]
+    nearby = sorted([m for m in merged if not m.get("in_hsr", False)], key=lambda x: x.get("dist_to_udupi_km", 999))[:10]
     if nearby:
         log(f"  --- 10 NEAREST TO HSR (outside boundary) ---")
         for j, entry in enumerate(nearby[:10]):
             lat = entry.get("lat", "?")
             lon = entry.get("lon", "?")
-            dist = entry.get("dist_to_hsr_km", "?")
+            dist = entry.get("dist_to_udupi_km", "?")
             attrs = entry.get("attributes", {})
             popup = attrs.get("PopupInfo", "")
             name = attrs.get("Name", "")

@@ -54,12 +54,12 @@
   },
   "landfill_diversion_pct": 91.0,
   "city_context": {
-    "bengaluru_dwcc_count": 164,
-    "bengaluru_recyclables_tpd": 130,
-    "bengaluru_total_waste_tpd": 3250,
-    "bengaluru_segregated_tpd": 1530,
+    "udupi_dwcc_count": 164,
+    "udupi_recyclables_tpd": 130,
+    "udupi_total_waste_tpd": 3250,
+    "udupi_segregated_tpd": 1530,
     "segregation_rate_pct": 47.1,
-    "hsr_as_pct_of_city": 0.7,
+    "udupi_as_pct_of_city": 0.7,
     "sources": [
       "Deccan Herald",
       "Udupi CMC NGT report",

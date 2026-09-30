@@ -533,7 +533,7 @@ add_heading(doc, '5.2 Satellite Input', 2)
 add_table(doc,
     ['Parameter', 'Value'],
     [
-        ['File', 'HSR_Layout_SD.tif'],
+        ['File', 'udupi_Layout_SD.tif'],
         ['Dimensions', '1002 × 740 pixels'],
         ['Bands', '3-band RGB composite'],
         ['Source', 'Sentinel-2 (ESA Copernicus) multispectral imagery'],
@@ -546,7 +546,7 @@ add_table(doc,
 add_heading(doc, '5.3 Step-by-Step QGIS Procedure', 2)
 steps = [
     ('Step 1 — Load Satellite Image',
-     'Open QGIS 3.x → Layer → Add Layer → Add Raster Layer. Import HSR_Layout_SD.tif. Verify CRS is WGS84. Apply contrast enhancement for visual inspection.'),
+     'Open QGIS 3.x → Layer → Add Layer → Add Raster Layer. Import udupi_Layout_SD.tif. Verify CRS is WGS84. Apply contrast enhancement for visual inspection.'),
     ('Step 2 — Install SCP Plugin',
      'Plugins → Manage → Semi-Automatic Classification Plugin. Activate plugin. Set input satellite image as active band set.'),
     ('Step 3 — Training Area (ROI) Collection',
@@ -587,7 +587,7 @@ add_table(doc,
     ],
     col_widths=[4, 3, 3, 7]
 )
-add_callout(doc, 'Source: HSR_Layout_SD.tif (1002×740 px, 3-band RGB GeoTIFF). Classification performed in QGIS 3.x using Semi-Automatic Classification Plugin.', 'source')
+add_callout(doc, 'Source: udupi_Layout_SD.tif (1002×740 px, 3-band RGB GeoTIFF). Classification performed in QGIS 3.x using Semi-Automatic Classification Plugin.', 'source')
 
 add_heading(doc, '6.2 Lakes in HSR Layout', 2)
 add_body(doc, 'Two significant urban lakes exist in HSR Layout: Agara Lake (Sector 4, BBMP-managed) and HSR Layout Lake. Together they form the 0.56 km² (3.0%) water body class. They are directly downstream of high-density residential zones B2 and C3, making leachate contamination from nearby dumps a serious environmental risk.')
@@ -845,7 +845,7 @@ add_table(doc,
         ['5', 'HSR Layout Ward Boundary.shp', 'BBMP Ward Admin', 'BBMP Portal', 'Ward polygon (18.5 km²)'],
         ['6', 'HSR Layout Road Network.shp', 'OpenStreetMap', 'GeoFabrik/JOSM export', '2,027 road segments with types'],
         ['7', 'building_report.json', 'OpenStreetMap', 'QGIS Overpass API', '9,471 buildings with types'],
-        ['8', 'HSR_Layout_SD.tif', 'Sentinel-2 (ESA)', 'Copernicus Hub download', 'LULC classification'],
+        ['8', 'udupi_Layout_SD.tif', 'Sentinel-2 (ESA)', 'Copernicus Hub download', 'LULC classification'],
         ['9', 'Census 2011 Ward 174', 'Census of India', 'censusindia.gov.in', 'Population baseline (110,000)'],
         ['10', 'CPCB Annual Report 2021-22', 'CPCB', 'cpcb.nic.in', '0.5 kg/capita/day benchmark'],
         ['11', 'BBMP 2013 Chemical Analysis', 'BBMP', 'BBMP SWM Dept', 'Waste composition 61/30/5/4%'],

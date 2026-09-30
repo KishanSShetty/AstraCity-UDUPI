@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import hsrWardScoresData from '@/data/hsr_ward_scores.json';
+import hsrWardScoresData from '@/data/udupi_ward_scores.json';
 import { Skeleton } from "@/components/ui/Skeleton";
 import { useStore } from '@/lib/store';
 

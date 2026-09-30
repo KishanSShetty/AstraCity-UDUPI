@@ -2,7 +2,7 @@ import rasterio
 import numpy as np
 import matplotlib.pyplot as plt
 
-with rasterio.open('HSR_Layout_SD.tif') as src:
+with rasterio.open('udupi_Layout_SD.tif') as src:
     r_raw = src.read(1).astype(float)
     g_raw = src.read(2).astype(float)
     b_raw = src.read(3).astype(float)
@@ -95,11 +95,11 @@ fig, ax = plt.subplots(1, 1, figsize=(16, 13), dpi=600,
 ax.imshow(rgb3, interpolation='nearest', origin='upper')
 ax.set_axis_off()
 fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
-plt.savefig('output/hsr_satellite_corrected.png',
+plt.savefig('output/udupi_satellite_corrected.png',
             dpi=600, bbox_inches='tight',
             pad_inches=0, facecolor='black')
 plt.close()
-print("hsr_satellite_corrected.png saved")
+print("udupi_satellite_corrected.png saved")
 
 # Print which method looks most natural
 print("\nBand ratio analysis:")

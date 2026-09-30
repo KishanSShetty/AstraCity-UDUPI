@@ -7,19 +7,19 @@
         "lat": 13.153942,
         "lon": 77.668878,
         "in_hsr": false,
-        "dist_to_hsr_km": 26.74
+        "dist_to_udupi_km": 26.74
       },
       {
         "lat": 13.10395,
         "lon": 77.646467,
         "in_hsr": false,
-        "dist_to_hsr_km": 21.07
+        "dist_to_udupi_km": 21.07
       },
       {
         "lat": 13.103583,
         "lon": 77.645922,
         "in_hsr": false,
-        "dist_to_hsr_km": 21.03
+        "dist_to_udupi_km": 21.03
       }
     ]
   },
@@ -31,7 +31,7 @@
         "lat": 13.10928,
         "lon": 77.576778,
         "in_hsr": false,
-        "dist_to_hsr_km": 22.92,
+        "dist_to_udupi_km": 22.92,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -49,7 +49,7 @@
         "lat": 13.06894,
         "lon": 77.563879,
         "in_hsr": false,
-        "dist_to_hsr_km": 19.34,
+        "dist_to_udupi_km": 19.34,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -67,7 +67,7 @@
         "lat": 12.952,
         "lon": 77.551614,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.05,
+        "dist_to_udupi_km": 11.05,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -85,7 +85,7 @@
         "lat": 12.95221,
         "lon": 77.573519,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.9,
+        "dist_to_udupi_km": 8.9,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -103,7 +103,7 @@
         "lat": 12.95279,
         "lon": 77.573867,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.9,
+        "dist_to_udupi_km": 8.9,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -121,7 +121,7 @@
         "lat": 12.94393,
         "lon": 77.60047,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.92,
+        "dist_to_udupi_km": 5.92,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -139,7 +139,7 @@
         "lat": 12.94391,
         "lon": 77.600469,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.92,
+        "dist_to_udupi_km": 5.92,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -157,7 +157,7 @@
         "lat": 12.94994,
         "lon": 77.620897,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.79,
+        "dist_to_udupi_km": 4.79,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -175,7 +175,7 @@
         "lat": 12.934294,
         "lon": 77.61465,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.05,
+        "dist_to_udupi_km": 4.05,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -193,7 +193,7 @@
         "lat": 12.92716,
         "lon": 77.601585,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.02,
+        "dist_to_udupi_km": 5.02,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -211,7 +211,7 @@
         "lat": 12.94391,
         "lon": 77.60047,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.92,
+        "dist_to_udupi_km": 5.92,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -229,7 +229,7 @@
         "lat": 12.94938,
         "lon": 77.558509,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.24,
+        "dist_to_udupi_km": 10.24,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -247,7 +247,7 @@
         "lat": 13.08489,
         "lon": 77.540406,
         "in_hsr": false,
-        "dist_to_hsr_km": 22.13,
+        "dist_to_udupi_km": 22.13,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -265,7 +265,7 @@
         "lat": 12.9483,
         "lon": 77.553112,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.75,
+        "dist_to_udupi_km": 10.75,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -283,7 +283,7 @@
         "lat": 12.9461,
         "lon": 77.548455,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.14,
+        "dist_to_udupi_km": 11.14,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -301,7 +301,7 @@
         "lat": 12.94318,
         "lon": 77.543603,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.55,
+        "dist_to_udupi_km": 11.55,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -319,7 +319,7 @@
         "lat": 12.91477,
         "lon": 77.481763,
         "in_hsr": false,
-        "dist_to_hsr_km": 17.8,
+        "dist_to_udupi_km": 17.8,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -337,7 +337,7 @@
         "lat": 12.93327,
         "lon": 77.513681,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.49,
+        "dist_to_udupi_km": 14.49,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -355,7 +355,7 @@
         "lat": 12.90675,
         "lon": 77.556546,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.73,
+        "dist_to_udupi_km": 9.73,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -373,7 +373,7 @@
         "lat": 12.93568,
         "lon": 77.539583,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.77,
+        "dist_to_udupi_km": 11.77,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -391,7 +391,7 @@
         "lat": 12.93398,
         "lon": 77.553432,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.26,
+        "dist_to_udupi_km": 10.26,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -409,7 +409,7 @@
         "lat": 12.932375,
         "lon": 77.56331,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.18,
+        "dist_to_udupi_km": 9.18,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -427,7 +427,7 @@
         "lat": 12.92729,
         "lon": 77.570166,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.34,
+        "dist_to_udupi_km": 8.34,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -445,7 +445,7 @@
         "lat": 13.0721,
         "lon": 77.531312,
         "in_hsr": false,
-        "dist_to_hsr_km": 21.48,
+        "dist_to_udupi_km": 21.48,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -463,7 +463,7 @@
         "lat": 12.918245,
         "lon": 77.56951,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.3,
+        "dist_to_udupi_km": 8.3,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -481,7 +481,7 @@
         "lat": 12.93261,
         "lon": 77.577196,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.72,
+        "dist_to_udupi_km": 7.72,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -499,7 +499,7 @@
         "lat": 12.93228,
         "lon": 77.580471,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.37,
+        "dist_to_udupi_km": 7.37,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -517,7 +517,7 @@
         "lat": 12.93232,
         "lon": 77.580471,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.37,
+        "dist_to_udupi_km": 7.37,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -535,7 +535,7 @@
         "lat": 12.91651,
         "lon": 77.599874,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.0,
+        "dist_to_udupi_km": 5.0,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -553,7 +553,7 @@
         "lat": 12.91651,
         "lon": 77.599874,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.0,
+        "dist_to_udupi_km": 5.0,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -571,7 +571,7 @@
         "lat": 12.9234,
         "lon": 77.614484,
         "in_hsr": false,
-        "dist_to_hsr_km": 3.56,
+        "dist_to_udupi_km": 3.56,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -589,7 +589,7 @@
         "lat": 12.91263,
         "lon": 77.649028,
         "in_hsr": true,
-        "dist_to_hsr_km": 0.39,
+        "dist_to_udupi_km": 0.39,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -607,7 +607,7 @@
         "lat": 12.88328,
         "lon": 77.615624,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.78,
+        "dist_to_udupi_km": 4.78,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -625,7 +625,7 @@
         "lat": 12.91763,
         "lon": 77.622582,
         "in_hsr": false,
-        "dist_to_hsr_km": 2.56,
+        "dist_to_udupi_km": 2.56,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -643,7 +643,7 @@
         "lat": 13.05554,
         "lon": 77.512969,
         "in_hsr": false,
-        "dist_to_hsr_km": 21.3,
+        "dist_to_udupi_km": 21.3,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -661,7 +661,7 @@
         "lat": 12.91651,
         "lon": 77.599874,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.0,
+        "dist_to_udupi_km": 5.0,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -679,7 +679,7 @@
         "lat": 12.90696,
         "lon": 77.576818,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.54,
+        "dist_to_udupi_km": 7.54,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -697,7 +697,7 @@
         "lat": 12.92075,
         "lon": 77.58091,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.09,
+        "dist_to_udupi_km": 7.09,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -715,7 +715,7 @@
         "lat": 12.91758,
         "lon": 77.564882,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.8,
+        "dist_to_udupi_km": 8.8,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -733,7 +733,7 @@
         "lat": 12.90291,
         "lon": 77.560707,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.33,
+        "dist_to_udupi_km": 9.33,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -751,7 +751,7 @@
         "lat": 12.90594,
         "lon": 77.550767,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.37,
+        "dist_to_udupi_km": 10.37,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -769,7 +769,7 @@
         "lat": 12.91993,
         "lon": 77.546548,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.8,
+        "dist_to_udupi_km": 10.8,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -787,7 +787,7 @@
         "lat": 12.9034,
         "lon": 77.539487,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.61,
+        "dist_to_udupi_km": 11.61,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -805,7 +805,7 @@
         "lat": 12.8696,
         "lon": 77.601993,
         "in_hsr": false,
-        "dist_to_hsr_km": 6.91,
+        "dist_to_udupi_km": 6.91,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -823,7 +823,7 @@
         "lat": 12.8833,
         "lon": 77.615636,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.78,
+        "dist_to_udupi_km": 4.78,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -841,7 +841,7 @@
         "lat": 13.05579,
         "lon": 77.512992,
         "in_hsr": false,
-        "dist_to_hsr_km": 21.32,
+        "dist_to_udupi_km": 21.32,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -859,7 +859,7 @@
         "lat": 12.88325,
         "lon": 77.615611,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.79,
+        "dist_to_udupi_km": 4.79,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -877,7 +877,7 @@
         "lat": 12.89435,
         "lon": 77.646174,
         "in_hsr": false,
-        "dist_to_hsr_km": 2.24,
+        "dist_to_udupi_km": 2.24,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -895,7 +895,7 @@
         "lat": 12.87249,
         "lon": 77.652488,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.72,
+        "dist_to_udupi_km": 4.72,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -913,7 +913,7 @@
         "lat": 12.87293,
         "lon": 77.626696,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.07,
+        "dist_to_udupi_km": 5.07,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -931,7 +931,7 @@
         "lat": 12.85666,
         "lon": 77.594837,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.49,
+        "dist_to_udupi_km": 8.49,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -949,7 +949,7 @@
         "lat": 12.85666,
         "lon": 77.594837,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.49,
+        "dist_to_udupi_km": 8.49,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -967,7 +967,7 @@
         "lat": 12.86823,
         "lon": 77.563386,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.33,
+        "dist_to_udupi_km": 10.33,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -985,7 +985,7 @@
         "lat": 12.87848,
         "lon": 77.541751,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.99,
+        "dist_to_udupi_km": 11.99,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1003,7 +1003,7 @@
         "lat": 13.035286,
         "lon": 77.482014,
         "in_hsr": false,
-        "dist_to_hsr_km": 22.27,
+        "dist_to_udupi_km": 22.27,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1021,7 +1021,7 @@
         "lat": 13.053787,
         "lon": 77.487075,
         "in_hsr": false,
-        "dist_to_hsr_km": 23.16,
+        "dist_to_udupi_km": 23.16,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1039,7 +1039,7 @@
         "lat": 13.03767,
         "lon": 77.561765,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.46,
+        "dist_to_udupi_km": 16.46,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1057,7 +1057,7 @@
         "lat": 13.058999,
         "lon": 77.501953,
         "in_hsr": false,
-        "dist_to_hsr_km": 22.4,
+        "dist_to_udupi_km": 22.4,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1075,7 +1075,7 @@
         "lat": 13.052991,
         "lon": 77.510085,
         "in_hsr": false,
-        "dist_to_hsr_km": 21.31,
+        "dist_to_udupi_km": 21.31,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1093,7 +1093,7 @@
         "lat": 13.075801,
         "lon": 77.524361,
         "in_hsr": false,
-        "dist_to_hsr_km": 22.26,
+        "dist_to_udupi_km": 22.26,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1111,7 +1111,7 @@
         "lat": 13.080812,
         "lon": 77.539824,
         "in_hsr": false,
-        "dist_to_hsr_km": 21.78,
+        "dist_to_udupi_km": 21.78,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1129,7 +1129,7 @@
         "lat": 13.098904,
         "lon": 77.566737,
         "in_hsr": false,
-        "dist_to_hsr_km": 22.23,
+        "dist_to_udupi_km": 22.23,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1147,7 +1147,7 @@
         "lat": 13.108365,
         "lon": 77.576785,
         "in_hsr": false,
-        "dist_to_hsr_km": 22.82,
+        "dist_to_udupi_km": 22.82,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1165,7 +1165,7 @@
         "lat": 13.094001,
         "lon": 77.578976,
         "in_hsr": false,
-        "dist_to_hsr_km": 21.24,
+        "dist_to_udupi_km": 21.24,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1183,7 +1183,7 @@
         "lat": 13.098124,
         "lon": 77.587408,
         "in_hsr": false,
-        "dist_to_hsr_km": 21.38,
+        "dist_to_udupi_km": 21.38,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1201,7 +1201,7 @@
         "lat": 13.105642,
         "lon": 77.600363,
         "in_hsr": false,
-        "dist_to_hsr_km": 21.82,
+        "dist_to_udupi_km": 21.82,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1219,7 +1219,7 @@
         "lat": 13.11453,
         "lon": 77.610211,
         "in_hsr": false,
-        "dist_to_hsr_km": 22.58,
+        "dist_to_udupi_km": 22.58,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1237,7 +1237,7 @@
         "lat": 13.04069,
         "lon": 77.582168,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.64,
+        "dist_to_udupi_km": 15.64,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1255,7 +1255,7 @@
         "lat": 13.072449,
         "lon": 77.630249,
         "in_hsr": false,
-        "dist_to_hsr_km": 17.65,
+        "dist_to_udupi_km": 17.65,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1273,7 +1273,7 @@
         "lat": 13.073912,
         "lon": 77.599055,
         "in_hsr": false,
-        "dist_to_hsr_km": 18.44,
+        "dist_to_udupi_km": 18.44,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1291,7 +1291,7 @@
         "lat": 13.051184,
         "lon": 77.596281,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.13,
+        "dist_to_udupi_km": 16.13,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1309,7 +1309,7 @@
         "lat": 13.055484,
         "lon": 77.567848,
         "in_hsr": false,
-        "dist_to_hsr_km": 17.82,
+        "dist_to_udupi_km": 17.82,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1327,7 +1327,7 @@
         "lat": 13.057574,
         "lon": 77.549924,
         "in_hsr": false,
-        "dist_to_hsr_km": 19.01,
+        "dist_to_udupi_km": 19.01,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1345,7 +1345,7 @@
         "lat": 13.043799,
         "lon": 77.531058,
         "in_hsr": false,
-        "dist_to_hsr_km": 19.02,
+        "dist_to_udupi_km": 19.02,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1363,7 +1363,7 @@
         "lat": 13.025242,
         "lon": 77.512146,
         "in_hsr": false,
-        "dist_to_hsr_km": 19.03,
+        "dist_to_udupi_km": 19.03,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1381,7 +1381,7 @@
         "lat": 13.012177,
         "lon": 77.51845,
         "in_hsr": false,
-        "dist_to_hsr_km": 17.58,
+        "dist_to_udupi_km": 17.58,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1399,7 +1399,7 @@
         "lat": 13.008818,
         "lon": 77.529532,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.41,
+        "dist_to_udupi_km": 16.41,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1417,7 +1417,7 @@
         "lat": 13.014588,
         "lon": 77.52608,
         "in_hsr": false,
-        "dist_to_hsr_km": 17.11,
+        "dist_to_udupi_km": 17.11,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1435,7 +1435,7 @@
         "lat": 13.02408,
         "lon": 77.586098,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.81,
+        "dist_to_udupi_km": 13.81,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1453,7 +1453,7 @@
         "lat": 13.010461,
         "lon": 77.537545,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.87,
+        "dist_to_udupi_km": 15.87,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1471,7 +1471,7 @@
         "lat": 13.024616,
         "lon": 77.537104,
         "in_hsr": false,
-        "dist_to_hsr_km": 17.0,
+        "dist_to_udupi_km": 17.0,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1489,7 +1489,7 @@
         "lat": 13.012843,
         "lon": 77.548101,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.24,
+        "dist_to_udupi_km": 15.24,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1507,7 +1507,7 @@
         "lat": 13.029672,
         "lon": 77.548078,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.63,
+        "dist_to_udupi_km": 16.63,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1525,7 +1525,7 @@
         "lat": 13.031664,
         "lon": 77.559411,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.05,
+        "dist_to_udupi_km": 16.05,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1543,7 +1543,7 @@
         "lat": 13.037564,
         "lon": 77.562202,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.42,
+        "dist_to_udupi_km": 16.42,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1561,7 +1561,7 @@
         "lat": 13.033891,
         "lon": 77.56626,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.84,
+        "dist_to_udupi_km": 15.84,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1579,7 +1579,7 @@
         "lat": 13.036574,
         "lon": 77.597274,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.56,
+        "dist_to_udupi_km": 14.56,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1597,7 +1597,7 @@
         "lat": 13.027853,
         "lon": 77.591004,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.94,
+        "dist_to_udupi_km": 13.94,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1615,7 +1615,7 @@
         "lat": 13.029839,
         "lon": 77.589326,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.22,
+        "dist_to_udupi_km": 14.22,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1633,7 +1633,7 @@
         "lat": 13.03172,
         "lon": 77.590921,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.34,
+        "dist_to_udupi_km": 14.34,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1651,7 +1651,7 @@
         "lat": 13.027493,
         "lon": 77.581578,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.37,
+        "dist_to_udupi_km": 14.37,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1669,7 +1669,7 @@
         "lat": 13.023056,
         "lon": 77.601149,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.01,
+        "dist_to_udupi_km": 13.01,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1687,7 +1687,7 @@
         "lat": 13.017659,
         "lon": 77.595686,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.7,
+        "dist_to_udupi_km": 12.7,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1705,7 +1705,7 @@
         "lat": 13.014332,
         "lon": 77.595188,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.39,
+        "dist_to_udupi_km": 12.39,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1723,7 +1723,7 @@
         "lat": 13.015956,
         "lon": 77.599376,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.36,
+        "dist_to_udupi_km": 12.36,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1741,7 +1741,7 @@
         "lat": 13.015743,
         "lon": 77.605552,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.08,
+        "dist_to_udupi_km": 12.08,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1759,7 +1759,7 @@
         "lat": 13.024933,
         "lon": 77.610282,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.88,
+        "dist_to_udupi_km": 12.88,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1777,7 +1777,7 @@
         "lat": 13.034742,
         "lon": 77.613783,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.82,
+        "dist_to_udupi_km": 13.82,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1795,7 +1795,7 @@
         "lat": 13.033596,
         "lon": 77.622266,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.49,
+        "dist_to_udupi_km": 13.49,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1813,7 +1813,7 @@
         "lat": 13.03319,
         "lon": 77.662113,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.31,
+        "dist_to_udupi_km": 13.31,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1831,7 +1831,7 @@
         "lat": 13.03763,
         "lon": 77.561771,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.45,
+        "dist_to_udupi_km": 16.45,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1849,7 +1849,7 @@
         "lat": 13.027276,
         "lon": 77.662822,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.67,
+        "dist_to_udupi_km": 12.67,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1867,7 +1867,7 @@
         "lat": 13.027408,
         "lon": 77.708542,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.27,
+        "dist_to_udupi_km": 14.27,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1885,7 +1885,7 @@
         "lat": 13.018675,
         "lon": 77.70366,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.16,
+        "dist_to_udupi_km": 13.16,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1903,7 +1903,7 @@
         "lat": 13.005152,
         "lon": 77.693474,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.32,
+        "dist_to_udupi_km": 11.32,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1921,7 +1921,7 @@
         "lat": 12.98509,
         "lon": 77.714878,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.83,
+        "dist_to_udupi_km": 10.83,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1939,7 +1939,7 @@
         "lat": 12.986807,
         "lon": 77.695438,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.66,
+        "dist_to_udupi_km": 9.66,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1957,7 +1957,7 @@
         "lat": 12.99131,
         "lon": 77.670006,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.93,
+        "dist_to_udupi_km": 8.93,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1975,7 +1975,7 @@
         "lat": 13.002158,
         "lon": 77.660701,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.88,
+        "dist_to_udupi_km": 9.88,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -1993,7 +1993,7 @@
         "lat": 13.006629,
         "lon": 77.653026,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.27,
+        "dist_to_udupi_km": 10.27,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2011,7 +2011,7 @@
         "lat": 12.981192,
         "lon": 77.667272,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.77,
+        "dist_to_udupi_km": 7.77,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2029,7 +2029,7 @@
         "lat": 13.10949,
         "lon": 77.576493,
         "in_hsr": false,
-        "dist_to_hsr_km": 22.95,
+        "dist_to_udupi_km": 22.95,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2047,7 +2047,7 @@
         "lat": 13.04253,
         "lon": 77.641867,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.24,
+        "dist_to_udupi_km": 14.24,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2065,7 +2065,7 @@
         "lat": 12.972889,
         "lon": 77.679383,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.43,
+        "dist_to_udupi_km": 7.43,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2083,7 +2083,7 @@
         "lat": 12.972017,
         "lon": 77.690492,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.01,
+        "dist_to_udupi_km": 8.01,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2101,7 +2101,7 @@
         "lat": 12.964194,
         "lon": 77.655973,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.63,
+        "dist_to_udupi_km": 5.63,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2119,7 +2119,7 @@
         "lat": 12.969415,
         "lon": 77.648925,
         "in_hsr": false,
-        "dist_to_hsr_km": 6.11,
+        "dist_to_udupi_km": 6.11,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2137,7 +2137,7 @@
         "lat": 12.977569,
         "lon": 77.636348,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.09,
+        "dist_to_udupi_km": 7.09,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2155,7 +2155,7 @@
         "lat": 12.987412,
         "lon": 77.636452,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.17,
+        "dist_to_udupi_km": 8.17,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2173,7 +2173,7 @@
         "lat": 12.999213,
         "lon": 77.637658,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.46,
+        "dist_to_udupi_km": 9.46,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2191,7 +2191,7 @@
         "lat": 13.007308,
         "lon": 77.630948,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.45,
+        "dist_to_udupi_km": 10.45,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2209,7 +2209,7 @@
         "lat": 13.00874,
         "lon": 77.624167,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.74,
+        "dist_to_udupi_km": 10.74,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2227,7 +2227,7 @@
         "lat": 13.017345,
         "lon": 77.626883,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.62,
+        "dist_to_udupi_km": 11.62,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2245,7 +2245,7 @@
         "lat": 13.042564,
         "lon": 77.64188,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.25,
+        "dist_to_udupi_km": 14.25,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2263,7 +2263,7 @@
         "lat": 13.010914,
         "lon": 77.618784,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.12,
+        "dist_to_udupi_km": 11.12,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2281,7 +2281,7 @@
         "lat": 13.010525,
         "lon": 77.612293,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.28,
+        "dist_to_udupi_km": 11.28,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2299,7 +2299,7 @@
         "lat": 13.001617,
         "lon": 77.609574,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.46,
+        "dist_to_udupi_km": 10.46,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2317,7 +2317,7 @@
         "lat": 13.004108,
         "lon": 77.61794,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.42,
+        "dist_to_udupi_km": 10.42,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2335,7 +2335,7 @@
         "lat": 12.99541,
         "lon": 77.609355,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.83,
+        "dist_to_udupi_km": 9.83,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2353,7 +2353,7 @@
         "lat": 12.986942,
         "lon": 77.608031,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.05,
+        "dist_to_udupi_km": 9.05,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2371,7 +2371,7 @@
         "lat": 12.983053,
         "lon": 77.603203,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.92,
+        "dist_to_udupi_km": 8.92,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2389,7 +2389,7 @@
         "lat": 12.995353,
         "lon": 77.599933,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.28,
+        "dist_to_udupi_km": 10.28,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2407,7 +2407,7 @@
         "lat": 13.007245,
         "lon": 77.592026,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.86,
+        "dist_to_udupi_km": 11.86,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2425,7 +2425,7 @@
         "lat": 13.008465,
         "lon": 77.575975,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.91,
+        "dist_to_udupi_km": 12.91,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2443,7 +2443,7 @@
         "lat": 13.03784,
         "lon": 77.680775,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.22,
+        "dist_to_udupi_km": 14.22,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2461,7 +2461,7 @@
         "lat": 13.004865,
         "lon": 77.57254,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.82,
+        "dist_to_udupi_km": 12.82,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2479,7 +2479,7 @@
         "lat": 13.007258,
         "lon": 77.560208,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.89,
+        "dist_to_udupi_km": 13.89,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2497,7 +2497,7 @@
         "lat": 12.996835,
         "lon": 77.557476,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.26,
+        "dist_to_udupi_km": 13.26,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2515,7 +2515,7 @@
         "lat": 12.992792,
         "lon": 77.568091,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.13,
+        "dist_to_udupi_km": 12.13,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2533,7 +2533,7 @@
         "lat": 12.994418,
         "lon": 77.572123,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.96,
+        "dist_to_udupi_km": 11.96,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2551,7 +2551,7 @@
         "lat": 12.987123,
         "lon": 77.574674,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.18,
+        "dist_to_udupi_km": 11.18,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2569,7 +2569,7 @@
         "lat": 12.989093,
         "lon": 77.589829,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.29,
+        "dist_to_udupi_km": 10.29,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2587,7 +2587,7 @@
         "lat": 12.975863,
         "lon": 77.579963,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.89,
+        "dist_to_udupi_km": 9.89,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2605,7 +2605,7 @@
         "lat": 13.003362,
         "lon": 77.540553,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.11,
+        "dist_to_udupi_km": 15.11,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2623,7 +2623,7 @@
         "lat": 12.998557,
         "lon": 77.536333,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.12,
+        "dist_to_udupi_km": 15.12,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2641,7 +2641,7 @@
         "lat": 13.03782,
         "lon": 77.680788,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.22,
+        "dist_to_udupi_km": 14.22,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2659,7 +2659,7 @@
         "lat": 12.993901,
         "lon": 77.53227,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.16,
+        "dist_to_udupi_km": 15.16,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2677,7 +2677,7 @@
         "lat": 12.988983,
         "lon": 77.524035,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.6,
+        "dist_to_udupi_km": 15.6,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2695,7 +2695,7 @@
         "lat": 12.981617,
         "lon": 77.5184,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.71,
+        "dist_to_udupi_km": 15.71,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2713,7 +2713,7 @@
         "lat": 12.982435,
         "lon": 77.512076,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.36,
+        "dist_to_udupi_km": 16.36,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2731,7 +2731,7 @@
         "lat": 12.985335,
         "lon": 77.509789,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.73,
+        "dist_to_udupi_km": 16.73,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2749,7 +2749,7 @@
         "lat": 12.978725,
         "lon": 77.504163,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.95,
+        "dist_to_udupi_km": 16.95,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2767,7 +2767,7 @@
         "lat": 12.986242,
         "lon": 77.494199,
         "in_hsr": false,
-        "dist_to_hsr_km": 18.28,
+        "dist_to_udupi_km": 18.28,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2785,7 +2785,7 @@
         "lat": 12.964602,
         "lon": 77.476377,
         "in_hsr": false,
-        "dist_to_hsr_km": 19.21,
+        "dist_to_udupi_km": 19.21,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2803,7 +2803,7 @@
         "lat": 12.956759,
         "lon": 77.520312,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.41,
+        "dist_to_udupi_km": 14.41,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2821,7 +2821,7 @@
         "lat": 12.970243,
         "lon": 77.51983,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.01,
+        "dist_to_udupi_km": 15.01,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2839,7 +2839,7 @@
         "lat": 13.02487,
         "lon": 77.638077,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.3,
+        "dist_to_udupi_km": 12.3,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2857,7 +2857,7 @@
         "lat": 12.966555,
         "lon": 77.525353,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.3,
+        "dist_to_udupi_km": 14.3,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2875,7 +2875,7 @@
         "lat": 12.96816,
         "lon": 77.531546,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.76,
+        "dist_to_udupi_km": 13.76,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2893,7 +2893,7 @@
         "lat": 12.970281,
         "lon": 77.531568,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.87,
+        "dist_to_udupi_km": 13.87,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2911,7 +2911,7 @@
         "lat": 12.976319,
         "lon": 77.533637,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.98,
+        "dist_to_udupi_km": 13.98,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2929,7 +2929,7 @@
         "lat": 12.969453,
         "lon": 77.538818,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.12,
+        "dist_to_udupi_km": 13.12,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2947,7 +2947,7 @@
         "lat": 12.968349,
         "lon": 77.543285,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.64,
+        "dist_to_udupi_km": 12.64,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2965,7 +2965,7 @@
         "lat": 12.979833,
         "lon": 77.546028,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.04,
+        "dist_to_udupi_km": 13.04,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -2983,7 +2983,7 @@
         "lat": 12.981123,
         "lon": 77.53801,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.85,
+        "dist_to_udupi_km": 13.85,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3001,7 +3001,7 @@
         "lat": 12.984779,
         "lon": 77.535885,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.26,
+        "dist_to_udupi_km": 14.26,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3019,7 +3019,7 @@
         "lat": 12.991785,
         "lon": 77.547385,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.71,
+        "dist_to_udupi_km": 13.71,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3037,7 +3037,7 @@
         "lat": 13.00957,
         "lon": 77.618808,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.97,
+        "dist_to_udupi_km": 10.97,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3055,7 +3055,7 @@
         "lat": 12.988566,
         "lon": 77.551213,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.17,
+        "dist_to_udupi_km": 13.17,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3073,7 +3073,7 @@
         "lat": 12.98851,
         "lon": 77.556927,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.68,
+        "dist_to_udupi_km": 12.68,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3091,7 +3091,7 @@
         "lat": 12.988469,
         "lon": 77.561097,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.34,
+        "dist_to_udupi_km": 12.34,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3109,7 +3109,7 @@
         "lat": 12.981934,
         "lon": 77.563346,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.68,
+        "dist_to_udupi_km": 11.68,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3127,7 +3127,7 @@
         "lat": 12.975707,
         "lon": 77.565136,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.1,
+        "dist_to_udupi_km": 11.1,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3145,7 +3145,7 @@
         "lat": 12.968729,
         "lon": 77.5663,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.53,
+        "dist_to_udupi_km": 10.53,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3163,7 +3163,7 @@
         "lat": 12.963898,
         "lon": 77.564706,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.38,
+        "dist_to_udupi_km": 10.38,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3181,7 +3181,7 @@
         "lat": 12.967554,
         "lon": 77.562581,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.79,
+        "dist_to_udupi_km": 10.79,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3199,7 +3199,7 @@
         "lat": 12.958932,
         "lon": 77.561412,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.41,
+        "dist_to_udupi_km": 10.41,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3217,7 +3217,7 @@
         "lat": 12.95696,
         "lon": 77.561701,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.28,
+        "dist_to_udupi_km": 10.28,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3235,7 +3235,7 @@
         "lat": 13.02775,
         "lon": 77.616148,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.0,
+        "dist_to_udupi_km": 13.0,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3253,7 +3253,7 @@
         "lat": 12.954922,
         "lon": 77.553341,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.0,
+        "dist_to_udupi_km": 11.0,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3271,7 +3271,7 @@
         "lat": 12.952741,
         "lon": 77.544053,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.84,
+        "dist_to_udupi_km": 11.84,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3289,7 +3289,7 @@
         "lat": 12.957498,
         "lon": 77.53777,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.67,
+        "dist_to_udupi_km": 12.67,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3307,7 +3307,7 @@
         "lat": 12.961932,
         "lon": 77.548934,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.77,
+        "dist_to_udupi_km": 11.77,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3325,7 +3325,7 @@
         "lat": 12.963706,
         "lon": 77.55343,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.43,
+        "dist_to_udupi_km": 11.43,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3343,7 +3343,7 @@
         "lat": 12.966404,
         "lon": 77.556238,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.31,
+        "dist_to_udupi_km": 11.31,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3361,7 +3361,7 @@
         "lat": 12.961192,
         "lon": 77.577959,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.02,
+        "dist_to_udupi_km": 9.02,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3379,7 +3379,7 @@
         "lat": 12.95464,
         "lon": 77.597194,
         "in_hsr": false,
-        "dist_to_hsr_km": 6.92,
+        "dist_to_udupi_km": 6.92,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3397,7 +3397,7 @@
         "lat": 12.944887,
         "lon": 77.572695,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.63,
+        "dist_to_udupi_km": 8.63,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3415,7 +3415,7 @@
         "lat": 12.937412,
         "lon": 77.578177,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.78,
+        "dist_to_udupi_km": 7.78,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3433,7 +3433,7 @@
         "lat": 13.0278,
         "lon": 77.616167,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.01,
+        "dist_to_udupi_km": 13.01,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3451,7 +3451,7 @@
         "lat": 12.9312,
         "lon": 77.578422,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.56,
+        "dist_to_udupi_km": 7.56,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3469,7 +3469,7 @@
         "lat": 12.931877,
         "lon": 77.586458,
         "in_hsr": false,
-        "dist_to_hsr_km": 6.74,
+        "dist_to_udupi_km": 6.74,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3487,7 +3487,7 @@
         "lat": 12.916094,
         "lon": 77.574407,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.76,
+        "dist_to_udupi_km": 7.76,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3505,7 +3505,7 @@
         "lat": 12.909914,
         "lon": 77.57141,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.1,
+        "dist_to_udupi_km": 8.1,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3523,7 +3523,7 @@
         "lat": 12.905485,
         "lon": 77.575071,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.75,
+        "dist_to_udupi_km": 7.75,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3541,7 +3541,7 @@
         "lat": 12.902645,
         "lon": 77.571336,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.2,
+        "dist_to_udupi_km": 8.2,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3559,7 +3559,7 @@
         "lat": 12.896137,
         "lon": 77.570806,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.4,
+        "dist_to_udupi_km": 8.4,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3577,7 +3577,7 @@
         "lat": 12.906965,
         "lon": 77.563197,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.01,
+        "dist_to_udupi_km": 9.01,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3595,7 +3595,7 @@
         "lat": 12.914202,
         "lon": 77.551074,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.29,
+        "dist_to_udupi_km": 10.29,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3613,7 +3613,7 @@
         "lat": 12.905897,
         "lon": 77.548519,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.61,
+        "dist_to_udupi_km": 10.61,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3631,7 +3631,7 @@
         "lat": 13.03942,
         "lon": 77.560974,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.67,
+        "dist_to_udupi_km": 16.67,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3649,7 +3649,7 @@
         "lat": 12.906116,
         "lon": 77.541574,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.36,
+        "dist_to_udupi_km": 11.36,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3667,7 +3667,7 @@
         "lat": 12.904465,
         "lon": 77.540013,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.54,
+        "dist_to_udupi_km": 11.54,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3685,7 +3685,7 @@
         "lat": 12.89562,
         "lon": 77.546254,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.01,
+        "dist_to_udupi_km": 11.01,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3703,7 +3703,7 @@
         "lat": 12.899346,
         "lon": 77.552467,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.28,
+        "dist_to_udupi_km": 10.28,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3721,7 +3721,7 @@
         "lat": 12.924027,
         "lon": 77.553181,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.12,
+        "dist_to_udupi_km": 10.12,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3739,7 +3739,7 @@
         "lat": 12.926899,
         "lon": 77.553673,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.1,
+        "dist_to_udupi_km": 10.1,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3757,7 +3757,7 @@
         "lat": 12.92608,
         "lon": 77.544555,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.07,
+        "dist_to_udupi_km": 11.07,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3775,7 +3775,7 @@
         "lat": 12.935051,
         "lon": 77.54094,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.61,
+        "dist_to_udupi_km": 11.61,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3793,7 +3793,7 @@
         "lat": 12.933369,
         "lon": 77.542621,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.4,
+        "dist_to_udupi_km": 11.4,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3811,7 +3811,7 @@
         "lat": 12.941705,
         "lon": 77.541934,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.68,
+        "dist_to_udupi_km": 11.68,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3829,7 +3829,7 @@
         "lat": 13.03123,
         "lon": 77.529643,
         "in_hsr": false,
-        "dist_to_hsr_km": 18.1,
+        "dist_to_udupi_km": 18.1,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3847,7 +3847,7 @@
         "lat": 12.93588,
         "lon": 77.549132,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.76,
+        "dist_to_udupi_km": 10.76,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3865,7 +3865,7 @@
         "lat": 12.935383,
         "lon": 77.553451,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.3,
+        "dist_to_udupi_km": 10.3,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3883,7 +3883,7 @@
         "lat": 12.929926,
         "lon": 77.538417,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.79,
+        "dist_to_udupi_km": 11.79,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3901,7 +3901,7 @@
         "lat": 12.931997,
         "lon": 77.527938,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.94,
+        "dist_to_udupi_km": 12.94,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3919,7 +3919,7 @@
         "lat": 12.939074,
         "lon": 77.516583,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.29,
+        "dist_to_udupi_km": 14.29,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3937,7 +3937,7 @@
         "lat": 12.926383,
         "lon": 77.513213,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.45,
+        "dist_to_udupi_km": 14.45,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3955,7 +3955,7 @@
         "lat": 12.954649,
         "lon": 77.503458,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.08,
+        "dist_to_udupi_km": 16.08,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3973,7 +3973,7 @@
         "lat": 12.919099,
         "lon": 77.483031,
         "in_hsr": false,
-        "dist_to_hsr_km": 17.67,
+        "dist_to_udupi_km": 17.67,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -3991,7 +3991,7 @@
         "lat": 12.890552,
         "lon": 77.584335,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.19,
+        "dist_to_udupi_km": 7.19,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4009,7 +4009,7 @@
         "lat": 12.886717,
         "lon": 77.589236,
         "in_hsr": false,
-        "dist_to_hsr_km": 6.88,
+        "dist_to_udupi_km": 6.88,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4027,7 +4027,7 @@
         "lat": 13.09053,
         "lon": 77.584508,
         "in_hsr": false,
-        "dist_to_hsr_km": 20.68,
+        "dist_to_udupi_km": 20.68,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4045,7 +4045,7 @@
         "lat": 13.04154,
         "lon": 77.496474,
         "in_hsr": false,
-        "dist_to_hsr_km": 21.5,
+        "dist_to_udupi_km": 21.5,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4063,7 +4063,7 @@
         "lat": 12.883052,
         "lon": 77.514633,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.66,
+        "dist_to_udupi_km": 14.66,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4081,7 +4081,7 @@
         "lat": 12.896548,
         "lon": 77.605856,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.79,
+        "dist_to_udupi_km": 4.79,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4099,7 +4099,7 @@
         "lat": 12.866072,
         "lon": 77.563244,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.46,
+        "dist_to_udupi_km": 10.46,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4117,7 +4117,7 @@
         "lat": 12.876024,
         "lon": 77.583105,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.05,
+        "dist_to_udupi_km": 8.05,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4135,7 +4135,7 @@
         "lat": 12.864996,
         "lon": 77.580214,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.01,
+        "dist_to_udupi_km": 9.01,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4153,7 +4153,7 @@
         "lat": 12.858219,
         "lon": 77.591722,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.59,
+        "dist_to_udupi_km": 8.59,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4171,7 +4171,7 @@
         "lat": 12.854623,
         "lon": 77.587826,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.17,
+        "dist_to_udupi_km": 9.17,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4189,7 +4189,7 @@
         "lat": 12.871299,
         "lon": 77.601427,
         "in_hsr": false,
-        "dist_to_hsr_km": 6.81,
+        "dist_to_udupi_km": 6.81,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4207,7 +4207,7 @@
         "lat": 12.879096,
         "lon": 77.60938,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.59,
+        "dist_to_udupi_km": 5.59,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4225,7 +4225,7 @@
         "lat": 12.889318,
         "lon": 77.61705,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.21,
+        "dist_to_udupi_km": 4.21,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4243,7 +4243,7 @@
         "lat": 13.01462,
         "lon": 77.515071,
         "in_hsr": false,
-        "dist_to_hsr_km": 18.03,
+        "dist_to_udupi_km": 18.03,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4261,7 +4261,7 @@
         "lat": 12.89119,
         "lon": 77.626641,
         "in_hsr": false,
-        "dist_to_hsr_km": 3.33,
+        "dist_to_udupi_km": 3.33,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4279,7 +4279,7 @@
         "lat": 12.883988,
         "lon": 77.619928,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.42,
+        "dist_to_udupi_km": 4.42,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4297,7 +4297,7 @@
         "lat": 12.872561,
         "lon": 77.626756,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.11,
+        "dist_to_udupi_km": 5.11,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4315,7 +4315,7 @@
         "lat": 12.880121,
         "lon": 77.643043,
         "in_hsr": false,
-        "dist_to_hsr_km": 3.84,
+        "dist_to_udupi_km": 3.84,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4333,7 +4333,7 @@
         "lat": 12.930991,
         "lon": 77.614551,
         "in_hsr": false,
-        "dist_to_hsr_km": 3.87,
+        "dist_to_udupi_km": 3.87,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4351,7 +4351,7 @@
         "lat": 12.922184,
         "lon": 77.646882,
         "in_hsr": true,
-        "dist_to_hsr_km": 0.86,
+        "dist_to_udupi_km": 0.86,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4369,7 +4369,7 @@
         "lat": 12.91811,
         "lon": 77.64545,
         "in_hsr": true,
-        "dist_to_hsr_km": 0.41,
+        "dist_to_udupi_km": 0.41,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4387,7 +4387,7 @@
         "lat": 12.912182,
         "lon": 77.647549,
         "in_hsr": true,
-        "dist_to_hsr_km": 0.31,
+        "dist_to_udupi_km": 0.31,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4405,7 +4405,7 @@
         "lat": 12.905361,
         "lon": 77.633119,
         "in_hsr": true,
-        "dist_to_hsr_km": 1.73,
+        "dist_to_udupi_km": 1.73,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4423,7 +4423,7 @@
         "lat": 12.899075,
         "lon": 77.640772,
         "in_hsr": true,
-        "dist_to_hsr_km": 1.81,
+        "dist_to_udupi_km": 1.81,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4441,7 +4441,7 @@
         "lat": 13.01522,
         "lon": 77.536539,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.31,
+        "dist_to_udupi_km": 16.31,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4459,7 +4459,7 @@
         "lat": 12.912793,
         "lon": 77.676734,
         "in_hsr": false,
-        "dist_to_hsr_km": 3.34,
+        "dist_to_udupi_km": 3.34,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4477,7 +4477,7 @@
         "lat": 12.911165,
         "lon": 77.687832,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.55,
+        "dist_to_udupi_km": 4.55,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4495,7 +4495,7 @@
         "lat": 12.936679,
         "lon": 77.695516,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.91,
+        "dist_to_udupi_km": 5.91,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4513,7 +4513,7 @@
         "lat": 12.950633,
         "lon": 77.693505,
         "in_hsr": false,
-        "dist_to_hsr_km": 6.53,
+        "dist_to_udupi_km": 6.53,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4531,7 +4531,7 @@
         "lat": 12.961941,
         "lon": 77.756162,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.05,
+        "dist_to_udupi_km": 13.05,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4549,7 +4549,7 @@
         "lat": 12.99371,
         "lon": 77.759137,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.1,
+        "dist_to_udupi_km": 15.1,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4567,7 +4567,7 @@
         "lat": 13.029893,
         "lon": 77.731428,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.82,
+        "dist_to_udupi_km": 15.82,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4585,7 +4585,7 @@
         "lat": 12.95705,
         "lon": 77.658522,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.92,
+        "dist_to_udupi_km": 4.92,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4603,7 +4603,7 @@
         "lat": 12.959535,
         "lon": 77.637548,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.09,
+        "dist_to_udupi_km": 5.09,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4621,7 +4621,7 @@
         "lat": 12.954277,
         "lon": 77.633323,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.63,
+        "dist_to_udupi_km": 4.63,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4639,7 +4639,7 @@
         "lat": 13.01559,
         "lon": 77.550344,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.29,
+        "dist_to_udupi_km": 15.29,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4657,7 +4657,7 @@
         "lat": 12.962199,
         "lon": 77.613641,
         "in_hsr": false,
-        "dist_to_hsr_km": 6.36,
+        "dist_to_udupi_km": 6.36,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4675,7 +4675,7 @@
         "lat": 12.95084,
         "lon": 77.613677,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.35,
+        "dist_to_udupi_km": 5.35,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4693,7 +4693,7 @@
         "lat": 12.953662,
         "lon": 77.619265,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.23,
+        "dist_to_udupi_km": 5.23,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4711,7 +4711,7 @@
         "lat": 12.94717,
         "lon": 77.61719,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.79,
+        "dist_to_udupi_km": 4.79,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4729,7 +4729,7 @@
         "lat": 12.944193,
         "lon": 77.627041,
         "in_hsr": false,
-        "dist_to_hsr_km": 3.89,
+        "dist_to_udupi_km": 3.89,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4747,7 +4747,7 @@
         "lat": 12.975476,
         "lon": 77.618721,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.4,
+        "dist_to_udupi_km": 7.4,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4765,7 +4765,7 @@
         "lat": 12.97204,
         "lon": 77.629032,
         "in_hsr": false,
-        "dist_to_hsr_km": 6.66,
+        "dist_to_udupi_km": 6.66,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4783,7 +4783,7 @@
         "lat": 13.01577,
         "lon": 77.555484,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.93,
+        "dist_to_udupi_km": 14.93,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4801,7 +4801,7 @@
         "lat": 13.01371,
         "lon": 77.602798,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.98,
+        "dist_to_udupi_km": 11.98,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4819,7 +4819,7 @@
         "lat": 13.02785,
         "lon": 77.616189,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.01,
+        "dist_to_udupi_km": 13.01,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4837,7 +4837,7 @@
         "lat": 12.99996,
         "lon": 77.662536,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.67,
+        "dist_to_udupi_km": 9.67,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4855,7 +4855,7 @@
         "lat": 13.0074,
         "lon": 77.695358,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.63,
+        "dist_to_udupi_km": 11.63,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4873,7 +4873,7 @@
         "lat": 13.00739,
         "lon": 77.695318,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.63,
+        "dist_to_udupi_km": 11.63,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4891,7 +4891,7 @@
         "lat": 13.08916,
         "lon": 77.589344,
         "in_hsr": false,
-        "dist_to_hsr_km": 20.37,
+        "dist_to_udupi_km": 20.37,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4909,7 +4909,7 @@
         "lat": 13.00731,
         "lon": 77.695304,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.62,
+        "dist_to_udupi_km": 11.62,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4927,7 +4927,7 @@
         "lat": 12.99535,
         "lon": 77.676121,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.56,
+        "dist_to_udupi_km": 9.56,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4945,7 +4945,7 @@
         "lat": 12.97678,
         "lon": 77.672857,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.51,
+        "dist_to_udupi_km": 7.51,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4963,7 +4963,7 @@
         "lat": 12.96736,
         "lon": 77.658657,
         "in_hsr": false,
-        "dist_to_hsr_km": 6.04,
+        "dist_to_udupi_km": 6.04,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4981,7 +4981,7 @@
         "lat": 13.00651,
         "lon": 77.631889,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.34,
+        "dist_to_udupi_km": 10.34,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -4999,7 +4999,7 @@
         "lat": 13.00114,
         "lon": 77.610533,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.37,
+        "dist_to_udupi_km": 10.37,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5017,7 +5017,7 @@
         "lat": 13.00162,
         "lon": 77.601453,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.82,
+        "dist_to_udupi_km": 10.82,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5035,7 +5035,7 @@
         "lat": 12.99925,
         "lon": 77.574108,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.23,
+        "dist_to_udupi_km": 12.23,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5053,7 +5053,7 @@
         "lat": 13.00721,
         "lon": 77.574318,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.91,
+        "dist_to_udupi_km": 12.91,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5071,7 +5071,7 @@
         "lat": 13.003727,
         "lon": 77.54288,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.94,
+        "dist_to_udupi_km": 14.94,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5089,7 +5089,7 @@
         "lat": 13.11799,
         "lon": 77.616378,
         "in_hsr": false,
-        "dist_to_hsr_km": 22.85,
+        "dist_to_udupi_km": 22.85,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5107,7 +5107,7 @@
         "lat": 12.9995,
         "lon": 77.515324,
         "in_hsr": false,
-        "dist_to_hsr_km": 17.03,
+        "dist_to_udupi_km": 17.03,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5125,7 +5125,7 @@
         "lat": 13.00588,
         "lon": 77.503097,
         "in_hsr": false,
-        "dist_to_hsr_km": 18.52,
+        "dist_to_udupi_km": 18.52,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5143,7 +5143,7 @@
         "lat": 12.96389,
         "lon": 77.486795,
         "in_hsr": false,
-        "dist_to_hsr_km": 18.11,
+        "dist_to_udupi_km": 18.11,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5161,7 +5161,7 @@
         "lat": 12.99485,
         "lon": 77.525576,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.82,
+        "dist_to_udupi_km": 15.82,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5179,7 +5179,7 @@
         "lat": 12.99883,
         "lon": 77.528548,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.81,
+        "dist_to_udupi_km": 15.81,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5197,7 +5197,7 @@
         "lat": 12.99639,
         "lon": 77.560711,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.97,
+        "dist_to_udupi_km": 12.97,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5215,7 +5215,7 @@
         "lat": 13.00237,
         "lon": 77.571786,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.65,
+        "dist_to_udupi_km": 12.65,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5233,7 +5233,7 @@
         "lat": 12.98892,
         "lon": 77.619658,
         "in_hsr": false,
-        "dist_to_hsr_km": 8.75,
+        "dist_to_udupi_km": 8.75,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5251,7 +5251,7 @@
         "lat": 12.9931,
         "lon": 77.614996,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.36,
+        "dist_to_udupi_km": 9.36,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5269,7 +5269,7 @@
         "lat": 12.9752,
         "lon": 77.644484,
         "in_hsr": false,
-        "dist_to_hsr_km": 6.75,
+        "dist_to_udupi_km": 6.75,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5287,7 +5287,7 @@
         "lat": 13.06906,
         "lon": 77.631953,
         "in_hsr": false,
-        "dist_to_hsr_km": 17.25,
+        "dist_to_udupi_km": 17.25,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5305,7 +5305,7 @@
         "lat": 12.99473,
         "lon": 77.695889,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.43,
+        "dist_to_udupi_km": 10.43,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5323,7 +5323,7 @@
         "lat": 12.97467,
         "lon": 77.761751,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.22,
+        "dist_to_udupi_km": 14.22,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5341,7 +5341,7 @@
         "lat": 12.9607,
         "lon": 77.643148,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.15,
+        "dist_to_udupi_km": 5.15,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5359,7 +5359,7 @@
         "lat": 12.97146,
         "lon": 77.631229,
         "in_hsr": false,
-        "dist_to_hsr_km": 6.53,
+        "dist_to_udupi_km": 6.53,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5377,7 +5377,7 @@
         "lat": 12.97666,
         "lon": 77.61975,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.47,
+        "dist_to_udupi_km": 7.47,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5395,7 +5395,7 @@
         "lat": 12.988,
         "lon": 77.579749,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.88,
+        "dist_to_udupi_km": 10.88,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5413,7 +5413,7 @@
         "lat": 12.97713,
         "lon": 77.580544,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.94,
+        "dist_to_udupi_km": 9.94,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5431,7 +5431,7 @@
         "lat": 12.977087,
         "lon": 77.58051,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.94,
+        "dist_to_udupi_km": 9.94,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5449,7 +5449,7 @@
         "lat": 12.98598,
         "lon": 77.566352,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.73,
+        "dist_to_udupi_km": 11.73,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5467,7 +5467,7 @@
         "lat": 12.996051,
         "lon": 77.55719,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.22,
+        "dist_to_udupi_km": 13.22,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5485,7 +5485,7 @@
         "lat": 13.05887,
         "lon": 77.591178,
         "in_hsr": false,
-        "dist_to_hsr_km": 17.12,
+        "dist_to_udupi_km": 17.12,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5503,7 +5503,7 @@
         "lat": 12.99585,
         "lon": 77.551682,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.65,
+        "dist_to_udupi_km": 13.65,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5521,7 +5521,7 @@
         "lat": 12.98383,
         "lon": 77.529628,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.78,
+        "dist_to_udupi_km": 14.78,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5539,7 +5539,7 @@
         "lat": 12.99233,
         "lon": 77.529096,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.34,
+        "dist_to_udupi_km": 15.34,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5557,7 +5557,7 @@
         "lat": 12.978669,
         "lon": 77.52675,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.76,
+        "dist_to_udupi_km": 14.76,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5575,7 +5575,7 @@
         "lat": 12.97326,
         "lon": 77.539117,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.3,
+        "dist_to_udupi_km": 13.3,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5593,7 +5593,7 @@
         "lat": 12.97626,
         "lon": 77.546608,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.77,
+        "dist_to_udupi_km": 12.77,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5611,7 +5611,7 @@
         "lat": 12.98377,
         "lon": 77.548512,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.07,
+        "dist_to_udupi_km": 13.07,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5629,7 +5629,7 @@
         "lat": 12.99777,
         "lon": 77.557308,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.35,
+        "dist_to_udupi_km": 13.35,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5647,7 +5647,7 @@
         "lat": 12.97712,
         "lon": 77.580951,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.91,
+        "dist_to_udupi_km": 9.91,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5665,7 +5665,7 @@
         "lat": 12.98385,
         "lon": 77.601827,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.08,
+        "dist_to_udupi_km": 9.08,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5683,7 +5683,7 @@
         "lat": 13.06414,
         "lon": 77.583674,
         "in_hsr": false,
-        "dist_to_hsr_km": 17.96,
+        "dist_to_udupi_km": 17.96,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5701,7 +5701,7 @@
         "lat": 12.96477,
         "lon": 77.614506,
         "in_hsr": false,
-        "dist_to_hsr_km": 6.55,
+        "dist_to_udupi_km": 6.55,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5719,7 +5719,7 @@
         "lat": 12.96108,
         "lon": 77.6401,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.22,
+        "dist_to_udupi_km": 5.22,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5737,7 +5737,7 @@
         "lat": 12.95623,
         "lon": 77.617322,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.58,
+        "dist_to_udupi_km": 5.58,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5755,7 +5755,7 @@
         "lat": 12.95335,
         "lon": 77.618399,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.25,
+        "dist_to_udupi_km": 5.25,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5773,7 +5773,7 @@
         "lat": 12.95048,
         "lon": 77.617547,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.05,
+        "dist_to_udupi_km": 5.05,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5791,7 +5791,7 @@
         "lat": 12.96816,
         "lon": 77.564303,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.68,
+        "dist_to_udupi_km": 10.68,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5809,7 +5809,7 @@
         "lat": 12.96746,
         "lon": 77.563584,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.7,
+        "dist_to_udupi_km": 10.7,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5827,7 +5827,7 @@
         "lat": 12.97389,
         "lon": 77.545374,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.75,
+        "dist_to_udupi_km": 12.75,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5845,7 +5845,7 @@
         "lat": 12.97031,
         "lon": 77.536998,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.34,
+        "dist_to_udupi_km": 13.34,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5863,7 +5863,7 @@
         "lat": 12.96551,
         "lon": 77.526477,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.14,
+        "dist_to_udupi_km": 14.14,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5881,7 +5881,7 @@
         "lat": 13.06893,
         "lon": 77.563741,
         "in_hsr": false,
-        "dist_to_hsr_km": 19.35,
+        "dist_to_udupi_km": 19.35,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5899,7 +5899,7 @@
         "lat": 12.96572,
         "lon": 77.518269,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.97,
+        "dist_to_udupi_km": 14.97,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5917,7 +5917,7 @@
         "lat": 12.95838,
         "lon": 77.524947,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.0,
+        "dist_to_udupi_km": 14.0,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5935,7 +5935,7 @@
         "lat": 12.93156,
         "lon": 77.491462,
         "in_hsr": false,
-        "dist_to_hsr_km": 16.86,
+        "dist_to_udupi_km": 16.86,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5953,7 +5953,7 @@
         "lat": 12.95628,
         "lon": 77.529238,
         "in_hsr": false,
-        "dist_to_hsr_km": 13.48,
+        "dist_to_udupi_km": 13.48,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5971,7 +5971,7 @@
         "lat": 12.95077,
         "lon": 77.537867,
         "in_hsr": false,
-        "dist_to_hsr_km": 12.39,
+        "dist_to_udupi_km": 12.39,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -5989,7 +5989,7 @@
         "lat": 12.96316,
         "lon": 77.550205,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.71,
+        "dist_to_udupi_km": 11.71,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -6007,7 +6007,7 @@
         "lat": 12.9604,
         "lon": 77.552131,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.38,
+        "dist_to_udupi_km": 11.38,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -6025,7 +6025,7 @@
         "lat": 12.9645,
         "lon": 77.554676,
         "in_hsr": false,
-        "dist_to_hsr_km": 11.35,
+        "dist_to_udupi_km": 11.35,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -6043,7 +6043,7 @@
         "lat": 12.96546,
         "lon": 77.567195,
         "in_hsr": false,
-        "dist_to_hsr_km": 10.25,
+        "dist_to_udupi_km": 10.25,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -6061,7 +6061,7 @@
         "lat": 12.9665,
         "lon": 77.576196,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.52,
+        "dist_to_udupi_km": 9.52,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC dry waste collection centr",
@@ -6085,7 +6085,7 @@
         "lat": 13.084772,
         "lon": 77.540728,
         "in_hsr": false,
-        "dist_to_hsr_km": 22.1,
+        "dist_to_udupi_km": 22.1,
         "attributes": {
           "OID_": "",
           "Name": "Document/bio_mithanization_unit",
@@ -6103,7 +6103,7 @@
         "lat": 12.896183,
         "lon": 77.650711,
         "in_hsr": false,
-        "dist_to_hsr_km": 2.1,
+        "dist_to_udupi_km": 2.1,
         "attributes": {
           "OID_": "",
           "Name": "Document/bio_mithanization_unit",
@@ -6121,7 +6121,7 @@
         "lat": 12.872922,
         "lon": 77.626697,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.07,
+        "dist_to_udupi_km": 5.07,
         "attributes": {
           "OID_": "",
           "Name": "Document/bio_mithanization_unit",
@@ -6139,7 +6139,7 @@
         "lat": 12.932492,
         "lon": 77.580367,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.39,
+        "dist_to_udupi_km": 7.39,
         "attributes": {
           "OID_": "",
           "Name": "Document/bio_mithanization_unit",
@@ -6157,7 +6157,7 @@
         "lat": 12.933803,
         "lon": 77.614044,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.07,
+        "dist_to_udupi_km": 4.07,
         "attributes": {
           "OID_": "",
           "Name": "Document/bio_mithanization_unit",
@@ -6175,7 +6175,7 @@
         "lat": 13.021314,
         "lon": 77.563294,
         "in_hsr": false,
-        "dist_to_hsr_km": 14.88,
+        "dist_to_udupi_km": 14.88,
         "attributes": {
           "OID_": "",
           "Name": "Document/bio_mithanization_unit",
@@ -6193,7 +6193,7 @@
         "lat": 12.976875,
         "lon": 77.5805,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.92,
+        "dist_to_udupi_km": 9.92,
         "attributes": {
           "OID_": "",
           "Name": "Document/bio_mithanization_unit",
@@ -6211,7 +6211,7 @@
         "lat": 12.965878,
         "lon": 77.576706,
         "in_hsr": false,
-        "dist_to_hsr_km": 9.44,
+        "dist_to_udupi_km": 9.44,
         "attributes": {
           "OID_": "",
           "Name": "Document/bio_mithanization_unit",
@@ -6229,7 +6229,7 @@
         "lat": 12.960922,
         "lon": 77.640711,
         "in_hsr": false,
-        "dist_to_hsr_km": 5.19,
+        "dist_to_udupi_km": 5.19,
         "attributes": {
           "OID_": "",
           "Name": "Document/bio_mithanization_unit",
@@ -6247,7 +6247,7 @@
         "lat": 12.933792,
         "lon": 77.614061,
         "in_hsr": false,
-        "dist_to_hsr_km": 4.07,
+        "dist_to_udupi_km": 4.07,
         "attributes": {
           "OID_": "",
           "Name": "Document/bio_mithanization_unit",
@@ -6265,7 +6265,7 @@
         "lat": 12.936267,
         "lon": 77.579978,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.55,
+        "dist_to_udupi_km": 7.55,
         "attributes": {
           "OID_": "",
           "Name": "Document/bio_mithanization_unit",
@@ -6289,7 +6289,7 @@
         "lat": 12.97386,
         "lon": 77.441004,
         "in_hsr": false,
-        "dist_to_hsr_km": 23.18,
+        "dist_to_udupi_km": 23.18,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC waste processing units",
@@ -6307,7 +6307,7 @@
         "lat": 12.968195,
         "lon": 77.444193,
         "in_hsr": false,
-        "dist_to_hsr_km": 22.67,
+        "dist_to_udupi_km": 22.67,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC waste processing units",
@@ -6325,7 +6325,7 @@
         "lat": 13.031319,
         "lon": 77.479684,
         "in_hsr": false,
-        "dist_to_hsr_km": 22.21,
+        "dist_to_udupi_km": 22.21,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC waste processing units",
@@ -6343,7 +6343,7 @@
         "lat": 12.882866,
         "lon": 77.430853,
         "in_hsr": false,
-        "dist_to_hsr_km": 23.58,
+        "dist_to_udupi_km": 23.58,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC waste processing units",
@@ -6361,7 +6361,7 @@
         "lat": 12.875929,
         "lon": 77.506767,
         "in_hsr": false,
-        "dist_to_hsr_km": 15.69,
+        "dist_to_udupi_km": 15.69,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC waste processing units",
@@ -6379,7 +6379,7 @@
         "lat": 12.896044,
         "lon": 77.649861,
         "in_hsr": false,
-        "dist_to_hsr_km": 2.09,
+        "dist_to_udupi_km": 2.09,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC waste processing units",
@@ -6397,7 +6397,7 @@
         "lat": 12.857962,
         "lon": 77.686032,
         "in_hsr": false,
-        "dist_to_hsr_km": 7.64,
+        "dist_to_udupi_km": 7.64,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC waste processing units",
@@ -6415,7 +6415,7 @@
         "lat": 13.122286,
         "lon": 77.540021,
         "in_hsr": false,
-        "dist_to_hsr_km": 25.8,
+        "dist_to_udupi_km": 25.8,
         "attributes": {
           "OID_": "",
           "Name": "Udupi CMC waste processing units",

@@ -90,7 +90,7 @@ export default function DatasetPage() {
               <ul className="list-disc list-inside opacity-90 space-y-1 ml-2">
                 <li><span className="font-bold">bbc.csv</span> — Udupi CMC official waste composition data</li>
                 <li><span className="font-bold">xxm.pdf</span> — CPCB Annual Report 2021-2022 on Solid Waste</li>
-                <li><span className="font-bold">Geospatial</span> — OpenStreetMap, Census 2011, geoiq.io, HSR_Layout_SD.tif</li>
+                <li><span className="font-bold">Geospatial</span> — OpenStreetMap, Census 2011, geoiq.io, udupi_Layout_SD.tif</li>
               </ul>
             </div>
 

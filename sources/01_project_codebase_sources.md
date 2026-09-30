@@ -13,7 +13,7 @@
 | 3 | **dump_sites.json** | `data/dump_sites.json` | 35 detected dump sites with lat/lon, risk (high/medium/low), area_sqm, detection method, ward name |
 | 4 | **economic_params.json** | `data/economic_params.json` | Udupi CMC cost constants: ₹15.65/km truck cost, ₹52,000 dump cleanup, ₹1,200/ton carbon, ₹175/hr labor, 2,500 trucks, route baselines |
 | 5 | **simulation_lookup.json** | `data/simulation_lookup.json` | 54 pre-computed simulation outputs for population/rainfall/festival combinations |
-| 6 | **bengaluru_wards.geojson** | `data/bengaluru_wards.geojson` | 20 ward polygon boundaries for map rendering |
+| 6 | **udupi_wards.geojson** | `data/udupi_wards.geojson` | 20 ward polygon boundaries for map rendering |
 
 ## Page Components
 
@@ -32,7 +32,7 @@
 | 12 | **Udupi CMC Vehicle System Analysis** | `Udupi CMC Vehicle System Analysis.md` | Vehicle types (Auto Tipper 0.5T, Compactor 5-10T, Garbage Truck 5T, Hook Loader 16-18T), waste flow system, fleet size (~5,300 auto tippers, ~550 compactors, ~700 trucks), all cited sources |
 | 13 | **AstraCity Blueprint** | `AstraCity_Blueprint.md` | Page specs, tech stack, data strategy, economic formulas (fuelSavings, cleanupSavings, carbonCredits, laborSavings), Udupi CMC cost constants |
 | 14 | **AstraCity Implementation Doc** | `AstraCity_Implementation_Doc.md` | Full implementation details for all 6 pages, data schemas, design system, known issues, upgrade roadmap |
-| 15 | **Udupi City Dataset Analysis** | `Data Analysis/hsr_layout_dataset_analysis.md` | Ward boundary metadata (Udupi CMC, PolygonZ), road network (2,027 segments from OSM), road type distribution, satellite data specs |
+| 15 | **Udupi City Dataset Analysis** | `Data Analysis/udupi_layout_dataset_analysis.md` | Ward boundary metadata (Udupi CMC, PolygonZ), road network (2,027 segments from OSM), road type distribution, satellite data specs |
 | 16 | **Dataset Summary** | `Data Analysis/dataset_summary.md` | Udupi CMC boundary dataset (268,001 road segments city-wide), highway classification breakdown, GIS workflows |
 
 ## Data Analysis Scripts

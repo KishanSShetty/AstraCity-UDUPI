@@ -12,11 +12,11 @@ BASE = r"./data/spaceTech Dataset"
 OUTPUT = f"{BASE}/output"
 
 # ── Load inputs ──
-ward = gpd.read_file(f"{OUTPUT}/hsr_ward_boundary.geojson")
+ward = gpd.read_file(f"{OUTPUT}/udupi_ward_boundary.geojson")
 ward = ward.to_crs('EPSG:4326')
 ward_proj = ward.to_crs('EPSG:32643')
 
-roads = gpd.read_file(f"{OUTPUT}/hsr_road_network.geojson")
+roads = gpd.read_file(f"{OUTPUT}/udupi_road_network.geojson")
 roads = roads.to_crs('EPSG:4326')
 
 buildings = gpd.read_file(f"{OUTPUT}/buildings.geojson")
@@ -40,7 +40,7 @@ AREA_HECTARES = 704
 TOTAL_BUILDINGS_OSM = 9471
 BUILDING_DENSITY_PER_SQKM = 1345
 
-# Roads (from hsr_road_network.geojson)
+# Roads (from udupi_road_network.geojson)
 TOTAL_ROAD_SEGMENTS = 2027
 ROAD_DENSITY_PER_SQKM = 288
 

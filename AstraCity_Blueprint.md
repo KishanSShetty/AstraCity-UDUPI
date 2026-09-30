@@ -60,7 +60,7 @@ astracity/
 │       └── Spinner.tsx           # Loading state
 │
 ├── data/
-│   ├── bengaluru_wards.geojson   # 198 ward boundaries (public data)
+│   ├── udupi_wards.geojson   # 198 ward boundaries (public data)
 │   ├── dump_sites.json           # Pre-processed dump locations
 │   ├── ward_scores.json          # Pre-computed risk/score per ward
 │   ├── methane_grid.json         # Methane intensity grid
@@ -125,7 +125,7 @@ astracity/
   - Cost savings contribution from this ward
   - "Simulate this ward →" button → goes to `/simulation` with ward pre-selected
 
-**Data:** `bengaluru_wards.geojson` + `dump_sites.json` + `ward_scores.json`
+**Data:** `udupi_wards.geojson` + `dump_sites.json` + `ward_scores.json`
 
 **Key Mapbox layers:**
 ```javascript
@@ -283,7 +283,7 @@ The frontend will parse this JSON and update the map/tables accordingly.
 
 | File | How to generate | Time |
 |------|----------------|------|
-| `bengaluru_wards.geojson` | Download from Udupi CMC Open Data / GitHub | 10 min |
+| `udupi_wards.geojson` | Download from Udupi CMC Open Data / GitHub | 10 min |
 | `dump_sites.json` | Run `process_satellite.py` on any Sentinel-2 image OR manually place 50–80 realistic points | 30 min |
 | `ward_scores.json` | Run `generate_ward_scores.py` with formula above | 20 min |
 | `methane_grid.json` | Simulate from ward areas + landfill proximity | 20 min |
@@ -305,7 +305,7 @@ import rasterio
 import numpy as np
 from sklearn.cluster import DBSCAN
 
-with rasterio.open('bangalore_satellite.tif') as src:
+with rasterio.open('udupi_satellite.tif') as src:
     red = src.read(1).astype(float)
     green = src.read(2).astype(float)
     blue = src.read(3).astype(float)
