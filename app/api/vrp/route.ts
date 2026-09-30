@@ -9,7 +9,7 @@ import routingConfig from '@/lib/routing_config.json';
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { stops, vehicles, depot } = body;
+    const { stops, vehicles, depot, dispatch_hour } = body;
 
     // Use provided stops or defaults from routing config
     const vrpStops: VRPStop[] = stops || getDefaultStops();
@@ -19,8 +19,8 @@ export async function POST(request: NextRequest) {
       lon: routingConfig.depot.coordinates[0],
     };
 
-    // Solve VRP
-    const result = solveVRP(vrpStops, vrpVehicles, vrpDepot);
+    // Solve VRP (pass dispatch_hour if provided)
+    const result = solveVRP(vrpStops, vrpVehicles, vrpDepot, dispatch_hour);
 
     return NextResponse.json({
       success: true,

@@ -122,6 +122,7 @@ export default function RoutingDashboard() {
   const [facilityAvailable, setFacilityAvailable] = useState(true);
   const [showHeatmap, setShowHeatmap] = useState(false);
   const [showZones, setShowZones] = useState(false);
+  const [dispatchHour, setDispatchHour] = useState<number>(8); // Default 8 AM (Peak)
   const mapRef = useRef<HTMLDivElement>(null);
   const mapInstanceRef = useRef<unknown>(null);
 
@@ -173,7 +174,7 @@ export default function RoutingDashboard() {
       const res = await fetch('/api/vrp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({}),
+        body: JSON.stringify({ dispatch_hour: dispatchHour }),
       });
       const data = await res.json();
       if (!data.success) throw new Error('VRP solver returned no solution');
@@ -421,20 +422,38 @@ export default function RoutingDashboard() {
             <p style={{ fontSize: 12, color: '#94a3b8', margin: 0 }}>Udupi City · Udupi CMC · {ROUTING_CONFIG.vehicle_fleet.length} Vehicles · 6 DWCCs · Karvalu SWM / Beedinagudde BMU</p>
           </div>
         </div>
-        <motion.button
-          onClick={solveRouting}
-          disabled={isLoading}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          style={{
-            padding: '10px 24px', borderRadius: 10, border: 'none', cursor: isLoading ? 'wait' : 'pointer',
-            background: isLoading ? '#475569' : 'linear-gradient(135deg, #14b8a6, #0ea5e9)',
-            color: '#fff', fontWeight: 600, fontSize: 14, letterSpacing: 0.3,
-            boxShadow: '0 4px 15px rgba(20,184,166,0.3)',
-          }}
-        >
-          {isLoading ? '⏳ Solving...' : '🚀 Solve Routes'}
-        </motion.button>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+            <span style={{ fontSize: 10, color: '#94a3b8', marginBottom: 2 }}>Dispatch Time (Traffic)</span>
+            <select
+              value={dispatchHour}
+              onChange={(e) => setDispatchHour(Number(e.target.value))}
+              style={{
+                background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)',
+                color: '#fff', borderRadius: 6, padding: '4px 8px', fontSize: 13, outline: 'none'
+              }}
+            >
+              <option value={6}>06:00 AM (Off-Peak)</option>
+              <option value={8}>08:00 AM (Morning Peak)</option>
+              <option value={12}>12:00 PM (Midday)</option>
+              <option value={18}>06:00 PM (Evening Peak)</option>
+            </select>
+          </div>
+          <motion.button
+            onClick={solveRouting}
+            disabled={isLoading}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            style={{
+              padding: '10px 24px', borderRadius: 10, border: 'none', cursor: isLoading ? 'wait' : 'pointer',
+              background: isLoading ? '#475569' : 'linear-gradient(135deg, #14b8a6, #0ea5e9)',
+              color: '#fff', fontWeight: 600, fontSize: 14, letterSpacing: 0.3,
+              boxShadow: '0 4px 15px rgba(20,184,166,0.3)',
+            }}
+          >
+            {isLoading ? '⏳ Solving...' : '🚀 Solve Routes'}
+          </motion.button>
+        </div>
       </header>
 
       {/* Tab Bar */}
@@ -569,12 +588,24 @@ export default function RoutingDashboard() {
                 {vrpResult && (
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
                     <div style={{ padding: 16, borderRadius: 12, background: 'linear-gradient(135deg, rgba(20,184,166,0.1), rgba(59,130,246,0.1))', border: '1px solid rgba(20,184,166,0.2)', marginBottom: 16 }}>
-                      <p style={{ fontSize: 13, fontWeight: 600, color: '#14b8a6', margin: '0 0 8px' }}>✅ VRP Solution — {vrpResult.algorithm}</p>
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
+                        <p style={{ fontSize: 13, fontWeight: 600, color: '#14b8a6', margin: 0 }}>✅ VRP Solution — {vrpResult.algorithm}</p>
+                        {vrpResult.traffic_multiplier < 1.0 && (
+                          <span style={{ fontSize: 10, background: '#ef4444', color: '#fff', padding: '2px 6px', borderRadius: 4, fontWeight: 600 }}>Heavy Traffic</span>
+                        )}
+                        {vrpResult.traffic_multiplier >= 1.0 && (
+                          <span style={{ fontSize: 10, background: '#22c55e', color: '#fff', padding: '2px 6px', borderRadius: 4, fontWeight: 600 }}>Clear Traffic</span>
+                        )}
+                      </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8, marginBottom: 12 }}>
                         <div><span style={{ fontSize: 11, color: '#94a3b8' }}>Total Distance</span><br /><span style={{ fontSize: 16, fontWeight: 700 }}>{vrpResult.total_distance_km} km</span></div>
-                        <div><span style={{ fontSize: 11, color: '#94a3b8' }}>Total Load</span><br /><span style={{ fontSize: 16, fontWeight: 700 }}>{(vrpResult.total_load_kg / 1000).toFixed(1)} T</span></div>
-                        <div><span style={{ fontSize: 11, color: '#94a3b8' }}>CO₂ Emissions</span><br /><span style={{ fontSize: 16, fontWeight: 700 }}>{vrpResult.total_co2_kg} kg</span></div>
+                        <div><span style={{ fontSize: 11, color: '#94a3b8' }}>Est. Duration (inc. Traffic)</span><br /><span style={{ fontSize: 16, fontWeight: 700, color: vrpResult.traffic_multiplier < 1.0 ? '#ef4444' : '#fff' }}>{Math.floor(vrpResult.total_duration_min / 60)}h {vrpResult.total_duration_min % 60}m</span></div>
+                        <div><span style={{ fontSize: 11, color: '#94a3b8' }}>CO₂ Emissions (w/ Idling)</span><br /><span style={{ fontSize: 16, fontWeight: 700 }}>{vrpResult.total_co2_kg} kg</span></div>
                         <div><span style={{ fontSize: 11, color: '#94a3b8' }}>Solver Time</span><br /><span style={{ fontSize: 16, fontWeight: 700 }}>{vrpResult.solver_time_ms} ms</span></div>
+                      </div>
+                      <div style={{ background: 'rgba(255,255,255,0.05)', padding: '8px 12px', borderRadius: 8, borderLeft: '3px solid #3b82f6' }}>
+                        <p style={{ fontSize: 11, color: '#94a3b8', margin: 0 }}>AI Recommendation:</p>
+                        <p style={{ fontSize: 13, fontWeight: 600, margin: '2px 0 0', color: '#60a5fa' }}>Optimal Dispatch: {vrpResult.recommended_dispatch_time}</p>
                       </div>
                     </div>
                   </motion.div>

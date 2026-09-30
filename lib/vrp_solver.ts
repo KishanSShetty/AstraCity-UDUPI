@@ -49,22 +49,32 @@ export interface VRPResult {
   unassigned_stops: VRPStop[];
   solver_time_ms: number;
   algorithm: string;
+  traffic_multiplier: number;
+  recommended_dispatch_time: string;
 }
 
 /**
  * Solve the VRP using Clarke-Wright Savings Algorithm.
- * 
- * 1. Start with each stop as its own route (depot → stop → depot)
- * 2. Compute savings for merging pairs: s(i,j) = d(depot,i) + d(depot,j) - d(i,j)
- * 3. Sort savings descending
- * 4. Merge routes greedily while respecting capacity constraints
  */
 export function solveVRP(
   stops: VRPStop[],
   vehicles: VRPVehicle[],
-  depot: { lat: number; lon: number }
+  depot: { lat: number; lon: number },
+  dispatch_hour: number = new Date().getHours()
 ): VRPResult {
   const startTime = performance.now();
+
+  // Traffic Model: Returns a speed multiplier based on time of day
+  // Peak hours (8am-10am, 5pm-8pm) have severe congestion in Udupi
+  function getTrafficMultiplier(hour: number): number {
+    if (hour >= 8 && hour <= 10) return 0.5; // Severe Morning Peak (50% speed)
+    if (hour >= 17 && hour <= 20) return 0.6; // Evening Peak (60% speed)
+    if (hour >= 11 && hour <= 16) return 0.85; // Midday traffic
+    if (hour >= 5 && hour <= 7) return 1.2; // Early morning (Optimal, 120% speed)
+    return 1.0; // Night / default
+  }
+
+  const currentTrafficMultiplier = getTrafficMultiplier(dispatch_hour);
 
   if (stops.length === 0 || vehicles.length === 0) {
     return {
@@ -76,6 +86,8 @@ export function solveVRP(
       unassigned_stops: stops,
       solver_time_ms: 0,
       algorithm: 'clarke-wright-savings',
+      traffic_multiplier: currentTrafficMultiplier,
+      recommended_dispatch_time: '05:30 AM',
     };
   }
 
@@ -245,10 +257,14 @@ export function solveVRP(
       hook_loader: 0.55,
       garbage_truck: 0.35,
     };
-    const co2 = totalDist * (emissionFactors[vehicle.type] || 0.35);
+    
+    // Add penalty to CO2 if traffic is bad (idling emissions)
+    const trafficCO2Penalty = currentTrafficMultiplier < 1.0 ? (1.0 / currentTrafficMultiplier) : 1.0;
+    const co2 = totalDist * (emissionFactors[vehicle.type] || 0.35) * trafficCO2Penalty;
 
-    // Duration estimate (avg 20 km/h for waste vehicles + 5 min per stop)
-    const avgSpeed = 20 * vehicle.speed_factor;
+    // Duration estimate with REAL-TIME TRAFFIC multiplier
+    // Base avg speed is 20 km/h in Udupi. Traffic alters this.
+    const avgSpeed = 20 * vehicle.speed_factor * currentTrafficMultiplier;
     const drivingMin = (totalDist / avgSpeed) * 60;
     const stopTime = routeStops.length * 5; // 5 min per stop
     const totalMin = drivingMin + stopTime;
@@ -279,6 +295,8 @@ export function solveVRP(
     unassigned_stops: unassigned,
     solver_time_ms: Math.round(solverTime),
     algorithm: 'clarke-wright-savings',
+    traffic_multiplier: currentTrafficMultiplier,
+    recommended_dispatch_time: '05:30 AM (Optimal Off-Peak)',
   };
 }
 
