@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   description: "AstraCity - Waste Ecosystem Simulation platform",
 };
 
+import AuthWrapper from "@/components/layout/AuthWrapper";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -20,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${spaceGrotesk.className} ${spaceMono.variable} bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased selection:bg-teal-500/30`}>
-        <Navbar />
-        <main className="flex-1 flex flex-col">{children}</main>
-        <AIQueryBar />
+        <AuthWrapper>
+          <Navbar />
+          <main className="flex-1 flex flex-col">{children}</main>
+          <AIQueryBar />
+        </AuthWrapper>
       </body>
     </html>
   );

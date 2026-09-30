@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { UDUPI_DATA } from '@/lib/constants';
+import { useAuthStore } from '@/lib/store';
 
 const MAIN_LINKS = [
   { href: '/', label: 'Home' },
@@ -37,6 +38,7 @@ export default function Navbar() {
   
   const featuresRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
+  const { role, logout } = useAuthStore();
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -116,7 +118,7 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <div className={`hidden md:flex items-center gap-1 text-sm font-medium ${isHome ? 'text-white/70' : 'text-slate-500'}`}>
-          {MAIN_LINKS.map(link => (
+          {MAIN_LINKS.filter(link => role === 'citizen' ? link.href === '/citizen' : true).map(link => (
             <Link 
               key={link.href}
               href={link.href} 
@@ -130,15 +132,16 @@ export default function Navbar() {
             </Link>
           ))}
 
-          {/* FEATURES DROPDOWN */}
-          <div ref={featuresRef} className="relative">
-            <button 
-              onClick={() => setFeaturesOpen(!featuresOpen)}
-              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all duration-200 ${
-                isFeaturesActive || featuresOpen 
-                  ? (isHome ? 'text-white font-bold bg-white/10' : 'text-slate-900 font-bold bg-slate-100/60') 
-                  : (isHome ? 'hover:text-white hover:bg-white/5' : 'hover:text-slate-900 hover:bg-slate-100/40')
-              }`}
+          {/* FEATURES DROPDOWN - Hidden for citizens */}
+          {role !== 'citizen' && (
+            <div ref={featuresRef} className="relative">
+              <button 
+                onClick={() => setFeaturesOpen(!featuresOpen)}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition-all duration-200 ${
+                  isFeaturesActive || featuresOpen 
+                    ? (isHome ? 'text-white font-bold bg-white/10' : 'text-slate-900 font-bold bg-slate-100/60') 
+                    : (isHome ? 'hover:text-white hover:bg-white/5' : 'hover:text-slate-900 hover:bg-slate-100/40')
+                }`}
             >
               Features
               <svg 
@@ -179,6 +182,7 @@ export default function Navbar() {
               )}
             </AnimatePresence>
           </div>
+          )}
 
           {/* ⓘ Info Button — VERY LAST after all links */}
           <button 
@@ -192,6 +196,15 @@ export default function Navbar() {
             aria-label="Data Sources"
           >
             ⓘ
+          </button>
+
+          <button 
+            onClick={() => { logout(); window.location.href = '/'; }}
+            className={`ml-2 px-3 py-1 rounded-lg text-sm font-bold transition-all ${
+              isHome ? 'bg-rose-500/20 text-rose-300 hover:bg-rose-500/40' : 'bg-rose-50 text-rose-600 hover:bg-rose-100 border border-rose-200'
+            }`}
+          >
+            Logout
           </button>
         </div>
 
@@ -215,18 +228,23 @@ export default function Navbar() {
             >
               <div className="p-4 flex flex-col gap-2">
                 <div className="text-xs font-bold text-slate-500 uppercase px-2 mb-1 tracking-wider">Pages</div>
-                {MAIN_LINKS.map(link => (
+                {MAIN_LINKS.filter(link => role === 'citizen' ? link.href === '/citizen' : true).map(link => (
                   <Link key={link.href} href={link.href} className="px-4 py-3 rounded-xl text-slate-600 font-semibold hover:text-teal-600 hover:bg-slate-100">
                     {link.label}
                   </Link>
                 ))}
-                <div className="h-px w-full bg-slate-100 my-2" />
-                <div className="text-xs font-bold text-slate-500 uppercase px-2 mb-1 tracking-wider">Features</div>
-                {FEATURES_LINKS.map(link => (
-                  <Link key={link.href} href={link.href} className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 font-semibold hover:text-teal-600 hover:bg-slate-100">
-                    <span className="text-lg grayscale">{link.icon}</span> {link.label}
-                  </Link>
-                ))}
+                
+                {role !== 'citizen' && (
+                  <>
+                    <div className="h-px w-full bg-slate-100 my-2" />
+                    <div className="text-xs font-bold text-slate-500 uppercase px-2 mb-1 tracking-wider">Features</div>
+                    {FEATURES_LINKS.map(link => (
+                      <Link key={link.href} href={link.href} className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 font-semibold hover:text-teal-600 hover:bg-slate-100">
+                        <span className="text-lg grayscale">{link.icon}</span> {link.label}
+                      </Link>
+                    ))}
+                  </>
+                )}
               </div>
             </motion.div>
           )}

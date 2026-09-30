@@ -84,3 +84,17 @@ export const useComplaintStore = create<ComplaintStore>((set) => ({
     complaints: state.complaints.map(c => c.id === id ? { ...c, status } : c)
   }))
 }));
+
+export type UserRole = 'citizen' | 'municipal' | null;
+
+interface AuthStore {
+  role: UserRole;
+  login: (role: UserRole) => void;
+  logout: () => void;
+}
+
+export const useAuthStore = create<AuthStore>((set) => ({
+  role: null,
+  login: (role) => set({ role }),
+  logout: () => set({ role: null })
+}));
