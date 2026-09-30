@@ -53,6 +53,7 @@ export default function AIQueryBar() {
         const mocks: Record<string, string> = {
           "hi": "Hello! I am the AstraCity AI assistant for Udupi. How can I help you analyze our Solid Waste Management data today?",
           "hello": "Hello! I am the AstraCity AI assistant for Udupi. How can I help you analyze our Solid Waste Management data today?",
+          "manipal": "Manipal (Ward 18), the academic belt of Udupi, generates approximately 14.8 TPD of waste. This is primarily processed locally at DWCC-4 to minimize transport emissions.",
           "Show me illegal dumps": `Udupi City has ${UDUPI_DATA.dump_sites_detected} dump sites detected via satellite imagery, with ${UDUPI_DATA.high_risk_dumps} categorized as high risk. Eliminating these prevents toxic runoff and creates localized cleanup jobs.`,
           "methane risk": `By processing wet waste at the ${UDUPI_DATA.bio_meth_units} biomethanation plants (like Karvalu), Udupi avoids ${UDUPI_DATA.co2e_year} tons of CO₂e annually. This eliminates severe methane risk and generates ₹${UDUPI_DATA.savings_carbon_cr} Cr in carbon credits.`,
           "cost savings": `Processing ${UDUPI_DATA.waste_daily_tons} TPD locally via ${UDUPI_DATA.dwcc_count} DWCCs saves ₹1500/ton in landfill costs. This decentralized methodology generates significant annual savings for the CMC while creating circular economy jobs.`,
@@ -80,6 +81,7 @@ REAL DATA CONTEXT (RAG Knowledge Base):
 - Economics: Decentralized processing saves ₹1500/ton vs landfilling.
 - LULC: ${UDUPI_DATA.lulc_builtup}% built-up, ${UDUPI_DATA.lulc_vegetation}% vegetation.
 - Dumpsites detected: ${UDUPI_DATA.dump_sites_detected} (High risk: ${UDUPI_DATA.high_risk_dumps})
+- Key Regions: Manipal (Ward 18 / Academic Belt) generates ~14.8 TPD, processed by DWCC-4. Malpe handles coastal waste.
 
 METHODOLOGY & INSTRUCTIONS:
 1. GREETINGS: If the user says hello, hi, or greets you, introduce yourself as the AstraCity AI and ask how you can help with Udupi's SWM data.
