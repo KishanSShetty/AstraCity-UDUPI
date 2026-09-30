@@ -247,6 +247,21 @@ export default function Home() {
         </div>
       </header>
 
+      {/* Background Video Layer */}
+      <div className="absolute top-0 left-0 right-0 h-[880px] overflow-hidden pointer-events-none z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-25"
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+        </video>
+        {/* Smooth gradient overlay to blend seamlessly into the crisp white theme */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white/75 via-slate-50/85 to-slate-50" />
+      </div>
+
       {/* Hero Section */}
       <section className="relative z-10 flex flex-col items-center justify-center px-6 pt-12 pb-10 max-w-6xl mx-auto text-center">
         {/* Statutory Badge */}
