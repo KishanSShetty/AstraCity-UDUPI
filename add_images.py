@@ -3,9 +3,9 @@ from docx.shared import Inches, Pt
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 import os
 
-doc_path = r'C:\Users\Kishan Shetty\Downloads\AstraSky-maing\AstraCity_IEEE_Paper_v8.docx'
+doc_path = r'C:\Users\Kishan Shetty\Downloads\AstraSky-maing\VajraYield_IEEE_Paper_v8.docx'
 img_dir = r'C:\Users\Kishan Shetty\Downloads\1RV24IS058'
-out_path = r'C:\Users\Kishan Shetty\Downloads\AstraSky-maing\AstraCity_IEEE_Paper_v10_Final.docx'
+out_path = r'C:\Users\Kishan Shetty\Downloads\AstraSky-maing\VajraYield_IEEE_Paper_v10_Final.docx'
 
 doc = docx.Document(doc_path)
 
@@ -38,7 +38,7 @@ images_to_insert = [
     {
         "anchor_text": "4.4 Capacitated Vehicle Routing",
         "img_file": "Screenshot 2026-06-16 125223.png",
-        "caption": "Fig. 6. The AstraCity Routing Engine interface, visualizing two-tier collection pathways mapping 55 TPD of waste."
+        "caption": "Fig. 6. The VajraYield Routing Engine interface, visualizing two-tier collection pathways mapping 55 TPD of waste."
     }
 ]
 

@@ -11,14 +11,14 @@ function Toast({ message, visible }: { message: string, visible: boolean }) {
   return (
     <AnimatePresence>
       {visible && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 50, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: 20, scale: 0.9 }}
           className="fixed bottom-24 right-8 bg-slate-900 border border-slate-700 text-white px-6 py-4 rounded-xl shadow-2xl z-50 flex items-center gap-3 font-medium"
         >
           <div className="bg-emerald-500/20 text-emerald-400 p-1 rounded-full">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
           </div>
           {message}
         </motion.div>
@@ -36,10 +36,10 @@ export default function ReportPage() {
     actions: true,
     raw: false
   });
-  
+
   const [dateRange, setDateRange] = useState('This Month');
   const [toastVisible, setToastVisible] = useState(false);
-  
+
   const handlePrint = () => {
     window.print();
   };
@@ -59,10 +59,10 @@ export default function ReportPage() {
 
   return (
     <div className="min-h-[calc(100vh-65px)] bg-slate-50 text-slate-900 font-sans p-6 md:p-8 flex flex-col lg:flex-row gap-8 print:p-0 print:bg-white">
-      
+
       {/* LEFT PANEL: CONFIGURATION (Hidden when printing) */}
       <div className="w-full lg:w-[35%] flex flex-col gap-6 print:hidden">
-        
+
         <div className="bg-white border border-slate-200 rounded-3xl p-8 shadow-sm">
           <h1 className="text-3xl font-black text-slate-800 tracking-tight mb-2">Generate Report</h1>
           <p className="text-sm font-medium text-slate-500 mb-8">Configure output sections and export format for Udupi CMC officials.</p>
@@ -80,7 +80,7 @@ export default function ReportPage() {
               <label key={sec.id} className="flex items-center gap-3 cursor-pointer group">
                 <div className={`w-6 h-6 rounded-md flex items-center justify-center transition-all border-2 ${selectedSections[sec.id] ? 'bg-teal-500 border-teal-500' : 'bg-white border-slate-300 group-hover:border-teal-400'}`}>
                   {selectedSections[sec.id] && (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
                   )}
                 </div>
                 <span className="font-bold text-slate-700 select-none group-hover:text-slate-900 transition-colors uppercase text-sm tracking-wide">{sec.label}</span>
@@ -89,7 +89,7 @@ export default function ReportPage() {
           </div>
 
           <h2 className="text-sm font-extrabold uppercase tracking-widest text-slate-400 mb-4">Date Range</h2>
-          <select 
+          <select
             value={dateRange}
             onChange={(e) => setDateRange(e.target.value)}
             className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm font-bold text-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-500 mb-10 shadow-inner cursor-pointer"
@@ -100,18 +100,18 @@ export default function ReportPage() {
           </select>
 
           <div className="flex flex-col gap-3">
-            <button 
+            <button
               onClick={handlePrint}
               className="w-full bg-teal-600 hover:bg-teal-500 text-white font-extrabold text-lg px-6 py-4 rounded-xl shadow-[0_8px_25px_rgba(13,148,136,0.25)] hover:shadow-[0_8px_30px_rgba(13,148,136,0.35)] transition-all flex items-center justify-center gap-3 hover:-translate-y-0.5"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect width="12" height="8" x="6" y="14"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 6 2 18 2 18 9" /><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /><rect width="12" height="8" x="6" y="14" /></svg>
               Generate PDF
             </button>
-            <button 
+            <button
               onClick={handleEmail}
               className="w-full bg-slate-800 hover:bg-slate-700 text-white font-extrabold text-lg px-6 py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-3 hover:-translate-y-0.5"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2" /><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" /></svg>
               Mock Email to Udupi CMC
             </button>
           </div>
@@ -120,18 +120,18 @@ export default function ReportPage() {
 
       {/* RIGHT PANEL: LIVE PDF PREVIEW */}
       <div className="w-full lg:w-[65%] flex justify-center print:w-full print:max-w-none print:m-0 print:block">
-        
+
         {/* The Paper Sheet */}
         <div className="bg-white w-full max-w-[850px] min-h-[1100px] border border-slate-200 shadow-2xl p-10 sm:p-16 text-slate-800 flex flex-col print:shadow-none print:border-none print:p-0 print:min-h-0">
-          
+
           {/* Header */}
           <div className="flex justify-between items-start border-b-2 border-slate-800 pb-8 mb-8">
             <div className="flex flex-col">
               <div className="flex items-center gap-3 mb-1">
                 <div className="w-8 h-8 rounded-full bg-teal-600 flex items-center justify-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20" /><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" /></svg>
                 </div>
-                <h1 className="text-2xl font-black tracking-tighter text-slate-900">AstraCity</h1>
+                <h1 className="text-2xl font-black tracking-tighter text-slate-900">VajraYield</h1>
               </div>
               <span className="text-xs font-bold text-slate-500 uppercase tracking-widest">Spatial Intelligence Platform</span>
             </div>
@@ -154,8 +154,8 @@ export default function ReportPage() {
               <section>
                 <h2 className="text-xl font-extrabold text-slate-800 uppercase tracking-wider border-b border-slate-200 pb-2 mb-4">1. Executive Summary</h2>
                 <p className="font-medium text-slate-600 leading-relaxed text-justify">
-                  This report summarizes the operational state and projected risks associated with Udupi's waste ecosystem over the timeframe marked as <span className="font-bold text-slate-800 bg-slate-100 px-1">{dateRange}</span>. 
-                  Across the surveyed geography of 198 wards encompassing roughly {economicParams.totalTrucks.toLocaleString()} collection vehicles, we have synthesized high-confidence mitigation strategies utilizing AstraCity's spatial intelligence heuristics. Wait times at transfer stations and baseline carbon expenditures present distinct targets for immediate route recalibration.
+                  This report summarizes the operational state and projected risks associated with Udupi's waste ecosystem over the timeframe marked as <span className="font-bold text-slate-800 bg-slate-100 px-1">{dateRange}</span>.
+                  Across the surveyed geography of 198 wards encompassing roughly {economicParams.totalTrucks.toLocaleString()} collection vehicles, we have synthesized high-confidence mitigation strategies utilizing VajraYield's spatial intelligence heuristics. Wait times at transfer stations and baseline carbon expenditures present distinct targets for immediate route recalibration.
                 </p>
               </section>
             )}
@@ -251,11 +251,11 @@ export default function ReportPage() {
           </div>
 
           <div className="mt-auto pt-16 border-t font-medium border-slate-200 text-center text-xs text-slate-400">
-            CONFIDENTIAL REPORT GENERATED ELECTRONICALLY BY ASTRACITY (c) {new Date().getFullYear()}
+            CONFIDENTIAL REPORT GENERATED ELECTRONICALLY BY VAJRAYIELD (c) {new Date().getFullYear()}
           </div>
         </div>
       </div>
-      
+
       {/* Success Toast */}
       <Toast message="Report sent to udupi_cmc@bruhat.org" visible={toastVisible} />
     </div>

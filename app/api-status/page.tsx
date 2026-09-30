@@ -19,7 +19,7 @@ export default function ApiStatusPage() {
   useEffect(() => {
     const checkEndpoints = async () => {
       const newStatuses: any = {};
-      
+
       await Promise.all(endpoints.map(async (ep) => {
         const start = performance.now();
         try {
@@ -34,10 +34,10 @@ export default function ApiStatusPage() {
               reqOpts.body = JSON.stringify(ep.body);
             }
           }
-          
+
           const res = await fetch(ep.url, reqOpts);
           const time = Math.round(performance.now() - start);
-          
+
           if (res.ok) {
             newStatuses[ep.name] = { status: time > 500 ? 'slow' : 'online', ms: time };
           } else {
@@ -61,20 +61,20 @@ export default function ApiStatusPage() {
     <div className="min-h-screen bg-[#070b14] text-white p-8 font-sans selection:bg-teal-500/30 overflow-hidden relative">
       <div className="absolute top-[-20%] left-[-10%] w-[50vw] h-[50vw] bg-teal-500/10 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40vw] h-[40vw] bg-indigo-500/10 rounded-full blur-[150px] pointer-events-none" />
-      
+
       <div className="max-w-4xl mx-auto mt-12 bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl relative z-10 shadow-2xl">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 border-b border-white/10 pb-6 gap-4">
           <div>
             <h1 className="text-3xl md:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-indigo-400 tracking-tighter">
               Backend API Status
             </h1>
-            <p className="text-gray-400 mt-2 font-medium">AstraCity FastAPI — Udupi City</p>
+            <p className="text-gray-400 mt-2 font-medium">VajraYield FastAPI — Udupi City</p>
           </div>
           <a href="http://localhost:8000/docs" target="_blank" rel="noreferrer" className="px-6 py-3 bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 rounded-2xl font-bold hover:bg-indigo-500/30 transition-all shadow-[0_4px_15px_rgba(99,102,241,0.2)] hover:-translate-y-1 block shrink-0">
             API Docs →
           </a>
         </div>
-        
+
         <div className="text-sm text-gray-400 mb-8 font-mono flex items-center gap-2 bg-black/40 px-4 py-2 inline-flex rounded-xl border border-white/5">
           <svg className="w-4 h-4 text-teal-500 animate-spin-slow" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
           <span>Auto-refreshing... Last connection: <span className="text-white font-bold">{lastChecked.toLocaleTimeString()}</span></span>
@@ -83,7 +83,7 @@ export default function ApiStatusPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {endpoints.map((ep) => {
             const data = statuses[ep.name] || { status: 'checking', ms: 0 };
-            
+
             let color = 'bg-white/5 text-gray-400 border-white/10';
             let icon = '⏳';
             if (data.status === 'online') { color = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'; icon = '✅'; }

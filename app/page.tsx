@@ -119,7 +119,7 @@ const FEATURES = [
 
 export default function Home() {
   const population = useCounter(UDUPI_DATA.population_building_based, 2.4, 0);
-  const totalWaste = useCounter(UDUPI_DATA.daily_waste_tons, 2.6, 1); 
+  const totalWaste = useCounter(UDUPI_DATA.daily_waste_tons, 2.6, 1);
   const routeSaving = useCounter(UDUPI_DATA.route_improvement_pct, 2.0, 1);
   const savedCrores = useCounter(UDUPI_DATA.annual_savings_total_cr, 2.0, 1);
 
@@ -152,7 +152,7 @@ export default function Home() {
           className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-10 bg-white/5 backdrop-blur-sm border border-white/10"
         >
           <span className="text-sm border-r border-white/20 pr-3">🛰</span>
-          <span className="text-[13px] font-black tracking-widest text-teal-400 uppercase">Space Tech · Intelligence</span>
+          <span className="text-[13px] font-black tracking-widest text-teal-400 uppercase">UDUPI CMC • SWM 2026 STATUTORY ENGINE</span>
         </motion.div>
 
         <motion.h1
@@ -161,7 +161,7 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="text-6xl sm:text-7xl md:text-8xl font-black tracking-tighter mb-6 drop-shadow-2xl"
         >
-          <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-teal-100 to-teal-400">AstraCity</span>
+          <span className="bg-clip-text text-transparent bg-gradient-to-br from-white via-teal-100 to-teal-400">VajraYield</span>
         </motion.h1>
 
         <motion.p
@@ -170,14 +170,14 @@ export default function Home() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl sm:text-3xl font-extrabold tracking-tight mb-6 text-teal-400"
         >
-          Simulate. Predict. Optimize. Decarbonize.
+          Spatial Digital Twin • Prescriptive Logistics • Statutory Compliance
         </motion.p>
 
         <motion.p
-           initial={{ opacity: 0 }}
-           animate={{ opacity: 1 }}
-           transition={{ duration: 0.8, delay: 0.6 }}
-           className="text-lg md:text-xl max-w-3xl mb-16 leading-relaxed text-slate-100 font-semibold drop-shadow-md"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="text-lg md:text-xl max-w-3xl mb-16 leading-relaxed text-slate-100 font-semibold drop-shadow-md"
         >
           Satellite + Census intelligence for Udupi City&apos;s 1,65,401 residents across 7 sectors, 68.23 sq km, 9,471 buildings.
         </motion.p>
@@ -196,7 +196,7 @@ export default function Home() {
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">Powered by Orbital Intelligence</h2>
           <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-medium">From 400 miles above to the streets of Udupi.</p>
         </div>
-        
+
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {FEATURES.map((f, i) => (
             <motion.div
@@ -234,11 +234,11 @@ export default function Home() {
               <span className="text-xs font-mono text-slate-400 tracking-widest uppercase ml-4 hidden sm:inline-block">System Terminal // Active</span>
             </div>
             <div className="flex items-center gap-2">
-               <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
-               <span className="text-xs font-mono text-teal-400 tracking-widest">LIVE</span>
+              <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
+              <span className="text-xs font-mono text-teal-400 tracking-widest">LIVE</span>
             </div>
           </div>
-          
+
           {/* Terminal Body */}
           <div className="p-2 sm:p-6 font-mono text-sm overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[600px]">
@@ -261,7 +261,7 @@ export default function Home() {
                     <td className="py-4">
                       <div className="flex items-center gap-3">
                         <div className="w-24 h-1.5 bg-black/50 rounded-full overflow-hidden">
-                           <div className={`h-full ${ward.score <= 40 ? 'bg-rose-500 w-[85%]' : ward.score <= 70 ? 'bg-amber-500 w-[55%]' : 'bg-emerald-500 w-[20%]'}`}></div>
+                          <div className={`h-full ${ward.score <= 40 ? 'bg-rose-500 w-[85%]' : ward.score <= 70 ? 'bg-amber-500 w-[55%]' : 'bg-emerald-500 w-[20%]'}`}></div>
                         </div>
                         <span className={`text-xs tracking-wider ${ward.score <= 40 ? 'text-rose-400' : ward.score <= 70 ? 'text-amber-400' : 'text-emerald-400'}`}>
                           {ward.score <= 40 ? 'CRITICAL' : ward.score <= 70 ? 'ELEVATED' : 'NOMINAL'}
@@ -269,11 +269,11 @@ export default function Home() {
                       </div>
                     </td>
                     <td className="py-4 pr-4 text-right">
-                       {ward.score <= 40 ? (
-                         <span className="px-2 py-1 rounded bg-rose-500/20 text-rose-400 text-[10px] uppercase tracking-wider border border-rose-500/20 animate-pulse">Action Req</span>
-                       ) : (
-                         <span className="px-2 py-1 rounded bg-emerald-500/10 text-emerald-500 text-[10px] uppercase tracking-wider border border-emerald-500/10">Monitoring</span>
-                       )}
+                      {ward.score <= 40 ? (
+                        <span className="px-2 py-1 rounded bg-rose-500/20 text-rose-400 text-[10px] uppercase tracking-wider border border-rose-500/20 animate-pulse">Action Req</span>
+                      ) : (
+                        <span className="px-2 py-1 rounded bg-emerald-500/10 text-emerald-500 text-[10px] uppercase tracking-wider border border-emerald-500/10">Monitoring</span>
+                      )}
                     </td>
                   </tr>
                 ))}
@@ -294,11 +294,11 @@ export default function Home() {
         >
           <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-teal-900/30 rounded-full blur-[100px] pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-900/30 rounded-full blur-[100px] pointer-events-none" />
-          
-          <svg className="w-16 h-16 text-teal-500 mx-auto mb-8 opacity-80" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.714 4.148-9.015 9.009-11.609l-2.016-1.571c-3.1 2.308-8.991 6.942-8.991 13.178v7.393h1.998zm-11.028 0v-7.391c0-5.714 4.148-9.015 9.009-11.609l-2.016-1.571c-3.1 2.308-8.991 6.942-8.991 13.178v7.393h1.998z"/></svg>
+
+          <svg className="w-16 h-16 text-teal-500 mx-auto mb-8 opacity-80" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.714 4.148-9.015 9.009-11.609l-2.016-1.571c-3.1 2.308-8.991 6.942-8.991 13.178v7.393h1.998zm-11.028 0v-7.391c0-5.714 4.148-9.015 9.009-11.609l-2.016-1.571c-3.1 2.308-8.991 6.942-8.991 13.178v7.393h1.998z" /></svg>
 
           <p className="text-2xl md:text-4xl font-bold text-white/90 leading-snug mb-12 italic relative z-10">
-            &quot;Udupi generates 5,000 tons of waste every day. No one knows in real time where illegal dumps are forming... AstraCity calculates — to the rupee — how much money these optimizations save the government.&quot;
+            &quot;Udupi generates 5,000 tons of waste every day. No one knows in real time where illegal dumps are forming... VajraYield calculates — to the rupee — how much money these optimizations save the government.&quot;
           </p>
 
           <Link
@@ -306,7 +306,7 @@ export default function Home() {
             className="group relative inline-flex items-center justify-center gap-4 px-12 py-6 rounded-full text-xl font-black transition-all duration-300 bg-teal-500 text-slate-900 shadow-[0_10px_30px_rgb(20,184,166,0.3)] hover:bg-teal-400 hover:shadow-[0_15px_40px_rgb(20,184,166,0.4)] hover:-translate-y-1 z-10 overflow-hidden"
           >
             <span className="relative z-10">Launch Command Center</span>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="transition-transform duration-300 group-hover:translate-x-2 relative z-10"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="transition-transform duration-300 group-hover:translate-x-2 relative z-10"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" /></svg>
             <div className="absolute inset-0 h-full w-full scale-0 rounded-full transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10" />
           </Link>
         </motion.div>
