@@ -37,7 +37,7 @@ export default function Navbar() {
 
   const featuresRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const { logout } = useAuthStore();
+  const { role, logout } = useAuthStore();
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -120,7 +120,9 @@ export default function Navbar() {
 
           {/* Desktop Links */}
           <div className={`hidden md:flex items-center gap-1 text-sm font-medium ${isHome ? 'text-white/70' : 'text-slate-500'}`}>
-            {MAIN_LINKS.map(link => (
+            {role !== 'citizen' && (
+              <>
+                {MAIN_LINKS.map(link => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -192,7 +194,8 @@ export default function Navbar() {
             >
               ⓘ
             </button>
-
+              </>
+            )}
             {/* LOGOUT BUTTON */}
             <button
               onClick={() => {
@@ -230,7 +233,9 @@ export default function Navbar() {
                 className="absolute top-full left-0 w-full bg-slate-100 border-b border-slate-200 md:hidden overflow-hidden z-50 origin-top"
               >
                 <div className="p-4 flex flex-col gap-2">
-                  <div className="text-xs font-bold text-slate-500 uppercase px-2 mb-1 tracking-wider">Pages</div>
+                  {role !== 'citizen' && (
+                    <>
+                      <div className="text-xs font-bold text-slate-500 uppercase px-2 mb-1 tracking-wider">Pages</div>
                   {MAIN_LINKS.map(link => (
                     <Link key={link.href} href={link.href} className="px-4 py-3 rounded-xl text-slate-600 font-semibold hover:text-teal-600 hover:bg-slate-100">
                       {link.label}
@@ -244,6 +249,8 @@ export default function Navbar() {
                     </Link>
                   ))}
                   <div className="h-px w-full bg-slate-200 my-2" />
+                    </>
+                  )}
                   <button
                     onClick={() => {
                       logout();

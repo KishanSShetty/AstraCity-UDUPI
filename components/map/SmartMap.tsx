@@ -152,19 +152,32 @@ export default function SmartMap() {
     map.current.on('load', async () => {
       const m = map.current!;
 
-      // ── Fetch all data ─────────────────────────────────────────────────
+      // ── Global JSON Cache to prevent main-thread lag on tab swapping ──
+      const getCachedJson = (() => {
+        if (typeof window === 'undefined') return (url: string) => fetch(url).then(r => r.json());
+        const w = window as any;
+        w.__geojsonCache = w.__geojsonCache || {};
+        return (url: string) => {
+          if (!w.__geojsonCache[url]) {
+            w.__geojsonCache[url] = fetch(url).then(r => r.json());
+          }
+          return w.__geojsonCache[url];
+        };
+      })();
+
+      // ── Fetch all data (Cached) ──────────────────────────────────────────
       const [ward, roads, dumps, buildingsOsm, truckRaw, zoneRaw, openSpaces, waterBodies, districtBoundary, lulcData] =
         await Promise.all([
-          fetch('/data/udupi_wards.geojson').then((r) => r.json()),
-          fetch('/data/udupi_road_network.geojson').then((r) => r.json()),
-          fetch('/data/udupi_waste_facilities.geojson').then((r) => r.json()),
-          fetch('/data/buildings_udupi.geojson').then((r) => r.json()).catch(() => null),
-          fetch('/data/truck_routes.json').then((r) => r.json()),
-          fetch('/data/ward_grid_zones.geojson').then((r) => r.json()),
-          fetch('/data/open_spaces.geojson').then((r) => r.json()),
-          fetch('/data/water_bodies.geojson').then((r) => r.json()),
-          fetch('/data/udupi_district_boundary.geojson').then((r) => r.json()).catch(() => null),
-          fetch('/data/udupi_lulc.geojson').then((r) => r.json()).catch(() => null),
+          getCachedJson('/data/udupi_wards.geojson'),
+          getCachedJson('/data/udupi_road_network.geojson'),
+          getCachedJson('/data/udupi_waste_facilities.geojson'),
+          getCachedJson('/data/buildings_udupi.geojson').catch(() => null),
+          getCachedJson('/data/truck_routes.json'),
+          getCachedJson('/data/ward_grid_zones.geojson'),
+          getCachedJson('/data/open_spaces.geojson'),
+          getCachedJson('/data/water_bodies.geojson'),
+          getCachedJson('/data/udupi_district_boundary.geojson').catch(() => null),
+          getCachedJson('/data/udupi_lulc.geojson').catch(() => null),
         ]);
 
       const truckRoutes: TruckRoutes = truckRaw;

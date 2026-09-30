@@ -48,10 +48,23 @@ export default function GridZoneMap({ onZoneClick, selectedZoneId }: GridZoneMap
     popupRef.current = new maplibregl.Popup({ closeButton: true, closeOnClick: false, maxWidth: '320px' });
 
     m.on('load', async () => {
+      // ── Global JSON Cache to prevent main-thread lag on tab swapping ──
+      const getCachedJson = (() => {
+        if (typeof window === 'undefined') return (url: string) => fetch(url).then(r => r.json());
+        const w = window as any;
+        w.__geojsonCache = w.__geojsonCache || {};
+        return (url: string) => {
+          if (!w.__geojsonCache[url]) {
+            w.__geojsonCache[url] = fetch(url).then(r => r.json());
+          }
+          return w.__geojsonCache[url];
+        };
+      })();
+
       // Fetch all data
       const [wardBoundary, gridZones] = await Promise.all([
-        fetch('/data/udupi_wards.geojson').then(r => r.json()),
-        fetch('/data/ward_grid_zones.json').then(r => r.json()),
+        getCachedJson('/data/udupi_wards.geojson'),
+        getCachedJson('/data/ward_grid_zones.json'),
       ]);
 
       // ═══════ Ward Boundaries (colored per ward) ═══════

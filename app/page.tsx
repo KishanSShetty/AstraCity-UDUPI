@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { UDUPI_DATA } from '@/lib/constants';
-import wardScoresData from '@/data/ward_scores.json';
 
 // Animated counter hook
 function useCounter(target: number, duration = 2.2, decimals = 0) {
@@ -215,73 +214,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Premium Intelligence Matrix */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full flex flex-col items-center">
-        <div className="text-center mb-14">
-          <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">Live Intelligence Matrix</h2>
-          <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto font-semibold drop-shadow-md">Real-time geospatial risk analysis and automated threat detection.</p>
-        </div>
 
-        <div className="w-full max-w-5xl bg-black/60 p-1 rounded-2xl border border-white/10 backdrop-blur-2xl shadow-[0_0_80px_rgba(0,0,0,0.8)] overflow-hidden">
-          {/* Terminal Header */}
-          <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-white/5">
-            <div className="flex items-center gap-3">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-rose-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-amber-500/80"></div>
-                <div className="w-3 h-3 rounded-full bg-emerald-500/80"></div>
-              </div>
-              <span className="text-xs font-mono text-slate-400 tracking-widest uppercase ml-4 hidden sm:inline-block">System Terminal // Active</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-teal-400 animate-pulse"></span>
-              <span className="text-xs font-mono text-teal-400 tracking-widest">LIVE</span>
-            </div>
-          </div>
-
-          {/* Terminal Body */}
-          <div className="p-2 sm:p-6 font-mono text-sm overflow-x-auto">
-            <table className="w-full text-left border-collapse min-w-[600px]">
-              <thead>
-                <tr className="text-slate-500 border-b border-white/5">
-                  <th className="pb-3 pl-4 font-medium uppercase tracking-wider">Target Node</th>
-                  <th className="pb-3 font-medium uppercase tracking-wider">Coordinates</th>
-                  <th className="pb-3 font-medium uppercase tracking-wider">Threat Level</th>
-                  <th className="pb-3 pr-4 font-medium uppercase tracking-wider text-right">Status</th>
-                </tr>
-              </thead>
-              <tbody className="text-slate-300">
-                {wardScoresData.slice(0, 5).map((ward: { id: string | number; score: number; name: string }, idx: number) => (
-                  <tr key={ward.id} className="border-b border-white/5 hover:bg-white/5 transition-colors group">
-                    <td className="py-4 pl-4 flex items-center gap-3">
-                      <span className="text-teal-500/50 group-hover:text-teal-400 transition-colors">[{ward.id}]</span>
-                      <span className="font-semibold text-slate-200 group-hover:text-white transition-colors">{ward.name}</span>
-                    </td>
-                    <td className="py-4 text-slate-500 text-xs group-hover:text-slate-400 transition-colors">12.93{idx}4°N, 77.6{idx}2°E</td>
-                    <td className="py-4">
-                      <div className="flex items-center gap-3">
-                        <div className="w-24 h-1.5 bg-black/50 rounded-full overflow-hidden">
-                          <div className={`h-full ${ward.score <= 40 ? 'bg-rose-500 w-[85%]' : ward.score <= 70 ? 'bg-amber-500 w-[55%]' : 'bg-emerald-500 w-[20%]'}`}></div>
-                        </div>
-                        <span className={`text-xs tracking-wider ${ward.score <= 40 ? 'text-rose-400' : ward.score <= 70 ? 'text-amber-400' : 'text-emerald-400'}`}>
-                          {ward.score <= 40 ? 'CRITICAL' : ward.score <= 70 ? 'ELEVATED' : 'NOMINAL'}
-                        </span>
-                      </div>
-                    </td>
-                    <td className="py-4 pr-4 text-right">
-                      {ward.score <= 40 ? (
-                        <span className="px-2 py-1 rounded bg-rose-500/20 text-rose-400 text-[10px] uppercase tracking-wider border border-rose-500/20 animate-pulse">Action Req</span>
-                      ) : (
-                        <span className="px-2 py-1 rounded bg-emerald-500/10 text-emerald-500 text-[10px] uppercase tracking-wider border border-emerald-500/10">Monitoring</span>
-                      )}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
 
       {/* Closing CTA Pitch */}
       <section className="relative z-10 max-w-5xl mx-auto px-6 py-32 w-full text-center">

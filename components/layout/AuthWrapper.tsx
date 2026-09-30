@@ -21,8 +21,18 @@ export default function AuthWrapper({ children }: { children: React.ReactNode })
   }, []);
 
   useEffect(() => {
-    if (mounted && role === 'citizen' && pathname !== '/citizen') {
-      router.replace('/citizen');
+    if (!mounted || role === null) return;
+
+    if (role === 'citizen') {
+      // Citizen is restricted to citizen pages
+      if (!pathname.startsWith('/citizen')) {
+        router.replace('/citizen');
+      }
+    } else if (role === 'municipal') {
+      // Municipal admin is restricted from citizen pages
+      if (pathname.startsWith('/citizen')) {
+        router.replace('/');
+      }
     }
   }, [role, pathname, router, mounted]);
 
