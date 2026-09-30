@@ -68,19 +68,7 @@ export default function Navbar() {
 
     checkApi();
     const interval = setInterval(checkApi, 10000);
-    {/* LOGOUT BUTTON */ }
-    <button
-      onClick={() => {
-        localStorage.removeItem('userRole');
-        localStorage.removeItem('authToken');
-        sessionStorage.clear();
-        window.location.href = '/';
-      }}
-      className="ml-3 px-3 py-1 rounded-lg text-xs font-bold border border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500 hover:text-white transition-all flex items-center gap-1.5"
-      title="Sign out of portal"
-    >
-      <span>🚪</span> Logout
-    </button>
+
     return () => {
       document.removeEventListener('mousedown', handleClick);
       clearInterval(interval);
@@ -169,7 +157,10 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full right-0 mt-2 w-80 bg-slate-100 border border-slate-300 rounded-2xl shadow-lg overflow-hidden z-[60]"
+                    className={`absolute top-full right-0 mt-2 w-80 rounded-2xl shadow-2xl border overflow-hidden z-[60] backdrop-blur-xl ${isHome
+                      ? 'bg-slate-900/95 border-slate-700 text-white'
+                      : 'bg-white border-slate-200 text-slate-800'
+                      }`}
                   >
                     <div className="p-3 grid grid-cols-1 gap-1">
                       {FEATURES_LINKS.map(link => (
@@ -205,6 +196,19 @@ export default function Navbar() {
             >
               ⓘ
             </button>
+            {/* LOGOUT BUTTON */}
+            <button
+              onClick={() => {
+                localStorage.removeItem('userRole');
+                localStorage.removeItem('authToken');
+                sessionStorage.clear();
+                window.location.href = '/';
+              }}
+              className="ml-3 px-3 py-1 rounded-lg text-xs font-bold border border-rose-500/30 text-rose-400 bg-rose-500/10 hover:bg-rose-500 hover:text-white transition-all flex items-center gap-1.5"
+              title="Sign out of portal"
+            >
+              <span>🚪</span> Logout
+            </button>
           </div>
 
           {/* Mobile Hamburger */}
@@ -239,6 +243,18 @@ export default function Navbar() {
                       <span className="text-lg grayscale">{link.icon}</span> {link.label}
                     </Link>
                   ))}
+                  <div className="h-px w-full bg-slate-200 my-2" />
+                  <button
+                    onClick={() => {
+                      localStorage.removeItem('userRole');
+                      localStorage.removeItem('authToken');
+                      sessionStorage.clear();
+                      window.location.href = '/';
+                    }}
+                    className="flex items-center gap-2 px-4 py-3 rounded-xl text-rose-600 font-bold hover:bg-rose-50 transition-colors text-left w-full"
+                  >
+                    <span>🚪</span> Sign Out
+                  </button>
                 </div>
               </motion.div>
             )}
