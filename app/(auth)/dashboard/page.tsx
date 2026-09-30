@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   Card, 
   CardContent, 
@@ -29,7 +29,8 @@ import {
   MapPin, 
   Download,
   Activity,
-  Truck
+  Truck,
+  Leaf
 } from "lucide-react";
 import { CrimeTrendChart } from "@/components/charts/CrimeTrendChart";
 import { LiveMap } from "@/components/dashboard/LiveMap";
@@ -42,11 +43,41 @@ import Link from "next/link";
 
 export default function DashboardPage() {
   const [firs] = useState(MOCK_FIRS);
-  const [stats] = useState(MOCK_DASHBOARD_STATS);
+  const [fleetSummary, setFleetSummary] = useState<any>(null);
+  const [dwccSummary, setDwccSummary] = useState<any>(null);
+  const [carbonSummary, setCarbonSummary] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadLiveData() {
+      try {
+        const [fleetRes, dwccRes, carbonRes] = await Promise.all([
+          fetch("/api/fleet-status").then(r => r.ok ? r.json() : null),
+          fetch("/api/dwcc-status").then(r => r.ok ? r.json() : null),
+          fetch("/api/carbon").then(r => r.ok ? r.json() : null),
+        ]);
+        if (fleetRes) setFleetSummary(fleetRes.summary);
+        if (dwccRes) setDwccSummary(dwccRes);
+        if (carbonRes) setCarbonSummary(carbonRes);
+      } catch (e) {
+        console.error("Dashboard live data fetch error:", e);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadLiveData();
+  }, []);
 
   const handleExportCsv = () => {
     downloadDataAsCsv(firs, "udupi-swms-incident-tickets");
   };
+
+  const activeVehicles = fleetSummary ? `${fleetSummary.active}/${fleetSummary.total}` : "8/10";
+  const dwccAvgLoad = dwccSummary ? `${dwccSummary.avg_utilization_pct}%` : "58%";
+  const alertCount = dwccSummary?.alerts?.length ?? 3;
+  const carbonTonsYear = carbonSummary?.carbon?.co2e_tonnes_year 
+    ? Math.round(carbonSummary.carbon.co2e_tonnes_year).toLocaleString('en-IN')
+    : "34,800";
 
   return (
     <div className="flex-1 space-y-6 p-6 lg:p-8 max-w-7xl mx-auto w-full animate-in fade-in duration-300">
@@ -55,32 +86,32 @@ export default function DashboardPage() {
 
       {/* Top Metric Cards - Solid Waste Command Center */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {/* Active Ward Operations */}
+        {/* Active Fleet Telemetry */}
         <Card className="shadow-xs hover:shadow-sm transition-shadow border-slate-200 bg-white">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-xs font-bold uppercase tracking-wider text-slate-500">
-              Active Ward Operations
+              Active Fleet Deployed
             </CardTitle>
             <div className="p-2 rounded-lg bg-emerald-50 text-emerald-700">
-              <Activity className="h-4 w-4" />
+              <Truck className="h-4 w-4" />
             </div>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-black tracking-tight text-slate-900 font-mono">
-              {stats.activeInvestigations}
+              {activeVehicles}
             </div>
             <div className="flex items-center gap-1.5 mt-2 text-xs font-semibold text-emerald-700">
               <TrendingUp className="h-3.5 w-3.5" />
-              <span>35 Municipal Wards Synced</span>
+              <span>{fleetSummary ? `${fleetSummary.total_distance_km} km routed today` : "Clarke-Wright VRP Active"}</span>
             </div>
           </CardContent>
         </Card>
 
-        {/* Monitored Facilities & Generators */}
+        {/* Monitored Facilities & DWCC Load */}
         <Card className="shadow-xs hover:shadow-sm transition-shadow border-slate-200 bg-white">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-xs font-bold uppercase tracking-wider text-slate-500">
-              Monitored Facilities
+              DWCC Utilization
             </CardTitle>
             <div className="p-2 rounded-lg bg-teal-50 text-teal-700">
               <Building2 className="h-4 w-4" />
@@ -88,11 +119,11 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-black tracking-tight text-slate-900 font-mono">
-              {stats.personsOfInterest}
+              {dwccAvgLoad}
             </div>
             <div className="flex items-center gap-1.5 mt-2 text-xs font-semibold text-teal-700">
-              <TrendingUp className="h-3.5 w-3.5" />
-              <span>DWCCs, Biogas & Bulk Sites</span>
+              <Activity className="h-3.5 w-3.5" />
+              <span>16 Zonal Hubs Connected</span>
             </div>
           </CardContent>
         </Card>
@@ -101,7 +132,7 @@ export default function DashboardPage() {
         <Card className="shadow-xs hover:shadow-sm transition-shadow border-slate-200 bg-white">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-xs font-bold uppercase tracking-wider text-slate-500">
-              Telemetry Overflow Alerts
+              Active Overflow Alerts
             </CardTitle>
             <div className="p-2 rounded-lg bg-rose-50 text-rose-600">
               <AlertTriangle className="h-4 w-4" />
@@ -109,30 +140,30 @@ export default function DashboardPage() {
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-black tracking-tight text-slate-900 font-mono">
-              {stats.highRiskAlerts}
+              {alertCount}
             </div>
             <div className="flex items-center gap-1.5 mt-2 text-xs font-bold text-rose-600">
-              <span>Methane & Spillage Warnings</span>
+              <span>Sensor & Spill Warnings</span>
             </div>
           </CardContent>
         </Card>
 
-        {/* Resolution Rate */}
+        {/* CO2e Avoidance */}
         <Card className="shadow-xs hover:shadow-sm transition-shadow border-slate-200 bg-white">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-xs font-bold uppercase tracking-wider text-slate-500">
-              Grievance Resolution
+              Annual CO₂e Avoided
             </CardTitle>
             <div className="p-2 rounded-lg bg-blue-50 text-blue-700">
-              <ShieldCheck className="h-4 w-4" />
+              <Leaf className="h-4 w-4" />
             </div>
           </CardHeader>
           <CardContent>
             <div className="text-3xl font-black tracking-tight text-slate-900 font-mono">
-              {stats.resolutionRate}%
+              {carbonTonsYear}
             </div>
-            <div className="flex items-center gap-1.5 mt-2 text-xs font-semibold text-slate-500">
-              <span>SWM 2026 Target Compliant</span>
+            <div className="flex items-center gap-1.5 mt-2 text-xs font-semibold text-blue-700">
+              <span>Tons CO₂e/yr · CCTS Standard</span>
             </div>
           </CardContent>
         </Card>

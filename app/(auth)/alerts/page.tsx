@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   BellRing, 
   AlertTriangle, 
@@ -23,6 +23,29 @@ import Link from "next/link";
 export default function AlertsPage() {
   const [alerts, setAlerts] = useState<MockAlert[]>(MOCK_ALERTS);
   const [activeFilter, setActiveFilter] = useState<string>("ALL");
+
+  useEffect(() => {
+    fetch("/api/dwcc-status")
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data?.alerts && data.alerts.length > 0) {
+          const liveAlerts: MockAlert[] = data.alerts.map((a: any, i: number) => ({
+            id: `LIVE-DWCC-${i + 1}`,
+            title: `DWCC Capacity Threshold Exceeded (${a.dwcc_id})`,
+            category: "Spike Anomaly",
+            severity: a.level === "critical" ? "CRITICAL" : a.level === "red" ? "HIGH" : "ELEVATED",
+            location: a.message.split(' — ')[0] || "Udupi CMC Facility",
+            timestamp: "Just Now",
+            description: a.message,
+            confidence: 0.96,
+            recommended_action: "Reroute incoming auto-tippers to Karvalu Central SWM plant.",
+            status: "Active"
+          }));
+          setAlerts(prev => [...liveAlerts, ...prev.filter(p => !p.id.startsWith("LIVE-DWCC-"))]);
+        }
+      })
+      .catch(err => console.error("Error fetching live DWCC alerts:", err));
+  }, []);
 
   const handleAcknowledge = (id: string) => {
     setAlerts(prev => prev.map(a => a.id === id ? { ...a, status: "Acknowledged" } : a));

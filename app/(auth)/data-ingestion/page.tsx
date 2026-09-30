@@ -33,7 +33,7 @@ interface UploadStatus {
   message: string;
 }
 
-const RECENT_INGESTIONS = [
+const INITIAL_INGESTIONS = [
   { id: "ING-1092", filename: "Weighbridge_Manifest_Indrali_0891.pdf", type: "Weighbridge Manifest", entities: 14, graphLinks: 6, time: "25 mins ago", status: "Completed" },
   { id: "ING-1091", filename: "GPS_Compactor_Fleet_Logs.csv", type: "Fleet GPS Telemetry", entities: 38, graphLinks: 22, time: "2 hours ago", status: "Completed" },
   { id: "ING-1090", filename: "Drone_Thermal_Orthomosaic_Pit3.jpg", type: "Drone Aerial Imagery", entities: 4, graphLinks: 3, time: "Yesterday", status: "Completed" },
@@ -41,6 +41,7 @@ const RECENT_INGESTIONS = [
 ];
 
 export default function DataIngestionPage() {
+  const [ingestions, setIngestions] = useState(INITIAL_INGESTIONS);
   const [file, setFile] = useState<File | null>(null);
   const [dragActive, setDragActive] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<UploadStatus>({
@@ -49,9 +50,9 @@ export default function DataIngestionPage() {
     message: "Ready to ingest weighbridge slips, IoT telemetry, or inspection records"
   });
   const [formData, setFormData] = useState({
-    firNumber: "SWM/UDUPI/2026/0912",
-    policeStation: "Indrali Central Ward 12",
-    crimeType: "Weighbridge Tonnage Manifest",
+    manifestId: "SWM/UDUPI/2026/0912",
+    wardFacility: "Indrali Central Ward 12",
+    manifestType: "Weighbridge Tonnage Manifest",
     description: "Institutional bulk food waste slip with automated digital scale validation."
   });
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -76,11 +77,21 @@ export default function DataIngestionPage() {
         setTimeout(() => {
           setUploadStatus({ stage: 'graph', progress: 90, message: "Synchronizing with AstraCity Geospatial Twin Graph..." });
           setTimeout(() => {
-            setUploadStatus({ stage: 'completed', progress: 100, message: "Ingestion complete! 14 entities and 6 facility links mapped." });
-          }, 600);
-        }, 600);
-      }, 600);
-    }, 600);
+            const newRecord = {
+              id: `ING-${Math.floor(1000 + Math.random() * 9000)}`,
+              filename: file.name,
+              type: formData.manifestType,
+              entities: 18,
+              graphLinks: 8,
+              time: "Just now",
+              status: "Completed"
+            };
+            setIngestions(prev => [newRecord, ...prev]);
+            setUploadStatus({ stage: 'completed', progress: 100, message: "Ingestion complete! 18 entities and 8 facility links mapped." });
+          }, 500);
+        }, 500);
+      }, 500);
+    }, 500);
   };
 
   return (
@@ -171,16 +182,16 @@ export default function DataIngestionPage() {
                 <div className="space-y-1.5">
                   <Label className="text-xs font-bold text-slate-700">Manifest / Ticket Number</Label>
                   <Input
-                    value={formData.firNumber}
-                    onChange={(e) => setFormData({ ...formData, firNumber: e.target.value })}
+                    value={formData.manifestId}
+                    onChange={(e) => setFormData({ ...formData, manifestId: e.target.value })}
                     className="text-xs bg-slate-50 border-slate-200 font-mono"
                   />
                 </div>
                 <div className="space-y-1.5">
                   <Label className="text-xs font-bold text-slate-700">Ward / Facility Unit</Label>
                   <Input
-                    value={formData.policeStation}
-                    onChange={(e) => setFormData({ ...formData, policeStation: e.target.value })}
+                    value={formData.wardFacility}
+                    onChange={(e) => setFormData({ ...formData, wardFacility: e.target.value })}
                     className="text-xs bg-slate-50 border-slate-200"
                   />
                 </div>
@@ -263,7 +274,7 @@ export default function DataIngestionPage() {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {RECENT_INGESTIONS.map((b) => (
+                {ingestions.map((b) => (
                   <TableRow key={b.id} className="hover:bg-slate-50">
                     <TableCell className="font-mono text-xs font-bold text-emerald-800">{b.id}</TableCell>
                     <TableCell className="text-xs font-semibold text-slate-800">{b.filename}</TableCell>

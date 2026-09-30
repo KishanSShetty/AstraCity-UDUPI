@@ -86,7 +86,7 @@ export default function ChatPage() {
     }));
   };
 
-  const handleSend = (textToSend?: string) => {
+  const handleSend = async (textToSend?: string) => {
     const text = textToSend || input;
     if (!text.trim()) return;
 
@@ -101,47 +101,47 @@ export default function ChatPage() {
     if (!textToSend) setInput("");
     setIsTyping(true);
 
-    setTimeout(() => {
-      let replyContent = "I have analyzed the municipal operational registers across Udupi CMC. Telemetry indicators show stable 140 TPD generation rates with optimal biomethanation throughput at Gundibail.";
-      let reasoning = [
-        "Consulted Udupi SWM 2026 digital twin registry.",
-        "Scanned ward-level daily waste telemetry and weighbridge tickets."
-      ];
-      let citations = [
-        { title: "Udupi CMC Operations Log", link: "/dashboard" },
-        { title: "Ward Spatial Metrics", link: "/analytics" }
-      ];
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: text,
+          history: messages.slice(-4).map(m => ({ role: m.role, content: m.content }))
+        })
+      });
 
-      if (text.toLowerCase().includes("indrali") || text.toLowerCase().includes("methane")) {
-        replyContent = "### Indrali Remediation Telemetry\n- **Methane Concentration:** 480 ppm recorded at Pit 3.\n- **Bio-Mining Progress:** 64% of legacy waste segregated.\n- **Refuse Derived Fuel (RDF):** 120 tonnes dispatched via rail siding.";
-        reasoning = [
-          "Retrieved Indrali North Slope sensor logs.",
-          "Checked drone thermal imagery orthomosaic."
-        ];
-        citations = [
-          { title: "Indrali Sensor Node 04", link: "/alerts" },
-          { title: "Bio-Mining Contractor Dossier", link: "/profiles" }
-        ];
-      } else if (text.toLowerCase().includes("ward") || text.toLowerCase().includes("collection")) {
-        replyContent = "### Ward 12 vs Ward 4 Waste Metrics\n- **Ward 12 (Indrali):** 4.8 TPD generated | 88% source segregated | 1 missed trip.\n- **Ward 4 (Malpe):** 6.2 TPD generated | 72% source segregated | Commercial fish slurry alert active.";
-        citations = [
-          { title: "Ward Demographic Scores", link: "/wards" },
-          { title: "Truck Fleet Routing", link: "/routing" }
-        ];
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
       }
+
+      const data = await res.json();
 
       const botMsg: Message = {
         id: `b-${Date.now()}`,
         role: "assistant",
-        content: replyContent,
-        reasoning,
-        citations,
-        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+        content: data.content || "Operational telemetry retrieved.",
+        reasoning: data.reasoning || [],
+        citations: data.citations || [],
+        timestamp: data.timestamp || new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
 
       setMessages((prev) => [...prev, botMsg]);
+      if (data.reasoning && data.reasoning.length > 0) {
+        setExpandedReasoning((prev) => ({ ...prev, [botMsg.id]: true }));
+      }
+    } catch (err: any) {
+      console.error("Failed to query chat API:", err);
+      const errorMsg: Message = {
+        id: `err-${Date.now()}`,
+        role: "assistant",
+        content: "### System Connection Alert\nUnable to reach SWM Intelligence server. Please verify your connection or check `/api-status`.",
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      };
+      setMessages((prev) => [...prev, errorMsg]);
+    } finally {
       setIsTyping(false);
-    }, 1000);
+    }
   };
 
   const handleClearHistory = () => {
