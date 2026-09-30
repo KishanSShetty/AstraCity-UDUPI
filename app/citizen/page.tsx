@@ -230,7 +230,7 @@ export default function CitizenPortal() {
                         </div>
                         <div className="flex items-center gap-3 text-sm text-slate-400">
                           <span className="flex items-center gap-1"><MapPin className="w-4 h-4" /> {complaint.location}</span>
-                          <span className="flex items-center gap-1"><Clock className="w-4 h-4" /> {new Date(complaint.date).toLocaleDateString()}</span>
+                          <span className="flex items-center gap-1" suppressHydrationWarning><Clock className="w-4 h-4" /> {new Date(complaint.date).toLocaleDateString()}</span>
                         </div>
                       </div>
                     </div>

@@ -99,7 +99,7 @@ function ComplaintCard({ complaint, onUpdate }: { complaint: any, onUpdate: (id:
       <div>
         <div className="flex items-center justify-between mb-1">
           <span className="text-xs font-mono text-slate-400 bg-slate-100 px-2 py-0.5 rounded">#{complaint.id}</span>
-          <span className="text-xs font-bold text-slate-400 flex items-center gap-1"><Clock className="w-3 h-3" /> {new Date(complaint.date).toLocaleDateString()}</span>
+          <span className="text-xs font-bold text-slate-400 flex items-center gap-1" suppressHydrationWarning><Clock className="w-3 h-3" /> {new Date(complaint.date).toLocaleDateString()}</span>
         </div>
         <h3 className="font-bold text-slate-800 leading-tight">{complaint.type}</h3>
         <p className="text-sm text-slate-500 mt-1 line-clamp-2">{complaint.description}</p>
