@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import AIQueryBar from "@/components/layout/AIQueryBar";
-import AuthWrapper from "@/components/layout/AuthWrapper";
+import { AppSidebar } from "@/components/layout/AppSidebar";
+import { TopHeader } from "@/components/layout/TopHeader";
 import { AuthProvider } from "@/lib/AuthContext";
 import { LanguageProvider } from "@/lib/LanguageContext";
 
@@ -22,14 +21,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="light" suppressHydrationWarning>
-      <body className={`${spaceGrotesk.className} ${spaceMono.variable} bg-background text-foreground min-h-screen flex flex-col antialiased selection:bg-emerald-500/20`}>
+      <body className={`${spaceGrotesk.className} ${spaceMono.variable} bg-slate-50 text-slate-900 min-h-screen antialiased selection:bg-emerald-500/20 overflow-hidden`}>
         <AuthProvider>
           <LanguageProvider>
-            <AuthWrapper>
-              <Navbar />
-              <main className="flex-1 flex flex-col">{children}</main>
-              <AIQueryBar />
-            </AuthWrapper>
+            <div className="flex h-screen w-screen overflow-hidden bg-slate-50 text-slate-900 font-sans">
+              <AppSidebar />
+              <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
+                <TopHeader />
+                <main className="flex-1 overflow-y-auto bg-slate-50/60">
+                  {children}
+                </main>
+              </div>
+            </div>
           </LanguageProvider>
         </AuthProvider>
       </body>

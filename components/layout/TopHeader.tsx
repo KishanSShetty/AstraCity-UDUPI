@@ -23,15 +23,17 @@ export function TopHeader() {
     }
   };
 
-  let title = "Command Center";
-  if (pathname?.includes('/chat')) {
+  let title = "Operations Hub";
+  if (pathname === '/') {
+    title = "Public Citizen Portal";
+  } else if (pathname?.includes('/chat')) {
     title = "AI SWM Copilot";
   } else if (pathname?.includes('/network')) {
     title = "Waste Logistics & Facility Network";
   } else if (pathname?.includes('/dashboard')) {
     title = "SWM Command Center";
   } else if (pathname?.includes('/analytics')) {
-    title = "Ward Analytics & Trends";
+    title = "Ward Analytics, Carbon & Trends";
   } else if (pathname?.includes('/cases')) {
     title = "Compliance & Grievance Cases";
   } else if (pathname?.includes('/profiles')) {
@@ -46,6 +48,28 @@ export function TopHeader() {
     title = "System Settings & Permissions";
   } else if (pathname?.includes('/data-ingestion')) {
     title = "Field Telemetry & Sensor Ingestion";
+  } else if (pathname?.includes('/map')) {
+    title = "3D Digital Twin Map Engine";
+  } else if (pathname?.includes('/wards')) {
+    title = "Ward Profiling & Demographics";
+  } else if (pathname?.includes('/routes')) {
+    title = "Route Optimization & Two-Tier VRP";
+  } else if (pathname?.includes('/vehicle-sim')) {
+    title = "Fleet GPS Simulation & Live Tracking";
+  } else if (pathname?.includes('/complaints')) {
+    title = "Citizen SWM Grievance Redressal";
+  } else if (pathname?.includes('/simulation')) {
+    title = "Biomethanation & Anaerobic Simulation";
+  } else if (pathname?.includes('/lulc')) {
+    title = "Satellite LULC & Environmental Risk";
+  } else if (pathname?.includes('/report')) {
+    title = "Statutory ESG & Compliance Report";
+  } else if (pathname?.includes('/forecast')) {
+    title = "10-Day Waste Generation Forecast";
+  } else if (pathname?.includes('/open-data')) {
+    title = "Open Geospatial Data Catalog";
+  } else if (pathname?.includes('/methodology')) {
+    title = "Methodology & CPCB Framework";
   }
 
   const roleLabel = 
