@@ -120,18 +120,33 @@ METHODOLOGY & INSTRUCTIONS:
           ...newMessages.map(m => ({ role: m.role, content: m.content }))
         ];
 
-        const res = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
+        let groqRes = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
           method: 'POST',
           headers: { 
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${apiKey}`
           },
           body: JSON.stringify({
-            model: "llama-3.3-70b-versatile",
+            model: "openai/gpt-oss-120b",
             messages: groqMessages
           })
         });
-        const data = await res.json();
+        let data = await groqRes.json();
+        if (data.error) {
+          // Fallback to openai/gpt-oss-20b
+          groqRes = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${apiKey}`
+            },
+            body: JSON.stringify({
+              model: "openai/gpt-oss-20b",
+              messages: groqMessages
+            })
+          });
+          data = await groqRes.json();
+        }
         if (data.error) {
            text = "Error from Groq AI: " + data.error.message;
         } else {
