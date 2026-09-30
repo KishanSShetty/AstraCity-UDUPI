@@ -157,10 +157,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: 10, scale: 0.95 }}
                     transition={{ duration: 0.2 }}
-                    className={`absolute top-full right-0 mt-2 w-80 rounded-2xl shadow-2xl border overflow-hidden z-[60] backdrop-blur-xl ${isHome
-                      ? 'bg-slate-900/95 border-slate-700 text-white'
-                      : 'bg-white border-slate-200 text-slate-800'
-                      }`}
+                    className="absolute top-full right-0 mt-2 w-80 bg-slate-100 border border-slate-300 rounded-2xl shadow-lg overflow-hidden z-[60]"
                   >
                     <div className="p-3 grid grid-cols-1 gap-1">
                       {FEATURES_LINKS.map(link => (
