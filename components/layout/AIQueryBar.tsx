@@ -100,51 +100,57 @@ METHODOLOGY & INSTRUCTIONS:
 3. CONSTRAINTS: Answer in 2-3 sentences max. Use real numbers. Be highly specific to Udupi. Do NOT mention truck routing or centralized landfills. Remember the context of the conversation.`;
 
       let text = "No response generated.";
+      let success = false;
 
-      if (isGroq) {
-        // Prepare history for Groq
-        const groqMessages = [
-          { role: "system", content: systemPrompt },
-          ...newMessages.map(m => ({ role: m.role, content: m.content }))
-        ];
+      for (const key of apiKeys) {
+        if (success) break;
+        const isGroqKey = key.startsWith('gsk_');
 
-        const res = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
-          },
-          body: JSON.stringify({
-            model: "llama-3.1-8b-instant",
-            messages: groqMessages
-          })
-        });
-        const data = await res.json();
-        if (data.error) {
-           text = "Error from Groq AI: " + data.error.message;
+        if (isGroqKey) {
+          const groqMessages = [
+            { role: "system", content: systemPrompt },
+            ...newMessages.map(m => ({ role: m.role, content: m.content }))
+          ];
+          const res = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
+            method: 'POST',
+            headers: { 
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${key}`
+            },
+            body: JSON.stringify({
+              model: "llama3-8b-8192", // Safe legacy model
+              messages: groqMessages
+            })
+          });
+          const data = await res.json();
+          if (!data.error && data.choices) {
+             text = data.choices[0].message.content;
+             success = true;
+          } else if (data.error) {
+             text = "Error from Groq AI: " + data.error.message;
+             // Continue loop to try next key (Gemini)
+          }
         } else {
-           text = data.choices?.[0]?.message?.content || "No response generated.";
-        }
-      } else {
-        // Prepare history for Gemini
-        const geminiContents = newMessages.map(m => ({
-          role: m.role === 'assistant' ? 'model' : 'user',
-          parts: [{ text: m.content }]
-        }));
-
-        const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            systemInstruction: { parts: [{ text: systemPrompt }] },
-            contents: geminiContents
-          })
-        });
-        const data = await res.json();
-        if (data.error) {
-           text = "Error from Gemini AI: " + data.error.message;
-        } else {
-           text = data.candidates?.[0]?.content?.parts?.[0]?.text || "No response generated.";
+          // Gemini
+          const geminiContents = newMessages.map(m => ({
+            role: m.role === 'assistant' ? 'model' : 'user',
+            parts: [{ text: m.content }]
+          }));
+          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${key}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              systemInstruction: { parts: [{ text: systemPrompt }] },
+              contents: geminiContents
+            })
+          });
+          const data = await res.json();
+          if (!data.error && data.candidates) {
+             text = data.candidates[0].content.parts[0].text;
+             success = true;
+          } else if (data.error) {
+             text = "Error from Gemini AI: " + data.error.message;
+          }
         }
       }
 
