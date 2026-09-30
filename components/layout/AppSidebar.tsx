@@ -200,23 +200,6 @@ export function AppSidebar() {
           <>
             {/* 1. Core Operations */}
             <div className="space-y-1">
-              <Link
-                href="/"
-                title={isCollapsed ? "Public Portal Home" : undefined}
-                className={cn(
-                  "group flex items-center rounded-lg px-2.5 py-1.5 text-xs font-semibold transition-all overflow-hidden mb-1",
-                  pathname === "/"
-                    ? "bg-emerald-50 text-emerald-800 border border-emerald-200/80 shadow-xs"
-                    : "text-slate-500 hover:bg-slate-50 hover:text-slate-900",
-                  isCollapsed ? "justify-center" : "justify-between"
-                )}
-              >
-                <div className="flex items-center min-w-0">
-                  <Home className="shrink-0 mr-2.5 h-4 w-4 text-slate-400 group-hover:text-slate-700" />
-                  {!isCollapsed && <span className="truncate">Public Portal Home</span>}
-                </div>
-              </Link>
-
               {adminOperations.map((item) => {
                 const isActive = pathname === item.href || (item.href !== "/dashboard" && pathname?.startsWith(item.href));
                 return (
@@ -347,9 +330,9 @@ export function AppSidebar() {
         )}
       </div>
 
-      {/* Settings Link (Only for Admin) */}
+      {/* Settings & Return to Public Site (Only for Admin) */}
       {isAdmin && (
-        <div className="p-2 border-t border-slate-100 bg-white">
+        <div className="p-2 border-t border-slate-100 bg-white space-y-1">
           <Link
             href="/settings"
             title={isCollapsed ? "Settings" : undefined}
@@ -363,6 +346,18 @@ export function AppSidebar() {
           >
             <Settings className={cn("shrink-0", isCollapsed ? "h-5 w-5" : "mr-2.5 h-4 w-4 text-slate-400 group-hover:text-slate-700")} />
             {!isCollapsed && <span>Settings & Roles</span>}
+          </Link>
+
+          <Link
+            href="/"
+            title={isCollapsed ? "Exit to Public Home" : undefined}
+            className={cn(
+              "group flex items-center rounded-lg px-2.5 py-1.5 text-xs font-bold text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-all overflow-hidden",
+              isCollapsed ? "justify-center" : "justify-start"
+            )}
+          >
+            <Home className={cn("shrink-0", isCollapsed ? "h-4 w-4" : "mr-2.5 h-4 w-4 text-slate-400 group-hover:text-slate-700")} />
+            {!isCollapsed && <span>Exit to Public Home</span>}
           </Link>
         </div>
       )}

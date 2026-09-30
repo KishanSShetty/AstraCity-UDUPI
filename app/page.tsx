@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { motion, useMotionValue, useTransform, animate, AnimatePresence } from 'framer-motion';
 import { UDUPI_DATA } from '@/lib/constants';
 import { useAuth } from '@/lib/AuthContext';
+import { useLanguage } from '@/lib/LanguageContext';
 import { 
   ArrowRight, 
   Satellite, 
@@ -26,7 +27,9 @@ import {
   LogIn,
   KeyRound,
   Phone,
-  Mail
+  Mail,
+  Recycle,
+  Languages
 } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
@@ -99,7 +102,7 @@ function ScanText() {
 
   return (
     <div
-      className="hidden md:flex fixed bottom-5 left-72 z-20 font-mono text-[11px] font-bold tracking-widest transition-opacity duration-700 items-center gap-2 bg-white/95 border border-slate-200/80 px-3 py-1.5 rounded-full shadow-xs backdrop-blur-sm"
+      className="hidden md:flex fixed bottom-5 left-6 z-30 font-mono text-[11px] font-bold tracking-widest transition-opacity duration-700 items-center gap-2 bg-white/95 border border-slate-200/90 px-3.5 py-1.5 rounded-full shadow-md backdrop-blur-sm"
       style={{ color: '#059669', opacity: fading ? 0 : 1 }}
     >
       <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
@@ -160,9 +163,8 @@ const FEATURES = [
 export default function Home() {
   const router = useRouter();
   const { role, isAdmin, isCitizen, loginAsAdmin, loginAsCitizen } = useAuth();
+  const { language, setLanguage } = useLanguage();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalTab, setModalTab] = useState<'admin' | 'citizen'>('admin');
   const [loginState, setLoginState] = useState<'idle' | 'logging_in'>('idle');
 
   const population = useCounter(UDUPI_DATA.population_building_based, 2.4, 0);
@@ -175,7 +177,7 @@ export default function Home() {
     loginAsAdmin();
     setTimeout(() => {
       router.push('/dashboard');
-    }, 400);
+    }, 200);
   };
 
   const handleCitizenEnter = () => {
@@ -183,15 +185,70 @@ export default function Home() {
     loginAsCitizen();
     setTimeout(() => {
       router.push('/citizen');
-    }, 400);
+    }, 200);
   };
 
   return (
-    <div className="min-h-full bg-slate-50/60 text-slate-900 flex flex-col font-sans relative overflow-x-hidden">
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans relative overflow-x-hidden">
       <ScanText />
 
+      {/* Standalone Landing Top Navigation Bar */}
+      <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs px-4 sm:px-8 py-3.5">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          {/* Logo & Civic Identity */}
+          <Link href="/" className="flex items-center gap-3 group">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-600 text-white shadow-sm group-hover:scale-105 transition-transform">
+              <Recycle className="h-5 w-5" />
+            </div>
+            <div className="flex flex-col">
+              <div className="flex items-center gap-1.5">
+                <span className="text-lg font-black tracking-tight text-slate-900">AstraCity</span>
+                <span className="rounded bg-emerald-100 px-1.5 py-0.5 text-[10px] font-bold text-emerald-800 tracking-wider">UDUPI</span>
+              </div>
+              <span className="text-[11px] text-slate-500 font-medium">VajraYield SWM Digital Twin</span>
+            </div>
+          </Link>
+
+          {/* Nav Links */}
+          <nav className="hidden md:flex items-center gap-6 text-xs font-bold text-slate-600">
+            <a href="#features" className="hover:text-emerald-700 transition-colors">Core Features</a>
+            <a href="#stats" className="hover:text-emerald-700 transition-colors">City Demographics</a>
+            <Link href="/citizen" className="hover:text-sky-700 transition-colors">Citizen Services</Link>
+          </nav>
+
+          {/* Action CTAs & Language Switcher */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setLanguage(language === 'en' ? 'kn' : 'en')}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors"
+              title="Toggle Language"
+            >
+              <Languages className="w-3.5 h-3.5 text-slate-500" />
+              <span>{language === 'en' ? 'ಕನ್ನಡ' : 'English'}</span>
+            </button>
+
+            <Button
+              onClick={handleCitizenEnter}
+              variant="outline"
+              className="hidden sm:inline-flex border-sky-300 text-sky-800 bg-sky-50/70 hover:bg-sky-100 font-bold text-xs h-9 rounded-xl px-3.5"
+            >
+              Citizen Portal
+            </Button>
+
+            <Button
+              onClick={handleAdminEnter}
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs h-9 rounded-xl px-4 shadow-sm flex items-center gap-1.5"
+            >
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span>Admin Login</span>
+              <ArrowRight className="w-3 h-3 ml-0.5" />
+            </Button>
+          </div>
+        </div>
+      </header>
+
       {/* Hero Section */}
-      <section className="relative z-10 flex flex-col items-center justify-center px-6 pt-10 pb-8 max-w-6xl mx-auto text-center">
+      <section className="relative z-10 flex flex-col items-center justify-center px-6 pt-12 pb-10 max-w-6xl mx-auto text-center">
         {/* Statutory Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
@@ -204,6 +261,7 @@ export default function Home() {
             UDUPI CMC • SWM 2026 STATUTORY ENGINE
           </span>
         </motion.div>
+
 
         {/* Heading */}
         <motion.h1

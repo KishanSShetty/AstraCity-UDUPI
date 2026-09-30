@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Space_Mono } from "next/font/google";
 import "./globals.css";
-import { AppSidebar } from "@/components/layout/AppSidebar";
-import { TopHeader } from "@/components/layout/TopHeader";
+import { AppShell } from "@/components/layout/AppShell";
 import { AuthProvider } from "@/lib/AuthContext";
 import { LanguageProvider } from "@/lib/LanguageContext";
 
@@ -21,21 +20,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="light" suppressHydrationWarning>
-      <body className={`${spaceGrotesk.className} ${spaceMono.variable} bg-slate-50 text-slate-900 min-h-screen antialiased selection:bg-emerald-500/20 overflow-hidden`}>
+      <body className={`${spaceGrotesk.className} ${spaceMono.variable} bg-slate-50 text-slate-900 min-h-screen antialiased selection:bg-emerald-500/20`}>
         <AuthProvider>
           <LanguageProvider>
-            <div className="flex h-screen w-screen overflow-hidden bg-slate-50 text-slate-900 font-sans">
-              <AppSidebar />
-              <div className="flex-1 flex flex-col min-w-0 h-full overflow-hidden">
-                <TopHeader />
-                <main className="flex-1 overflow-y-auto bg-slate-50/60">
-                  {children}
-                </main>
-              </div>
-            </div>
+            <AppShell>
+              {children}
+            </AppShell>
           </LanguageProvider>
         </AuthProvider>
       </body>
     </html>
   );
 }
+

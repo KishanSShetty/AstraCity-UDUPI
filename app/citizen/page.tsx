@@ -1,11 +1,43 @@
 "use client";
 
 import React, { useState } from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Camera, MapPin, UploadCloud, AlertCircle, CheckCircle2, Leaf, FileText, Megaphone, Trophy, Clock, Image as ImageIcon, Map, PhoneCall, Mail, Building2, Facebook, Twitter, Instagram } from 'lucide-react';
+import { 
+  Camera, 
+  MapPin, 
+  UploadCloud, 
+  AlertCircle, 
+  CheckCircle2, 
+  Leaf, 
+  FileText, 
+  Megaphone, 
+  Trophy, 
+  Clock, 
+  Image as ImageIcon, 
+  Map, 
+  PhoneCall, 
+  Mail, 
+  Building2, 
+  Facebook, 
+  Twitter, 
+  Instagram,
+  Recycle,
+  ArrowLeft,
+  ShieldCheck,
+  Languages
+} from 'lucide-react';
 import { useComplaintStore } from '@/lib/store';
+import { useAuth } from '@/lib/AuthContext';
+import { useLanguage } from '@/lib/LanguageContext';
+import { Button } from '@/components/ui/button';
 
 export default function CitizenPortal() {
+  const router = useRouter();
+  const { loginAsAdmin } = useAuth();
+  const { language, setLanguage } = useLanguage();
+
   const [activeTab, setActiveTab] = useState<string>('report');
   const [reportState, setReportState] = useState<string>('idle');
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
@@ -45,8 +77,13 @@ export default function CitizenPortal() {
     }, 1500);
   };
 
+  const handleOfficerLogin = () => {
+    loginAsAdmin();
+    router.push('/dashboard');
+  };
+
   return (
-    <div className="min-h-screen bg-slate-50/70 text-slate-800 overflow-hidden font-sans pb-24">
+    <div className="min-h-screen bg-slate-50/70 text-slate-800 overflow-x-hidden font-sans pb-24">
       
       {/* Background Decorative Gradients */}
       <div className="fixed inset-0 pointer-events-none z-0">
@@ -55,7 +92,54 @@ export default function CitizenPortal() {
         <div className="absolute -bottom-40 left-1/3 w-96 h-96 bg-teal-100/50 rounded-full blur-3xl"></div>
       </div>
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-8 md:pt-14">
+      {/* Dedicated Citizen Top Navbar */}
+      <header className="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-xs px-4 sm:px-8 py-3.5">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Link href="/" className="flex items-center gap-1.5 text-xs font-bold text-slate-500 hover:text-slate-800 transition-colors p-1.5 rounded-lg hover:bg-slate-100">
+              <ArrowLeft className="w-4 h-4" />
+              <span className="hidden sm:inline">Back to Home</span>
+            </Link>
+
+            <div className="h-5 w-px bg-slate-200" />
+
+            <Link href="/citizen" className="flex items-center gap-2.5">
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-600 text-white shadow-xs">
+                <Recycle className="h-4.5 w-4.5" />
+              </div>
+              <div className="flex flex-col">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-base font-black tracking-tight text-slate-900">AstraCity</span>
+                  <span className="rounded bg-sky-100 px-1.5 py-0.5 text-[9px] font-bold text-sky-800 tracking-wider">CITIZEN</span>
+                </div>
+                <span className="text-[10px] text-slate-500 font-medium">Udupi CMC Public Services</span>
+              </div>
+            </Link>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setLanguage(language === 'en' ? 'kn' : 'en')}
+              className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-slate-200 text-xs font-bold text-slate-700 hover:bg-slate-100 transition-colors"
+              title="Toggle Language"
+            >
+              <Languages className="w-3.5 h-3.5 text-slate-500" />
+              <span>{language === 'en' ? 'ಕನ್ನಡ' : 'English'}</span>
+            </button>
+
+            <Button
+              onClick={handleOfficerLogin}
+              variant="outline"
+              className="border-emerald-300 text-emerald-800 bg-emerald-50/70 hover:bg-emerald-100 font-bold text-xs h-9 rounded-xl px-3 flex items-center gap-1.5"
+            >
+              <ShieldCheck className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Officer Login</span>
+            </Button>
+          </div>
+        </div>
+      </header>
+
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-8 md:pt-12">
         
         {/* Dynamic Hero Section */}
         <motion.div 
