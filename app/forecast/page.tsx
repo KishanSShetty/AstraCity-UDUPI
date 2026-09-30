@@ -466,6 +466,137 @@ export default function ForecastPage() {
           );
         })()}
 
+        {/* 20-YEAR LONG-TERM FORECAST SECTION */}
+        {(() => {
+          // Generate 20-year data (2.5% annual growth)
+          const currentYear = new Date().getFullYear();
+          const years = Array.from({length: 21}, (_, i) => currentYear + i);
+          
+          let currentWet = BASE_WET;
+          let currentDry = BASE_DRY;
+          let currentHaz = BASE_HAZ;
+          
+          const longTermData = years.map(year => {
+            const data = {
+              year: year.toString(),
+              Wet: Number(currentWet.toFixed(1)),
+              Dry: Number(currentDry.toFixed(1)),
+              Haz: Number(currentHaz.toFixed(1)),
+              Total: Number((currentWet + currentDry + currentHaz).toFixed(1))
+            };
+            // 2.5% annual growth
+            currentWet *= 1.025;
+            currentDry *= 1.025;
+            currentHaz *= 1.025;
+            return data;
+          });
+
+          const maxYear = longTermData[longTermData.length - 1];
+          const peakTotal = maxYear.Total;
+          
+          const baseAuto = Math.ceil(peakTotal / 3);
+          const autoBuffer = Math.ceil(baseAuto * 0.1);
+          
+          const baseCompactor = Math.ceil((peakTotal - maxYear.Haz) / 20);
+          const compactorBuffer = Math.ceil(baseCompactor * 0.1);
+          
+          const baseTractor = Math.ceil(maxYear.Haz / 6);
+          const tractorBuffer = Math.max(1, Math.ceil(baseTractor * 0.1));
+
+          return (
+            <div className="lg:col-span-3 space-y-6 mt-8 mb-12">
+              <h2 className="text-2xl font-black text-white flex items-center gap-3 mb-6">
+                <CalendarIcon className="w-7 h-7 text-indigo-400" />
+                20-Year Strategic Forecast (2026-2046)
+              </h2>
+              
+              <div className="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 shadow-xl relative overflow-hidden">
+                <h3 className="text-lg font-bold text-slate-200 mb-6">Projected Waste Generation Volume (2.5% CAGR)</h3>
+                <div className="h-[400px] w-full">
+                  <ResponsiveContainer width="100%" height="100%">
+                    <AreaChart data={longTermData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
+                      <defs>
+                        <linearGradient id="colorWetLT" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#00d4aa" stopOpacity={0.8}/>
+                          <stop offset="95%" stopColor="#00d4aa" stopOpacity={0}/>
+                        </linearGradient>
+                        <linearGradient id="colorDryLT" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
+                          <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                        </linearGradient>
+                        <linearGradient id="colorHazLT" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="5%" stopColor="#ef4444" stopOpacity={0.8}/>
+                          <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
+                        </linearGradient>
+                      </defs>
+                      <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+                      <XAxis dataKey="year" stroke="#475569" tick={{fill: '#64748b', fontSize: 12}} />
+                      <YAxis stroke="#475569" tick={{fill: '#64748b', fontSize: 12}} />
+                      <Tooltip 
+                        contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '12px', color: '#f8fafc' }}
+                        itemStyle={{ fontWeight: 'bold' }}
+                      />
+                      <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
+                      <Area type="monotone" dataKey="Haz" stackId="1" stroke="#ef4444" fill="url(#colorHazLT)" />
+                      <Area type="monotone" dataKey="Dry" stackId="1" stroke="#3b82f6" fill="url(#colorDryLT)" />
+                      <Area type="monotone" dataKey="Wet" stackId="1" stroke="#00d4aa" fill="url(#colorWetLT)" />
+                    </AreaChart>
+                  </ResponsiveContainer>
+                </div>
+              </div>
+
+              <div className="bg-[#111827] border border-indigo-500/30 rounded-3xl p-6 shadow-[0_0_40px_rgba(99,102,241,0.1)] relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-500/10 blur-[100px] rounded-full pointer-events-none" />
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 relative z-10">
+                  <div>
+                    <h2 className="text-xl font-extrabold text-white flex items-center gap-2">
+                      <Truck className="w-6 h-6 text-indigo-400" />
+                      Max Optimal Fleet Size (2046 Projection)
+                    </h2>
+                    <p className="text-sm text-slate-400">Infrastructure capacity required to handle the projected 2046 peak of <span className="text-indigo-400 font-bold">{peakTotal} Tons/day</span>.</p>
+                  </div>
+                  <div className="bg-slate-800/80 border border-indigo-500/20 text-slate-300 text-xs p-3 rounded-xl flex gap-3 max-w-sm">
+                    <Info className="w-8 h-8 text-indigo-500 shrink-0" />
+                    <p>Accounts for a 2.5% compounded annual growth rate (CAGR) in municipal waste generation over the next two decades.</p>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                  {/* Primary Collection */}
+                  <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
+                    <h3 className="text-indigo-400 font-bold text-sm mb-1 uppercase tracking-wider">Future Auto Tippers</h3>
+                    <p className="text-slate-400 text-xs mb-4">Target for 2046</p>
+                    <div className="flex items-end gap-3 mb-4">
+                      <span className="text-4xl font-black text-white">{baseAuto + autoBuffer}</span>
+                      <span className="text-slate-500 font-bold pb-1">Units</span>
+                    </div>
+                  </div>
+
+                  {/* Secondary Transport */}
+                  <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
+                    <h3 className="text-sky-400 font-bold text-sm mb-1 uppercase tracking-wider">Future Compactors</h3>
+                    <p className="text-slate-400 text-xs mb-4">Target for 2046</p>
+                    <div className="flex items-end gap-3 mb-4">
+                      <span className="text-4xl font-black text-white">{baseCompactor + compactorBuffer}</span>
+                      <span className="text-slate-500 font-bold pb-1">Units</span>
+                    </div>
+                  </div>
+
+                  {/* Heavy / C&D */}
+                  <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
+                    <h3 className="text-rose-400 font-bold text-sm mb-1 uppercase tracking-wider">Future Tractors</h3>
+                    <p className="text-slate-400 text-xs mb-4">Target for 2046</p>
+                    <div className="flex items-end gap-3 mb-4">
+                      <span className="text-4xl font-black text-white">{baseTractor + tractorBuffer}</span>
+                      <span className="text-slate-500 font-bold pb-1">Units</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })()}
+
       </main>
     </div>
   );

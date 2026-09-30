@@ -733,6 +733,82 @@ export default function RoutesAnalysisPage() {
                 </div>
               </div>
             </motion.div>
+
+            {/* PRESENT FLEET OPTIMIZATION SECTION */}
+            {(() => {
+              const peakTotal = UDUPI_DATA.daily_waste_tons;
+              
+              const baseAuto = Math.ceil(peakTotal / 3);
+              const autoBuffer = Math.ceil(baseAuto * 0.1);
+              
+              const baseCompactor = Math.ceil((peakTotal - UDUPI_DATA.waste_haz_tons) / 20);
+              const compactorBuffer = Math.ceil(baseCompactor * 0.1);
+              
+              const baseTractor = Math.ceil(UDUPI_DATA.waste_haz_tons / 6);
+              const tractorBuffer = Math.max(1, Math.ceil(baseTractor * 0.1));
+
+              return (
+                <motion.div variants={fadeInUp} className="mt-8 space-y-6 relative z-10">
+                  <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/10 blur-[100px] rounded-full pointer-events-none" />
+                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 relative z-10">
+                      <div>
+                        <h2 className="text-xl font-extrabold text-white flex items-center gap-2">
+                          <Truck className="w-6 h-6 text-teal-400" />
+                          Present Fleet Optimization Strategy
+                        </h2>
+                        <p className="text-sm text-slate-400">Required active vehicles for current daily routing load of <span className="text-teal-400 font-bold">{peakTotal} Tons</span>.</p>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                      {/* Primary */}
+                      <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
+                        <h3 className="text-teal-400 font-bold text-sm mb-1 uppercase tracking-wider">Primary Collection</h3>
+                        <div className="flex items-end gap-3 mb-4">
+                          <span className="text-4xl font-black text-white">{baseAuto + autoBuffer}</span>
+                          <span className="text-slate-500 font-bold pb-1">Auto Tippers</span>
+                        </div>
+                        <ul className="text-xs text-slate-300 space-y-1 font-medium bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                          <li className="flex justify-between"><span>Capacity:</span> <span className="text-white font-bold">1.5 Tons</span></li>
+                          <li className="flex justify-between border-t border-slate-700/50 pt-1 mt-1"><span>Active:</span> <span className="text-white font-bold">{baseAuto} vehicles</span></li>
+                          <li className="flex justify-between"><span>Buffer (10%):</span> <span className="text-amber-400 font-bold">+{autoBuffer} vehicles</span></li>
+                        </ul>
+                      </div>
+                      
+                      {/* Secondary */}
+                      <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
+                        <h3 className="text-sky-400 font-bold text-sm mb-1 uppercase tracking-wider">Secondary Transport</h3>
+                        <div className="flex items-end gap-3 mb-4">
+                          <span className="text-4xl font-black text-white">{baseCompactor + compactorBuffer}</span>
+                          <span className="text-slate-500 font-bold pb-1">Compactors</span>
+                        </div>
+                        <ul className="text-xs text-slate-300 space-y-1 font-medium bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                          <li className="flex justify-between"><span>Capacity:</span> <span className="text-white font-bold">10.0 Tons</span></li>
+                          <li className="flex justify-between border-t border-slate-700/50 pt-1 mt-1"><span>Active:</span> <span className="text-white font-bold">{baseCompactor} vehicles</span></li>
+                          <li className="flex justify-between"><span>Buffer (10%):</span> <span className="text-amber-400 font-bold">+{compactorBuffer} vehicles</span></li>
+                        </ul>
+                      </div>
+
+                      {/* Heavy */}
+                      <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
+                        <h3 className="text-rose-400 font-bold text-sm mb-1 uppercase tracking-wider">Heavy / C&D</h3>
+                        <div className="flex items-end gap-3 mb-4">
+                          <span className="text-4xl font-black text-white">{baseTractor + tractorBuffer}</span>
+                          <span className="text-slate-500 font-bold pb-1">Tractors</span>
+                        </div>
+                        <ul className="text-xs text-slate-300 space-y-1 font-medium bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                          <li className="flex justify-between"><span>Capacity:</span> <span className="text-white font-bold">3.0 Tons</span></li>
+                          <li className="flex justify-between border-t border-slate-700/50 pt-1 mt-1"><span>Active:</span> <span className="text-white font-bold">{baseTractor} vehicles</span></li>
+                          <li className="flex justify-between"><span>Buffer (10%):</span> <span className="text-amber-400 font-bold">+{tractorBuffer} vehicles</span></li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })()}
+
           </motion.div>
         )}
 
