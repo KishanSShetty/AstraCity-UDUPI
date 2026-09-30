@@ -436,68 +436,67 @@ export default function ForecastPage() {
 
           return (
             <div className="lg:col-span-3 space-y-6 mt-4">
-              <div className="bg-slate-900 border border-slate-800 rounded-3xl p-6 shadow-xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/10 blur-3xl rounded-full pointer-events-none" />
+              <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs relative overflow-hidden">
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 relative z-10">
                   <div>
-                    <h2 className="text-xl font-extrabold text-white flex items-center gap-2">
-                      <Truck className="w-6 h-6 text-teal-400" />
+                    <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                      <Truck className="w-6 h-6 text-emerald-600" />
                       Dynamic Fleet Optimization
                     </h2>
-                    <p className="text-sm text-slate-400">Maximum vehicles required to handle the 10-day peak of <span className="text-teal-400 font-bold">{peakTotal} Tons</span> (expected on {new Date(maxWasteDay.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}).</p>
+                    <p className="text-sm text-slate-600">Maximum vehicles required to handle the 10-day peak of <span className="text-emerald-700 font-bold">{peakTotal} Tons</span> (expected on {new Date(maxWasteDay.date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}).</p>
                   </div>
-                  <div className="bg-slate-800 border border-slate-700 text-slate-300 text-xs p-3 rounded-xl flex gap-3 max-w-sm">
-                    <Info className="w-8 h-8 text-teal-500 shrink-0" />
+                  <div className="bg-slate-50 border border-slate-200 text-slate-600 text-xs p-3 rounded-xl flex gap-3 max-w-sm">
+                    <Info className="w-6 h-6 text-emerald-600 shrink-0" />
                     <p>Calculated using standard SWM methodology: Vehicles complete 2 trips/day. A 10% standby buffer is included for maintenance.</p>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-5 relative z-10">
                   {/* Primary Collection */}
-                  <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
-                    <h3 className="text-teal-400 font-bold text-sm mb-1 uppercase tracking-wider">Primary Collection</h3>
-                    <p className="text-slate-400 text-xs mb-4">Door-to-door (Narrow lanes)</p>
+                  <div className="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
+                    <h3 className="text-emerald-700 font-bold text-xs mb-1 uppercase tracking-wider">Primary Collection</h3>
+                    <p className="text-slate-500 text-xs mb-4">Door-to-door (Narrow lanes)</p>
                     <div className="flex items-end gap-3 mb-4">
-                      <span className="text-4xl font-black text-white">{baseAuto + autoBuffer}</span>
-                      <span className="text-slate-500 font-bold pb-1">Auto Tippers</span>
+                      <span className="text-3xl font-black text-slate-900">{baseAuto + autoBuffer}</span>
+                      <span className="text-slate-500 font-bold pb-1 text-xs">Auto Tippers</span>
                     </div>
-                    <ul className="text-xs text-slate-300 space-y-1 font-medium bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
-                      <li className="flex justify-between"><span>Capacity:</span> <span className="text-white font-bold">1.5 Tons</span></li>
-                      <li className="flex justify-between"><span>Trips/Day:</span> <span className="text-white font-bold">2 (Total 3T)</span></li>
-                      <li className="flex justify-between border-t border-slate-700 pt-1 mt-1"><span>Active:</span> <span className="text-white font-bold">{baseAuto} vehicles</span></li>
-                      <li className="flex justify-between"><span>Buffer (10%):</span> <span className="text-amber-400 font-bold">+{autoBuffer} vehicles</span></li>
+                    <ul className="text-xs text-slate-700 space-y-1 font-medium bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+                      <li className="flex justify-between"><span>Capacity:</span> <span className="text-slate-900 font-bold">1.5 Tons</span></li>
+                      <li className="flex justify-between"><span>Trips/Day:</span> <span className="text-slate-900 font-bold">2 (Total 3T)</span></li>
+                      <li className="flex justify-between border-t border-slate-100 pt-1 mt-1"><span>Active:</span> <span className="text-slate-900 font-bold">{baseAuto} vehicles</span></li>
+                      <li className="flex justify-between"><span>Buffer (10%):</span> <span className="text-amber-700 font-bold">+{autoBuffer} vehicles</span></li>
                     </ul>
                   </div>
 
                   {/* Secondary Transport */}
-                  <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
-                    <h3 className="text-sky-400 font-bold text-sm mb-1 uppercase tracking-wider">Secondary Transport</h3>
-                    <p className="text-slate-400 text-xs mb-4">Transfer Station to Landfill</p>
+                  <div className="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
+                    <h3 className="text-sky-700 font-bold text-xs mb-1 uppercase tracking-wider">Secondary Transport</h3>
+                    <p className="text-slate-500 text-xs mb-4">Transfer Station to Landfill</p>
                     <div className="flex items-end gap-3 mb-4">
-                      <span className="text-4xl font-black text-white">{baseCompactor + compactorBuffer}</span>
-                      <span className="text-slate-500 font-bold pb-1">Compactors</span>
+                      <span className="text-3xl font-black text-slate-900">{baseCompactor + compactorBuffer}</span>
+                      <span className="text-slate-500 font-bold pb-1 text-xs">Compactors</span>
                     </div>
-                    <ul className="text-xs text-slate-300 space-y-1 font-medium bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
-                      <li className="flex justify-between"><span>Capacity:</span> <span className="text-white font-bold">10.0 Tons</span></li>
-                      <li className="flex justify-between"><span>Trips/Day:</span> <span className="text-white font-bold">2 (Total 20T)</span></li>
-                      <li className="flex justify-between border-t border-slate-700 pt-1 mt-1"><span>Active:</span> <span className="text-white font-bold">{baseCompactor} vehicles</span></li>
-                      <li className="flex justify-between"><span>Buffer (10%):</span> <span className="text-amber-400 font-bold">+{compactorBuffer} vehicles</span></li>
+                    <ul className="text-xs text-slate-700 space-y-1 font-medium bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+                      <li className="flex justify-between"><span>Capacity:</span> <span className="text-slate-900 font-bold">10.0 Tons</span></li>
+                      <li className="flex justify-between"><span>Trips/Day:</span> <span className="text-slate-900 font-bold">2 (Total 20T)</span></li>
+                      <li className="flex justify-between border-t border-slate-100 pt-1 mt-1"><span>Active:</span> <span className="text-slate-900 font-bold">{baseCompactor} vehicles</span></li>
+                      <li className="flex justify-between"><span>Buffer (10%):</span> <span className="text-amber-700 font-bold">+{compactorBuffer} vehicles</span></li>
                     </ul>
                   </div>
 
                   {/* Heavy / C&D */}
-                  <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
-                    <h3 className="text-rose-400 font-bold text-sm mb-1 uppercase tracking-wider">Heavy / C&D Waste</h3>
-                    <p className="text-slate-400 text-xs mb-4">Debris & Hazardous Material</p>
+                  <div className="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
+                    <h3 className="text-rose-700 font-bold text-xs mb-1 uppercase tracking-wider">Heavy / C&D Waste</h3>
+                    <p className="text-slate-500 text-xs mb-4">Debris & Hazardous Material</p>
                     <div className="flex items-end gap-3 mb-4">
-                      <span className="text-4xl font-black text-white">{baseTractor + tractorBuffer}</span>
-                      <span className="text-slate-500 font-bold pb-1">Tractors</span>
+                      <span className="text-3xl font-black text-slate-900">{baseTractor + tractorBuffer}</span>
+                      <span className="text-slate-500 font-bold pb-1 text-xs">Tractors</span>
                     </div>
-                    <ul className="text-xs text-slate-300 space-y-1 font-medium bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
-                      <li className="flex justify-between"><span>Capacity:</span> <span className="text-white font-bold">3.0 Tons</span></li>
-                      <li className="flex justify-between"><span>Trips/Day:</span> <span className="text-white font-bold">2 (Total 6T)</span></li>
-                      <li className="flex justify-between border-t border-slate-700 pt-1 mt-1"><span>Active:</span> <span className="text-white font-bold">{baseTractor} vehicles</span></li>
-                      <li className="flex justify-between"><span>Buffer (10%):</span> <span className="text-amber-400 font-bold">+{tractorBuffer} vehicles</span></li>
+                    <ul className="text-xs text-slate-700 space-y-1 font-medium bg-white p-3 rounded-xl border border-slate-200 shadow-2xs">
+                      <li className="flex justify-between"><span>Capacity:</span> <span className="text-slate-900 font-bold">3.0 Tons</span></li>
+                      <li className="flex justify-between"><span>Trips/Day:</span> <span className="text-slate-900 font-bold">2 (Total 6T)</span></li>
+                      <li className="flex justify-between border-t border-slate-100 pt-1 mt-1"><span>Active:</span> <span className="text-slate-900 font-bold">{baseTractor} vehicles</span></li>
+                      <li className="flex justify-between"><span>Buffer (10%):</span> <span className="text-amber-700 font-bold">+{tractorBuffer} vehicles</span></li>
                     </ul>
                   </div>
                 </div>
@@ -551,59 +550,58 @@ export default function ForecastPage() {
                 20-Year Strategic Forecast (2026-2046)
               </h2>
               
-              <div className="bg-slate-900/80 border border-slate-800 rounded-3xl p-6 shadow-xl relative overflow-hidden">
-                <h3 className="text-lg font-bold text-slate-200 mb-6">Projected Waste Generation Volume (2.5% CAGR)</h3>
+              <div className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs relative overflow-hidden">
+                <h3 className="text-lg font-bold text-slate-900 mb-6">Projected Waste Generation Volume (2.5% CAGR)</h3>
                 <div className="h-[400px] w-full">
                   <ResponsiveContainer width="100%" height="100%">
                     <AreaChart data={longTermData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
                       <defs>
                         <linearGradient id="colorWetLT" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#00d4aa" stopOpacity={0.8}/>
-                          <stop offset="95%" stopColor="#00d4aa" stopOpacity={0}/>
+                          <stop offset="5%" stopColor="#059669" stopOpacity={0.8}/>
+                          <stop offset="95%" stopColor="#059669" stopOpacity={0}/>
                         </linearGradient>
                         <linearGradient id="colorDryLT" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8}/>
-                          <stop offset="95%" stopColor="#3b82f6" stopOpacity={0}/>
+                          <stop offset="5%" stopColor="#0284c7" stopOpacity={0.8}/>
+                          <stop offset="95%" stopColor="#0284c7" stopOpacity={0}/>
                         </linearGradient>
                         <linearGradient id="colorHazLT" x1="0" y1="0" x2="0" y2="1">
                           <stop offset="5%" stopColor="#ef4444" stopOpacity={0.8}/>
                           <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
                         </linearGradient>
                       </defs>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                      <XAxis dataKey="year" stroke="#475569" tick={{fill: '#64748b', fontSize: 12}} />
-                      <YAxis stroke="#475569" tick={{fill: '#64748b', fontSize: 12}} />
+                      <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" vertical={false} />
+                      <XAxis dataKey="year" stroke="#94a3b8" tick={{fill: '#64748b', fontSize: 12}} />
+                      <YAxis stroke="#94a3b8" tick={{fill: '#64748b', fontSize: 12}} />
                       <Tooltip 
-                        contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '12px', color: '#f8fafc' }}
+                        contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px', color: '#0f172a', boxShadow: '0 4px 6px -1px rgba(0,0,0,0.1)' }}
                         itemStyle={{ fontWeight: 'bold' }}
                       />
-                      <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '12px', color: '#cbd5e1' }} />
+                      <Legend verticalAlign="top" height={36} wrapperStyle={{ fontSize: '12px', color: '#475569' }} />
                       <Area type="monotone" dataKey="Haz" stackId="1" stroke="#ef4444" fill="url(#colorHazLT)" />
-                      <Area type="monotone" dataKey="Dry" stackId="1" stroke="#3b82f6" fill="url(#colorDryLT)" />
-                      <Area type="monotone" dataKey="Wet" stackId="1" stroke="#00d4aa" fill="url(#colorWetLT)" />
+                      <Area type="monotone" dataKey="Dry" stackId="1" stroke="#0284c7" fill="url(#colorDryLT)" />
+                      <Area type="monotone" dataKey="Wet" stackId="1" stroke="#059669" fill="url(#colorWetLT)" />
                     </AreaChart>
                   </ResponsiveContainer>
                 </div>
               </div>
 
-              <div ref={reportRef} className="bg-[#111827] border border-indigo-500/30 rounded-3xl p-6 shadow-[0_0_40px_rgba(99,102,241,0.1)] relative overflow-hidden mt-8">
-                <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-500/10 blur-3xl rounded-full pointer-events-none" />
+              <div ref={reportRef} className="bg-white border border-slate-200 rounded-3xl p-6 shadow-xs relative overflow-hidden mt-8">
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-6 relative z-10">
                   <div>
-                    <h2 className="text-xl font-extrabold text-white flex items-center gap-2">
-                      <Truck className="w-6 h-6 text-indigo-400" />
+                    <h2 className="text-xl font-extrabold text-slate-900 flex items-center gap-2">
+                      <Truck className="w-6 h-6 text-emerald-600" />
                       Strategic Procurement Planner
                     </h2>
-                    <p className="text-sm text-slate-400 mt-1">Dynamically calculate fleet requirements and CAPEX for any future year based on a 2.5% CAGR.</p>
+                    <p className="text-sm text-slate-600 mt-1">Dynamically calculate fleet requirements and CAPEX for any future year based on a 2.5% CAGR.</p>
                   </div>
                   
                   <div className="flex flex-col items-end gap-3">
                     <div className="flex items-center gap-3">
-                      <label className="text-slate-300 text-sm font-bold">Target Year:</label>
+                      <label className="text-slate-700 text-sm font-bold">Target Year:</label>
                       <select 
                         value={selectedStrategicYear} 
                         onChange={(e) => setSelectedStrategicYear(Number(e.target.value))}
-                        className="bg-slate-800 border border-indigo-500/30 text-white font-bold rounded-lg px-4 py-2 focus:outline-none focus:border-indigo-500"
+                        className="bg-slate-50 border border-slate-300 text-slate-900 font-bold rounded-lg px-4 py-2 focus:outline-none focus:border-emerald-500"
                       >
                         {Array.from({length: 25}, (_, i) => 2026 + i).map(year => (
                           <option key={year} value={year}>{year}</option>
@@ -614,7 +612,7 @@ export default function ForecastPage() {
                     <button 
                       onClick={generatePDF}
                       disabled={isGeneratingPDF}
-                      className="flex items-center gap-2 bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-2 rounded-lg font-bold text-sm transition-colors shadow-lg shadow-indigo-500/20 disabled:opacity-50"
+                      className="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-lg font-bold text-sm transition-colors shadow-xs disabled:opacity-50"
                     >
                       <Download className="w-4 h-4" />
                       {isGeneratingPDF ? 'Generating...' : 'Download Prescription (PDF)'}
@@ -644,70 +642,70 @@ export default function ForecastPage() {
 
                   return (
                     <div className="relative z-10">
-                      <div className="mb-6 inline-block bg-indigo-500/10 border border-indigo-500/20 text-indigo-300 font-bold px-4 py-2 rounded-xl text-sm">
-                        Total Projected Load for {selectedStrategicYear}: <span className="text-white text-lg">{activePeak} Tons/day</span>
+                      <div className="mb-6 inline-block bg-emerald-50 border border-emerald-200 text-emerald-900 font-bold px-4 py-2 rounded-xl text-sm">
+                        Total Projected Load for {selectedStrategicYear}: <span className="text-emerald-700 text-lg">{activePeak} Tons/day</span>
                       </div>
                       
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
                         {/* Primary Collection */}
-                        <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
-                          <h3 className="text-indigo-400 font-bold text-sm mb-1 uppercase tracking-wider">Auto Tippers</h3>
+                        <div className="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
+                          <h3 className="text-emerald-800 font-bold text-xs mb-1 uppercase tracking-wider">Auto Tippers</h3>
                           <div className="flex items-end gap-3 mb-4">
-                            <span className="text-4xl font-black text-white">{targetAuto + bufAuto}</span>
-                            <span className="text-slate-500 font-bold pb-1">Units</span>
+                            <span className="text-3xl font-black text-slate-900">{targetAuto + bufAuto}</span>
+                            <span className="text-slate-500 font-bold pb-1 text-xs">Units</span>
                           </div>
-                          <div className="text-xs text-slate-400 mt-2 p-2 bg-slate-900/50 rounded-lg">
-                            Est. Cost: <span className="text-emerald-400 font-bold">₹{(costAuto / 100000).toFixed(2)} Lakhs</span>
+                          <div className="text-xs text-slate-600 mt-2 p-2.5 bg-white rounded-lg border border-slate-200">
+                            Est. Cost: <span className="text-emerald-700 font-bold">₹{(costAuto / 100000).toFixed(2)} Lakhs</span>
                           </div>
                         </div>
 
                         {/* Secondary Transport */}
-                        <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
-                          <h3 className="text-sky-400 font-bold text-sm mb-1 uppercase tracking-wider">Compactors</h3>
+                        <div className="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
+                          <h3 className="text-sky-800 font-bold text-xs mb-1 uppercase tracking-wider">Compactors</h3>
                           <div className="flex items-end gap-3 mb-4">
-                            <span className="text-4xl font-black text-white">{targetCompactor + bufCompactor}</span>
-                            <span className="text-slate-500 font-bold pb-1">Units</span>
+                            <span className="text-3xl font-black text-slate-900">{targetCompactor + bufCompactor}</span>
+                            <span className="text-slate-500 font-bold pb-1 text-xs">Units</span>
                           </div>
-                          <div className="text-xs text-slate-400 mt-2 p-2 bg-slate-900/50 rounded-lg">
-                            Est. Cost: <span className="text-emerald-400 font-bold">₹{(costCompactor / 100000).toFixed(2)} Lakhs</span>
+                          <div className="text-xs text-slate-600 mt-2 p-2.5 bg-white rounded-lg border border-slate-200">
+                            Est. Cost: <span className="text-emerald-700 font-bold">₹{(costCompactor / 100000).toFixed(2)} Lakhs</span>
                           </div>
                         </div>
 
                         {/* Heavy / C&D */}
-                        <div className="bg-slate-800/50 border border-slate-700/50 p-5 rounded-2xl">
-                          <h3 className="text-rose-400 font-bold text-sm mb-1 uppercase tracking-wider">Tractors</h3>
+                        <div className="bg-slate-50 border border-slate-200 p-5 rounded-2xl">
+                          <h3 className="text-rose-800 font-bold text-xs mb-1 uppercase tracking-wider">Tractors</h3>
                           <div className="flex items-end gap-3 mb-4">
-                            <span className="text-4xl font-black text-white">{targetTractor + bufTractor}</span>
-                            <span className="text-slate-500 font-bold pb-1">Units</span>
+                            <span className="text-3xl font-black text-slate-900">{targetTractor + bufTractor}</span>
+                            <span className="text-slate-500 font-bold pb-1 text-xs">Units</span>
                           </div>
-                          <div className="text-xs text-slate-400 mt-2 p-2 bg-slate-900/50 rounded-lg">
-                            Est. Cost: <span className="text-emerald-400 font-bold">₹{(costTractor / 100000).toFixed(2)} Lakhs</span>
+                          <div className="text-xs text-slate-600 mt-2 p-2.5 bg-white rounded-lg border border-slate-200">
+                            Est. Cost: <span className="text-emerald-700 font-bold">₹{(costTractor / 100000).toFixed(2)} Lakhs</span>
                           </div>
                         </div>
                       </div>
                       
-                      <div className="w-full bg-slate-800/80 border border-emerald-500/30 p-4 rounded-2xl flex justify-between items-center mb-6">
-                        <span className="text-slate-300 font-bold">Total Estimated CAPEX ({selectedStrategicYear})</span>
-                        <span className="text-2xl font-black text-emerald-400">₹{(totalCost / 10000000).toFixed(2)} Crores</span>
+                      <div className="w-full bg-emerald-50 border border-emerald-200 p-4 rounded-2xl flex justify-between items-center mb-6">
+                        <span className="text-emerald-950 font-bold text-sm">Total Estimated CAPEX ({selectedStrategicYear})</span>
+                        <span className="text-2xl font-black text-emerald-700">₹{(totalCost / 10000000).toFixed(2)} Crores</span>
                       </div>
 
                       {/* Methodology & Constraints Section for the PDF */}
-                      <div className="bg-slate-900/60 border border-slate-700/50 p-6 rounded-2xl space-y-4">
-                        <h3 className="text-indigo-400 font-bold text-sm uppercase tracking-widest border-b border-indigo-500/20 pb-2 mb-3 flex items-center gap-2">
-                          <Settings className="w-4 h-4" /> Methodology & Operational Constraints
+                      <div className="bg-slate-50 border border-slate-200 p-6 rounded-2xl space-y-4">
+                        <h3 className="text-slate-900 font-bold text-xs uppercase tracking-widest border-b border-slate-200 pb-2 mb-3 flex items-center gap-2">
+                          <Settings className="w-4 h-4 text-emerald-600" /> Methodology & Operational Constraints
                         </h3>
                         
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-300">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-slate-600">
                           <div className="md:col-span-2">
-                            <strong className="text-slate-100 block mb-1">1. Urban Expansion & Population Regression Model</strong>
-                            <p className="text-slate-400 leading-relaxed">
+                            <strong className="text-slate-900 block mb-1">1. Urban Expansion & Population Regression Model</strong>
+                            <p className="text-slate-600 leading-relaxed">
                               Growth is determined dynamically rather than using a static CAGR. Udupi's geospatial footprint is divided into 100×100m grids. <strong>Cellular Automata + XGBoost Regression</strong> is trained on historical OSM building footprints, analyzing spatial features (building density, road proximity) to generate an <strong>Urban Growth Probability Map</strong>. The future building count is then mapped to population expansion using historical building-to-population correlation regression.
                             </p>
                           </div>
                           
                           <div>
-                            <strong className="text-slate-100 block mb-1">2. Waste Estimation (Per Capita & Building Type)</strong>
-                            <p className="text-slate-400 leading-relaxed">
+                            <strong className="text-slate-900 block mb-1">2. Waste Estimation (Per Capita & Building Type)</strong>
+                            <p className="text-slate-600 leading-relaxed">
                               Future waste volume is calculated using a baseline of <strong>~450g per capita per day</strong>. Total load is strictly calibrated against the building category derived from the spatial model: Residential sectors increase wet waste multipliers, Commercial zones amplify dry/recyclable load, and Medical/Industrial expansions directly scale hazardous predictions.
                             </p>
                           </div>

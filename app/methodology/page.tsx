@@ -453,16 +453,15 @@ export default function MethodologyPage() {
         </section>
 
         {/* Section 9 */}
-        <section className="bg-slate-900 rounded-3xl p-8 md:p-12 text-center shadow-2xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/20 rounded-full blur-2xl pointer-events-none" />
-          <h2 className="text-2xl font-bold text-indigo-400 mb-6 uppercase tracking-widest text-sm">9. Core Principle</h2>
-          <p className="text-2xl md:text-3xl font-black text-white leading-tight mb-8">
+        <section className="bg-emerald-50/70 border border-emerald-200 rounded-3xl p-8 md:p-12 text-center shadow-xs relative overflow-hidden">
+          <h2 className="text-sm font-bold text-emerald-800 mb-4 uppercase tracking-widest">9. Core Principle</h2>
+          <p className="text-xl md:text-2xl font-black text-slate-900 leading-snug mb-8 max-w-3xl mx-auto">
             "Population indicates the magnitude of waste demand, while spatial development and building data indicate where that demand is emerging and how the urban system is changing."
           </p>
-          <div className="text-slate-400 font-medium flex flex-col md:flex-row items-center justify-center gap-4">
-            <span className="bg-slate-800/50 px-6 py-4 rounded-2xl border border-slate-700 w-full md:w-auto">"How much waste will Udupi generate?"</span>
-            <span className="text-2xl">→</span>
-            <span className="bg-indigo-500/10 px-6 py-4 rounded-2xl border border-indigo-500/30 text-indigo-200 w-full md:w-auto">
+          <div className="text-slate-600 font-medium flex flex-col md:flex-row items-center justify-center gap-4 text-xs md:text-sm">
+            <span className="bg-white px-5 py-3 rounded-xl border border-slate-200 shadow-2xs w-full md:w-auto">"How much waste will Udupi generate?"</span>
+            <span className="text-emerald-600 text-lg font-bold">→</span>
+            <span className="bg-emerald-100/70 px-5 py-3 rounded-xl border border-emerald-300 text-emerald-950 font-semibold w-full md:w-auto">
               "Where is waste-generation demand likely to increase, how much additional waste will be generated, and what collection infrastructure and fleet capacity should be prepared?"
             </span>
           </div>

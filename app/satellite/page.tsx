@@ -221,16 +221,16 @@ export default function SatellitePage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 font-sans text-slate-900 dark:text-slate-100 flex flex-col pt-24 pb-16 px-6 relative overflow-hidden transition-colors">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 flex flex-col pt-12 pb-16 px-6 relative overflow-hidden">
       
       {/* Background Gradients */}
-      <div className="absolute top-[-100px] right-[-100px] w-96 h-96 bg-teal-500/10 blur-3xl pointer-events-none rounded-full" />
-      <div className="absolute bottom-[-100px] left-[-100px] w-[500px] h-[500px] bg-emerald-500/10 blur-3xl pointer-events-none rounded-full" />
+      <div className="absolute top-[-100px] right-[-100px] w-96 h-96 bg-emerald-500/5 blur-3xl pointer-events-none rounded-full" />
+      <div className="absolute bottom-[-100px] left-[-100px] w-[500px] h-[500px] bg-teal-500/5 blur-3xl pointer-events-none rounded-full" />
 
       <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0, y: 30 }} 
+        animate={{ opacity: 1, y: 0 }} 
+        transition={{ duration: 0.6 }} 
         className="max-w-3xl w-full mx-auto relative z-10 flex flex-col gap-10"
       >
         
@@ -239,15 +239,15 @@ export default function SatellitePage() {
           <motion.div 
             initial={{ scale: 0 }} 
             animate={{ scale: 1 }} 
-            transition={{ type: "spring", stiffness: 200, delay: 0.2 }}
-            className="w-20 h-20 mx-auto bg-slate-900 dark:bg-slate-800 rounded-3xl flex items-center justify-center mb-6 shadow-xl border border-slate-800 dark:border-slate-700"
+            transition={{ type: "spring", stiffness: 200, delay: 0.2 }} 
+            className="w-16 h-16 mx-auto bg-emerald-50 text-emerald-700 rounded-2xl flex items-center justify-center mb-4 shadow-xs border border-emerald-100"
           >
-            <SatelliteIcon className="w-10 h-10 text-teal-400" />
+            <SatelliteIcon className="w-8 h-8" />
           </motion.div>
-          <h1 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-4">
+          <h1 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 mb-3">
             Satellite Ingestion Pipeline
           </h1>
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto font-medium">
+          <p className="text-base text-slate-600 max-w-xl mx-auto font-normal">
             Upload multispectral orbital imagery securely. Our spatial models run NDVI and DBSCAN clustering automatically to isolate solid waste anomalies.
           </p>
         </div>
@@ -428,10 +428,10 @@ export default function SatellitePage() {
 
               <Link 
                 href="/map"
-                className="group w-full max-w-md bg-slate-900 hover:bg-slate-800 dark:bg-teal-600 dark:hover:bg-teal-500 text-white font-extrabold text-lg py-5 rounded-2xl shadow-xl transition-all flex items-center justify-center gap-3 hover:-translate-y-1"
+                className="group w-full max-w-md bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-base py-4 rounded-2xl shadow-xs transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5"
               >
                 View on Map
-                <svg className="w-5 h-5 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
               </Link>
 
               <button 

@@ -236,46 +236,46 @@ export default function BaselineSimulation() {
   }, [simulationActive]);
 
   return (
-    <div className="h-screen w-full flex bg-[#0f172a] text-slate-200 overflow-hidden font-sans">
+    <div className="h-screen w-full flex bg-slate-50 text-slate-900 overflow-hidden font-sans">
       <div className="flex-1 relative">
         <div ref={mapContainerRef} className="w-full h-full" />
-        <div className="absolute top-0 left-0 w-full p-6 bg-gradient-to-b from-[#0f172a] to-transparent pointer-events-none z-10">
-          <h1 className="text-3xl font-black text-white tracking-tight drop-shadow-md">
+        <div className="absolute top-0 left-0 w-full p-6 bg-gradient-to-b from-white/95 via-white/80 to-transparent pointer-events-none z-10">
+          <h1 className="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">
             Baseline Simulation (16 Vehicles)
           </h1>
-          <p className="text-slate-300 font-medium mt-2 max-w-2xl text-sm drop-shadow-md">
-            Visualizing the chaotic pre-optimization collection model: 12 Auto Tippers and 4 Heavy Trucks operating simultaneously across DWCCs and Liquid/Wet Waste BMUs.
+          <p className="text-slate-600 font-medium mt-1 max-w-2xl text-xs md:text-sm">
+            Visualizing the pre-optimization collection model: 12 Auto Tippers and 4 Heavy Trucks operating simultaneously across DWCCs and Liquid/Wet Waste BMUs.
           </p>
         </div>
       </div>
 
-      <div className="w-[400px] h-full bg-[#1e293b] border-l border-slate-800 shadow-2xl flex flex-col z-20">
-        <div className="p-6 border-b border-slate-800">
+      <div className="w-[380px] h-full bg-white border-l border-slate-200 shadow-md flex flex-col z-20">
+        <div className="p-4 border-b border-slate-200 bg-slate-50/60">
           <button
             onClick={() => setSimulationActive(!simulationActive)}
             disabled={loading}
-            className="w-full py-3 rounded-xl font-black text-sm uppercase bg-teal-500 text-[#0f172a] hover:bg-teal-400"
+            className="w-full py-2.5 rounded-xl font-bold text-xs uppercase tracking-wider bg-emerald-600 text-white hover:bg-emerald-700 shadow-xs transition-colors disabled:opacity-50"
           >
             {loading ? 'Routing 16 Vehicles...' : simulationActive ? 'Pause Baseline' : '▶ Start Baseline System'}
           </button>
         </div>
 
-        <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto p-3.5 space-y-2.5 scrollbar-thin">
           {!loading && vehicles.map((v, i) => {
             const pct = Math.min(100, Math.round((v.currentIdx / v.coordinates.length) * 100));
             const isAuto = v.type === 'auto_tipper';
             return (
-              <motion.div key={v.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-[#0f172a] rounded-xl p-4 border border-slate-800">
-                <div className="flex justify-between items-center mb-2">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xl">{isAuto ? '🛺' : '🚛'}</span>
+              <motion.div key={v.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-slate-50 rounded-xl p-3.5 border border-slate-200 shadow-2xs hover:border-emerald-300 transition-colors">
+                <div className="flex justify-between items-center mb-1">
+                  <div className="flex items-center gap-2.5">
+                    <span className="text-lg">{isAuto ? '🛺' : '🚛'}</span>
                     <div>
-                      <p className="text-slate-200 font-bold text-sm">{v.id}</p>
-                      <p className="text-slate-500 text-[10px] uppercase font-bold">{v.type.replace('_', ' ')}</p>
+                      <p className="text-slate-900 font-bold text-xs">{v.id}</p>
+                      <p className="text-slate-500 text-[10px] uppercase font-semibold">{v.type.replace('_', ' ')}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs font-black text-teal-400">{v.completed ? 'ARRIVED' : `${pct}%`}</p>
+                    <p className="text-xs font-black text-emerald-700">{v.completed ? 'ARRIVED' : `${pct}%`}</p>
                     <p className="text-slate-500 text-[10px]">Load: {v.load} kg</p>
                   </div>
                 </div>
