@@ -168,51 +168,69 @@ export default function EconomicsPage() {
           </div>
         </motion.section>
 
-        {/* COST COMPONENTS */}
-        <motion.section variants={fadeInUp} className="pt-8">
-           <h2 className="text-3xl font-extrabold text-slate-900 mb-8 flex items-center gap-3">
-             <span className="text-indigo-600 text-4xl">₹</span> Total Economic Lifecycle
+        {/* DEEP DIVE: MATHEMATICAL EXPLANATION */}
+        <motion.section variants={fadeInUp} className="pt-8 space-y-8">
+           <h2 className="text-3xl font-extrabold text-slate-900 mb-8 flex items-center gap-3 border-b border-slate-200 pb-4">
+             <span className="text-indigo-600 text-4xl">₹</span> Deep Dive: The Mathematics of Decentralization
            </h2>
-           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-             
-             {/* Transport Cost */}
-             <div className="bg-white border border-teal-200 rounded-3xl p-6 relative overflow-hidden shadow-sm">
-               <div className="absolute top-0 right-0 w-24 h-24 bg-teal-50 blur-[30px] rounded-full point-events-none" />
-               <div className="text-3xl mb-4 relative z-10">🚛</div>
-               <h3 className="text-lg font-bold text-slate-900 mb-2 relative z-10">1. Transport Scalability</h3>
-               <p className="text-slate-500 text-sm leading-relaxed mb-4 relative z-10">
-                 Decentralized processing at DWCCs reduces the need to transport waste across the city to centralized landfills.
-               </p>
+           
+           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+             {/* The Traditional Landfill Model */}
+             <div className="bg-white border border-rose-200 rounded-3xl p-8 shadow-sm">
+               <h3 className="text-xl font-bold text-rose-700 mb-4 flex items-center gap-2">
+                 <span className="bg-rose-100 text-rose-600 p-2 rounded-lg">1</span> The Legacy Landfill Equation (Cost Before)
+               </h3>
+               <div className="space-y-4 text-slate-600 text-sm md:text-base leading-relaxed">
+                 <p>
+                   The traditional solid waste management model relies heavily on a linear <strong>"Collect, Transport, and Dump"</strong> architecture. In our engine, this is represented by the <code>Cost_Before</code> variable.
+                 </p>
+                 <p>
+                   Mathematically, <code>Cost_Before = (Wet_Waste + Dry_Waste) × Landfill_Cost</code>. However, the <code>Landfill_Cost</code> (default ₹1,500/ton) is a blended rate that encapsulates massive hidden Operational Expenditures (OpEx). It includes:
+                 </p>
+                 <ul className="list-disc pl-5 space-y-2 text-rose-600/80">
+                   <li><strong>Fleet Fuel & Depreciation:</strong> Driving 72 tons of unsegregated waste to a centralized landfill (like Alevoor) requires heavy compactors traveling long distances daily, burning diesel and accelerating vehicle wear.</li>
+                   <li><strong>Tipping Fees & Earthworks:</strong> Operating an engineered landfill requires continuous earth-moving equipment to cover daily waste layers, leachate treatment plants, and methane venting infrastructure.</li>
+                   <li><strong>Zero Resource Recovery:</strong> In a mixed-waste landfill scenario, the intrinsic economic value of recyclable plastics, metals, and compostable organics drops to zero. It becomes a pure financial liability.</li>
+                 </ul>
+               </div>
              </div>
 
-             {/* Labor Cost */}
-             <div className="bg-white border border-slate-200 rounded-3xl p-6 relative shadow-sm">
-               <div className="text-3xl mb-4">👷</div>
-               <h3 className="text-lg font-bold text-slate-900 mb-2">2. Local Job Creation</h3>
-               <p className="text-slate-500 text-sm leading-relaxed">
-                 Processing waste locally employs ward residents, keeping economic value circulating within the community.
+             {/* The Decentralized Model */}
+             <div className="bg-white border border-emerald-200 rounded-3xl p-8 shadow-sm">
+               <h3 className="text-xl font-bold text-emerald-700 mb-4 flex items-center gap-2">
+                 <span className="bg-emerald-100 text-emerald-600 p-2 rounded-lg">2</span> The VajraYield Equation (Cost After)
+               </h3>
+               <div className="space-y-4 text-slate-600 text-sm md:text-base leading-relaxed">
+                 <p>
+                   The Digital Twin simulates a <strong>Decentralized Processing Architecture</strong> using localized Dry Waste Collection Centers (DWCCs) and Bio-Methanisation Units (BMUs). This is represented by <code>Cost_After</code>.
+                 </p>
+                 <p>
+                   The math is <code>Cost_After = (Wet_Waste + Dry_Waste) × Processing_Cost</code>. The significantly lower <code>Processing_Cost</code> (default ₹800/ton) is achieved through a multi-tiered economic offset model:
+                 </p>
+                 <ul className="list-disc pl-5 space-y-2 text-emerald-700/80">
+                   <li><strong>Routing Optimization (VRP):</strong> By intercepting waste at 6 local DWCCs instead of a single distant landfill, our vehicle routing algorithm shrinks total transport distance by over 60%, slashing fuel OpEx.</li>
+                   <li><strong>Revenue Offsets:</strong> Dry waste (21.6 TPD) is segregated into high-value streams (PET, HDPE, cardboard) and sold to recyclers. This revenue directly offsets the facility's operational costs.</li>
+                   <li><strong>Energy Generation:</strong> Wet waste (43.9 TPD) is routed to the Beedinagudde BMU, producing biogas. The methane is converted into electricity, drastically reducing grid-power dependency for municipal facilities.</li>
+                 </ul>
+               </div>
+             </div>
+           </div>
+
+           {/* Annual Savings & Systemic Gain */}
+           <div className="bg-gradient-to-r from-slate-900 to-indigo-950 rounded-3xl p-8 md:p-12 text-white shadow-xl">
+             <h3 className="text-2xl font-bold text-teal-400 mb-6">Calculating Systemic Efficiency Gain</h3>
+             <div className="space-y-6 text-slate-300 text-base md:text-lg leading-relaxed">
+               <p>
+                 The Dashboard calculates the final <strong>Efficiency Gain %</strong> using the formula: <br/>
+                 <code className="text-pink-400 bg-black/30 px-2 py-1 rounded mt-2 inline-block">((Cost_Before - Cost_After) ÷ Cost_Before) × 100</code>
+               </p>
+               <p>
+                 This percentage represents the pure reduction in required municipal tax expenditure. When extrapolated across a 365-day fiscal year, the seemingly small daily savings compound into massive capital reserves (often exceeding ₹1.5+ Crores annually for a city like Udupi).
+               </p>
+               <p>
+                 <strong>The Multiplier Effect:</strong> Beyond pure mathematics, this capital can be aggressively reinvested. A city saving ₹1.5 Crores annually on landfill overhead can afford to purchase 15 new Electric Auto-Tippers every single year, perpetually accelerating its transition to a 100% green-fleet and further driving down future processing costs.
                </p>
              </div>
-
-             {/* Resource Recovery */}
-             <div className="bg-white border border-slate-200 rounded-3xl p-6 relative shadow-sm">
-               <div className="text-3xl mb-4">♻️</div>
-               <h3 className="text-lg font-bold text-slate-900 mb-2">3. Resource Recovery</h3>
-               <p className="text-slate-500 text-sm leading-relaxed">
-                 High-value dry waste is segregated and sold to recyclers, creating a new revenue stream for the city.
-               </p>
-             </div>
-
-             {/* Overflow Cost */}
-             <div className="bg-rose-50 border border-rose-100 rounded-3xl p-6 relative hover:bg-rose-100/50 transition-colors shadow-sm">
-               <div className="absolute top-0 right-0 w-24 h-24 bg-rose-100 blur-[30px] rounded-full point-events-none" />
-               <div className="text-3xl mb-4 relative z-10">🗑️</div>
-               <h3 className="text-lg font-bold text-rose-700 mb-2 relative z-10">4. Crisis Prevention</h3>
-               <p className="text-rose-600/80 text-sm leading-relaxed relative z-10">
-                 Diverting waste from landfills averts environmental disaster, saving massive government cleanup deployments.
-               </p>
-             </div>
-
            </div>
         </motion.section>
 
