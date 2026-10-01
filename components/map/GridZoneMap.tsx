@@ -32,7 +32,7 @@ export default function GridZoneMap({ onZoneClick, selectedZoneId }: GridZoneMap
     // Center on Udupi CMC area
     const m = new maplibregl.Map({
       container: containerRef.current,
-      style: 'https://tiles.openfreemap.org/styles/dark',
+      style: 'https://tiles.openfreemap.org/styles/positron',
       center: [74.7610, 13.3530],
       zoom: 13.0,
       pitch: 0,
@@ -106,9 +106,9 @@ export default function GridZoneMap({ onZoneClick, selectedZoneId }: GridZoneMap
             'text-allow-overlap': false,
           },
           paint: {
-            'text-color': '#ffffff',
-            'text-halo-color': '#000000',
-            'text-halo-width': 1.5,
+            'text-color': '#0f172a',
+            'text-halo-color': '#ffffff',
+            'text-halo-width': 2.0,
           },
           minzoom: 13,
         });
@@ -177,13 +177,13 @@ export default function GridZoneMap({ onZoneClick, selectedZoneId }: GridZoneMap
         },
       });
 
-      // Border — dashed white
+      // Border — dashed teal
       m.addLayer({
         id: 'grid-border', type: 'line', source: 'grid-zones',
         paint: {
-          'line-color': '#ffffff',
+          'line-color': '#0f766e',
           'line-width': 1.5,
-          'line-opacity': 0.6,
+          'line-opacity': 0.7,
           'line-dasharray': [4, 2],
         },
       });
@@ -200,9 +200,9 @@ export default function GridZoneMap({ onZoneClick, selectedZoneId }: GridZoneMap
           'text-allow-overlap': true,
         },
         paint: {
-          'text-color': '#ffffff',
-          'text-halo-color': '#000000',
-          'text-halo-width': 1.8,
+          'text-color': '#0f172a',
+          'text-halo-color': '#ffffff',
+          'text-halo-width': 2.0,
         },
       });
 
@@ -223,61 +223,61 @@ export default function GridZoneMap({ onZoneClick, selectedZoneId }: GridZoneMap
         new maplibregl.Popup({ maxWidth: '340px', className: 'grid-zone-popup' })
           .setLngLat(e.lngLat)
           .setHTML(`
-            <div style="background:#0f172a;color:white;padding:16px;border-radius:12px;font-family:Inter,system-ui,sans-serif;width:310px;box-sizing:border-box;border:1px solid rgba(255,255,255,0.08);">
+            <div style="background:#ffffff;color:#0f172a;padding:16px;border-radius:12px;font-family:Inter,system-ui,sans-serif;width:310px;box-sizing:border-box;border:1px solid #e2e8f0;box-shadow:0 10px 25px -5px rgba(0,0,0,0.1),0 8px 10px -6px rgba(0,0,0,0.1);">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
-                <span style="font-size:20px;font-weight:900;color:#00d4aa;">${p.zone_id}</span>${riskBadge}
+                <span style="font-size:20px;font-weight:900;color:#0f766e;">${p.zone_id}</span>${riskBadge}
               </div>
               
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;">
-                <div style="background:#1e293b;padding:10px;border-radius:8px;">
-                  <div style="color:#94a3b8;font-size:9px;text-transform:uppercase;font-weight:700;letter-spacing:0.08em;">Population</div>
-                  <div style="color:#00d4aa;font-size:18px;font-weight:900;">${Number(p.population).toLocaleString('en-IN')}</div>
+                <div style="background:#f8fafc;border:1px solid #e2e8f0;padding:10px;border-radius:8px;">
+                  <div style="color:#64748b;font-size:9px;text-transform:uppercase;font-weight:700;letter-spacing:0.08em;">Population</div>
+                  <div style="color:#0f766e;font-size:18px;font-weight:900;">${Number(p.population).toLocaleString('en-IN')}</div>
                 </div>
-                <div style="background:#1e293b;padding:10px;border-radius:8px;">
-                  <div style="color:#94a3b8;font-size:9px;text-transform:uppercase;font-weight:700;letter-spacing:0.08em;">Buildings</div>
-                  <div style="color:white;font-size:18px;font-weight:900;">${p.total_buildings}</div>
+                <div style="background:#f8fafc;border:1px solid #e2e8f0;padding:10px;border-radius:8px;">
+                  <div style="color:#64748b;font-size:9px;text-transform:uppercase;font-weight:700;letter-spacing:0.08em;">Buildings</div>
+                  <div style="color:#0f172a;font-size:18px;font-weight:900;">${p.total_buildings}</div>
                 </div>
-                <div style="background:#1e293b;padding:10px;border-radius:8px;">
-                  <div style="color:#94a3b8;font-size:9px;text-transform:uppercase;font-weight:700;letter-spacing:0.08em;">Waste/Day</div>
-                  <div style="color:#f59e0b;font-size:18px;font-weight:900;">${wkg} kg</div>
+                <div style="background:#f8fafc;border:1px solid #e2e8f0;padding:10px;border-radius:8px;">
+                  <div style="color:#64748b;font-size:9px;text-transform:uppercase;font-weight:700;letter-spacing:0.08em;">Waste/Day</div>
+                  <div style="color:#d97706;font-size:18px;font-weight:900;">${wkg} kg</div>
                 </div>
-                <div style="background:#1e293b;padding:10px;border-radius:8px;">
-                  <div style="color:#94a3b8;font-size:9px;text-transform:uppercase;font-weight:700;letter-spacing:0.08em;">Roads</div>
-                  <div style="color:white;font-size:18px;font-weight:900;">${p.total_roads}</div>
+                <div style="background:#f8fafc;border:1px solid #e2e8f0;padding:10px;border-radius:8px;">
+                  <div style="color:#64748b;font-size:9px;text-transform:uppercase;font-weight:700;letter-spacing:0.08em;">Roads</div>
+                  <div style="color:#0f172a;font-size:18px;font-weight:900;">${p.total_roads}</div>
                 </div>
               </div>
 
-              <div style="background:#1e293b;border:1px solid #334155;padding:10px;border-radius:8px;margin-bottom:10px;">
-                <div style="color:#3b82f6;font-size:9px;font-weight:800;text-transform:uppercase;margin-bottom:8px;letter-spacing:0.08em;">Waste Segregation</div>
+              <div style="background:#f1f5f9;border:1px solid #cbd5e1;padding:10px;border-radius:8px;margin-bottom:10px;">
+                <div style="color:#0284c7;font-size:9px;font-weight:800;text-transform:uppercase;margin-bottom:8px;letter-spacing:0.08em;">Waste Segregation (Audited)</div>
                 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;">
-                  <div style="text-align:center;">
-                    <div style="color:#22c55e;font-size:13px;font-weight:800;">${wetT}T</div>
-                    <div style="color:#64748b;font-size:8px;font-weight:700;">WET</div>
+                  <div style="text-align:center;background:#ffffff;padding:6px;border-radius:6px;border:1px solid #e2e8f0;">
+                    <div style="color:#16a34a;font-size:13px;font-weight:800;">${wetT}T</div>
+                    <div style="color:#64748b;font-size:8px;font-weight:700;">WET 61%</div>
                   </div>
-                  <div style="text-align:center;">
-                    <div style="color:#3b82f6;font-size:13px;font-weight:800;">${dryT}T</div>
-                    <div style="color:#64748b;font-size:8px;font-weight:700;">DRY</div>
+                  <div style="text-align:center;background:#ffffff;padding:6px;border-radius:6px;border:1px solid #e2e8f0;">
+                    <div style="color:#0284c7;font-size:13px;font-weight:800;">${dryT}T</div>
+                    <div style="color:#64748b;font-size:8px;font-weight:700;">DRY 30%</div>
                   </div>
-                  <div style="text-align:center;">
-                    <div style="color:#ef4444;font-size:13px;font-weight:800;">${hazT}T</div>
-                    <div style="color:#64748b;font-size:8px;font-weight:700;">HAZ</div>
+                  <div style="text-align:center;background:#ffffff;padding:6px;border-radius:6px;border:1px solid #e2e8f0;">
+                    <div style="color:#dc2626;font-size:13px;font-weight:800;">${hazT}T</div>
+                    <div style="color:#64748b;font-size:8px;font-weight:700;">HAZ 5%</div>
                   </div>
                 </div>
               </div>
 
               <div style="display:flex;gap:8px;margin-bottom:8px;">
                 <div style="flex:1;background:#0d9488;padding:6px 10px;border-radius:6px;text-align:center;">
-                  <div style="font-size:9px;color:rgba(255,255,255,0.7);font-weight:600;">DWCC</div>
+                  <div style="font-size:9px;color:rgba(255,255,255,0.85);font-weight:600;">DWCC HUB</div>
                   <div style="font-size:12px;font-weight:800;color:white;">${p.assigned_dwcc}</div>
                 </div>
-                <div style="flex:1;background:#334155;padding:6px 10px;border-radius:6px;text-align:center;">
-                  <div style="font-size:9px;color:rgba(255,255,255,0.7);font-weight:600;">Vehicle</div>
+                <div style="flex:1;background:#0284c7;padding:6px 10px;border-radius:6px;text-align:center;">
+                  <div style="font-size:9px;color:rgba(255,255,255,0.85);font-weight:600;">VEHICLE</div>
                   <div style="font-size:12px;font-weight:800;color:white;">${(p.collection_vehicle || '').replace('_', ' ')}</div>
                 </div>
               </div>
 
-              <div style="background:#1e293b;padding:8px;border-radius:6px;font-size:10px;color:#64748b;line-height:1.5;">
-                ${p.residential_houses} houses | ${p.apartments} apts | ${p.commercial} commercial | ${p.schools} schools
+              <div style="background:#f8fafc;border:1px solid #e2e8f0;padding:8px;border-radius:6px;font-size:10px;color:#64748b;line-height:1.5;">
+                ${p.residential_houses} houses · ${p.apartments} apts · ${p.commercial} commercial · ${p.schools} schools
               </div>
             </div>
           `)

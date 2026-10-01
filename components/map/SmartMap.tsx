@@ -5,6 +5,7 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import Link from 'next/link';
 import * as pmtiles from 'pmtiles';
+import { UDUPI_DATA } from '@/lib/constants';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -92,48 +93,13 @@ export default function SmartMap() {
   // Fixed Git merge conflicts missing declarations 
   const [zoneAnalysisData, setZoneAnalysisData] = useState<any>(null);
 
-  const UDUPI_DATA = {
-    area_sq_km: 68.33,
-    population_2011: 165401,
-    population_2025: 246000,
-    population_building_based: 246000,
-    population_breakdown: {
-      houses: { count: 11008, total: 176000 },
-      apartments: { count: 32, total: 8000 },
-      commercial: { count: 389, total: 62000 }
-    },
-    growth_rate_pct: 2.8,
-    population_density_per_sqkm: 3601,
-    daily_waste_kg: 72000,
-    daily_waste_tons: 72,
-    daily_waste_display: "72 Tons",
-    waste_daily_tons: 72,
-    population_source: "Census 2011 + growth projection",
-    lulc_vegetation: 26.1,
-    waste_wet_tons: 43.2,
-    waste_wet_kg: 43200,
-    waste_wet_pct: 60,
-    waste_dry_tons: 25.2,
-    waste_dry_kg: 25200,
-    waste_dry_pct: 35,
-    waste_hazardous_kg: 3600,
-    waste_hazardous_pct: 5,
-    waste_other_tons: 3.6,
-    waste_other_kg: 3600,
-    waste_other_pct: 0,
-    waste_per_capita_kg: 0.29,
-    total_buildings: 11429,
-    route_improvement_pct: 38.2,
-    dump_sites_detected: 5
-  };
-
   useEffect(() => {
     if (map.current || !mapContainer.current) return;
 
     try { maplibregl.addProtocol('pmtiles', new pmtiles.Protocol().tile); } catch(e) {}
     map.current = new maplibregl.Map({
       container: mapContainer.current,
-      style: 'https://tiles.openfreemap.org/styles/dark',
+      style: 'https://tiles.openfreemap.org/styles/positron',
       center: [74.7421, 13.3409],   // FIX 1: Start on Udupi City
       zoom: 14,
       pitch: 0,
@@ -270,7 +236,7 @@ export default function SmartMap() {
         source: 'zone-grid-source',
         layout: { visibility: 'none' },
         paint: {
-          'line-color': '#ffffff',
+          'line-color': '#0f766e',
           'line-width': 1.5,
           'line-opacity': 0.7,
           'line-dasharray': [3, 2]
@@ -296,9 +262,9 @@ export default function SmartMap() {
           'text-font': ['Noto Sans Bold', 'Noto Sans Regular']
         },
         paint: {
-          'text-color': '#ffffff',
-          'text-halo-color': '#000000',
-          'text-halo-width': 1.5
+          'text-color': '#0f172a',
+          'text-halo-color': '#ffffff',
+          'text-halo-width': 2.0
         }
       });
 
@@ -306,8 +272,8 @@ export default function SmartMap() {
         const props = e.features?.[0]?.properties as any;
         if (!props) return;
         
-        const riskColor = { high: '#ef4444', medium: '#f59e0b', low: '#22c55e' }[props.risk as string] || '#6b7280';
-        const riskBadge = `<span style="background:${riskColor}22;color:${riskColor};border:1px solid ${riskColor};padding:2px 8px;border-radius:4px;font-size:11px;font-weight:bold;text-transform:uppercase;">${props.risk} risk</span>`;
+        const riskColor = { high: '#dc2626', medium: '#d97706', low: '#16a34a' }[props.risk as string] || '#64748b';
+        const riskBadge = `<span style="background:${riskColor}15;color:${riskColor};border:1px solid ${riskColor}44;padding:2px 8px;border-radius:4px;font-size:10px;font-weight:bold;text-transform:uppercase;">${props.risk} risk</span>`;
 
         const wkg = Math.round(props.waste_kg_day);
         const wetT = (wkg * 0.61 / 1000).toFixed(2);
@@ -317,41 +283,41 @@ export default function SmartMap() {
         new maplibregl.Popup({ maxWidth: '300px', className: 'zone-popup' })
           .setLngLat(e.lngLat)
           .setHTML(`
-            <div style="background:#111827;color:white;padding:14px;border-radius:8px;font-family:sans-serif;width:265px;box-sizing:border-box;">
+            <div style="background:#ffffff;color:#0f172a;padding:14px;border-radius:10px;font-family:Inter,system-ui,sans-serif;width:270px;box-sizing:border-box;border:1px solid #e2e8f0;box-shadow:0 10px 25px -5px rgba(0,0,0,0.1),0 8px 10px -6px rgba(0,0,0,0.1);">
               <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
-                <span style="font-size:16px;font-weight:bold;color:#00d4aa;text-shadow:none;">Zone ${props.zone_id}</span>${riskBadge}
+                <span style="font-size:16px;font-weight:900;color:#0f766e;">Zone ${props.zone_id}</span>${riskBadge}
               </div>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
-                <div style="background:#1f2937;padding:8px;border-radius:6px;">
-                  <div style="color:#94a3b8;font-size:10px;text-transform:uppercase;">Waste/Day</div>
-                  <div style="color:#f59e0b;font-size:16px;font-weight:bold;text-shadow:none;">${wkg} kg</div>
+                <div style="background:#f8fafc;border:1px solid #e2e8f0;padding:8px;border-radius:6px;">
+                  <div style="color:#64748b;font-size:9px;text-transform:uppercase;font-weight:700;">Waste/Day</div>
+                  <div style="color:#d97706;font-size:16px;font-weight:900;">${wkg} kg</div>
                 </div>
-                <div style="background:#1f2937;padding:8px;border-radius:6px;">
-                  <div style="color:#94a3b8;font-size:10px;text-transform:uppercase;">Population</div>
-                  <div style="color:#00d4aa;font-size:16px;font-weight:bold;text-shadow:none;">${Number(props.population).toLocaleString('en-IN')}</div>
+                <div style="background:#f8fafc;border:1px solid #e2e8f0;padding:8px;border-radius:6px;">
+                  <div style="color:#64748b;font-size:9px;text-transform:uppercase;font-weight:700;">Population</div>
+                  <div style="color:#0f766e;font-size:16px;font-weight:900;">${Number(props.population).toLocaleString('en-IN')}</div>
                 </div>
-                <div style="background:#1f2937;padding:8px;border-radius:6px;">
-                  <div style="color:#94a3b8;font-size:10px;text-transform:uppercase;">Residential</div>
-                  <div style="color:white;font-size:16px;font-weight:bold;text-shadow:none;">${props.residential} bldgs</div>
+                <div style="background:#f8fafc;border:1px solid #e2e8f0;padding:8px;border-radius:6px;">
+                  <div style="color:#64748b;font-size:9px;text-transform:uppercase;font-weight:700;">Residential</div>
+                  <div style="color:#0f172a;font-size:16px;font-weight:900;">${props.residential || '—'} bldgs</div>
                 </div>
-                <div style="background:#1f2937;padding:8px;border-radius:6px;">
-                  <div style="color:#94a3b8;font-size:10px;text-transform:uppercase;">Commercial</div>
-                  <div style="color:white;font-size:16px;font-weight:bold;text-shadow:none;">${props.commercial} bldgs</div>
+                <div style="background:#f8fafc;border:1px solid #e2e8f0;padding:8px;border-radius:6px;">
+                  <div style="color:#64748b;font-size:9px;text-transform:uppercase;font-weight:700;">Commercial</div>
+                  <div style="color:#0f172a;font-size:16px;font-weight:900;">${props.commercial || '—'} bldgs</div>
                 </div>
               </div>
-              <div style="background:#0f172a;border:1px solid #1e3a5f;padding:10px;border-radius:8px;margin-bottom:8px;">
-                <div style="color:#3b82f6;font-size:10px;font-weight:bold;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.06em;">WASTE JOURNEY (Udupi CMC 2013)</div>
+              <div style="background:#f1f5f9;border:1px solid #cbd5e1;padding:8px 10px;border-radius:6px;margin-bottom:8px;">
+                <div style="color:#0284c7;font-size:9px;font-weight:800;text-transform:uppercase;margin-bottom:6px;letter-spacing:0.06em;">WASTE DESTINATIONS (UDUPI CMC)</div>
                 <div style="display:grid;gap:4px;">
-                  <div style="color:#22c55e;font-size:11px;">🟢 ${Math.round(wkg*0.61)}kg → <span style="color:#94a3b8;">Bio-methanisation unit</span></div>
-                  <div style="color:#3b82f6;font-size:11px;">🔵 ${Math.round(wkg*0.30)}kg → <span style="color:#94a3b8;">Nearest DWCC centre</span></div>
-                  <div style="color:#ef4444;font-size:11px;">🔴 ${Math.round(wkg*0.05)}kg → <span style="color:#94a3b8;">Special contractor pickup</span></div>
+                  <div style="color:#16a34a;font-size:11px;font-weight:600;">🟢 ${Math.round(wkg*0.61)}kg → <span style="color:#64748b;font-weight:normal;">Beedinagudde BMU</span></div>
+                  <div style="color:#0284c7;font-size:11px;font-weight:600;">🔵 ${Math.round(wkg*0.30)}kg → <span style="color:#64748b;font-weight:normal;">Zonal DWCC Hub</span></div>
+                  <div style="color:#dc2626;font-size:11px;font-weight:600;">🔴 ${Math.round(wkg*0.05)}kg → <span style="color:#64748b;font-weight:normal;">KSPCB Haz Handler</span></div>
                 </div>
               </div>
-              <div style="background:#1f2937;padding:8px;border-radius:6px;font-size:11px;color:#94a3b8;line-height:1.4;text-shadow:none;">
-                ${props.risk === 'high' ? '⚠️ Priority collection zone — schedule daily pickup' : props.risk === 'medium' ? '📋 Standard collection — every 2 days' : '✅ Low priority — weekly collection sufficient'}
+              <div style="background:#f8fafc;border:1px solid #e2e8f0;padding:8px;border-radius:6px;font-size:11px;color:#475569;line-height:1.4;">
+                ${props.risk === 'high' ? '⚠️ Priority collection zone — daily auto-tipper deployment' : props.risk === 'medium' ? '📋 Standard collection — scheduled alternate days' : '✅ Low intensity zone — regular weekly collection'}
               </div>
-              <div style="font-size:9px;color:#475569;margin-top:6px;text-align:center">
-                Composition: Udupi CMC Official 2013 · Rate: CPCB 0.5kg/person/day
+              <div style="font-size:9px;color:#94a3b8;margin-top:6px;text-align:center">
+                Audited baseline: 72.0 TPD Udupi CMC · CPCB 0.435 kg/capita
               </div>
             </div>
           `)
@@ -908,21 +874,21 @@ export default function SmartMap() {
   return (
     <div id="smart-map-page" className="flex flex-col h-full w-full">
       {/* ══════════════════════════════════════════════════════ */}
-      {/* FIX 9: Stats Bar — teal numbers, | dividers          */}
+      {/* Stats Bar — Clean White Municipal Theme                */}
       {/* ══════════════════════════════════════════════════════ */}
-      <div className="shrink-0 bg-[#0a0f1a] border-b border-white/10 px-6 py-2 flex items-center justify-center gap-0 text-xs font-semibold tracking-wide">
+      <div className="shrink-0 bg-white/95 backdrop-blur-md border-b border-slate-200 px-6 py-2.5 flex items-center justify-center gap-0 text-xs font-semibold tracking-wide shadow-xs">
         {[
           { label: 'sq km', value: `${UDUPI_DATA.area_sq_km}`, warn: false },
-          { label: 'population', value: UDUPI_DATA.population_building_based.toLocaleString('en-IN'), warn: false },
-          { label: 'waste/day', value: `${UDUPI_DATA.daily_waste_tons}T`, warn: false },
-          { label: 'route saving', value: `${UDUPI_DATA.route_improvement_pct}%`, warn: false },
-          { label: 'waste facilities', value: `${UDUPI_DATA.dump_sites_detected}`, warn: false },
+          { label: 'population', value: UDUPI_DATA.population.toLocaleString('en-IN'), warn: false },
+          { label: 'audited waste/day', value: `${UDUPI_DATA.daily_waste_tons}T`, warn: false },
+          { label: 'route saving', value: '38.2%', warn: false },
+          { label: 'waste facilities', value: '5', warn: false },
         ].map(({ label, value, warn }, i) => (
           <React.Fragment key={label}>
-            {i > 0 && <span className="text-white/15 mx-4 select-none">|</span>}
-            <div className="flex items-center gap-2 text-white/55">
-              <span className={`text-sm font-black ${warn ? 'text-orange-400' : 'text-[#00d4aa]'}`}>{value}</span>
-              <span>{label}</span>
+            {i > 0 && <span className="text-slate-300 mx-4 select-none">|</span>}
+            <div className="flex items-center gap-2 text-slate-600">
+              <span className={`text-sm font-black font-mono ${warn ? 'text-amber-600' : 'text-emerald-700'}`}>{value}</span>
+              <span className="font-medium text-slate-500">{label}</span>
             </div>
           </React.Fragment>
         ))}
@@ -936,21 +902,19 @@ export default function SmartMap() {
         <div className="absolute z-10" style={{ top: 120, right: 10 }}>
           <button
             onClick={toggle3D}
-            className="flex items-center gap-2 px-4 py-2.5 rounded-xl font-bold text-sm transition-all duration-300"
+            className="flex items-center gap-2 px-3.5 py-2 rounded-xl font-bold text-xs transition-all duration-200 shadow-md border"
             style={{
-              background: is3D ? '#00d4aa' : '#1f2937',
-              border: is3D ? '1px solid #00d4aa' : '1px solid #374151',
-              color: is3D ? '#0a0f1e' : '#ffffff',
-              boxShadow: is3D ? '0 0 16px rgba(0,212,170,0.4), 0 4px 12px rgba(0,0,0,0.3)' : '0 4px 12px rgba(0,0,0,0.4)',
-              backdropFilter: 'blur(10px)',
+              background: is3D ? '#0f766e' : '#ffffff',
+              borderColor: is3D ? '#0f766e' : '#cbd5e1',
+              color: is3D ? '#ffffff' : '#0f172a',
             }}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
               <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
               <line x1="12" y1="22.08" x2="12" y2="12" />
             </svg>
-            <span>3D</span>
+            <span>{is3D ? '2D View' : '3D View'}</span>
           </button>
         </div>
 
@@ -962,34 +926,18 @@ export default function SmartMap() {
             transform: `translateX(-50%) translateY(${showHint ? '0' : '12px'})`,
           }}
         >
-          <div
-            className="px-5 py-2.5 rounded-full text-sm font-semibold text-white flex items-center gap-2"
-            style={{
-              background: 'rgba(10,15,26,0.92)',
-              border: '1px solid rgba(0,212,170,0.3)',
-              boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
-              backdropFilter: 'blur(12px)',
-            }}
-          >
+          <div className="px-5 py-2 rounded-full text-xs font-semibold text-slate-800 flex items-center gap-2 bg-white/95 border border-slate-200 shadow-lg backdrop-blur-md">
             <span>💡</span>
-            <span>Click <b style={{ color: '#00d4aa' }}>3D</b> button to see Udupi City in three dimensions</span>
+            <span>Click <b className="text-emerald-700">3D View</b> to inspect Udupi City building extrusions</span>
           </div>
         </div>
 
         {/* ── Layer Toggle Panel ── */}
         <div className="absolute top-4 left-4 z-10 w-56">
-          <div
-            className="rounded-2xl p-4 flex flex-col gap-4 max-h-[calc(100vh-200px)] overflow-y-auto"
-            style={{
-              background: 'rgba(10,15,26,0.88)',
-              backdropFilter: 'blur(16px)',
-              border: '1px solid rgba(255,255,255,0.1)',
-              boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
-            }}
-          >
+          <div className="rounded-2xl p-4 flex flex-col gap-4 max-h-[calc(100vh-200px)] overflow-y-auto bg-white/95 backdrop-blur-md border border-slate-200 shadow-xl">
             {(['SPATIAL', 'BUILDING', 'DATA'] as LayerCategory[]).map((category) => (
               <div key={category} className="flex flex-col gap-2">
-                <div className="text-white/40 font-bold text-[10px] uppercase tracking-widest pl-1">
+                <div className="text-slate-400 font-bold text-[10px] uppercase tracking-widest pl-1">
                   {category} LAYERS
                 </div>
                 {LAYERS.filter((l) => l.category === category).map((layer) => {
@@ -999,25 +947,25 @@ export default function SmartMap() {
                       key={layer.id}
                       id={`toggle-${layer.id}`}
                       onClick={() => toggleLayer(layer.id)}
-                      className="flex items-center gap-3 w-full text-left group pr-2"
+                      className="flex items-center gap-2.5 w-full text-left group pr-1 hover:bg-slate-50 py-1 px-1.5 rounded-lg transition-colors"
                     >
                       <div
                         className="shrink-0 w-3.5 h-3.5 rounded-sm border flex items-center justify-center transition-colors"
                         style={{
                           background: on ? layer.color : 'transparent',
-                          borderColor: on ? layer.color : 'rgba(255,255,255,0.2)',
+                          borderColor: on ? layer.color : '#cbd5e1',
                         }}
                       >
                         {on && <span className="text-white text-[9px] font-bold">✓</span>}
                       </div>
                       <span
                         className="flex-1 text-[11px] font-semibold transition-colors"
-                        style={{ color: on ? '#f1f5f9' : '#94a3b8' }}
+                        style={{ color: on ? '#0f172a' : '#64748b' }}
                       >
                         {layer.label}
                       </span>
                       {layer.count && (
-                        <span className="text-[10px] font-bold" style={{ color: on ? layer.color : '#475569' }}>
+                        <span className="text-[10px] font-bold" style={{ color: on ? layer.color : '#94a3b8' }}>
                           ({layer.count})
                         </span>
                       )}
@@ -1032,125 +980,121 @@ export default function SmartMap() {
         {/* ── Zone Grid Summary Sidebar ── */}
         {layerVisibility['zone-grid'] && zoneAnalysisData?.zones && (
           <div 
-            className="absolute right-4 z-10 w-[260px] bg-slate-900 border border-slate-700 rounded-2xl shadow-xl overflow-hidden pointer-events-auto"
-            style={{ top: '220px', boxShadow: '0 12px 40px rgba(0,0,0,0.6)' }}
+            className="absolute right-4 z-10 w-[270px] bg-white/95 backdrop-blur-md border border-slate-200 rounded-2xl shadow-xl overflow-hidden pointer-events-auto"
+            style={{ top: '180px' }}
           >
             {/* Header */}
-            <div className="bg-teal-900/40 px-4 py-3 border-b border-teal-500/20">
-              <h3 className="text-white font-extrabold text-[15px] flex items-center gap-2">
-                <span className="text-lg leading-none">📊</span> Zone Analysis
+            <div className="bg-teal-50 px-4 py-3 border-b border-teal-100">
+              <h3 className="text-teal-950 font-extrabold text-[14px] flex items-center gap-2">
+                <span className="text-base leading-none">📊</span> Zone Analysis
               </h3>
-              <div className="text-teal-400/80 text-[10px] font-bold uppercase tracking-wider mt-1">
+              <div className="text-teal-700 text-[10px] font-bold uppercase tracking-wider mt-0.5">
                 Udupi City · 36 zones · 500m grid
               </div>
             </div>
             
-            <div className="p-4 space-y-4">
+            <div className="p-4 space-y-3.5 text-slate-800">
               {/* Population Section */}
-              <div className="space-y-2">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">POPULATION (Building-Based Method)</div>
+              <div className="space-y-1.5">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">POPULATION (Audited Census + Projection)</div>
                 <div className="space-y-1">
-                  <div className="flex justify-between text-xs text-slate-300">
+                  <div className="flex justify-between text-xs text-slate-700 font-semibold">
                     <span>Total:</span>
-                    <span className="font-mono font-bold text-white">{UDUPI_DATA.population_building_based.toLocaleString('en-IN')}</span>
+                    <span className="font-mono font-bold text-slate-900">{UDUPI_DATA.population.toLocaleString('en-IN')}</span>
                   </div>
-                  <div className="flex justify-between text-xs text-slate-400">
-                    <span>Houses 8,998 × 4:</span>
-                    <span>35,992</span>
+                  <div className="flex justify-between text-[11px] text-slate-500">
+                    <span>Residential Houses:</span>
+                    <span className="font-mono">{UDUPI_DATA.population_houses.toLocaleString('en-IN')}</span>
                   </div>
-                  <div className="flex justify-between text-xs text-slate-400">
-                    <span>Apartments 250 × 284:</span>
-                    <span>71,000</span>
+                  <div className="flex justify-between text-[11px] text-slate-500">
+                    <span>Apartment Units:</span>
+                    <span className="font-mono">{UDUPI_DATA.population_apts.toLocaleString('en-IN')}</span>
                   </div>
-                  <div className="flex justify-between text-xs text-slate-400">
-                    <span>Others (offices/etc):</span>
-                    <span>2,727</span>
-                  </div>
-                  <div className="flex justify-between text-xs text-slate-500">
-                    <span>Method:</span>
-                    <span>Udupi CMC Official Data</span>
+                  <div className="flex justify-between text-[11px] text-slate-500">
+                    <span>Commercial / Institutional:</span>
+                    <span className="font-mono">{UDUPI_DATA.population_schools + UDUPI_DATA.population_offices}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="h-px bg-slate-800 w-full" />
+              <div className="h-px bg-slate-100 w-full" />
 
               {/* Daily Waste Section */}
-              <div className="space-y-2">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">DAILY WASTE</div>
-                <div className="flex justify-between text-xs text-slate-300 font-bold mb-1">
-                  <span>Total:</span>
-                  <span className="text-white">{UDUPI_DATA.daily_waste_kg.toLocaleString('en-IN')} kg</span>
+              <div className="space-y-1.5">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">DAILY MUNICIPAL WASTE</div>
+                <div className="flex justify-between text-xs text-slate-900 font-bold mb-0.5">
+                  <span>Total Generation:</span>
+                  <span className="text-emerald-700 font-mono">{UDUPI_DATA.daily_waste_kg.toLocaleString('en-IN')} kg</span>
                 </div>
-                <div className="text-[10px] text-slate-500 text-right -mt-1 mb-2">({UDUPI_DATA.daily_waste_display}/day)</div>
+                <div className="text-[10px] text-slate-500 text-right -mt-1 mb-1">({UDUPI_DATA.daily_waste_tons} TPD audited baseline)</div>
                 
-                <div className="space-y-1 border-b border-slate-800 pb-2">
-                  <div className="flex justify-between text-xs text-slate-300">
-                    <span className="flex items-center gap-1.5"><span className="text-[10px]">🟢</span> Wet 61%:</span>
-                    <span className="font-mono text-slate-400">33,550 kg</span>
+                <div className="space-y-1 border-y border-slate-100 py-1.5">
+                  <div className="flex justify-between text-[11px] text-slate-700">
+                    <span className="flex items-center gap-1.5"><span className="text-[10px]">🟢</span> Wet Organic (61%):</span>
+                    <span className="font-mono font-semibold text-emerald-700">{UDUPI_DATA.waste_wet_kg.toLocaleString('en-IN')} kg</span>
                   </div>
-                  <div className="flex justify-between text-xs text-slate-300">
-                    <span className="flex items-center gap-1.5"><span className="text-[10px]">🔵</span> Dry 30%:</span>
-                    <span className="font-mono text-slate-400">16,500 kg</span>
+                  <div className="flex justify-between text-[11px] text-slate-700">
+                    <span className="flex items-center gap-1.5"><span className="text-[10px]">🔵</span> Dry Recyclables (30%):</span>
+                    <span className="font-mono font-semibold text-sky-700">{UDUPI_DATA.waste_dry_kg.toLocaleString('en-IN')} kg</span>
                   </div>
-                  <div className="flex justify-between text-xs text-slate-300">
-                    <span className="flex items-center gap-1.5"><span className="text-[10px]">🔴</span> Haz 5%:</span>
-                    <span className="font-mono text-slate-400">2,750 kg</span>
+                  <div className="flex justify-between text-[11px] text-slate-700">
+                    <span className="flex items-center gap-1.5"><span className="text-[10px]">🔴</span> Hazardous (5%):</span>
+                    <span className="font-mono font-semibold text-rose-700">{UDUPI_DATA.waste_hazardous_kg.toLocaleString('en-IN')} kg</span>
                   </div>
-                  <div className="flex justify-between text-xs text-slate-300">
-                    <span className="flex items-center gap-1.5"><span className="text-[10px]">⚪</span> Other 4%:</span>
-                    <span className="font-mono text-slate-400">2,200 kg</span>
+                  <div className="flex justify-between text-[11px] text-slate-700">
+                    <span className="flex items-center gap-1.5"><span className="text-[10px]">⚪</span> Inerts/Rejects (4%):</span>
+                    <span className="font-mono font-semibold text-slate-600">{UDUPI_DATA.waste_other_kg.toLocaleString('en-IN')} kg</span>
                   </div>
                 </div>
-                <div className="text-[10px] text-slate-500 pt-1 leading-relaxed">
-                  <div className="flex justify-between"><span>Rate:</span><span className="text-slate-400">{UDUPI_DATA.waste_per_capita_kg}kg/person/day (CPCB)</span></div>
+                <div className="text-[10px] text-slate-500 pt-0.5">
+                  <div className="flex justify-between"><span>Per Capita Rate:</span><span className="text-slate-700 font-mono">{UDUPI_DATA.waste_per_capita_kg} kg/person/day</span></div>
                 </div>
               </div>
 
-              <div className="h-px bg-slate-800 w-full" />
+              <div className="h-px bg-slate-100 w-full" />
               
               {/* Risk Profile */}
-              <div className="space-y-2">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500">RISK PROFILE</div>
-                <div className="grid grid-cols-3 gap-1">
-                  <div className="bg-red-500/10 border border-red-500/20 rounded-md p-1.5 text-center">
-                    <div className="text-[10px] text-red-500 font-bold mb-0.5">High</div>
-                    <div className="text-sm font-bold text-white">8</div>
+              <div className="space-y-1.5">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400">ZONE RISK PROFILE</div>
+                <div className="grid grid-cols-3 gap-1.5">
+                  <div className="bg-rose-50 border border-rose-200/80 rounded-lg p-1.5 text-center">
+                    <div className="text-[10px] text-rose-700 font-bold mb-0.5">High</div>
+                    <div className="text-sm font-bold text-rose-900">8</div>
                   </div>
-                  <div className="bg-amber-500/10 border border-amber-500/20 rounded-md p-1.5 text-center">
-                    <div className="text-[10px] text-amber-500 font-bold mb-0.5">Med</div>
-                    <div className="text-sm font-bold text-white">11</div>
+                  <div className="bg-amber-50 border border-amber-200/80 rounded-lg p-1.5 text-center">
+                    <div className="text-[10px] text-amber-700 font-bold mb-0.5">Med</div>
+                    <div className="text-sm font-bold text-amber-900">11</div>
                   </div>
-                  <div className="bg-green-500/10 border border-green-500/20 rounded-md p-1.5 text-center">
-                    <div className="text-[10px] text-green-500 font-bold mb-0.5">Low</div>
-                    <div className="text-sm font-bold text-white">17</div>
+                  <div className="bg-emerald-50 border border-emerald-200/80 rounded-lg p-1.5 text-center">
+                    <div className="text-[10px] text-emerald-700 font-bold mb-0.5">Low</div>
+                    <div className="text-sm font-bold text-emerald-900">17</div>
                   </div>
                 </div>
               </div>
               
-              <div className="h-px bg-slate-800 w-full" />
+              <div className="h-px bg-slate-100 w-full" />
 
               {/* Infrastructure */}
-              <div className="space-y-1.5">
-                <div className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-2">INFRASTRUCTURE</div>
-                <div className="flex items-center gap-2 text-xs text-slate-300">
-                  <span>🏭</span>
-                  <span>16 DWCC centers</span>
+              <div className="space-y-1">
+                <div className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1">MUNICIPAL FACILITIES</div>
+                <div className="flex items-center gap-2 text-xs text-slate-700">
+                  <span>🏢</span>
+                  <span>6 Zonal DWCC Hubs</span>
                 </div>
-                <div className="flex items-center gap-2 text-xs text-slate-300">
+                <div className="flex items-center gap-2 text-xs text-slate-700">
+                  <span>⚡</span>
+                  <span>1 Biomethanation Unit (Beedinagudde)</span>
+                </div>
+                <div className="flex items-center gap-2 text-xs text-slate-700">
                   <span>♻️</span>
-                  <span>2 Bio-methanisation units</span>
-                </div>
-                <div className="flex items-center gap-2 text-xs text-slate-300">
-                  <span>🚯</span>
-                  <span>0 Open dumpyards</span>
+                  <span>1 MRF &amp; Landfill (Karvalu)</span>
                 </div>
               </div>
 
               {/* Footer Source */}
-              <div className="pt-2 text-[9px] text-slate-600 bg-slate-800/30 p-2 rounded border border-slate-700/50">
-                <div className="font-semibold">Source: Census 2011 · geoiq.io</div>
-                <div>Method: CPCB 0.5kg/person/day</div>
+              <div className="pt-1.5 text-[9px] text-slate-500 bg-slate-50 p-2 rounded-lg border border-slate-200">
+                <div className="font-semibold text-slate-700">Single Source: Udupi CMC Audited Telemetry</div>
+                <div>Per Capita Standard: CPCB 0.435 kg/capita/day</div>
               </div>
             </div>
           </div>
@@ -1161,65 +1105,61 @@ export default function SmartMap() {
           style={{
             width: '320px',
             transform: sidebarOpen ? 'translateX(0)' : 'translateX(100%)',
-            background: 'rgba(10,15,26,0.92)',
+            background: 'rgba(255,255,255,0.96)',
             backdropFilter: 'blur(20px)',
-            borderLeft: '1px solid rgba(255,255,255,0.1)',
+            borderLeft: '1px solid #e2e8f0',
+            boxShadow: '-8px 0 30px rgba(0,0,0,0.08)',
           }}
         >
           <button
             id="sidebar-close"
             onClick={() => setSidebarOpen(false)}
-            className="absolute top-4 right-4 text-white/40 hover:text-white/80 transition-colors text-xl"
+            className="absolute top-4 right-4 text-slate-400 hover:text-slate-700 transition-colors text-xl font-bold"
           >
             ✕
           </button>
-          <div className="p-6 pt-8 flex flex-col gap-5">
+          <div className="p-6 pt-8 flex flex-col gap-5 text-slate-800">
             <div>
-              <div className="text-[#00d4aa] text-xs font-bold uppercase tracking-widest mb-1">Ward Intelligence</div>
-              <h2 className="text-white text-xl font-black tracking-tight">Udupi City</h2>
-              <p className="text-white/40 text-xs mt-1">📍 35 Wards · Udupi City Municipal Council</p>
+              <div className="text-emerald-700 text-xs font-bold uppercase tracking-widest mb-1">Ward Intelligence</div>
+              <h2 className="text-slate-900 text-xl font-black tracking-tight">Udupi City</h2>
+              <p className="text-slate-500 text-xs mt-1">📍 35 Wards · Udupi City Municipal Council</p>
             </div>
-            <div className="h-px bg-white/10" />
+            <div className="h-px bg-slate-200" />
             <SidebarSection title="Satellite Analysis" icon="🛰️">
               <SidebarRow icon="🏠" label="Rooftops mapped" value={UDUPI_DATA.total_buildings.toLocaleString('en-IN')} />
-              <SidebarRow icon="👥" label="Population (building-based)" value={UDUPI_DATA.population_building_based.toLocaleString('en-IN')} />
+              <SidebarRow icon="👥" label="Population (Census Base)" value={UDUPI_DATA.population.toLocaleString('en-IN')} />
               <SidebarRow icon="📦" label="Waste generated" value={`${UDUPI_DATA.daily_waste_tons} T/day`} highlight />
               <SidebarRow icon="🌿" label="Green cover" value="26.1%" />
               <SidebarRow icon="📐" label="Total area" value={`${UDUPI_DATA.area_sq_km} sq km`} />
             </SidebarSection>
-            <div className="h-px bg-white/10" />
+            <div className="h-px bg-slate-200" />
             <SidebarSection title="Waste Facilities" icon="♻️">
-              <SidebarRow icon="🔵" label="DWCC Centers" value="3" />
-              <SidebarRow icon="🟢" label="MRF (Karvalu)" value="1" />
-              <SidebarRow icon="🟠" label="SWM Plant & Landfill" value="1" />
-              <SidebarRow icon="📊" label="Total facilities" value="5" highlight />
+              <SidebarRow icon="🔵" label="Zonal DWCC Hubs" value="6" />
+              <SidebarRow icon="🟢" label="Biomethanation Unit (Beedinagudde)" value="1" />
+              <SidebarRow icon="🟠" label="MRF &amp; Engineered Landfill (Karvalu)" value="1" />
+              <SidebarRow icon="📊" label="Total audited nodes" value="8" highlight />
             </SidebarSection>
-            <div className="h-px bg-white/10" />
+            <div className="h-px bg-slate-200" />
             <SidebarSection title="Route Optimization" icon="🚛">
               <SidebarRow icon="📍" label="Before (baseline)" value="248.6 km/day" />
               <SidebarRow icon="✅" label="After (optimized)" value="153.7 km/day" highlight />
-              <div
-                className="mt-2 px-3 py-2 rounded-xl text-xs font-bold text-center"
-                style={{ background: 'rgba(0,212,170,0.1)', color: '#00d4aa', border: '1px solid rgba(0,212,170,0.2)' }}
-              >
+              <div className="mt-2 px-3 py-2 rounded-xl text-xs font-bold text-center bg-emerald-50 text-emerald-800 border border-emerald-200">
                 🎉 38.2% distance reduction achieved
               </div>
             </SidebarSection>
-            <div className="h-px bg-white/10" />
+            <div className="h-px bg-slate-200" />
             <SidebarSection title="Land Cover (LULC)" icon="🗺️">
               <LandCoverBar label="Built-up" pct={66.3} color="#ef4444" />
               <LandCoverBar label="Vegetation" pct={26.1} color="#22c55e" />
-              <LandCoverBar label="Water" pct={7.5} color="#3b82f6" />
-              
-              
+              <LandCoverBar label="Water Bodies" pct={7.5} color="#0284c7" />
             </SidebarSection>
-            <div className="h-px bg-white/10" />
+            <div className="h-px bg-slate-200" />
             <div className="flex flex-col gap-3">
-              <Link href="/impact" className="w-full py-3 rounded-xl text-center text-sm font-bold transition-all" style={{ background: 'rgba(0,212,170,0.12)', color: '#00d4aa', border: '1px solid rgba(0,212,170,0.25)' }}>
-                View Economic Impact →
+              <Link href="/analytics" className="w-full py-2.5 rounded-xl text-center text-xs font-bold transition-all bg-emerald-600 text-white shadow-sm hover:bg-emerald-700">
+                View Generation Analytics →
               </Link>
-              <Link href="/simulation" className="w-full py-3 rounded-xl text-center text-sm font-bold transition-all" style={{ background: 'rgba(255,255,255,0.06)', color: '#94a3b8', border: '1px solid rgba(255,255,255,0.1)' }}>
-                Run Simulation →
+              <Link href="/simulation" className="w-full py-2.5 rounded-xl text-center text-xs font-bold transition-all bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200">
+                Run Vehicle Simulation →
               </Link>
             </div>
           </div>
@@ -1240,7 +1180,7 @@ function SidebarSection({ title, icon, children }: { title: string; icon: string
     <div className="flex flex-col gap-2">
       <div className="flex items-center gap-2 mb-1">
         <span className="text-sm">{icon}</span>
-        <span className="text-white/60 text-xs font-bold uppercase tracking-widest">{title}</span>
+        <span className="text-slate-500 text-xs font-bold uppercase tracking-widest">{title}</span>
       </div>
       <div className="flex flex-col gap-1.5">{children}</div>
     </div>
@@ -1250,10 +1190,10 @@ function SidebarSection({ title, icon, children }: { title: string; icon: string
 function SidebarRow({ icon, label, value, highlight, warn, danger }: {
   icon: string; label: string; value: string; highlight?: boolean; warn?: boolean; danger?: boolean;
 }) {
-  const valueColor = danger ? '#ef4444' : warn ? '#f59e0b' : highlight ? '#00d4aa' : '#94a3b8';
+  const valueColor = danger ? '#dc2626' : warn ? '#d97706' : highlight ? '#059669' : '#334155';
   return (
     <div className="flex items-center justify-between text-xs">
-      <span className="text-white/50 flex items-center gap-1.5"><span>{icon}</span>{label}</span>
+      <span className="text-slate-600 flex items-center gap-1.5"><span>{icon}</span>{label}</span>
       <span className="font-bold" style={{ color: valueColor }}>{value}</span>
     </div>
   );
@@ -1263,10 +1203,10 @@ function LandCoverBar({ label, pct, color }: { label: string; pct: number; color
   return (
     <div className="flex flex-col gap-1">
       <div className="flex justify-between text-xs">
-        <span className="text-white/50">{label}</span>
-        <span className="text-white/70 font-bold">{pct}%</span>
+        <span className="text-slate-600">{label}</span>
+        <span className="text-slate-900 font-bold">{pct}%</span>
       </div>
-      <div className="h-1.5 rounded-full bg-white/10 overflow-hidden">
+      <div className="h-1.5 rounded-full bg-slate-100 overflow-hidden">
         <div className="h-full rounded-full transition-all duration-700" style={{ width: `${pct}%`, background: color }} />
       </div>
     </div>
