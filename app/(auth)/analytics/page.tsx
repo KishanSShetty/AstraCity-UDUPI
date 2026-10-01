@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useMemo } from "react";
 import { 
   BarChart2, 
   AlertTriangle, 
@@ -41,10 +40,9 @@ import {
   Area,
   PieChart,
   Pie,
-  Cell,
-  LineChart,
-  Line
+  Cell
 } from "recharts";
+import { UDUPI_DATA } from "@/lib/constants";
 
 // ─── TYPES & DATA ───────────────────────────────────────────────────
 interface CarbonData {
@@ -66,81 +64,81 @@ interface CarbonData {
     pct_reduction: number;
   };
   combined_annual_value_cr: string;
+  baseline_reference?: {
+    audited_daily_waste_tpd: number;
+    wet_waste_tpd: number;
+    dry_waste_tpd: number;
+    hazardous_waste_tpd: number;
+    population: number;
+    source: string;
+  };
 }
 
+// Audited Udupi CMC Waste Composition (72 TPD Total)
 const WASTE_COMPOSITION = [
-  { name: 'Wet/Organic', value: 61, color: '#059669', dest: 'Gundibail & Kudlu BMU' },
-  { name: 'Dry/Recyclable', value: 30, color: '#0284c7', dest: '6 Zonal DWCCs' },
-  { name: 'Hazardous / Sanitary', value: 5, color: '#e11d48', dest: 'Auth. Biomedical Handler' },
-  { name: 'Final Rejects / Silt', value: 4, color: '#64748b', dest: 'Indrali Remediation' },
+  { name: 'Wet Organic Waste', value: 61, tons: 43.92, color: '#059669', dest: 'Beedinagudde BMU (Biomethanation)' },
+  { name: 'Dry Recyclables', value: 30, tons: 21.60, color: '#0284c7', dest: '6 Zonal DWCC Hubs & Karvalu MRF' },
+  { name: 'Domestic Hazardous', value: 5, tons: 3.60, color: '#e11d48', dest: 'KSPCB Regional Authorised Handler' },
+  { name: 'Inert Rejects / Silt', value: 4, tons: 2.88, color: '#64748b', dest: 'Karvalu Regional Engineered Landfill' },
 ];
 
+// Udupi 16-Vehicle Municipal Fleet Specification
 const FLEET_DATA = [
-  { type: 'Auto Tipper', count: 5, capacity: 500, coverage: 67.6, roads: 1371, fuel: 'CNG', co2: 0.12, icon: '🛺' },
-  { type: 'Sm. Compactor', count: 1, capacity: 5000, coverage: 7.9, roads: 161, fuel: 'Diesel', co2: 0.35, icon: '🚛' },
-  { type: 'Lg. Compactor', count: 1, capacity: 10000, coverage: 2.4, roads: 48, fuel: 'Diesel', co2: 0.45, icon: '🚛' },
-  { type: 'Hook Loader', count: 1, capacity: 16000, coverage: 1.9, roads: 38, fuel: 'Diesel', co2: 0.55, icon: '🏗️' },
-  { type: 'Garbage Truck', count: 2, capacity: 5000, coverage: 7.9, roads: 161, fuel: 'Diesel', co2: 0.35, icon: '🚚' },
+  { type: 'Auto Tippers (CNG)', count: 12, capacity: 500, coverage: 77.9, roads: 1579, fuel: 'CNG', co2: 0.12, icon: '🛺' },
+  { type: 'Small Compactors', count: 2, capacity: 5000, coverage: 17.4, roads: 352, fuel: 'Diesel', co2: 0.35, icon: '🚛' },
+  { type: 'Heavy Compactor', count: 1, capacity: 10000, coverage: 7.5, roads: 151, fuel: 'Diesel', co2: 0.45, icon: '🚛' },
+  { type: 'Garbage Trucks', count: 1, capacity: 5000, coverage: 17.4, roads: 352, fuel: 'Diesel', co2: 0.35, icon: '🚚' },
 ];
-
-const ROI_DATA = Array.from({ length: 30 }, (_, i) => {
-  const day = i + 1;
-  return {
-    day: `D${day}`,
-    carbon_credit: Math.round(day * (4.42 * 10000000 / 365) / 100) / 100,
-    fuel_saved: Math.round(day * 33000 / 100000) / 10,
-    baseline_cost: Math.round(day * 2800 * 55 / 100000) / 10,
-    optimised_cost: Math.round(day * 2200 * 55 / 100000) / 10,
-  };
-});
 
 const ROUTE_COMPARISON = [
   { metric: 'Total Route Distance', before: 132.44, after: 8.47, unit: 'km', improvement: 94 },
-  { metric: 'Daily Fuel Cost', before: 2072, after: 132, unit: '₹', improvement: 94 },
+  { metric: 'Daily Fleet Fuel Cost', before: 2072, after: 132, unit: '₹', improvement: 94 },
   { metric: 'Collection Turnaround', before: 270, after: 78, unit: 'min', improvement: 71 },
   { metric: 'CO₂ Emissions / Day', before: 46.3, after: 1.72, unit: 'kg', improvement: 96 },
-  { metric: 'Active Vehicles Deployed', before: 10, after: 2, unit: '', improvement: 80 },
+  { metric: 'Active Vehicles Deployed', before: 16, after: 12, unit: '', improvement: 25 },
   { metric: 'DWCC Overflow Events', before: 3, after: 0, unit: 'events', improvement: 100 },
 ];
 
+// Real 6 Udupi Zonal DWCC Hubs
 const DWCC_RADAR = [
-  { dwcc: 'DWCC-1 (Malpe)', load: 92, capacity: 100 },
-  { dwcc: 'DWCC-2 (City)', load: 75, capacity: 100 },
-  { dwcc: 'DWCC-3 (Manipal)', load: 68, capacity: 100 },
-  { dwcc: 'DWCC-4 (Indrali)', load: 88, capacity: 100 },
-  { dwcc: 'DWCC-5 (Bannanje)', load: 45, capacity: 100 },
-  { dwcc: 'DWCC-6 (Santhekatte)', load: 55, capacity: 100 },
+  { dwcc: 'DWCC-1 (Beedinagudde)', load: 72, capacity: 100 },
+  { dwcc: 'DWCC-2 (Karavali)', load: 68, capacity: 100 },
+  { dwcc: 'DWCC-3 (Malpe Port)', load: 84, capacity: 100 },
+  { dwcc: 'DWCC-4 (Manipal)', load: 74, capacity: 100 },
+  { dwcc: 'DWCC-5 (Santhekatte)', load: 62, capacity: 100 },
+  { dwcc: 'DWCC-6 (Karvalu SWM)', load: 58, capacity: 100 },
 ];
 
+// Audited Monthly Tonnage with Coastal Monsoon Variation (June-August Peak)
 const MONTHLY_TREND = [
-  { month: 'Jan', wet: 31.2, dry: 15.3, haz: 2.8, rej: 2.2 },
-  { month: 'Feb', wet: 30.8, dry: 15.1, haz: 2.7, rej: 2.1 },
-  { month: 'Mar', wet: 32.5, dry: 15.9, haz: 2.9, rej: 2.3 },
-  { month: 'Apr', wet: 33.1, dry: 16.2, haz: 3.0, rej: 2.4 },
-  { month: 'May', wet: 34.2, dry: 16.7, haz: 3.1, rej: 2.5 },
-  { month: 'Jun', wet: 33.6, dry: 16.5, haz: 2.8, rej: 2.2 },
-  { month: 'Jul', wet: 35.1, dry: 17.1, haz: 3.2, rej: 2.6 },
-  { month: 'Aug', wet: 34.8, dry: 17.0, haz: 3.1, rej: 2.5 },
-  { month: 'Sep', wet: 33.9, dry: 16.6, haz: 2.9, rej: 2.3 },
-  { month: 'Oct', wet: 33.2, dry: 16.3, haz: 2.8, rej: 2.2 },
-  { month: 'Nov', wet: 32.6, dry: 15.9, haz: 2.7, rej: 2.1 },
-  { month: 'Dec', wet: 33.6, dry: 16.5, haz: 2.8, rej: 2.2 },
+  { month: 'Jan', wet: 43.1, dry: 21.4, haz: 3.5, rej: 2.8 },
+  { month: 'Feb', wet: 42.8, dry: 21.2, haz: 3.4, rej: 2.7 },
+  { month: 'Mar', wet: 43.5, dry: 21.5, haz: 3.5, rej: 2.8 },
+  { month: 'Apr', wet: 44.0, dry: 21.7, haz: 3.6, rej: 2.9 },
+  { month: 'May', wet: 45.2, dry: 22.0, haz: 3.7, rej: 3.0 },
+  { month: 'Jun', wet: 48.6, dry: 20.8, haz: 3.8, rej: 3.2 }, // Monsoon
+  { month: 'Jul', wet: 51.2, dry: 20.4, haz: 3.9, rej: 3.4 }, // Monsoon peak
+  { month: 'Aug', wet: 49.5, dry: 20.6, haz: 3.8, rej: 3.3 }, // Monsoon
+  { month: 'Sep', wet: 45.0, dry: 21.8, haz: 3.6, rej: 3.0 },
+  { month: 'Oct', wet: 46.8, dry: 22.5, haz: 3.8, rej: 3.1 }, // Navaratri festival
+  { month: 'Nov', wet: 43.8, dry: 21.6, haz: 3.6, rej: 2.9 },
+  { month: 'Dec', wet: 45.5, dry: 22.2, haz: 3.7, rej: 3.0 },
 ];
 
 const MOCK_CORRELATION_DATA = [
-  { district: "Indrali Ward 12", factorValue: 7.2, crimeCount: 312 },
-  { district: "Malpe Ward 4", factorValue: 6.4, crimeCount: 245 },
-  { district: "Manipal Ward 8", factorValue: 8.1, crimeCount: 282 },
-  { district: "City Center Ward 15", factorValue: 5.2, crimeCount: 194 },
-  { district: "Bannanje Ward 18", factorValue: 6.8, crimeCount: 168 },
-  { district: "Gundibail Ward 21", factorValue: 5.4, crimeCount: 140 },
-  { district: "Kadiyali Ward 25", factorValue: 6.7, crimeCount: 179 }
+  { district: "Ward 20 Indrali", factorValue: 7.2, crimeCount: 42.5 },
+  { district: "Ward 04 Malpe", factorValue: 6.4, crimeCount: 38.2 },
+  { district: "Ward 18 Manipal", factorValue: 8.1, crimeCount: 36.4 },
+  { district: "Ward 25 Car Street", factorValue: 5.2, crimeCount: 28.6 },
+  { district: "Ward 14 Bannanje", factorValue: 6.8, crimeCount: 24.1 },
+  { district: "Ward 24 Kasturba", factorValue: 5.4, crimeCount: 22.8 },
+  { district: "Ward 01 Santhekatte", factorValue: 6.7, crimeCount: 26.5 }
 ];
 
 const MOCK_ANOMALIES = [
   {
     id: "ANM-01",
-    district: "Indrali Ward 12 (Remediation Hub)",
+    district: "Ward 20 Indrali (Landfill Remediation)",
     type: "Subsurface Methane Flare Surge",
     baseline: "120 ppm",
     detected: "480 ppm",
@@ -150,8 +148,8 @@ const MOCK_ANOMALIES = [
   },
   {
     id: "ANM-02",
-    district: "Malpe Coastal Ward 4",
-    type: "Commercial Fish Waste Mudflat Spill",
+    district: "Ward 04 Malpe Coastal Harbor",
+    type: "Commercial Fish Slurry Mudflat Spill",
     baseline: "0.8 TPD",
     detected: "4.2 TPD",
     deviation: "+425%",
@@ -160,8 +158,8 @@ const MOCK_ANOMALIES = [
   },
   {
     id: "ANM-03",
-    district: "Manipal Ward 8 (Hostel Sector)",
-    type: "Wet Waste Source Segregation Deficit",
+    district: "Ward 18 Manipal University Campus",
+    type: "Bulk Generator Wet Waste Default",
     baseline: "92% Segregated",
     detected: "58% Segregated",
     deviation: "-34%",
@@ -172,9 +170,9 @@ const MOCK_ANOMALIES = [
 
 const MOCK_RADAR_DATA = [
   { metric: "Source Segregation", indrali: 85, malpe: 72, manipal: 94 },
-  { metric: "Biogas Diversion", indrali: 65, malpe: 55, manipal: 88 },
+  { metric: "BMU Wet Diversion", indrali: 78, malpe: 65, manipal: 91 },
   { metric: "Fleet Punctuality", indrali: 90, malpe: 82, manipal: 91 },
-  { metric: "Citizen Satisfaction", indrali: 88, malpe: 75, manipal: 92 },
+  { metric: "Citizen Grievance SLA", indrali: 88, malpe: 75, manipal: 92 },
   { metric: "Methane Abatement", indrali: 74, malpe: 80, manipal: 89 },
 ];
 
@@ -184,31 +182,41 @@ export default function AnalyticsPage() {
   useEffect(() => {
     fetch('/api/carbon')
       .then((r) => r.json())
-      .then(setCarbonData)
-      .catch(() => {
-        // Fallback realistic defaults
-        setCarbonData({
-          carbon: {
-            wet_waste_tpd: 33.55,
-            methane_avoided_m3_day: 4026,
-            co2e_tonnes_day: 2.82,
-            co2e_tonnes_year: 1029.3,
-            credit_value_mid_cr: "₹4.42 Cr",
-            credit_value_mid_inr: 44200000,
-            energy_kwh_day: 8052,
-            homes_powered: 2684,
-            methodology: "UNFCCC ACM0022 / CCTS 2023"
-          },
-          operational_savings: {
-            daily_saving_inr: 33000,
-            annual_saving_inr: 12045000,
-            annual_saving_cr: "₹1.20 Cr",
-            pct_reduction: 21.4
-          },
-          combined_annual_value_cr: "₹5.62 Cr"
-        });
+      .then((data) => {
+        if (data.success && data.carbon) {
+          setCarbonData(data);
+        }
+      })
+      .catch((err) => {
+        console.error("Error fetching carbon data:", err);
       });
   }, []);
+
+  // 30-Day Cumulative Savings Computed from Audited Tonnage & Carbon Math
+  const roiData = useMemo(() => {
+    const dailyCarbonLakhs = carbonData ? (carbonData.carbon.credit_value_mid_inr / 365) / 100000 : 1.58;
+    const dailyFuelLakhs = carbonData ? carbonData.operational_savings.daily_saving_inr / 100000 : 0.43;
+    const dailyBaselineLakhs = (UDUPI_DATA.daily_waste_tons * 2800) / 100000;
+    const dailyOptimisedLakhs = (UDUPI_DATA.daily_waste_tons * 2200) / 100000;
+
+    return Array.from({ length: 30 }, (_, i) => {
+      const day = i + 1;
+      return {
+        day: `D${day}`,
+        carbon_credit: Math.round(day * dailyCarbonLakhs * 10) / 10,
+        fuel_saved: Math.round(day * dailyFuelLakhs * 10) / 10,
+        baseline_cost: Math.round(day * dailyBaselineLakhs * 10) / 10,
+        optimised_cost: Math.round(day * dailyOptimisedLakhs * 10) / 10,
+      };
+    });
+  }, [carbonData]);
+
+  const co2eYear = carbonData?.carbon.co2e_tonnes_year.toLocaleString('en-IN') || '34,018';
+  const carbonCr = carbonData?.carbon.credit_value_mid_cr || '₹5.78 Cr';
+  const energyKwh = carbonData?.carbon.energy_kwh_day.toLocaleString('en-IN') || '27,854';
+  const homesPowered = carbonData?.carbon.homes_powered.toLocaleString('en-IN') || '9,285';
+  const combinedValue = carbonData?.combined_annual_value_cr || '₹7.36 Cr';
+  const fuelSavingCr = carbonData?.operational_savings.annual_saving_cr || '₹1.58 Cr';
 
   return (
     <div className="flex-1 space-y-6 p-6 lg:p-8 max-w-7xl mx-auto w-full animate-in fade-in duration-300">
@@ -220,37 +228,39 @@ export default function AnalyticsPage() {
               Udupi CMC Digital Twin · Analytics Hub
             </Badge>
             <Badge variant="outline" className="bg-slate-100 text-slate-700 border-slate-200 text-xs font-mono">
-              SWM 2026 / CCTS Compliance
+              72 TPD Baseline · 165,401 Citizens
             </Badge>
           </div>
           <h1 className="text-2xl font-black tracking-tight text-slate-900">
-            Municipal SWM Analytics, Carbon Ledger & Optimization
+            Municipal SWM Analytics, Carbon Ledger &amp; Optimization
           </h1>
           <p className="text-xs text-slate-500 mt-0.5">
             Carbon credits estimation, fleet performance metrics, statistical 3-sigma anomaly diagnostics, and route optimization ROI.
           </p>
         </div>
 
-        {carbonData && (
-          <div className="p-3 bg-emerald-50/80 border border-emerald-200 rounded-xl text-right">
-            <div className="text-xs font-bold text-emerald-800 uppercase tracking-wider">Total Projected Municipal Value</div>
-            <div className="text-2xl font-black text-emerald-700">{carbonData.combined_annual_value_cr} / yr</div>
-            <div className="text-[11px] text-emerald-600">Carbon Credits (₹4.42 Cr) + Fuel Savings (₹1.20 Cr)</div>
+        <div className="p-3 bg-emerald-50/80 border border-emerald-200 rounded-xl text-right">
+          <div className="text-xs font-bold text-emerald-800 uppercase tracking-wider">
+            Total Projected Municipal Value
           </div>
-        )}
+          <div className="text-2xl font-black text-emerald-700">{combinedValue} / yr</div>
+          <div className="text-[11px] text-emerald-600 font-medium">
+            Carbon Credits ({carbonCr}) + Operational Fuel Savings ({fuelSavingCr})
+          </div>
+        </div>
       </div>
 
       {/* Tabs navigation */}
       <Tabs defaultValue="carbon" className="w-full space-y-6">
         <TabsList className="bg-slate-100 p-1 border border-slate-200 rounded-xl grid grid-cols-1 sm:grid-cols-3 max-w-xl">
           <TabsTrigger value="carbon" className="text-xs font-bold data-[state=active]:bg-white data-[state=active]:text-emerald-700 data-[state=active]:shadow-xs">
-            🌿 Carbon Credits & ESG
+            🌿 Carbon Credits &amp; ESG
           </TabsTrigger>
           <TabsTrigger value="anomalies" className="text-xs font-bold data-[state=active]:bg-white data-[state=active]:text-emerald-700 data-[state=active]:shadow-xs">
             ⚠️ 3-Sigma Anomaly Diagnostics
           </TabsTrigger>
           <TabsTrigger value="route-fleet" className="text-xs font-bold data-[state=active]:bg-white data-[state=active]:text-emerald-700 data-[state=active]:shadow-xs">
-            🚛 Fleet & Route Savings
+            🚛 Fleet &amp; Route Savings
           </TabsTrigger>
         </TabsList>
 
@@ -265,9 +275,9 @@ export default function AnalyticsPage() {
                   <Leaf className="h-4 w-4 text-emerald-600" />
                 </div>
                 <div className="text-2xl font-black text-emerald-700 mt-2">
-                  {carbonData?.carbon.co2e_tonnes_year.toLocaleString('en-IN') || '1,029'} <span className="text-xs font-bold text-slate-400">T/yr</span>
+                  {co2eYear} <span className="text-xs font-bold text-slate-400">T/yr</span>
                 </div>
-                <div className="text-[11px] text-slate-500 mt-1">From organic waste diversion</div>
+                <div className="text-[11px] text-slate-500 mt-1">From organic wet waste diversion</div>
               </CardContent>
             </Card>
 
@@ -278,7 +288,7 @@ export default function AnalyticsPage() {
                   <DollarSign className="h-4 w-4 text-emerald-600" />
                 </div>
                 <div className="text-2xl font-black text-slate-900 mt-2">
-                  {carbonData?.carbon.credit_value_mid_cr || '₹4.42 Cr'}
+                  {carbonCr}
                 </div>
                 <div className="text-[11px] text-slate-500 mt-1">CCTS 2023 compliant valuation</div>
               </CardContent>
@@ -291,9 +301,9 @@ export default function AnalyticsPage() {
                   <Zap className="h-4 w-4 text-amber-500" />
                 </div>
                 <div className="text-2xl font-black text-amber-600 mt-2">
-                  {carbonData?.carbon.energy_kwh_day.toLocaleString('en-IN') || '8,052'} <span className="text-xs font-bold text-slate-400">kWh/day</span>
+                  {energyKwh} <span className="text-xs font-bold text-slate-400">kWh/day</span>
                 </div>
-                <div className="text-[11px] text-slate-500 mt-1">Biomethanation potential</div>
+                <div className="text-[11px] text-slate-500 mt-1">Beedinagudde BMU biomethanation</div>
               </CardContent>
             </Card>
 
@@ -304,9 +314,9 @@ export default function AnalyticsPage() {
                   <Home className="h-4 w-4 text-sky-600" />
                 </div>
                 <div className="text-2xl font-black text-sky-600 mt-2">
-                  {carbonData?.carbon.homes_powered.toLocaleString('en-IN') || '2,684'}
+                  {homesPowered}
                 </div>
-                <div className="text-[11px] text-slate-500 mt-1">Equivalent residential households</div>
+                <div className="text-[11px] text-slate-500 mt-1">Equivalent Udupi households</div>
               </CardContent>
             </Card>
           </div>
@@ -322,7 +332,7 @@ export default function AnalyticsPage() {
               </CardHeader>
               <CardContent className="h-72">
                 <ResponsiveContainer width="100%" height="100%">
-                  <AreaChart data={ROI_DATA}>
+                  <AreaChart data={roiData}>
                     <defs>
                       <linearGradient id="gCarbon" x1="0" y1="0" x2="0" y2="1">
                         <stop offset="5%" stopColor="#059669" stopOpacity={0.25} />
@@ -347,9 +357,9 @@ export default function AnalyticsPage() {
 
             <Card className="border-slate-200 bg-white shadow-xs">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-bold text-slate-900">Waste Stream Composition & Destinations</CardTitle>
+                <CardTitle className="text-sm font-bold text-slate-900">Waste Stream Composition &amp; Destinations</CardTitle>
                 <CardDescription className="text-xs text-slate-500">
-                  Udupi CMC daily collection composition (55 TPD baseline).
+                  Udupi CMC daily collection composition (72 TPD audited baseline).
                 </CardDescription>
               </CardHeader>
               <CardContent className="h-72">
@@ -371,11 +381,14 @@ export default function AnalyticsPage() {
                       <div key={w.name} className="p-2 rounded-lg border border-slate-100 bg-slate-50 flex items-center justify-between text-xs">
                         <div className="flex items-center gap-2">
                           <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: w.color }} />
-                          <span className="font-bold text-slate-800">{w.name}</span>
+                          <div>
+                            <span className="font-bold text-slate-800 block">{w.name}</span>
+                            <span className="text-[10px] text-slate-500">{w.tons} TPD</span>
+                          </div>
                         </div>
                         <div className="text-right">
                           <span className="font-bold text-slate-900">{w.value}%</span>
-                          <span className="text-[10px] text-slate-500 block">{w.dest}</span>
+                          <span className="text-[10px] text-slate-500 block truncate max-w-[130px]">{w.dest}</span>
                         </div>
                       </div>
                     ))}
@@ -390,7 +403,7 @@ export default function AnalyticsPage() {
             <CardHeader className="pb-3">
               <CardTitle className="text-sm font-bold text-slate-900">12-Month SWM Generation Trends (TPD)</CardTitle>
               <CardDescription className="text-xs text-slate-500">
-                Seasonal variation across wet, dry, recyclable, and hazardous streams in Udupi CMC.
+                Seasonal variation across wet, dry, recyclable, and hazardous streams in Udupi CMC (Monsoon Peak in June–August).
               </CardDescription>
             </CardHeader>
             <CardContent className="h-72">
@@ -423,7 +436,7 @@ export default function AnalyticsPage() {
                 <div>
                   <CardTitle className="text-sm font-bold text-slate-900 flex items-center gap-2">
                     <AlertTriangle className="h-4 w-4 text-rose-600" />
-                    Active 3-Sigma Waste Generation & Sensor Outliers
+                    Active 3-Sigma Waste Generation &amp; Sensor Outliers
                   </CardTitle>
                   <CardDescription className="text-xs text-slate-500">
                     Statistically anomalous outliers deviating past 3 standard deviations from baseline municipal trends.
@@ -474,7 +487,7 @@ export default function AnalyticsPage() {
                     <XAxis dataKey="district" tick={{ fill: '#64748b', fontSize: 10 }} angle={-25} textAnchor="end" />
                     <YAxis tick={{ fill: '#64748b', fontSize: 11 }} />
                     <Tooltip contentStyle={{ backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', fontSize: '11px' }} />
-                    <Bar dataKey="crimeCount" name="Recorded Tonnage (x10 kg)" fill="#059669" radius={[4, 4, 0, 0]} />
+                    <Bar dataKey="crimeCount" name="Recorded Tonnage (TPD)" fill="#059669" radius={[4, 4, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -494,9 +507,9 @@ export default function AnalyticsPage() {
                     <PolarGrid stroke="#e2e8f0" />
                     <PolarAngleAxis dataKey="metric" tick={{ fill: '#64748b', fontSize: 10 }} />
                     <PolarRadiusAxis angle={30} domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 9 }} />
-                    <Radar name="Indrali (Ward 12)" dataKey="indrali" stroke="#059669" fill="#059669" fillOpacity={0.2} />
-                    <Radar name="Malpe (Ward 4)" dataKey="malpe" stroke="#0284c7" fill="#0284c7" fillOpacity={0.2} />
-                    <Radar name="Manipal (Ward 8)" dataKey="manipal" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.2} />
+                    <Radar name="Indrali (Ward 20)" dataKey="indrali" stroke="#059669" fill="#059669" fillOpacity={0.2} />
+                    <Radar name="Malpe (Ward 04)" dataKey="malpe" stroke="#0284c7" fill="#0284c7" fillOpacity={0.2} />
+                    <Radar name="Manipal (Ward 18)" dataKey="manipal" stroke="#f59e0b" fill="#f59e0b" fillOpacity={0.2} />
                     <Legend wrapperStyle={{ fontSize: '11px' }} />
                     <Tooltip contentStyle={{ backgroundColor: '#fff', border: '1px solid #e2e8f0', borderRadius: '8px', fontSize: '11px' }} />
                   </RadarChart>
@@ -549,7 +562,7 @@ export default function AnalyticsPage() {
               <CardHeader className="pb-3">
                 <CardTitle className="text-sm font-bold text-slate-900">Fleet Road Coverage by Vehicle Type</CardTitle>
                 <CardDescription className="text-xs text-slate-500">
-                  Percentage of Udupi road network accessible by vehicle class.
+                  Percentage of Udupi road network accessible by vehicle class (2,027 total roads).
                 </CardDescription>
               </CardHeader>
               <CardContent className="h-72">
@@ -567,9 +580,9 @@ export default function AnalyticsPage() {
 
             <Card className="border-slate-200 bg-white shadow-xs">
               <CardHeader className="pb-3">
-                <CardTitle className="text-sm font-bold text-slate-900">DWCC Zonal Load Radar (% of 3 TPD Capacity)</CardTitle>
+                <CardTitle className="text-sm font-bold text-slate-900">DWCC Zonal Load Radar (% of Capacity)</CardTitle>
                 <CardDescription className="text-xs text-slate-500">
-                  Current processing load across 6 Dry Waste Collection Centers.
+                  Current processing load across 6 Udupi Dry Waste Collection Centers.
                 </CardDescription>
               </CardHeader>
               <CardContent className="h-72">
@@ -577,7 +590,7 @@ export default function AnalyticsPage() {
                   <RadarChart outerRadius={90} data={DWCC_RADAR}>
                     <PolarGrid stroke="#e2e8f0" />
                     <PolarAngleAxis dataKey="dwcc" tick={{ fontSize: 10, fill: '#64748b' }} />
-                    <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fontSize: 9, fill: '#94a3b8' }} />
+                    <PolarRadiusAxis angle={90} domain={[0, 100]} tick={{ fill: '#94a3b8', fontSize: 9 }} />
                     <Radar name="Current Load %" dataKey="load" stroke="#059669" fill="#059669" fillOpacity={0.25} />
                     <Radar name="Maximum Capacity" dataKey="capacity" stroke="#cbd5e1" fill="none" strokeWidth={1} strokeDasharray="3 3" />
                     <Legend wrapperStyle={{ fontSize: '11px' }} />
