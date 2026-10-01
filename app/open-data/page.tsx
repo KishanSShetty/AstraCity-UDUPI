@@ -220,6 +220,82 @@ export default function OpenDataPortal() {
           )}
         </div>
       </div>
+
+      {/* Sources & Mathematical Baselines */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pb-24">
+        <div className="mb-8 border-b border-slate-800 pb-4">
+          <h2 className="text-3xl font-black text-white">Mathematical Baselines & Core Assumptions</h2>
+          <p className="text-slate-400 mt-2">The exact numbers, formulas, and verified sources powering the Digital Twin.</p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-800 rounded-3xl p-6">
+            <h3 className="text-lg font-black text-blue-400 mb-2">1. Population Estimation (165,401)</h3>
+            <p className="text-sm text-slate-300 mb-4 leading-relaxed">
+              <strong>Source:</strong> OpenStreetMap (Spatial Data) + Census of India 2011 (Demographics)
+            </p>
+            <div className="text-xs text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono">
+              Formula: (Houses × 4) + (Apartments × 284) + (Offices × 5)
+              <br /><br />
+              Total Buildings Mapped: 11,429 (OSM)
+              <br />
+              Calculated Spatial Population: 165,277 residents
+              <br />
+              Target Census 2011 Population: ~165,401 residents
+              <br />
+              Accuracy: 99.9% validation against baseline.
+            </div>
+          </div>
+
+          <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-800 rounded-3xl p-6">
+            <h3 className="text-lg font-black text-emerald-400 mb-2">2. Daily Waste Generation (72 TPD)</h3>
+            <p className="text-sm text-slate-300 mb-4 leading-relaxed">
+              <strong>Source:</strong> Central Pollution Control Board (CPCB) India SWM Manual
+            </p>
+            <div className="text-xs text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono">
+              Formula: Population × Per Capita Generation
+              <br /><br />
+              CPCB Baseline for Tier-2 Cities: 0.435 kg/capita/day
+              <br />
+              Calculation: 165,401 × 0.435 kg
+              <br />
+              Total Daily Waste: 71,949 kg ≈ 72 Tons Per Day (TPD)
+            </div>
+          </div>
+
+          <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-800 rounded-3xl p-6">
+            <h3 className="text-lg font-black text-rose-400 mb-2">3. Routing Fleet (32 Vehicles)</h3>
+            <p className="text-sm text-slate-300 mb-4 leading-relaxed">
+              <strong>Source:</strong> Udupi CMC Action Plan / OSRM Graph
+            </p>
+            <div className="text-xs text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono">
+              Fleet Breakdown: 27 Auto Tippers, 5 Heavy Compactors
+              <br />
+              Primary Collection: Auto Tippers deployed in residential lanes (&lt;4m width).
+              <br />
+              Secondary Collection: Compactors restricted to arterial roads (&gt;6m width).
+              <br />
+              Routing Algorithm: Clarke-Wright Savings with Time Windows.
+            </div>
+          </div>
+
+          <div className="bg-slate-900/60 backdrop-blur-xl border border-slate-800 rounded-3xl p-6">
+            <h3 className="text-lg font-black text-amber-400 mb-2">4. Facilities & MRFs</h3>
+            <p className="text-sm text-slate-300 mb-4 leading-relaxed">
+              <strong>Source:</strong> Namma Udupi Portal / Field Verification
+            </p>
+            <div className="text-xs text-slate-400 bg-slate-950 p-4 rounded-xl border border-slate-800 font-mono">
+              Total DWCCs: 6 (Combined Capacity: ~40 TPD)
+              <br />
+              Wet Waste: 1 Bio-Methanisation Plant (Beedinagudde, 43.9 TPD)
+              <br />
+              Regional MRF: Karvalu Central SWM Plant
+              <br />
+              Verification: Cross-referenced with KSPCB spatial coordinates.
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
