@@ -92,18 +92,28 @@ interface AuthStore {
   role: UserRole;
   login: (role: UserRole) => void;
   logout: () => void;
+  isAuthModalOpen: boolean;
+  authModalMode: 'selection' | 'citizen' | 'municipal';
+  openAuthModal: (mode?: 'selection' | 'citizen' | 'municipal') => void;
+  closeAuthModal: () => void;
 }
 
 export const useAuthStore = create<AuthStore>()(
   persist(
     (set) => ({
       role: null,
-      login: (role) => set({ role }),
-      logout: () => set({ role: null })
+      login: (role) => set({ role, isAuthModalOpen: false }),
+      logout: () => set({ role: null, isAuthModalOpen: false }),
+      isAuthModalOpen: false,
+      authModalMode: 'selection',
+      openAuthModal: (mode = 'selection') => set({ isAuthModalOpen: true, authModalMode: mode }),
+      closeAuthModal: () => set({ isAuthModalOpen: false }),
     }),
     {
       name: 'auth-storage',
       storage: createJSONStorage(() => sessionStorage),
+      partialize: (state) => ({ role: state.role }),
     }
   )
 );
+

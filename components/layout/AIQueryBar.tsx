@@ -2,8 +2,9 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { usePathname } from 'next/navigation';
 import { UDUPI_DATA } from '@/lib/constants';
-import { useComplaintStore } from '@/lib/store';
+import { useComplaintStore, useAuthStore } from '@/lib/store';
 
 interface Message {
   role: 'user' | 'assistant' | 'system';
@@ -11,6 +12,8 @@ interface Message {
 }
 
 export default function AIQueryBar() {
+  const pathname = usePathname();
+  const { role } = useAuthStore();
   const [query, setQuery] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -25,6 +28,10 @@ export default function AIQueryBar() {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages, isLoading]);
+
+  if (pathname === '/' || role !== 'municipal') {
+    return null;
+  }
 
   const handleSubmit = async (e?: React.FormEvent) => {
     e?.preventDefault();

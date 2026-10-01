@@ -3,7 +3,9 @@
 import Link from 'next/link';
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { UDUPI_DATA } from '@/lib/constants';
+import { useAuthStore } from '@/lib/store';
 
 // Animated counter hook
 function useCounter(target: number, duration = 2.2, decimals = 0) {
@@ -117,10 +119,28 @@ const FEATURES = [
 ];
 
 export default function Home() {
+  const router = useRouter();
+  const { role, openAuthModal } = useAuthStore();
   const population = useCounter(UDUPI_DATA.population_building_based, 2.4, 0);
   const totalWaste = useCounter(UDUPI_DATA.daily_waste_tons, 2.6, 1);
   const routeSaving = useCounter(UDUPI_DATA.route_improvement_pct, 2.0, 1);
   const savedCrores = useCounter(UDUPI_DATA.annual_savings_total_cr, 2.0, 1);
+
+  const handleLaunchAdmin = () => {
+    if (role === 'municipal') {
+      router.push('/dashboard');
+    } else {
+      openAuthModal('municipal');
+    }
+  };
+
+  const handleLaunchCitizen = () => {
+    if (role === 'citizen') {
+      router.push('/citizen');
+    } else {
+      openAuthModal('citizen');
+    }
+  };
 
   return (
     <div className="min-h-screen relative overflow-hidden flex flex-col font-sans" style={{ background: '#000814' }}>
@@ -181,16 +201,78 @@ export default function Home() {
           Satellite + Census intelligence for Udupi City&apos;s 1,65,401 residents across 7 sectors, 68.23 sq km, 9,471 buildings.
         </motion.p>
 
-        <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-20">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-8 mb-12">
           <StatCard value={population} label="Residents (2025)" subtext="Building × Census 2011 Karnataka" delay={0.8} />
           <StatCard value={totalWaste} suffix=" Tons" label="Daily waste generated" subtext="CPCB 0.5kg/person · 9,471 buildings" delay={0.9} />
           <StatCard value={routeSaving} suffix="%" label="Route optimization" subtext="132km → 32km · 2,027 road segments" delay={1.0} />
           <StatCard value={savedCrores} prefix="₹" suffix=" Cr" label="Annual value identified" subtext="₹4.2Cr ops + ₹5.2Cr carbon credits" delay={1.1} />
         </div>
+
+        {/* Portal Access Cards directly on the Landing Page */}
+        <div className="w-full max-w-4xl mx-auto my-6 z-10">
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-4 bg-emerald-950/60 border border-emerald-500/30">
+              <span className="text-emerald-400 font-bold text-xs uppercase tracking-widest">Select Access Portal</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mb-2">
+              Choose Your Access Level
+            </h2>
+            <p className="text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
+              Select your role to enter the solid waste management ecosystem.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-4">
+            {/* Citizen Option */}
+            <div
+              onClick={handleLaunchCitizen}
+              className="cursor-pointer group flex flex-col items-center justify-between p-8 sm:p-10 bg-slate-900/70 hover:bg-emerald-950/50 border border-slate-800 hover:border-emerald-500/60 rounded-3xl transition-all duration-300 hover:shadow-[0_0_40px_rgba(16,185,129,0.2)] hover:-translate-y-1.5 relative overflow-hidden text-center"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 to-emerald-500/10 group-hover:opacity-100 opacity-0 transition-opacity" />
+              <div className="w-20 h-20 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-6 group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+              </div>
+              <h3 className="text-2xl font-black text-white mb-2">Citizen</h3>
+              <p className="text-slate-400 text-sm font-medium mb-6 leading-relaxed">
+                Report dumps &amp; overflowing bins, earn green civic points, and track community cleanup.
+              </p>
+              <button
+                type="button"
+                className="w-full py-3.5 px-6 rounded-xl font-bold text-sm bg-emerald-500/10 group-hover:bg-emerald-500 text-emerald-300 group-hover:text-slate-950 border border-emerald-500/30 group-hover:border-transparent transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>Enter Citizen Portal</span>
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </button>
+            </div>
+
+            {/* Municipal Admin Option */}
+            <div
+              onClick={handleLaunchAdmin}
+              className="cursor-pointer group flex flex-col items-center justify-between p-8 sm:p-10 bg-slate-900/70 hover:bg-teal-950/50 border border-slate-800 hover:border-teal-500/60 rounded-3xl transition-all duration-300 hover:shadow-[0_0_40px_rgba(20,184,166,0.2)] hover:-translate-y-1.5 relative overflow-hidden text-center"
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-500/0 to-teal-500/10 group-hover:opacity-100 opacity-0 transition-opacity" />
+              <div className="w-20 h-20 rounded-2xl bg-teal-500/10 flex items-center justify-center text-teal-400 mb-6 group-hover:scale-110 transition-transform duration-300 shadow-inner">
+                <svg className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2"><path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+              </div>
+              <h3 className="text-2xl font-black text-white mb-2">Municipal Admin</h3>
+              <p className="text-slate-400 text-sm font-medium mb-6 leading-relaxed">
+                Access 3D digital twin, route optimization, and SWM 2026 prescriptive simulation.
+              </p>
+              <button
+                type="button"
+                className="w-full py-3.5 px-6 rounded-xl font-bold text-sm bg-teal-500/10 group-hover:bg-teal-500 text-teal-300 group-hover:text-slate-950 border border-teal-500/30 group-hover:border-transparent transition-all shadow-sm flex items-center justify-center gap-2 cursor-pointer"
+              >
+                <span>Launch Admin Dashboard</span>
+                <span className="transition-transform group-hover:translate-x-1">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
       </section>
 
+
       {/* Feature Grid Section */}
-      <section className="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full border-t border-white/5">
+      <section id="features" className="relative z-10 max-w-6xl mx-auto px-6 py-24 w-full border-t border-white/5">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">Powered by Orbital Intelligence</h2>
           <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto font-medium">From 400 miles above to the streets of Udupi.</p>
@@ -214,8 +296,6 @@ export default function Home() {
         </div>
       </section>
 
-
-
       {/* Closing CTA Pitch */}
       <section className="relative z-10 max-w-5xl mx-auto px-6 py-32 w-full text-center">
         <motion.div
@@ -234,16 +314,24 @@ export default function Home() {
             &quot;Udupi generates 5,000 tons of waste every day. No one knows in real time where illegal dumps are forming... VajraYield calculates — to the rupee — how much money these optimizations save the government.&quot;
           </p>
 
-          <Link
-            href="/map"
-            className="group relative inline-flex items-center justify-center gap-4 px-12 py-6 rounded-full text-xl font-black transition-all duration-300 bg-teal-500 text-slate-900 shadow-[0_10px_30px_rgb(20,184,166,0.3)] hover:bg-teal-400 hover:shadow-[0_15px_40px_rgb(20,184,166,0.4)] hover:-translate-y-1 z-10 overflow-hidden"
-          >
-            <span className="relative z-10">Launch Command Center</span>
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="transition-transform duration-300 group-hover:translate-x-2 relative z-10"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            <div className="absolute inset-0 h-full w-full scale-0 rounded-full transition-all duration-300 group-hover:scale-100 group-hover:bg-white/10" />
-          </Link>
+          <div className="flex flex-wrap items-center justify-center gap-4 z-10">
+            <button
+              onClick={handleLaunchAdmin}
+              className="group relative inline-flex items-center justify-center gap-4 px-10 py-5 rounded-full text-lg font-black transition-all duration-300 bg-teal-500 text-slate-900 shadow-[0_10px_30px_rgb(20,184,166,0.3)] hover:bg-teal-400 hover:shadow-[0_15px_40px_rgb(20,184,166,0.4)] hover:-translate-y-1 z-10 cursor-pointer"
+            >
+              <span className="relative z-10">Launch Command Center</span>
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="transition-transform duration-300 group-hover:translate-x-2 relative z-10"><path d="M5 12h14M12 5l7 7-7 7" strokeLinecap="round" strokeLinejoin="round" /></svg>
+            </button>
+            <button
+              onClick={handleLaunchCitizen}
+              className="inline-flex items-center justify-center gap-3 px-10 py-5 rounded-full text-lg font-bold transition-all duration-300 bg-white/10 hover:bg-white/15 text-white border border-white/20 hover:border-emerald-400/40 backdrop-blur-md hover:-translate-y-1 z-10 cursor-pointer"
+            >
+              <span>Citizen Portal</span>
+            </button>
+          </div>
         </motion.div>
       </section>
+
 
     </div>
   );
